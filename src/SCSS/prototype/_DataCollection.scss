@@ -1,0 +1,19 @@
+.DataCollection{
+
+
+    .FlexListRow{
+        display: flex;
+        list-style: none;
+        width: 60vw;
+        flex-wrap: wrap;
+        li{
+            margin: 0 3px;
+            font-size: .8em;
+            font-weight: 400;
+        }
+    }
+    
+    span{ 
+        color: red;
+    }
+}

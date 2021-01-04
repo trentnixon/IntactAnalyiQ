@@ -1,0 +1,37 @@
+.FlexTable{
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:center;
+
+    .FlexTableRow{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+        width: 60vw;
+        
+       
+        div{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content:center;
+            align-items: stretch;
+            align-content: flex-start;
+            width: 15%;
+            padding: 3px;
+            border: 1px solid;
+        }
+        div:first-child{
+            width: 70%;
+            justify-content: end;
+        }
+    }
+    .head{
+        font-weight: 800;
+    }
+}

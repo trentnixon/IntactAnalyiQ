@@ -1,0 +1,40 @@
+.FilterControlsContainer{
+    width: 98%;
+    margin: 0 auto .5rem;
+
+    h2{
+        margin: 0;
+        line-height: 2rem;
+    }
+    p{
+        font-size:.9rem;
+        line-height:1.2rem;
+        margin: 0;
+    }
+
+    .FilterControls{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        
+        margin-top: .5rem;
+        border:1px solid $color4; 
+        background-color: $color4;
+        border-radius: $borderRadius;
+        padding: .2 .8rem;
+        >div{
+            width: 20%;
+            color: white;
+            display: flex;
+            justify-content: center;
+            label{
+                color: white;
+                width: 100%;
+            }
+            .MuiInputBase-root{
+                color: white;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,170 @@
+
+.ResultsHeader{
+    padding: .5rem 1rem;
+    background-color: $color4;
+    border-radius: $borderRadius;
+    color: $color1;
+    
+    h2, h3{ margin: 0; padding:0;}    
+    p{
+        margin: .5rem 0;
+        font-size: .9rem;
+        line-height: 1rem;
+    }
+}
+
+
+ul.ListResults{ 
+    list-style: none;
+    margin: 0;
+    padding: 0;  
+
+    h3{
+        svg{
+            fill:$color4;
+            font-size: 2.5rem;
+        }
+        strong{
+            color: $color2;
+        }
+    }
+    li{
+        margin: 1.5rem .5rem;
+
+        .ListResultContainer{
+            border:1px solid $color5;
+            border-radius: $borderRadius;
+            .Title{
+                background-color: $color4;
+                
+                color: white;
+                padding: .5rem 2rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                    h3{
+                        text-align: center;
+                        margin: 0;
+                    }
+                    .metaData{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        align-content: center;
+                        h3{
+                            font-size: 1.3rem;
+                            letter-spacing: -1px;
+                        }
+                        button.BackToTop{
+                            svg{
+                                fill: $color1;
+                            }
+                        }
+                        button.DeleteCluster{
+                            fill: $color3;
+                        }
+                    }
+                    
+            }
+
+            .ClusterOverview{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                background-color: $color5;
+                padding: .5rem 0;
+                color: $color1;
+                font-weight: 100;
+                font-size: 1.5rem;
+                h3{
+                    font-size: 1.3rem;
+                    letter-spacing: -1px;
+                }
+            }
+
+            .MoreInfoCTA{
+                background-color: $color5;
+                color: $color1;
+                font-weight: 800;
+                text-align: center;
+                font-size: 1.6rem;
+                h3{
+                    margin: 0;
+                    font-size: 1.1rem;
+                    letter-spacing: -1px;
+                }
+            }
+            .MuiAccordionDetails-root{
+                flex-direction: column;
+
+                .ListtheData{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    width:100%;
+                    .TradeTypeList{
+                        padding: .5rem 2rem;
+                        width: 40%;
+                        h3,p{
+                            margin: 0;
+                        text-align: center;
+                        }
+                    }
+                    .LocationList{
+                        padding: .5rem 2rem;
+                        width: 60%;
+                        h3{
+                            margin: 0;
+                        text-align: center;
+                        }
+                        .SiteBreakdown{
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                list-style: none;
+                                margin: 1rem 0 ;
+                                padding: 0;
+                                li{
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: space-between;
+                                    margin: 0;
+                                    padding: .2rem 0 ;
+        
+                                    div{
+                                        display: flex;
+                                        flex-direction: row;
+                                        
+                                    
+                                    }
+                                }
+                            
+                        }
+                    }
+
+                }
+            }
+            
+
+            .ResultCharts{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                align-content: center;
+                flex-wrap: wrap;
+                >div{
+                    width: 50%;
+                    h3{
+                        text-align: center;
+                    }
+                }
+                >div:nth-child(3){
+                    width: 100%;
+                }
+            }
+        }
+    }
+ 
+}

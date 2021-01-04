@@ -1,15 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
+import { LoadScript } from '@react-google-maps/api';
+import {UXContextProvider} from "./Context/UX";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import store from './store/'; 
+import {LoadPrototype} from "./actions/PrototypeLoader";
+
+const PrepApp = new LoadPrototype();
+PrepApp.Fetch();
+let APIKEY='AIzaSyALF9F0ml86QsWwtB0bCC7mszlTsv6U8BE'
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <Provider store={ store }>
+      <LoadScript  googleMapsApiKey={APIKEY} >
+      <UXContextProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+      </UXContextProvider>
+      </LoadScript>
+    </Provider>,
   document.getElementById('root')
-);
+); 
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

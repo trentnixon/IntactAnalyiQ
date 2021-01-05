@@ -12,7 +12,7 @@ import {LoadPrototype} from "./actions/PrototypeLoader";
 
 const PrepApp = new LoadPrototype();
 PrepApp.Fetch();
-let APIKEY='AIzaSyALF9F0ml86QsWwtB0bCC7mszlTsv6U8BE'
+
 
 ReactDOM.render(
     <Provider store={ store }>

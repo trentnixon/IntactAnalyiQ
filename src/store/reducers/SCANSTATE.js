@@ -9,14 +9,31 @@ const InitialState ={
         MaxOrderOrders:10000
     },
     Results:[],
-    ResultsVisibleAll:true
+    ResultsVisibleAll:true,
+
+    MarkerScanResults:null,
+    MarkerScanCenterPoints:null
 }
  
 const RegionScan = (state=InitialState, action) =>{ 
     // eslint-disable-next-line 
     switch(action.type){
 
-         // UI State
+    
+    // MARKER
+    case "STOREMARKERRESULTS":{
+        return {...state, MarkerScanResults:action.payload}
+            // eslint-disable-next-line 
+        break
+        }
+    case "STOREMARKERCENTERPOINTS":{
+        return {...state, MarkerScanCenterPoints:action.payload}
+            // eslint-disable-next-line 
+        break
+        }
+        
+    
+        // UI State
          case "SCANSTATE":{
             return {...state, active :action.payload}
                 // eslint-disable-next-line 

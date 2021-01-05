@@ -39,13 +39,12 @@ const IntroText = ()=>{
     )
 }
 
-
+ 
 const DisplayData = (props)=>{
     
     const {Data, Label} = props
-    const STRAPI = useContext_STRAPI_FULL();
     
-    useEffect(()=>{  console.log(STRAPI.Customers) },[STRAPI])
+    useEffect(()=>{  console.log(Data) },[Data])
   
     return(
       <div className="DataCollection">
@@ -62,8 +61,11 @@ const DisplayData = (props)=>{
                     return(
                         <div key={i} className="FlexTableRow">
                             <div>{state.name}</div>  
-                            <div>{
-                            state.count[0] !== undefined ? state.count[0].WorkOrders:<span>{"!NULL!"}</span>
+                            <div>{ 
+                                    state.count[0] !== undefined ? 
+                                        state.count[0].WorkOrders
+                                        :
+                                        <span>{"!NULL!"}</span>
                             } </div> 
                             <div>{state.sites.length}</div> 
                         </div> )

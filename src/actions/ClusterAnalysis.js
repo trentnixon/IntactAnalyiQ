@@ -3,6 +3,9 @@ import store from "../store/index"
 import {find, findIndex} from 'lodash'; 
 
 
+/* **************************************************************************** */
+/*  Aux Functions */
+/* **************************************************************************** */
 const GroupArray =(arr) =>{
     var a = [],b = [],prev;
     arr.sort();
@@ -19,12 +22,60 @@ const GroupArray =(arr) =>{
   }
 
 
-
   const FindMultiplier=(int)=>{
     const RM = store.getState().STRAPI.ratioModel
     let Multiplier = find(RM, function(o) { return (o.Min <= int && o.max >= int) });
     return Multiplier.multiplier
   }
+
+
+  const FindInterior = (outer, inner)=>{
+    inner.map((cluster,i)=>{
+      let Inside = false
+      if(
+          cluster.GroupedBoxBoundaryLimits[0] > outer[0]
+        && cluster.GroupedBoxBoundaryLimits[1] < outer[1]
+        && cluster.GroupedBoxBoundaryLimits[2] > outer[2]
+        && cluster.GroupedBoxBoundaryLimits[3] < outer[3]
+      )
+      { Inside = true}
+      console.log(outer, cluster.GroupedBoxBoundaryLimits)
+        console.log(Inside)
+    })
+  }
+
+  const findTradeTypeName = (id)=>{
+    
+    const TRADETYPE = store.getState().STRAPI.tradeType;
+    let FoundType = find(TRADETYPE, function(o) { return o.id === id; })
+    return FoundType.name
+}
+
+    const ResourcesRequired = (TradesUsed)=>{
+      //console.log(TradesUsed);
+      
+    }
+
+    const ChartGroupArrayData = (Compressed)=>{
+    let CompressedForPie=[]
+    Compressed[0].map((jt,i)=>{ CompressedForPie.push({ name: jt , value: Compressed[1][i] }) })
+    return (CompressedForPie);
+    }
+
+/* End Aux Functions **************************************************************************** */
+
+
+/* **************************************************************************** */
+/* Worker Functions  */
+/* **************************************************************************** */
+
+
+const Removeinteriors = (Results)=>{
+  console.log(Results)
+  Results.map((results)=>{
+      FindInterior(results.GroupedBoxBoundaryLimits, Results)
+  })
+}
 
 const ClusterCost=(ClusterAssetBreakdown)=>{
     const TRADETYPE = store.getState().STRAPI.tradeType;
@@ -44,23 +95,8 @@ const ClusterCost=(ClusterAssetBreakdown)=>{
 }
 
 
-    const ResourcesRequired = (TradesUsed)=>{
-            //console.log(TradesUsed);
-            
-    }
 
-  const ChartGroupArrayData = (Compressed)=>{
-    let CompressedForPie=[]
-    Compressed[0].map((jt,i)=>{ CompressedForPie.push({ name: jt , value: Compressed[1][i] }) })
-    return (CompressedForPie);
-}
 
-const findTradeTypeName = (id)=>{
-    
-    const TRADETYPE = store.getState().STRAPI.tradeType;
-    let FoundType = find(TRADETYPE, function(o) { return o.id === id; })
-    return FoundType.name
-}
 
   const JobTypes =(JOBTYPES,result)=>{
      
@@ -105,8 +141,10 @@ const findTradeTypeName = (id)=>{
                       PUSHSplitTradeTypeCount.push({id:FindWorkOrder.trade_type, count:FindWorkOrder.count, name:findTradeTypeName(FindWorkOrder.trade_type)})
                     }
                     
-                    // I DONT THINK THIS IS CORRECT
+                    
+                     // I DONT THINK THIS IS CORRECT
                     WorkOrderValue = PUSHWorkOrdersTrueNumber.reduce((a, b) => a + b, 0)
+                    console.log("PUSHWorkOrdersTrueNumber", PUSHWorkOrdersTrueNumber)
                     let IndexThis = findIndex(PUSHJobTypeWorkOrderCount, function(o) { return o.name === jobtype.name; })
                     
                     if(IndexThis === -1){ 
@@ -115,8 +153,10 @@ const findTradeTypeName = (id)=>{
                     else{
                         PUSHJobTypeWorkOrderCount.splice(IndexThis, 1, {name:jobtype.name, value: (PUSHJobTypeWorkOrderCount[IndexThis].value+WorkOrderValue)});
                     }
+                    
                 }
             })
+           
         });
 
 
@@ -141,24 +181,104 @@ const findTradeTypeName = (id)=>{
 
 
 
-  const Removeinteriors = (Results)=>{
-      console.log(Results)
-      Results.map((results)=>{
 
-      })
+
+
+
+
+
+  const checkResourceCount = (Results)=>{
+
+    Results.map((cluster,i)=>{
+
+      console.log(cluster, cluster.SplitTradeTypeCount)
+    })
+      /*
+        minValueDay = 2
+        ResourceDay = 0.2
+        JobsPerDay = 4.4
+        MinRadius = 2000
+        WorkDays = 250
+      */
+
   }
 
-export function ClusterAnalysis(Results){
+  /* NEW FUNCTIONS */
 
+  const ExtractWorkOrderValues = (Results) => {
+    // Extracts the True workorder count
+      Results.map((result)=>{
+        let WorkOrderCount = [], WorkOrderNum=0
+          result.Sites.map((site, i)=>{
+              WorkOrderNum = WorkOrderNum + site.count[0].WorkOrders
+              WorkOrderCount.push(site.count[0].WorkOrders)
+          })
+          result.WorkOrders = WorkOrderCount.reduce((a, b) => a + b, 0);
+      })
+      return true;
+  }
+
+
+  const ExtractTradeTypes = (Results, STRAPI)=>{
+
+    //console.log(STRAPI)
+    
+    Results.map((result)=>{
+      let PUSHTradeType=[]
+        result.Sites.map((site, i)=>{
+          PUSHTradeType = [...PUSHTradeType,...JSON.parse(site.count[0].TradeTypes)]
+        })
+        result.TradeType = GroupArray(PUSHTradeType)
+        //console.log(GroupArray(PUSHTradeType));
+    })
+   
+    return true;
+  } 
+
+
+
+/* **************************************************************************** */
+/*  Starter Function  ********************************************************* */
+/*                                                                               */
+/* **************************************************************************** */
+
+
+export function ClusterAnalysis(Results){
+    const STRAPI = store.getState().STRAPI;
     console.log("ClusterAnalysis", Results);
     
-    const STRAPI = store.getState().STRAPI;
+    // Let group some of the Data points into Meta data
+    // Group by WO
+      ExtractWorkOrderValues(Results)
+    // Group by Trade type
+      ExtractTradeTypes(Results, STRAPI)
+    // Group by Resource Type
+      //checkResourceCount(Results)
+    
+    // Group by Cost
+    
+    // Group by Asset Type
+    // Group by Delivery Model
+    // Group by Customers
+
+
+
+
+    // OK time to filter through the results on Known restrictions
+    
+     // Run Resource Test Here
+    
+    // Removeinteriors(Results)
+
+
+    
     // find the job types
+    /*
      Results.map((result,i)=>{
         
         let TRADEOBJ = JobTypes(STRAPI.JobType,result);
 
-        result.WorkOrdersTrueNumber = TRADEOBJ.WorkOrdersTrueNumber
+        //result.WorkOrdersTrueNumber = TRADEOBJ.WorkOrdersTrueNumber
         result.SplitTradeTypeCount = TRADEOBJ.SplitTradeTypeCount
         result.TradeTypeCount =TRADEOBJ.TradeTypeARR
         result.ClusterCost = TRADEOBJ.ClusterCost
@@ -171,8 +291,9 @@ export function ClusterAnalysis(Results){
         }
     })
 
-
-    Removeinteriors(Results)
-
-//    store.dispatch({ type:'STORERESULTS', payload:Results}); 
+    */
+   
+    console.log("FINAL RESULT ", Results)
+    
+    //store.dispatch({ type:'STORERESULTS', payload:Results}); 
 }

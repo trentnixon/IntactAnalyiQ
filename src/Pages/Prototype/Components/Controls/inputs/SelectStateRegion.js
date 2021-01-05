@@ -79,7 +79,7 @@ const  MaterialUISelectRegion = () =>{
               {
                 
                 orderBy(UX.AreaSelectFilter.state.regions, ['name'], ['asc', 'desc']).map((item, i)=>{
-                    return(<MenuItem key={i} value={item} >{item.name} ({item.count[0].WorkOrders})</MenuItem>)
+                    return(<MenuItem key={i} value={item} >{item.name} </MenuItem>)
                   })
                 }
           </Select>
@@ -88,7 +88,7 @@ const  MaterialUISelectRegion = () =>{
     );
   }
 
-
+//({item.count[0].WorkOrders})
 
 
 

@@ -2,6 +2,15 @@ import { Circle } from '@react-google-maps/api';
 import store from "../store/index"
 import {ClusterAnalysis} from "./ClusterAnalysis";
 
+
+
+/*
+    This class should deal with Geolocation Processes ONLY
+    all result filtering to be handled in phase two
+
+*/
+
+
 // find the distance in KM from 1 point to another
 export function distancetoPoint(lat1, lon1, lat2, lon2, unit) {
     if ((lat1 == lat2) && (lon1 == lon2)) {
@@ -163,9 +172,8 @@ export function PreformScan(){
 
     this.Scan=()=>{
             console.log("START SCAN ")
-            console.log("Scan Start Result Num", this.ScanResults.length)
-
             console.log("Scan Filters", this.FilterVariables)
+            
             this.BreakBoundaries(this.Boundaries)
             //console.log(this.NESW)
             
@@ -174,7 +182,7 @@ export function PreformScan(){
             let Xiterations = distancetoPoint(this.NESW.north,this.NESW.west, this.NESW.north, this.NESW.east,'K')/this.FilterVariables.GridSpacing;
             let Yiterations = distancetoPoint(this.NESW.north,this.NESW.west, this.NESW.south, this.NESW.west,'K')/this.FilterVariables.GridSpacing;
 
-            console.log( Xiterations, Yiterations);
+            //console.log( Xiterations, Yiterations);
             //let ScanBoxStartingPosition = llFromDistance(this.NESW.north, this.NESW.west, Math.sqrt(2)*this.Area, 135)
             
             //let LargestSurfaceArea = Math.max(Math.ceil(Xiterations), Math.ceil(Yiterations))
@@ -188,7 +196,7 @@ export function PreformScan(){
 
     this.FindScanPoints = (Xiterations, Yiterations)=>{
 
-        console.log(Xiterations, Yiterations);
+        //console.log(Xiterations, Yiterations);
 
         let LargestSurfaceArea = Math.max(Xiterations, Yiterations)
         let i=0;
@@ -205,7 +213,7 @@ export function PreformScan(){
             i++
         }
 
-        console.log(Points);
+        //console.log(Points);
         this.MapScanPoints(Points, Xiterations, Yiterations)
     }
 
@@ -270,7 +278,7 @@ export function PreformScan(){
     this.scanTestDiameter = (ScanBoundary)=>{
 
         // This function checks to see if a site is within the Radius of the center point in the scan
-        // it should check each site lng/lst. if true then calculate variables required and store in array this.ScanResults;
+        // it should check each site lng/lst. if true then store in array this.ScanResults;
        
         // Outer Global Variables
         let CollectSites=[];
@@ -292,9 +300,8 @@ export function PreformScan(){
                 CollectSites.push(site);
                 
                 //console.log(site)
-                if(site.count[0] !== null)
-                    WorkOrderCount = WorkOrderCount + site.count[0].WorkOrders;
-                //WorkOrderCount = WorkOrderCount + site.count[0].ParentItems;
+                //if(site.count[0] !== null) WorkOrderCount = WorkOrderCount + site.count[0].WorkOrders;
+               
               
             } // close if true
            
@@ -303,16 +310,18 @@ export function PreformScan(){
             // Limit Boundaries to outer most
             GroupedBoxBoundaryLimits.push([Math.max(...long), Math.min(...long), Math.max(...lat), Math.min(...lat)])
             // if work orders !0 ship it off for processing
+            /*
             if( WorkOrderCount >= this.FilterVariables.MinWorkOrder 
                 && WorkOrderCount <= this.FilterVariables.MaxOrderOrders 
                 && CollectSites.length>=this.FilterVariables.minSites)
-                { this.ProcessGridBoundary(CollectSites, WorkOrderCount, GroupedBoxBoundaryLimits, ScanBoundary)}
-   
+                { }
+            */
+                this.ProcessGridBoundary(CollectSites, GroupedBoxBoundaryLimits, ScanBoundary)
         }
 
  
 
-    this.ProcessGridBoundary=(Sites, WorkOrderCount, GroupedBoxBoundaryLimits, ScanBoundary)=>{
+    this.ProcessGridBoundary=(Sites, GroupedBoxBoundaryLimits, ScanBoundary)=>{
      
         // Variables
         let tmp = [];
@@ -332,15 +341,16 @@ export function PreformScan(){
 
         remove.map((id,i)=>{ Sites.splice(id, 1);})
 
-        this.ScanResults.push({
-            Sites:Sites,
-            SiteCount:Sites.length,
-            Boundary:ScanBoundary,
-            WorkOrderCount:WorkOrderCount,
-            GroupedBoxBoundaryLimits:removeDuplicateBoundaryLimits[0]
-        });
-        
-        
+        // only add items with a site count
+        if(Sites.length>0){
+            this.ScanResults.push({
+                Sites:Sites,
+                SiteCount:Sites.length,
+                Boundary:ScanBoundary,
+                //WorkOrderCount:WorkOrderCount,
+                GroupedBoxBoundaryLimits:removeDuplicateBoundaryLimits[0]
+            });
+        }
     }
 
 
@@ -356,4 +366,4 @@ export function PreformScan(){
  
     }
 
-}
+} 

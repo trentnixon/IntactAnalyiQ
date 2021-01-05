@@ -32,7 +32,11 @@ const Login = ()=>{
                 <ListItemIcon><MapIcon /></ListItemIcon>
                 <ListItemText primary='Primary Feature Test' />
           </ListItem>
-
+          <ListItem button key='MarkerBasedScan' component={Link} to={`/MarkerBasedScan`}>
+                <ListItemIcon><MapIcon /></ListItemIcon>
+                <ListItemText primary='MarkerBasedScan' />
+          </ListItem>
+          
           <ListItem button key='Portfolio' component={Link} to={`/portfolio`}>
                 <ListItemIcon><PersonPinIcon /></ListItemIcon>
                 <ListItemText primary='Portfolio' />

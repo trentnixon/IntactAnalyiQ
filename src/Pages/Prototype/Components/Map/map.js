@@ -15,8 +15,7 @@ import AddNewRegion from "./AddNewRegion";
 let _ = require('lodash');
 const iconBase ="/icons/";
 const containerStyle = { height: "600px", width: "auto" };
-let Targeticon = {};   
-//let APIKEY='AIzaSyALF9F0ml86QsWwtB0bCC7mszlTsv6U8BE'
+let Targeticon = {};
 const MapSwitch = ()=>{
     
     //const STRAPI = useContext_STRAPI_FULL();
@@ -72,7 +71,8 @@ const DisplayMap=()=>{
   }, []);
 
 
-  useEffect(()=>{setMapParameters(UX.MapParameters);},[UX.MapParameters])
+  useEffect(()=>{
+      setMapParameters(UX.MapParameters);},[UX.MapParameters])
 
     return(
        <div className="ScanMapMain" id="MainMap">

@@ -37,6 +37,8 @@ const LocationMarkers = ()=>{
 
       const FindMinMax=(Data)=>{
         let arr=[]
+
+        console.log("FindMinMax", Data)
         Data.map((marker,i)=>{ 
        
             if(marker.count[0] != null){
@@ -50,7 +52,7 @@ const LocationMarkers = ()=>{
 
 
       const CreateMarkers = (markers)=>{
-        
+        console.log("markers", markers)
          let MinMax = FindMinMax(markers);
          let NewMarkers =    uniqBy(markers, 'combined');
          let StoreMarkers=[]
@@ -72,7 +74,8 @@ const LocationMarkers = ()=>{
                                 fillOpacity: .9,
                                 anchor: new window.google.maps.Point(0,0),
                                 strokeWeight: 0,
-                                scale: 1
+                                scale: 1,
+                                zIndex:100
                             }; 
                                
 

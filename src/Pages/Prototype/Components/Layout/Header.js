@@ -41,6 +41,7 @@ const FeatureHeader = ()=>{
 
 
    useEffect(()=>{
+       console.log("UX.SelectedArea", UX.SelectedArea)
         WorkorderCount()
     },[UX.MapParameters])
 

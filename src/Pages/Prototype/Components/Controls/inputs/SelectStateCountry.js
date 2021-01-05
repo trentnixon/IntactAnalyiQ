@@ -38,6 +38,10 @@ const  MaterialUISelectCountry = () =>{
     const handleOpen = () => { setOpen(true); };
    
   useEffect(()=>{},[Value]);
+
+  useEffect(()=>{
+    console.log(COUNTRIES)
+  },[COUNTRIES]);
  
     return (
       <div>

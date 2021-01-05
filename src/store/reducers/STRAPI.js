@@ -1,4 +1,5 @@
 const InitialState ={
+    sites:null,
     Customers:null,
     Countries:null,
     States:null,
@@ -15,6 +16,11 @@ const STRAPI = (state=InitialState, action) =>{
     switch(action.type){
 
          // UI State
+         case "STORESITES":{
+            return {...state, sites :action.payload}
+                        // eslint-disable-next-line 
+            break
+            }
          case "STORECUSTOMERS":{
             return {...state, Customers :action.payload}
                 // eslint-disable-next-line 

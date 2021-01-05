@@ -45,7 +45,7 @@ export function CreateMapParameters(DATA){
             let centerLngArray = [];
             let Storesites=[]
 
-            console.log(DATA)
+            //console.log(DATA)
             DATA.map((Region, i)=>{
                 //console.log("Region", Region)
                 Region.sites.map((marker,i)=>{
@@ -79,7 +79,7 @@ export function CreateMapParameters(DATA){
                 markers:Storesites
             }
 
-            //console.log(MapParameters)
+            //console.log("MapParameters", MapParameters)
             store.dispatch({ type:'STOREMAPPARAMETERS', payload:MapParameters});
 }
 
@@ -153,4 +153,34 @@ export function NumberReducer (labelValue) {
 export function HandleFilterChange(TYPE, VALUE){
     console.log(TYPE, VALUE)
     store.dispatch({ type:TYPE, payload:VALUE});
+}
+
+export function RegionColor(region){
+  switch (region) {
+      case 'SameBuilding':
+            return '#CD0074'
+        break;
+      case 'CBD':
+              return '#00CC00'
+        break;
+      case 'InnerCity':
+              return '#561F77'
+          break;
+      case 'Metro':
+              return '#1042AB'
+          break;
+      case 'OuterMetro':
+              return '#176B6B'
+          break;
+        case 'Regional':
+          return '#1F8E1F'
+          break;
+        case 'Remote':
+          return '#F36A00'
+          break; 
+      case 'ExtremeRemote':
+            return '#9D121C'
+          break;   
+     
+  }
 }

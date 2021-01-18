@@ -1,0 +1,23 @@
+
+
+.AuthNavigation{
+    ul{
+        a{
+            div{
+                svg{
+                    fill: $color1;
+                    border:1px solid;
+                }
+            }
+        }
+    }
+   
+}
+
+.Auth{
+    width: 100vw;
+    .InnerFrame{
+        padding: 2rem;
+        text-align: center;
+    } 
+}

@@ -1,0 +1,14 @@
+@import"./Template/index";
+@import "./LoadingScreen/index";
+
+.Public{    
+    width: 100vw;
+    @import "./Template/PublicNav";
+    @import "./LoadingScreen/index";
+
+    .InnerFrame{
+        padding: 2rem;
+        text-align: center;
+        
+    }
+}

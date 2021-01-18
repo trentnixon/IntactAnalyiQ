@@ -3,6 +3,14 @@
 import store from "../store/index"
 import axios from 'axios';
 
+
+
+const useAPILOCATION = () => {
+    //const APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
+    const APILOCATION = 'http://localhost:1337/'
+    return APILOCATION
+}
+
 /*
 export function LoginSequence(arr){
     let State = arr.map((Value,i)=>{
@@ -15,8 +23,8 @@ export function LoginSequence(arr){
 
 export function LoadPrototype(){
 
-    this.API='http://localhost:1337/graphql'
-    //this.API='https://intact-analtyiq.herokuapp.com/graphql'
+    console.log("LOAD ME")
+    this.API=useAPILOCATION()+'graphql'
 
     this.Limit=100;
 
@@ -32,18 +40,14 @@ export function LoadPrototype(){
     this.LimitedRequest = `{ name id }`
 
     
-    this.Store={customers:false, Region:false,SmallFetch:false, sites:false}
+    this.Store={customers:true,SmallFetch:true, sites:true}
 
     this.SmallReturnsQuery = `query{ 
-        states {name id combined long lat count{ WorkOrders } regions{name id}}
-        jobTypes { name id }
-        tradeTypes { name id }
-        industryTypes {name id} 		
-        ratioModels { name multiplier max Min}
+        states {name id combined long lat count{ WorkOrders } }
         countries { country lat long combined count{ WorkOrders }}
       }`
     // THIS IS HORRIBLE FIX IT
-    this.SitesRequest =`{ name lat long siteweighting count{ WorkOrders}}`
+    this.SitesRequest =`{ name lat long combined siteweighting count{ WorkOrders}  region_type{name} postcode{name} }`
     this.StoreSites=[]
     this.SitesQuery =` query { sites (start: 0) ${ this.SitesRequest} }`;
 
@@ -62,13 +66,16 @@ export function LoadPrototype(){
     this.Fetch = ()=>{
         console.log("Prep App");
         // Large Data Fetch
-        this.GraphQL(this.SitesQuery, this.ProcessSites)
-        this.GraphQL(this.RegionQuery, this.ProcessRegions)
-        this.GraphQL(this.CustomerQuery, this.ProcessCustomer)
+        
+        // commented out for dev
+        //this.GraphQL(this.SitesQuery, this.ProcessSites)
+        //this.GraphQL(this.RegionQuery, this.ProcessRegions)
+
+    //    this.GraphQL(this.CustomerQuery, this.ProcessCustomer)
 
         // Small Data Fetch
-        this.GraphQL( this.SmallReturnsQuery, this.ProcessSmallReturns)
-
+    //    this.GraphQL( this.SmallReturnsQuery, this.ProcessSmallReturns)
+    this.processCheck()
     }
 
 
@@ -88,7 +95,7 @@ export function LoadPrototype(){
 
             this.Store.SmallFetch=true;
             this.processCheck()
-        }    
+        }     
 
         
   /* *************************************************************************************************** */
@@ -153,7 +160,7 @@ export function LoadPrototype(){
             if(!this.Store[k])
                 Load=false
         })
-        //console.log(Load)
+        console.log("Load", Load)
             if(Load)
                 store.dispatch({ type:'DATARECEIVED', payload:true});
             

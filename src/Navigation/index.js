@@ -5,44 +5,40 @@ import { Route, Switch } from "react-router-dom";
 // Context 
  import {STRAPIContextProvider} from "../Context/STRAPI";
  import {SCANContextProvider} from "../Context/SCAN";
+ import {AUTHContextProvider} from "../Context/AUTH";
 
  //import {UXContextProvider} from "../Context/UX";
 // Components
 import history from  '../History'
- 
-import ComponentLogin from "../Pages/Login/index";
-import ComponentPrototype from "../Pages/DataDump/index";
-import ComponentPrimaryFeature from "../Pages/Prototype/PrimaryFeature";
-import ComponentPortfolio from "../Pages/Portfolio/index";
-import ComponentMarkerBasedScan from "../Pages/MarkerBasedScan/MarkerBasedScan";
 
-import DashBoard from "../Template/Dashboard"
 
-// Stattos Parent Routes
+// Non Auth
+import ComponentLanding from '../Pages/Public/index'; 
+import ComponentAuthUser from "../Pages/Auth/index"; 
+import ComponentLoading from "../Pages/Public/Loading/Loading"
+const publicPath='demo'
+const AuthPath='auth'
 const routes = [
-  { Rpath: "/", component: ComponentLogin, exact:true},
-  { Rpath: "/listData", component: ComponentPrototype, exact:true},
-  { Rpath: "/prototype/primaryfeature", component: ComponentPrimaryFeature, exact:true},
-  { Rpath: "/portfolio", component: ComponentPortfolio, exact:true},
-  { Rpath: "/MarkerBasedScan", component: ComponentMarkerBasedScan, exact:true},
-  
+  { Rpath: `/`, component: ComponentLoading, exact:true},
+  { Rpath: `/${publicPath}/`, component: ComponentLanding, exact:false},
+  { Rpath: `/${AuthPath}/`, component: ComponentAuthUser, exact:false},
 ];
  
 const Main_Routes = (props)=>{
   return (
     <SCANContextProvider>
       <STRAPIContextProvider>
-        <Router  basename={'/'}>
-            <Switch history={history}>
-              <DashBoard>
-              <div className="Main">
-                        {
-                            routes.map((route, i) => (<Route key={i}  exact={route.exact} path={route.Rpath} render={()=> <route.component {... props}/> }/> ))
-                        }
-                </div>
-              </DashBoard>
-          </Switch> 
-        </Router>
+        <AUTHContextProvider>
+          <Router  history={history}>
+            <Switch>
+                <>
+                          {
+                              routes.map((route, i) => (<Route key={i}  exact={route.exact} path={route.Rpath} render={()=> <route.component {... props}/> }/> ))
+                          }
+                  </>
+            </Switch>
+          </Router>
+        </AUTHContextProvider>
       </STRAPIContextProvider>
     </SCANContextProvider>
     )  
@@ -50,3 +46,5 @@ const Main_Routes = (props)=>{
 }
 
 export default Main_Routes;
+
+// <Switch >  </Switch> 

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import './App.scss';
 import {useContext_UX_FULL} from "./Context/UX";
-import DashBoard from "./Template/Dashboard"
+
 // Components
-import Loading from "../src/Pages/Loading/Loading"
+import Loading from "./Pages/Public/Landing/index"
 import MainRoutes from "./Navigation/index"
 
 
@@ -22,8 +22,6 @@ export default App;
 
 const EntryPoint = ()=>{
   return (
-      <div className="App">
-         <MainRoutes />
-      </div>
+      <div className="App"> <MainRoutes /></div> 
   );
 }

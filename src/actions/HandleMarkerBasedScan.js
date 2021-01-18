@@ -1,10 +1,5 @@
 import store from "../store/index"
-import { orderBy, findIndex} from 'lodash'; 
-
-
-
-
-
+import { orderBy, findIndex, inRange} from 'lodash'; 
 
 // find the distance in KM from 1 point to another
 function distancetoPoint(lat1, lon1, lat2, lon2, unit) {
@@ -32,40 +27,40 @@ function distancetoPoint(lat1, lon1, lat2, lon2, unit) {
 
 export function ScanSites(){
 
-    // Arrays
+    /* ***************************************************************************************** */
+    // Arrays and Variable set up
     this.SiteList=null;
     this.SearchThisList=null
     this.GlobalCluster=[]
     this.GlobalCenterpoints=[]
+    this.CatchNoLongLat=[]
     this.clusterCount=0
     this.ProcessPointer=0;
 
     this.ScanAreas=[
-        { name:'SameBuilding', range: [0,0.2], allocation:1.6, feather:0.1 },
-        { name:'CBD', range: [0,2], allocation:1, feather:10  },
-        { name:'InnerCity', range: [0,10], allocation:1, feather:5  },
-        { name:'Metro', range: [0,50], allocation:0.8, feather:1  },
-        { name:'OuterMetro', range: [0,100], allocation:0.7, feather:0  },
-        { name:'Regional', range: [0,200], allocation:0.4, feather:0  },
-        { name:'Remote', range: [0,500], allocation:0.4, feather:0  },
-        { name:'ExtremeRemote', range: [0,2000], allocation:0.4, feather:0 },
+        { name:'SameBuilding',  range: [0,0.2], allocation:0.4, maxAllocation:null, feather:0.1,restrict:[] },
+        { name:'CBD',           range: [0,2],   allocation:0.4, maxAllocation:null, feather:10, restrict:[]   },
+        { name:'InnerCity',     range: [0,10],  allocation:0.4, maxAllocation:null, feather:5,  restrict:[]   },
+        { name:'Metro',         range: [0,50],  allocation:0.4, maxAllocation:1, feather:1 , restrict:[]  },
+        { name:'OuterMetro',    range: [0,100], allocation:0.4, maxAllocation:1, feather:0 , restrict:[]  },
+        { name:'Regional',      range: [0,200], allocation:0.4, maxAllocation:1, feather:0 , restrict:[[7000,7999]]  },
+        { name:'Remote',        range: [0,500], allocation:0.4, maxAllocation:1, feather:0 , restrict:[[7000,7999]]  },
+        { name:'ExtremeRemote', range: [0,2000],allocation:0.4, maxAllocation:1, feather:0 , restrict:[[7000,7999]] },
     ]
    
 
 
-    this.Search=()=>{
-        console.log("Begin Marker Search")
 
-        // 1. OrderSites on site weighting
-        this.JSONparse();
-        // 2,
-        this.ProcessScan(this.ScanAreas[this.ProcessPointer], 0);
-    }
-
-
+    /* ***************************************************************************************** */
+    // AUX Functions
+    /* ***************************************************************************************** */
     this.JSONparse = ()=>{
+    
         this.SiteList.map((site,i)=>{
-            site.siteweighting = orderBy(JSON.parse(site.siteweighting), ['name'], ['asc', 'desc']); 
+            if(typeof site.siteweighting === 'string')
+                site.siteweighting = orderBy(JSON.parse(site.siteweighting), ['name'], ['asc', 'desc']); 
+            else
+                site.siteweighting = orderBy(site.siteweighting, ['name'], ['asc', 'desc']);
         })
         this.SiteList = orderBy(this.SiteList, item => item.count[0].WorkOrders, ['desc']);
         this.SearchThisList = JSON.parse(JSON.stringify(this.SiteList));
@@ -77,93 +72,223 @@ export function ScanSites(){
             this.GlobalCluster[NameKey] = []
     }
 
-    this.ProcessScan = (Range, int)=>{
 
+
+
+    /* ***************************************************************************************** */
+    // Rules
+    /* ***************************************************************************************** */
+
+    this.ArrayState = ()=>{
+        if((this.ScanAreas.length-1) === this.ProcessPointer || this.SearchThisList.length  === 0){
+            console.log("SCAN COMPLETE")
+            this.Global();
+            return true
+        }else{
+            return false
+        }
+    }
+
+    this.PointerState=(int)=>{
         if(int === (this.SearchThisList.length-1) && int > 0){
             console.log("Int and Arr are the Same")
             this.ProcessPointer = this.ProcessPointer + 1
             this.ProcessScan(this.ScanAreas[this.ProcessPointer], 0);
             return true
+        }else{
+            return false
         }
+    }
 
-        if((this.ScanAreas.length-1) === this.ProcessPointer || this.SearchThisList.length  === 0){
-                console.log("SCAN COMPLETE")
-                this.Global();
-                return true
+
+    // Rule : is Site in radius Rule
+    this.IsInDistance=(SiteInFocus,site,Range)=>{
+        let Distance = distancetoPoint(SiteInFocus.lat, SiteInFocus.long, site.lat,site.long, "K")
+
+        if( Distance === 0 || Distance >= Range.range[0] && Distance <= Range.range[1] || (Distance-((Range.feather/100)*Distance)) <= Range.range[1]) 
+            return true
+        else
+            return false
+    }
+
+
+    // Rule : Restrict Postcode if in restricted Category
+    this.sitePostCodeCheck = (postcode,region, int)=>{
+        let Retrict = false
+
+            region.restrict.map((range,i)=>{ Retrict = inRange(postcode, range[0], range[1])})
+        
+            if(!Retrict)
+                return Retrict;
+            else
+                this.ProcessScan(this.ScanAreas[this.ProcessPointer], (int+1));
+                return Retrict;
+        
+    }
+
+    // check cluster integity
+    this.clusterintegrity =(SiteCluster)=>{
+        // check to see if the cluster should be handed over to a quota
+        if(SiteCluster.length === 0)
+           return false
+        else
+            return true
+    }
+
+
+    // Cluster Rules
+
+
+    this.ClusterQuota = (cluster, int)=>{
+        let resourceQuota=[]
+        let MaxAllocation = this.ScanAreas[this.ProcessPointer].maxAllocation;
+        cluster.map((site,i)=>{
+            site.siteweighting.map((weight,ii)=>{  
+                
+                if(MaxAllocation === null){
+                    resourceQuota.push(weight[this.ScanAreas[this.ProcessPointer].name]) 
+                }else{
+                    if(resourceQuota.reduce((a, b) => a + b, 0) < this.ScanAreas[this.ProcessPointer].maxAllocation){
+                        resourceQuota.push(weight[this.ScanAreas[this.ProcessPointer].name]) 
+                    }
+                    else{
+                        console.log("Max Quota Hit for this cluster in this Category. remove the existing sites")
+                    }
+                }
+            })
+        })
+
+        if(resourceQuota.reduce((a, b) => a + b, 0) >=  this.ScanAreas[this.ProcessPointer].allocation){
+           //console.log("resourceQuota", resourceQuota.reduce((a, b) => a + b, 0), this.ScanAreas[this.ProcessPointer].name, this.ScanAreas[this.ProcessPointer].allocation)
+            return resourceQuota.reduce((a, b) => a + b, 0)
+        }else{
+            //console.log("Cluster Failed to reach min resources")
+            this.ProcessScan(this.ScanAreas[this.ProcessPointer], (int+1));
+            return false
         }
+    }
 
-       // console.log(`Processing ${Range.name}`,this.SearchThisList.length)
+
+
+
+
+    /* ***************************************************************************************** */
+    // Power Functions 
+    // Start Here
+    this.Search=()=>{
+        console.log("Begin Marker Search")
+        // 1. OrderSites on site weighting
+        this.JSONparse();
+        // 2,
+        this.ProcessScan(this.ScanAreas[this.ProcessPointer], 0);
+        // 3 Rules
+            // Site Rules
+            // CLuster Rules
+            // State of Search Array
+    }
     
-        this.CheckGlobalKeys(Range.name);
 
+    this.ProcessScan = (Range, int)=>{
+
+        // Scan Function Variables
         let SiteCluster=[]
         let CenterPoints=[]
+        
 
-        //console.log(this.SearchThisList[int], int, this.SearchThisList.length, this.SearchThisList)
-        if(this.SearchThisList[int].lat != null){
+        // Scan State Rules
+        // If State Complete
+        if(this.ArrayState())   
+            return true
+        // If Pointer exhusted
+        if(this.PointerState(int))
+            return true
+      
+        // Data Collection House Keeping
+            // check to see if region exists in this.global
+            this.CheckGlobalKeys(Range.name);
 
+
+        let SiteInFocus = this.SearchThisList[int];
+       
+        if(SiteInFocus.combined != null){
+            
+            // Rule. Check if post code is restricted to the current scan category
+            if(this.sitePostCodeCheck(SiteInFocus.postcode.name, Range, int))
+                return false
+
+            // Create an instance of a cluster center point, should cluster exist
             CenterPoints.push({
-                name:this.SearchThisList[int].name,
-                center:{ lat: this.SearchThisList[int].lat, lng: this.SearchThisList[int].long },
+                name:`${SiteInFocus.region.name}-${Range.name}-${SiteInFocus.name}`,
+                center:{ lat: SiteInFocus.lat, lng: SiteInFocus.long },
                 range:Range.range[1],
-                region:Range.name,
-                feather:Range.feather
+                scanCategory:Range.name,
+                feather:Range.feather,
+                region:SiteInFocus.region.name,
+                postcode:SiteInFocus.postcode.name
             })
 
-           // console.log(`Searching ${this.SearchThisList[0].name}`);
-           
+
             this.SearchThisList.map((site,ii)=>{
                
-                let Distance = distancetoPoint(this.SearchThisList[int].lat, this.SearchThisList[int].long, site.lat,site.long, "K")
-             
-                
-               // ensure we include the center point 
-               // Distance === 0
-               //
-                if( Distance === 0 || Distance >= Range.range[0] && Distance <= Range.range[1] || (Distance-((Range.feather/100)*Distance)) <= Range.range[1]) 
-                    {  
-                        //console.log(Distance, Range.range[0], Range.range[1])
-                        //console.log(this.SearchThisList[int].name, Distance, (Distance-((Range.feather/100)*Distance)) , Range.range[1])
-                        SiteCluster.push(site) 
-                        
-                    }       
-             })
+                // 1 rule for sites.
+                // Do they fit into the Radius of the center point?
+                if(this.IsInDistance(SiteInFocus, site, Range))
+                    SiteCluster.push(site)
+                else
+                    return false
+            })
+
 
         }
-        this.findResourceQuota(SiteCluster, CenterPoints, int);
-    
+        else{
+            // CATCH ALL SITES NOT INCLUDED IN SCAN
+            let NoLngLat = findIndex(this.CatchNoLongLat, function(o) { return o.name == SiteInFocus.name; });
+            if(NoLngLat === -1)
+                this.CatchNoLongLat.push(SiteInFocus)
+            
+            
+        }
+
+        // should i push to Quota or fail this cluster nad move on?
+        if(this.clusterintegrity(SiteCluster))
+            this.findResourceQuota(SiteCluster, CenterPoints, int);
+        else
+            this.ProcessScan(this.ScanAreas[this.ProcessPointer], (int+1));
+       
     }
 
 
 
     this.findResourceQuota=(cluster, CenterPoints, int)=>{
-            let resourceQuota=[]
+            //let resourceQuota=[]
 
-            if(cluster.length === 0){
-                this.ProcessScan(this.ScanAreas[this.ProcessPointer], (int+1));
-            }else{
+             // is cluster Quote over the current threshold?
+             let QuoteThreshold  = this.ClusterQuota(cluster, int) 
             
-                cluster.map((site,i)=>{
-                        site.siteweighting.map((weight,i)=>{ resourceQuota.push(weight[this.ScanAreas[this.ProcessPointer].name]) })
-                })
+             if(QuoteThreshold)
+                {
                 
-               
-                if(resourceQuota.reduce((a, b) => a + b, 0) >=  this.ScanAreas[this.ProcessPointer].allocation){
-                    CenterPoints[0].resourceQuota = resourceQuota.reduce((a, b) => a + b, 0)
+                    CenterPoints[0].resourceQuota = QuoteThreshold;
+                    CenterPoints[0].sites = cluster;
+                    
                     this.GlobalCluster[this.ScanAreas[this.ProcessPointer].name].push(cluster);
                     this.GlobalCenterpoints.push(CenterPoints[0])
+                    
                     this.removeSites(cluster)
-                }else{
-                    this.ProcessScan(this.ScanAreas[this.ProcessPointer], (int+1));
-                }
-            }
+             }
 
            return true;
     }
 
 
+
+
+
+
+
+
     this.removeSites=(cluster)=>{
-        console.log("Cluster REMOVAL")
+        //console.log("Cluster REMOVAL")
         
         
         let Index;
@@ -180,10 +305,19 @@ export function ScanSites(){
     }
 
     this.Global = ()=>{
-        console.log("this.GlobalCluster")
-        console.log(this.GlobalCluster)
+
+        console.log("this.GlobalCluster", this.GlobalCluster.length);
+        console.log("this.CatchNoLongLat", this.CatchNoLongLat.length);
+        console.log("this.SearchThisList", this.SearchThisList.length);
+
+
+        store.dispatch({ type:'SCANSTATE', payload:false}); 
         store.dispatch({ type:'STOREMARKERRESULTS', payload:this.GlobalCluster});
         store.dispatch({ type:'STOREMARKERCENTERPOINTS', payload:this.GlobalCenterpoints}); 
+        store.dispatch({ type:'STORERESIDUALMARKERS', payload:this.SearchThisList});
+        store.dispatch({ type:'STORENOLONGLAT', payload:this.CatchNoLongLat}); 
+        
+        
         
     }
 }

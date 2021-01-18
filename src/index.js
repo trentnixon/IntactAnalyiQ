@@ -9,19 +9,20 @@ import reportWebVitals from './reportWebVitals';
 
 import store from './store/'; 
 import {LoadPrototype} from "./actions/PrototypeLoader";
+import {JWT} from "./actions/authUser";
 
 const PrepApp = new LoadPrototype();
+const JWTCHECK = JWT();
 PrepApp.Fetch();
-
 
 ReactDOM.render(
     <Provider store={ store }>
       <LoadScript  googleMapsApiKey={APIKEY} >
-      <UXContextProvider>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-      </UXContextProvider>
+        <UXContextProvider>
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        </UXContextProvider>
       </LoadScript>
     </Provider>,
   document.getElementById('root')

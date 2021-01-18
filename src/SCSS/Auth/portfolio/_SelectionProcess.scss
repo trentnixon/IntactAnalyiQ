@@ -1,0 +1,35 @@
+.Dataset_Selection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: flex-start;
+    div{
+        border: 1px solid $color5;
+        width: 40%; 
+        border-radius: 10px;
+        ul{
+            li{
+                display: flex;
+                justify-content: space-between;
+                margin: .5rem 2rem;
+                align-items: center;
+                align-content: center;
+                text-align: left;
+                button{
+                    padding: 3px;
+                }
+            }
+        }
+    }
+    div:nth-child(1){
+        svg{
+            fill:green
+        }
+    }
+    div:nth-child(2){
+        svg{
+            fill:red
+        }
+    }
+}

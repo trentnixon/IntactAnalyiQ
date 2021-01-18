@@ -1,4 +1,15 @@
 const InitialState ={
+    
+    UserData:{
+        Customers:false,
+        tradeAllocationRatio:false,
+        tradetypes:false
+    },
+    IntegrityData:{
+        sites:null, 
+    },
+
+    /*
     sites:null,
     Customers:null,
     Countries:null,
@@ -7,7 +18,8 @@ const InitialState ={
     JobType:null,
     tradeType:null,
     industryType:null,
-    ratioModel:null
+    ratioModel:null,
+     */
 }
  
 
@@ -21,11 +33,23 @@ const STRAPI = (state=InitialState, action) =>{
                         // eslint-disable-next-line 
             break
             }
+               
          case "STORECUSTOMERS":{
-            return {...state, Customers :action.payload}
+            return {...state, UserData:{...state.UserData, Customers :action.payload} }
                 // eslint-disable-next-line 
             break
             }
+        case "STORETRADEALLOCATION":{
+                return {...state, UserData:{...state.UserData, tradeAllocationRatio :action.payload} }
+                    // eslint-disable-next-line 
+                break
+                }
+        case "STORETRADETYPES":{
+                    return {...state, UserData:{...state.UserData, tradetypes :action.payload} }
+                        // eslint-disable-next-line 
+                    break
+                    }
+                
          case "STORESTATES":{
             return {...state, States :action.payload}
                 // eslint-disable-next-line 

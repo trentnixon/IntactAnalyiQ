@@ -50,7 +50,7 @@ export const STRAPIContextProvider = ({children})=>{
     return(
             <Context_STRAPI_FULL.Provider value={STRAPI}>
                 <Context_STRAPI_Countries.Provider value={STRAPI.Countries}>
-                    <Context_STRAPI_Customers.Provider value={STRAPI.Customers}>
+                    <Context_STRAPI_Customers.Provider value={STRAPI.UserData.Customers}>
                         <Context_STRAPI_Regions.Provider value={STRAPI.Regions}>
                             <Context_STRAPI_States.Provider value={STRAPI.States}>
                                 {children}

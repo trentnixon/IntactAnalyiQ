@@ -1,0 +1,37 @@
+.PublicNav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding: 1.3rem 2rem;
+    width: 100%;
+    border-bottom: 1px solid $color4;
+
+    ul{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        align-content: center;
+        width: 100%;
+
+        li{
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            text-transform: uppercase;
+            a{
+                text-decoration: none;
+                color: $color4;
+                font-size: 1.2rem;
+            }
+            a:hover{
+                color: $color2;
+            }
+        }
+    }
+}

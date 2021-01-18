@@ -51,6 +51,13 @@ const GroupArray =(arr) =>{
     return FoundType.name
 }
 
+
+  export const findClientName=(id)=>{
+    const Clients = store.getState().STRAPI.UserData.Customers;
+    let FoundClient = find(Clients, function(o) { return o.id === id; })
+    return FoundClient.name
+  }
+
     const ResourcesRequired = (TradesUsed)=>{
       //console.log(TradesUsed);
       
@@ -68,6 +75,56 @@ const GroupArray =(arr) =>{
 /* **************************************************************************** */
 /* Worker Functions  */
 /* **************************************************************************** */
+
+
+
+const findTradeParent = (trade)=>{
+  const TRADETYPEALLOCATION = store.getState().STRAPI.UserData.tradetypes;
+
+  let FoundType = find(TRADETYPEALLOCATION, function(o) { return o.id === trade; })
+  if(FoundType === undefined){
+    //console.log(trade)
+    return 'undefined'
+  }else{
+   // console.log(trade, FoundType.trade_allocation_ratio.Name)
+    return FoundType.trade_allocation_ratio.Name;
+  }
+ 
+}
+
+// Find Allocation of trade type across cluster
+
+   export const FindTradeTypeAllocation = (data)=>{
+     let TotalChildTradesTradearr=[]
+     let ParentTradeName=[]
+      data.map((site,i)=>{
+          site.sites.map((count,i)=>{
+            let TradesJson = JSON.parse(count.count[0].TradeTypes);
+            TotalChildTradesTradearr=  [...TotalChildTradesTradearr, ...TradesJson]
+          })
+      })
+
+      TotalChildTradesTradearr.map((childTrades, i )=>{
+        ParentTradeName.push(findTradeParent(childTrades))
+      })
+      
+      return GroupArray(ParentTradeName)
+    }
+
+
+
+
+// Return the Total workordercount for a cluster
+    export const SumWorkOrderTotal = (sites)=>{
+        let total=[]
+          sites.map((item,i)=>{
+              if (!isNaN(item.SumWorkOrder))
+                total.push(item.SumWorkOrder)
+          })
+          return total.reduce((a, b) => a + b, 0)
+      }
+
+
 
 
 const Removeinteriors = (Results)=>{

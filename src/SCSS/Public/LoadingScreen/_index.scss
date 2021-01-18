@@ -1,0 +1,61 @@
+
+
+.LoadThis{
+
+
+    background-color: $color4;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    color: $color1;
+
+      .MainLogo{
+          width: 200px;
+      }
+
+
+      .loader{
+        background-color: $color1;
+        width: 30vw;
+        border-radius: $borderRadius;
+        margin: 1rem 0 ;
+       }
+
+       .disclaimer{
+         margin: 2rem 0 ;
+         p{
+           font-size: .8rem;
+           line-height: .9rem;
+           color: $color5;
+         }
+       }
+        div{
+            text-align: center;
+            h1{
+              font-size: 4rem;
+              margin: 0 0 1rem ;
+              padding: 0;
+              line-height: 2.5rem;
+              font-weight: 100;
+              letter-spacing: 15px;
+            }
+            h2{
+              font-size: 1.1rem;
+              margin: 0;
+              padding: 0;
+              font-weight: 100;
+              letter-spacing: 1px;
+              font-weight: 800;
+
+              color: $color5;
+            }
+        }
+
+
+        
+        
+          
+}

@@ -1,0 +1,81 @@
+
+    // Scan History List
+.ModelHistory{
+
+    .ScanHistoryList{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+
+        >li{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            align-content: flex-start;
+            width: 100%;
+       
+            border:1px solid $color4;
+            margin: .1rem;
+            padding: 0;
+           
+            border-radius: $borderRadius;
+                div.header{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    align-content: center;
+                    width: 100%;
+                    
+                    padding: .5rem 1rem;
+                    background-color: $color4;
+                    color: $color1;
+                    text-align: center;
+
+                    div:nth-child(2){
+                        text-align: center;
+                    }
+
+                    div:nth-child(3){
+                        text-align: right;
+                        color:$colorFalse;
+                    }
+
+                    div.Complete{
+                        color:$colorTrue;
+                    }
+                }
+                div.body{
+                    padding: 1rem 2rem;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                    align-items: flex-start;
+                    align-content: flex-start;
+                    border-bottom: 1px solid $color4;
+                }
+                div.cta{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    align-content: center;
+                    width: 100%;
+                    text-align: left;
+                    div{
+                        .loader{
+                            width: 200px;
+                        }
+                    }
+                }
+
+            >div{
+                text-align: left;
+                width: 100%;
+            }
+        }
+    }
+}

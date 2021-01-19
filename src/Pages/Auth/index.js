@@ -15,19 +15,23 @@ import DashBoard from "../../Template/AuthDashboard"
 // Routes
 import ComponentLanding from "./Landing";
 import ComponentDataDump from "./DataDump"
+import ComponentCreateModel from "./CreateModel";
+import ComponentViewModels from "./ViewModels";
+import CompareComponent from "./CompareModels";
 import ComponentScan from "./ResourceAllocationScan"
-import ComponentNewScan from "./CreateNewScan";
-import ComponentScanHistory from "./ScanHistory";
-import ResultsComponent from "./MarkerBasedScan/MarkerBasedScan";
+
+//import ResultsComponent from "./MarkerBasedScan/MarkerBasedScan";
+import ResultsComponent from "./SingleModelResult";
 
 const routes = [
     { Rpath: "/", component: ComponentLanding, exact:true},
-    { Rpath: "/scan-history", component: ComponentScanHistory, exact:true},
-    { Rpath: "/new-scan", component: ComponentNewScan, exact:false},
+    { Rpath: "/view-models", component: ComponentViewModels, exact:true},
+    { Rpath: "/create-model", component: ComponentCreateModel, exact:false},
+    { Rpath: "/compare-models", component: CompareComponent, exact:false},
     { Rpath: "/MarkerBasedScan", component: ComponentScan, exact:false},
     { Rpath: "/integity", component: ComponentDataDump, exact:false},
     { Rpath: "/results", component: ResultsComponent, exact:false},
-
+    
 ];
 
 const Auth = (props)=>{
@@ -73,8 +77,16 @@ export default Auth
 
 
 const FetchData=()=>{
-    FetchDataIntegrity()
 
+    const [Fetch, setFetch] = useState(null)
+    
+
+    useEffect(()=>{
+        if(Fetch === null){
+            FetchDataIntegrity()
+            setFetch(true)
+        }
+    },[])
     return(
         <>
             <h2>Fetching Data.. Make me look pretty!!!</h2>

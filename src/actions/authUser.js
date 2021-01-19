@@ -89,7 +89,7 @@ export const FetchPreviousScans = ()=>{
 
 
 
-export const FetchSingleScanResult = (scanID)=>{
+export const FetchSingleScanResult = (scanID, scan)=>{
 
         store.dispatch({ type:'STORESELECTEDUI', payload:{active:false,processing:true,activeID:scanID} }); 
 
@@ -105,15 +105,10 @@ export const FetchSingleScanResult = (scanID)=>{
                 //result.data.SCANSTATE
                 const UICHANGE={active:true,processing:false, activeID:scanID}   
                 store.dispatch({ type:'STORESELECTEDMODEL', payload:result.data}); 
-                store.dispatch({ type:'STORESELECTEDUI', payload:UICHANGE}); 
+                store.dispatch({ type:'STORESELECTEDMODELMETA', payload:scan}); 
                 
-                /*
-                        store.dispatch({ type:'SCANSTATE', payload:result.data.SCANSTATE}); 
-                        store.dispatch({ type:'STOREMARKERRESULTS', payload:result.data.STOREMARKERRESULTS});
-                        store.dispatch({ type:'STOREMARKERCENTERPOINTS', payload:result.data.STOREMARKERCENTERPOINTS}); 
-                        store.dispatch({ type:'STORERESIDUALMARKERS', payload:result.data.STORERESIDUALMARKERS});
-                        store.dispatch({ type:'STORENOLONGLAT', payload:result.data.STORENOLONGLAT}); 
-                */
+                store.dispatch({ type:'STORESELECTEDUI', payload:UICHANGE}); 
+                console.log(scan)
                 }).catch(function (thrown) {
                         if (axios.isCancel(thrown)) { console.log('Request canceled', thrown.message);
                         } else { console.log("ERROR", thrown);}
@@ -147,6 +142,7 @@ export const FetchDataIntegrity=()=>{
         GetCustomers();
         GetTradeAllocations()
         GetTradeTypes()
+        FetchPreviousScans()
 }
 
 

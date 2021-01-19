@@ -3,7 +3,21 @@
     margin: 0 auto;
     border-radius: $borderRadius;
     border:1px solid white;
-
+ 
+   
+    >h2{ 
+        width: 100%; 
+        text-align: left;
+        color: $color5;
+        text-transform: uppercase;
+        margin-top: 2rem;
+    }
+    p{
+        width: 100%; 
+        text-align: left;
+        color: $color5;
+        font-size: 1.1rem;
+    }
     .MapColorKey{
         display: flex;
         justify-content: center;
@@ -27,6 +41,8 @@
             h2{
                 font-size: 1rem;
                 letter-spacing: 1px;
+                color: $color5;
+                text-transform: uppercase;
             }
         }
     }

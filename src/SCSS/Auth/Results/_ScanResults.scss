@@ -1,9 +1,66 @@
 
+
+.ModelSingleHeader{
+    border-bottom: 1px solid $color4;
+    padding: 0 3rem 1rem 3rem;
+    margin: 0 0 1rem 0 ;
+    h2{
+        text-align: left;
+    }
+    p{
+        text-align: left;
+    }
+    .created{
+        text-align: right;
+        p{
+            font-size: .8rem;
+            text-align: right;
+        }
+    }
+}
+
+.MetaRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+
+    h2{ 
+            width: 100%; 
+            text-align: left;
+            color: $color5;
+            text-transform: uppercase;
+            margin-top: 2rem;
+    }
+    
+    div{
+            border:1px solid $color3;
+            background-color: $color4;
+            flex-grow: 1;
+            border-radius: $borderRadius;
+            margin: .2rem .1rem;
+            padding: 2rem;
+            color: $color1;
+            font-size: 1.5rem;
+            font-weight: 800;
+            line-height: 1rem;
+            letter-spacing: -2px;
+            h3{
+                color: $color2;
+                font-size: 1.1rem;
+                letter-spacing: -1px;
+            }
+        }
+}
+
 .ResultsHeader{ 
     padding: .5rem 1rem;
     background-color: $color4;
-    border-radius: $borderRadius;
+    border-radius: $borderRadius; 
     color: $color1;
+    margin-bottom: .3rem;
     
     h2, h3{ margin: 0; padding:0;}    
     p{
@@ -19,6 +76,16 @@
         align-items: center;
         align-content: center;
     }
+
+    ul{
+        li{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            align-content: center;
+        }
+    }
 }
 
 
@@ -26,18 +93,79 @@ ul.ListResults{
     list-style: none;
     margin: 0;
     padding: 0;  
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    align-content: center;
+    justify-content: space-between;
 
-    h3{
-        svg{
-            fill:$color4;
-            font-size: 2.5rem;
-        }
-        strong{
-            color: $color2;
-        }
-    }
+   
+
     li{
-        margin: 1.5rem .5rem;
+        margin: 1.5rem .3%;
+        width: 32.6%;
+        border: 1px solid $color5;
+        border-radius: $borderRadius;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .colorkey{
+            padding: .3rem;
+            color: $color1;
+
+        }
+
+        h3{
+            justify-content: space-around;
+            align-items: center;
+            align-content: center;
+            display: flex;
+            padding: .3rem 0 ;
+            svg{
+                fill:$color4;
+                font-size: 2rem;
+            }
+            strong{
+                color: $color2;
+            }
+        }
+
+        h4{
+            color: $color4;
+            font-size: 1rem;
+            letter-spacing: -1px;
+            line-height: 1.3rem;
+        }
+    
+        .ListStats{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            li{
+                border: none;
+                width: 100%;
+                margin: 0;
+                text-align: left;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: .2rem .3rem;
+                flex-wrap: wrap;
+                ul{
+                    padding: .5rem;
+                    width:100%;
+                    background-color: $color5;
+                    color: $color1;
+
+                    li{
+                        font-size: .8rem;
+                    }
+                }
+            }
+            
+        }
 
         .ListResultContainer{
             border:1px solid $color5;

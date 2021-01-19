@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import {useContext_SCAN_FULL} from "../../../Context/SCAN";
-import ClusterResults from "./Results/ClusterResults";
-import {GroupArrayByOccurances} from "../../../actions/HandleUX";
-import {FindTradeTypeAllocation, findClientName} from "../../../actions/ClusterAnalysis";
+import {useContext_SCAN_FULL} from "../../../../Context/SCAN";
+import ClusterResults from "./ClusterResults";
+import {GroupArrayByOccurances} from "../../../../actions/HandleUX";
+import {FindTradeTypeAllocation, findClientName} from "../../../../actions/ClusterAnalysis";
 import { Data } from '@react-google-maps/api';
 
 const MarkerBasedResults = ()=>{
@@ -11,7 +11,7 @@ const MarkerBasedResults = ()=>{
     const CLUSTERSTATS = SCAN.SelectedModel.CLUSTERSTATS;
     
     const [Results, setResults] = useState(null)
-    const [CategoryOccurance,setCategoryOccurance ] = useState([[]])
+    const [CategoryOccurance,setCategoryOccurance ] = useState([[]]) 
     const [TradeAllocation,setTradeAllocation] = useState([[],[]])
 
 
@@ -33,7 +33,7 @@ const MarkerBasedResults = ()=>{
         return data.length
     }
 
-    useEffect(()=>{
+    useEffect(()=>{ 
      
         if(SCAN.SelectedModel.STOREMARKERCENTERPOINTS !==null){
             extractResults()

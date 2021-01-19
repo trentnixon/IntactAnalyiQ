@@ -7,17 +7,16 @@ const InitialState ={
         activeID:null
     },
     SelectedModel:null,
+    SelectedModelMeta:null,
     UserScanState:{
         ScanOptionSelected:false,
         SetSelectedDatabase:false,
         processing:false,
         UserScanSingleDataSets:[],
         UserWorkingDataSet_Single:[],
-        //UserScanCompareDataSets:[[],[]],
-        //UserWorkingDataSet_Compare:[]
     },
     
-
+ /*
     LocationFilter:{
         GridSpacing:.5,
         Area:.5,
@@ -26,12 +25,13 @@ const InitialState ={
         MinWorkOrder:0,
         MaxOrderOrders:10000
     },
-    Results:[],
+   Results:[],
     ResultsVisibleAll:true,
     MarkerScanResults:null,
     MarkerScanCenterPoints:null,
     MarkerScanResidual:null,
     NoLongLat:[]
+    */
 }
  
 const RegionScan = (state=InitialState, action) =>{ 
@@ -76,6 +76,12 @@ const RegionScan = (state=InitialState, action) =>{
         break
         }
 
+        case "STORESELECTEDMODELMETA":{
+            return {...state, SelectedModelMeta:action.payload}
+                // eslint-disable-next-line 
+            break
+            }
+                    
 
 
         // Store Selected Change to teh UI

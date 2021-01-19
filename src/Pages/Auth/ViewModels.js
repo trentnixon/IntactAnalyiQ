@@ -12,12 +12,12 @@ const Profile = ()=>{
     const AUTH = useContext_AUTH_FULL();
     const SCAN = useContext_SCAN_FULL();
 
-    useEffect(()=>{ FetchPreviousScans() },[])
+   // useEffect(()=>{ FetchPreviousScans() },[])
    
     return(
         <>
         <div className="SectionHeaderWithControls">
-            <h1>Stored Models</h1>
+            <h1>Stored Models</h1> 
             <div className="controls">
                 {  AUTH.RefreshScanHistory ? <Refreshloading />: <ScanHistoryRefreshBtn /> }
             </div>
@@ -60,7 +60,7 @@ const Profile = ()=>{
                              </div>
 
                              <div className="cta">
-                                <div><ViewSingleResultBtn scanID={scan.id}/></div>
+                                <div><ViewSingleResultBtn scanID={scan.id} scan={scan}/></div>
                                 <div>Delete</div>
                              </div>
                         

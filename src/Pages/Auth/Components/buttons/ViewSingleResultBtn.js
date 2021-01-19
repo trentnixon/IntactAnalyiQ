@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function IconButtons(props) {
-    const {scanID} = props
+    const {scanID, scan} = props
     const SCAN = useContext_SCAN_FULL();
     useEffect(()=>{
       //console.log(SCAN.SelectedModelUI, scanID)
@@ -33,7 +33,7 @@ export default function IconButtons(props) {
     return (
           <>
             {
-              SCAN.SelectedModelUI.active ? <ActiveTrue scanID={scanID} />:<ActiveFalse scanID={scanID} />
+              SCAN.SelectedModelUI.active ? <ActiveTrue scanID={scanID} scan={scan} />:<ActiveFalse scanID={scanID} scan={scan} />
             }
           </>
     );
@@ -42,7 +42,7 @@ export default function IconButtons(props) {
 
 
 const ActiveTrue = (props)=>{
-  const {scanID} = props
+  const {scanID, scan} = props
   const SCAN = useContext_SCAN_FULL();
   useEffect(()=>{
       //console.log(scanID,SCAN.SelectedModelUI.activeID )
@@ -50,7 +50,7 @@ const ActiveTrue = (props)=>{
     return(
       <>
         {
-          SCAN.SelectedModelUI.activeID === scanID ? <ViewResult /> : <DownloadResult scanID={scanID} />
+          SCAN.SelectedModelUI.activeID === scanID ? <ViewResult /> : <DownloadResult scanID={scanID} scan={scan}/>
         }
       </>
     )
@@ -62,7 +62,7 @@ const ActiveTrue = (props)=>{
 
 
 const ActiveFalse = (props)=>{
-  const {scanID} = props
+  const {scanID, scan} = props
   const SCAN = useContext_SCAN_FULL();
   useEffect(()=>{
       //console.log(scanID,SCAN.SelectedModelUI.activeID )
@@ -70,7 +70,7 @@ const ActiveFalse = (props)=>{
   return(
     <>
       {
-          SCAN.SelectedModelUI.processing  ? <Processing /> : <DownloadResult scanID={scanID} />
+          SCAN.SelectedModelUI.processing  ? <Processing /> : <DownloadResult scanID={scanID} scan={scan}/>
         }
     </>
   )
@@ -80,11 +80,11 @@ const ActiveFalse = (props)=>{
 
 
 const DownloadResult = (props)=>{
-  const {scanID} = props
+  const {scanID, scan} = props
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <IconButton aria-label="refresh" onClick={()=>{FetchSingleScanResult(scanID)}}>
+      <IconButton aria-label="refresh" onClick={()=>{FetchSingleScanResult(scanID, scan)}}>
         <GetAppIcon />
       </IconButton>
     </div>

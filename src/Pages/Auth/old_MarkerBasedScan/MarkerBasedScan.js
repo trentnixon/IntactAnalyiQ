@@ -4,10 +4,10 @@ import {useContext_UX_FULL} from "../../../Context/UX";
 import {useContext_SCAN_FULL} from "../../../Context/SCAN";
 import {RegionColor} from "../../../actions/HandleUX"
 import {ScanSites} from "../../../actions/HandleMarkerBasedScan";
-
 import { GoogleMap, LoadScript ,Marker} from '@react-google-maps/api';
 
 // Components
+import ModelResultHeader from "./ModelResultHeader";
 import Markers from "./LocationMarkers";
 import ResidualMarkers from "./ResidualLocationMarkers";
 import CenterPoints from "./MarkersCenterpoints";
@@ -24,7 +24,7 @@ const MarkerBasedScan = ()=>{
     const SCAN = useContext_SCAN_FULL();
 
 
-    const Scan = ()=>{
+    const Scan = ()=>{ 
         //console.log(STRAPI.sites);
         // Pass only fully loaded sites
         let SiteList=[]
@@ -76,6 +76,9 @@ const Map=()=>{
     },[SCAN])
 return(
     <div className="ScanMapMain" id="MainMap">
+
+     
+
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={{
@@ -144,22 +147,3 @@ const ColorKey = ()=>{
   </div>
     )
 }
-
-
-
-/*
- {
-                STRAPI.sites.map((site, i)=>{
-                    return(
-                        <li key={i}>{i}. {site.name}</li>
-                        
-                    )
-                })
-            }
- onLoad={onLoad}
-                onUnmount={onUnmount}
-                <PerimeterBox />
-            <LocationMarkers />
-            <ScanBox />
-            <AddNewRegion />
-*/

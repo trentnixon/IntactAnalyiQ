@@ -1,20 +1,19 @@
 import React, {useEffect} from 'react'
 import { Link} from "react-router-dom";
 
-
 import List from '@material-ui/core/List';
 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import HomeIcon from '@material-ui/icons/Home';
-import RestorePageIcon from '@material-ui/icons/RestorePage';
-import MapIcon from '@material-ui/icons/Map';
 import ApartmentIcon from '@material-ui/icons/Apartment';
 import BlurCircularIcon from '@material-ui/icons/BlurCircular';
 import DataUsageIcon from '@material-ui/icons/DataUsage';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
+import CompareIcon from '@material-ui/icons/Compare';
+
+
 const Login = ()=>{
 
     useEffect(()=>{},[])
@@ -26,16 +25,19 @@ const Login = ()=>{
                 <ListItemText primary='Profile' />
           </ListItem>
           
-          <ListItem button key='New Scan' component={Link} to={`/new-scan`}>
+          <ListItem button key='Create Model' component={Link} to={`/create-model`}>
                 <ListItemIcon><BlurCircularIcon /></ListItemIcon>
                 <ListItemText primary='Create Model' /> 
           </ListItem>
 
-          <ListItem button key='View Models' component={Link} to={`/scan-history`}>
+          <ListItem button key='View Models' component={Link} to={`/view-models`}>
                 <ListItemIcon><ApartmentIcon /></ListItemIcon>
                 <ListItemText primary='View Models' /> 
           </ListItem>
-          
+          <ListItem button key='Compare Models' component={Link} to={`/compare-models`}>
+                <ListItemIcon><CompareIcon /></ListItemIcon>
+                <ListItemText primary='Compare Models' /> 
+          </ListItem>
         
 
           <ListItem button key='Data return' component={Link} to={`/integity`}>

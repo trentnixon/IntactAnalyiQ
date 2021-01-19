@@ -44,9 +44,10 @@ const GroupArray =(arr) =>{
     })
   }
 
-  const findTradeTypeName = (id)=>{
+   export const findTradeTypeName = (id)=>{
     
     const TRADETYPE = store.getState().STRAPI.tradeType;
+    
     let FoundType = find(TRADETYPE, function(o) { return o.id === id; })
     return FoundType.name
 }
@@ -112,7 +113,22 @@ const findTradeParent = (trade)=>{
     }
 
 
+export const SitesbyTier = (data)=>{
+    let tiers=[]
+    data.map((item,index)=>{
+        let ii=0
+       
+        while(ii<item.sites.length){
+           tiers.push(item.scanCategory)
+            ii++
+        }
+      
+      
+    })
 
+    console.log(GroupArray(tiers))
+    return GroupArray(tiers)
+}
 
 // Return the Total workordercount for a cluster
     export const SumWorkOrderTotal = (sites)=>{

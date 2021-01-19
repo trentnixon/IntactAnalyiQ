@@ -5,6 +5,10 @@ import {distancetoPoint} from "./GeoLocationActions"
 import { findIndex} from 'lodash'; 
 
 
+export function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export function AreaFilter(type, value){
     //console.log('AreaFilter', value)
     store.dispatch({ type:type, payload:value});

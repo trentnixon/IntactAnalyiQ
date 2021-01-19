@@ -1,0 +1,86 @@
+
+.ModelComparisonTable{
+    border:1px solid $color1;
+    display: flex;
+    flex-direction: column;
+    border-radius: $borderRadius;
+    font-size: .95rem;
+    .TableHeader{
+        padding: 0rem;
+        border-radius: $borderRadius;
+        div{
+            background-color: $color4;
+            padding: 1.2rem;
+            h2{
+                font-size: 1.1rem;
+                color: $color1;
+                font-weight: 100;
+                letter-spacing: -1px;
+                margin: 0;
+            }
+           
+        }
+    }
+    .ComparisonRow{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        >div{
+            width: 33.3%;
+            padding: .3rem 1rem;
+            text-align: right;
+        }
+
+        >div:nth-child(1){
+            font-weight: 800;
+            text-align: left;
+        }
+
+        
+        
+        .AccordionData{
+            text-align: right;
+            margin: .3rem 0 ;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            div{
+                text-align: left;
+               // font-weight: 100;
+            }
+        }
+    }
+
+    /*************************************** */
+    // Accordian Styles
+    .MuiPaper-elevation1{
+        box-shadow: none;
+        background-color: $color4;
+        color: $color1;
+        margin: 0 1rem;
+    }
+    .MuiAccordionSummary-content{
+        margin: 0 !important;
+    }
+
+    /*************************************** */
+
+    .TableSection{
+        //border: 1px solid red;
+        margin: .5rem 0;
+
+        .SectionHeader{
+            background-color: $color5;
+            padding: .1rem .5rem;
+            border-radius: $borderRadius;
+            h2{
+                color: $color1;
+                text-align: left;
+                font-size: .9rem;
+                font-weight: 600;
+                letter-spacing: 0;
+                margin: 0;
+            }
+        }
+    }
+}

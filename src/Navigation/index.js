@@ -6,6 +6,7 @@ import { Route, Switch } from "react-router-dom";
  import {STRAPIContextProvider} from "../Context/STRAPI";
  import {SCANContextProvider} from "../Context/SCAN";
  import {AUTHContextProvider} from "../Context/AUTH";
+ import {COMPAREContextProvider} from "../Context/COMPARE";
 
  //import {UXContextProvider} from "../Context/UX";
 // Components
@@ -28,16 +29,18 @@ const Main_Routes = (props)=>{
   return (
     <SCANContextProvider>
       <STRAPIContextProvider>
-        <AUTHContextProvider>
-          <Router  history={history}>
-            <Switch>
-                <>
-                          {
-                              routes.map((route, i) => (<Route key={i}  exact={route.exact} path={route.Rpath} render={()=> <route.component {... props}/> }/> ))
-                          }
-                  </>
-            </Switch>
-          </Router>
+        <AUTHContextProvider> 
+          <COMPAREContextProvider>
+            <Router  history={history}>
+              <Switch>
+                  <>
+                            {
+                                routes.map((route, i) => (<Route key={i}  exact={route.exact} path={route.Rpath} render={()=> <route.component {... props}/> }/> ))
+                            }
+                    </>
+              </Switch>
+            </Router>
+          </COMPAREContextProvider>
         </AUTHContextProvider>
       </STRAPIContextProvider>
     </SCANContextProvider>

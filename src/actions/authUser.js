@@ -8,8 +8,8 @@ import axios from 'axios';
 // lazy testing only Fix this!
 
 const useAPILOCATION = () => {
-        //const APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
-        const APILOCATION = 'http://localhost:1337/'
+        const APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
+        //const APILOCATION = 'http://localhost:1337/'
         return APILOCATION
 }
 
@@ -21,9 +21,7 @@ export const StrapiAuth = async (u,p)=>{
         identifier: u,
         password:p,
         }).then((res)=>{
-                console.log(res.data.jwt);
-                console.log(res.data.user)
-
+              
                 store.dispatch({ type:'PROCESSAUTH', payload:false});
                 store.dispatch({ type:'AUTHUSERJWT', payload:res.data.jwt});
                 store.dispatch({ type:'AUTHUSER', payload:res.data.user});
@@ -118,11 +116,18 @@ export const FetchSingleScanResult = (scanID, scan)=>{
 
 
 
-const FetchAPI = (Route, TYPE)=>{
+const FetchAPI = (Route, TYPE, i=0)=>{
         const APIFETCH =useAPILOCATION()+Route
         const JWTToken = store.getState().AUTH.jwt;
         //console.log(JWTToken)
-        const axiosHeader = {Authorization: "Bearer " + JWTToken}
+        const axiosHeader = {
+                'Content-Type': 'application/x-www-form-urlencoded',
+               
+                'Authorization': "Bearer " + JWTToken
+                        
+       }
+      
+
 
         axios({ url: APIFETCH, method: 'get', headers: axiosHeader})
         .then((result) => { 
@@ -132,16 +137,24 @@ const FetchAPI = (Route, TYPE)=>{
 
                 }).catch(function (thrown) {
                         if (axios.isCancel(thrown)) { console.log('Request canceled', thrown.message);
-                        } else { console.log("ERROR", thrown);}
+                        } else { 
+                                console.log("ERROR", thrown);
+                                console.log("i = ", i)
+                                if(i<3){
+                                        FetchAPI(Route, TYPE, i=i+1)
+                                }
+                                
+                        }
                 });
 }
 
 export const FetchDataIntegrity=()=>{
         // list out the items needed to fetch
         // do a look up to see if these items are already in the reducer
+        
+        GetTradeTypes()
         GetCustomers();
         GetTradeAllocations()
-        GetTradeTypes()
         FetchPreviousScans()
 }
 
@@ -161,7 +174,7 @@ const GetSites=()=>{
 const GetTradeTypes=()=>{
         console.log("GetTradeTypes")
         if(store.getState().STRAPI.UserData.tradetypes === false)
-                FetchAPI('trade-types', 'STORETRADETYPES')        
+                FetchAPI('trade-types/intact', 'STORETRADETYPES')         
 }
 
 const GetTradeAllocations=()=>{

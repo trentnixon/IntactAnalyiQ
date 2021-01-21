@@ -12,6 +12,9 @@ import {FetchDataIntegrity} from "../../actions/authUser";
 import history from  '../../History'
 import DashBoard from "../../Template/AuthDashboard"
 
+// Dataloading
+import {LogoMainWhite} from "../../Assets/logo"
+
 // Routes
 import ComponentLanding from "./Landing";
 import ComponentDataDump from "./DataDump"
@@ -46,7 +49,8 @@ const Auth = (props)=>{
         //console.log(AUTH)
         if(AUTH.jwt === false){
             console.log("USER DENIED")
-            Pushhistory.push("/demo/login");
+            //Pushhistory.push("/demo/login");
+            Pushhistory.push("/");
         }else{ 
             console.log("USER AUTHED")
         }
@@ -87,12 +91,37 @@ const FetchData=()=>{
             setFetch(true)
         }
     },[])
-    return(
-        <>
-            <h2>Fetching Data.. Make me look pretty!!!</h2>
-        </>
+    return( 
+        <div className="DataLoad">
+            <div className="LoadThis">    
+                <LoadingCopy />
+                <div className="loader">
+                <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
+                <LogoMainWhite />
+              <Disclaimer />
+            </div>
+        </div>
     )
 }
+
+
+const LoadingCopy=()=>{
+    return(
+      <div>
+           <h1>Intact AnalytiQ</h1>
+            <h2>Fetching Data</h2>
+      </div>
+    )
+  }
+
+  const Disclaimer = ()=>{
+      return(
+            <div className="disclaimer">
+                <p>This is a prototype build of Intact Analyiq alpha v0.1 </p>
+                <p>Please wait whilst we fire up the Dyno's and fetch your profile</p>
+            </div>
+      )
+  }
 
 
 const AuthRouters = (props)=>{
@@ -107,7 +136,8 @@ const AuthRouters = (props)=>{
         //console.log(AUTH)
         if(AUTH.jwt === false){
             console.log("USER DENIED")
-            Pushhistory.push("/demo/login");
+            //Pushhistory.push("/demo/login");
+            Pushhistory.push("/");
         }else{ 
             console.log("USER AUTHED")
         }

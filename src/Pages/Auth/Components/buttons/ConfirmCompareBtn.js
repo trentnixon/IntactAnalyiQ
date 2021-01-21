@@ -16,7 +16,7 @@ export default function ContainedButtons() {
 
   return (
     <div className={classes.root}>
-        <Button variant="contained" onClick={()=>{ConfirmCompare(true)} } color="primary">
+        <Button variant="contained" onClick={()=>{ConfirmCompare(true)} } className="CompareModels">
             Compare Models
         </Button>
     </div> 

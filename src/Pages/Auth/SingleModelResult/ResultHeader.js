@@ -11,7 +11,7 @@ const MarkerBasedResults = ()=>{
     
     const [CategoryOccurance,setCategoryOccurance ] = useState([[]]) 
     const [TradeAllocation,setTradeAllocation] = useState([[],[]])
-
+    const [TradeAllocationTotal, setTradeAllocationTotal] = useState(0)
     const extractResults=()=>{
         //console.log(SCAN.SelectedModel.STOREMARKERCENTERPOINTS);
 
@@ -28,11 +28,19 @@ const MarkerBasedResults = ()=>{
         return data.length
     }
 
+    const TradeWoRatioForDemo=(num)=>{
+        return ((num/TradeAllocationTotal)*100).toFixed(2)
+    }
+
     useEffect(()=>{ 
         console.log(SCAN.SelectedModelMeta);
         if(SCAN.SelectedModel.STOREMARKERCENTERPOINTS !==null){
             extractResults()
             setTradeAllocation(FindTradeTypeAllocation(SCAN.SelectedModel.STOREMARKERCENTERPOINTS));
+
+            let TWV=0
+            FindTradeTypeAllocation(SCAN.SelectedModel.STOREMARKERCENTERPOINTS)[1].map((value,i)=>{TWV= TWV+value})
+            setTradeAllocationTotal(TWV)
         }
             
     },[SCAN]);
@@ -127,13 +135,14 @@ const MarkerBasedResults = ()=>{
                         TradeAllocation[0].map((trade,i)=>{
                             return(
                                 <li key={i}>
-                                    {trade} {TradeAllocation[1][i]}
+                                    <span>{TradeWoRatioForDemo(TradeAllocation[1][i])}%</span>
+                                    {trade} 
                                 </li>
                             )
                         })
                     }
                 </ul>
-                <p>These numbers are just instances, not real work orders atm</p>
+             
         </div>
         
         <div className="MetaRow">

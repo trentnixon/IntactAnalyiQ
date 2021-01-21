@@ -7,8 +7,10 @@
     @import "./LoadingScreen/index";
 
     .InnerFrame{
-        padding: 2rem;
+        //padding: 2rem;
+        background-color: $color1;
         text-align: center;
         
+        @import "./Login/login"
     }
 }

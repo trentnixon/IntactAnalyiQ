@@ -75,6 +75,13 @@
         justify-content: space-evenly;
         align-items: center;
         align-content: center;
+        li{
+            display: flex;
+            flex-direction: column;
+            span{
+                font-size: 1.1rem;
+            }
+        }
     }
 
     ul{

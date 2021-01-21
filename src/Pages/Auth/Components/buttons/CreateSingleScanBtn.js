@@ -20,7 +20,7 @@ export default function ContainedButtons() {
 
   return (
     <div className={classes.root}>
-        <Button variant="contained" onClick={HandleSingle} color="primary">
+        <Button variant="contained" onClick={HandleSingle} className="SelectClientBtn">
             Select Clients
         </Button>
 

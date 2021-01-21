@@ -45,7 +45,6 @@ import ConfirmCompareBtn from "../Components/buttons/ConfirmCompareBtn";
                                         <li>Clients</li>
                                         <li>Clusters</li>
                                         <li>Sites</li>
-                                     
                                         <li>Description</li>
                                 </ul>   
 

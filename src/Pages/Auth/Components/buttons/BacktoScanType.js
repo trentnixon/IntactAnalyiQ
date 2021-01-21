@@ -16,8 +16,8 @@ export default function ContainedButtons() {
 
   return (
     <div className={classes.root}>
-        <Button variant="contained" onClick={()=>{BacktoScanOptions()} } color="secondary">
-           Back to Start
+        <Button variant="contained" onClick={()=>{BacktoScanOptions()} } className="CreateModel-Back">
+           Back
         </Button>
     </div> 
   );

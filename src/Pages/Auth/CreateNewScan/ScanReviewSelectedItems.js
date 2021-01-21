@@ -43,7 +43,7 @@ const ReviewScanContnt = ()=>{
     
     const SCAN = useContext_SCAN_FULL();
     
-    const [Fetching, setFetching] = useState('Review items')
+    const [Fetching, setFetching] = useState('Model Name and Description')
 
     const USERSCAN = SCAN.UserScanState;
 
@@ -58,25 +58,39 @@ const ReviewScanContnt = ()=>{
     },[USERSCAN])
     return(
         <div>
-                <h2>Review Scan</h2>
-                <BacktoSelectItems />
+                <h2>Name and Save Model</h2>
+                
+                <div className="BtnWrapper">
+                    <BacktoSelectItems />
+                </div>
+            
 
-                <h3>{Fetching}</h3>
-                <ScanForm 
-                    DataSet={USERSCAN.UserScanSingleDataSets}
-                />
+                <div className="ModelReview">
+                    <div>
+                        <h2>Model Name and Description</h2>
+                        <p>Add a clear and consis name and description for this model. This will be used later when comparing and anylisis models against each other.</p>
+                        <ScanForm  DataSet={USERSCAN.UserScanSingleDataSets} />
+                    </div>
+                    <div>
+                        <ul> 
+                            {
+                                USERSCAN.UserScanSingleDataSets.map((item,i)=>{
+                                    return(
+                                        <li key={i}>
+                                            {item.name}
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
 
-                <ul> 
-                    {
-                        USERSCAN.UserScanSingleDataSets.map((item,i)=>{
-                            return(
-                                <li key={i}>
-                                    {item.name}
-                                </li>
-                            )
-                        })
-                    }
-                </ul>
+
+                   
+                </div>
+               
+
+               
         </div>
     )
 }

@@ -1,6 +1,7 @@
 
     // Scan History List
 .ModelHistory{
+    margin: 2rem 0 ;
 
     .ScanHistoryList{
         display: flex;
@@ -18,7 +19,7 @@
             width: 100%;
        
             border:1px solid $color4;
-            margin: .1rem;
+            margin: .1rem .1rem 1rem;
             padding: 0;
            
             border-radius: $borderRadius;
@@ -33,10 +34,12 @@
                     padding: .5rem 1rem;
                     background-color: $color4;
                     color: $color1;
-                    text-align: center;
-
+                    text-align: left;
+                    div{
+                        flex-grow: 1;
+                    }
                     div:nth-child(2){
-                        text-align: center;
+                        text-align: left;
                     }
 
                     div:nth-child(3){
@@ -51,11 +54,53 @@
                 div.body{
                     padding: 1rem 2rem;
                     display: flex;
-                    flex-direction: row;
+                    flex-direction: column;
                     justify-content: space-evenly;
                     align-items: flex-start;
                     align-content: flex-start;
                     border-bottom: 1px solid $color4;
+                    
+                    h3{
+                        font-size: 1.1rem;
+                        margin: 0 0 -5px 0;
+                        font-weight: 400;
+                        letter-spacing: -1px;
+                    }
+
+                    .description{
+                        border: 1px solid $color4;
+                        width: 100%;
+                        padding: 1rem;
+                        border-radius: $borderRadius;
+                    }
+                    .ResultStats{
+                        width: 100%;
+                        margin-top: 1rem;
+                        ul{
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-evenly;
+                            align-items: center;
+                            align-content: center;
+
+                            li{
+                                display: flex;
+                                flex-direction: column;
+                                text-align: center;
+                                align-content: center;
+                                align-items: center;
+                                span{
+                                    font-weight: 800;
+                                    font-size: 1.5rem;
+                                }
+                                svg{
+                                    width: 40px;
+                                    height: 40px;
+                                    fill:$color2
+                                }
+                            }
+                        }
+                    }
                 }
                 div.cta{
                     display: flex;
@@ -64,7 +109,11 @@
                     align-items: center;
                     align-content: center;
                     width: 100%;
+                  
                     text-align: left;
+                    button,a{
+                        padding: 0;
+                    }
                     div{
                         .loader{
                             width: 200px;

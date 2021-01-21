@@ -16,7 +16,7 @@ export default function ContainedButtons() {
 
   return (
     <div className={classes.root}>
-        <Button variant="contained" onClick={()=>{ResetCompare(true)} } color="primary">
+        <Button variant="contained" onClick={()=>{ResetCompare(true)} } className="ResetModelComparison">
             Reset Comparison
         </Button>
     </div> 

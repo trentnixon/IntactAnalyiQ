@@ -29,7 +29,7 @@ const ClusterResult = (props)=>{
         SumTradeType(result.sites)
         console.log(result)
     },[result])
-
+ 
     return(
         <>
             
@@ -47,7 +47,7 @@ const ClusterResult = (props)=>{
                    Clients
                    <GetClientName clients = {GroupArrayByOccurances(JSON.parse(result.sites[0].count[0].Customers))}/></li>
                 <li>
-                    Trade Types
+                    Trade Types %
                    <GetTradeName Trades = {FindTradeTypeAllocation([{sites:result.sites}])}/></li>
                
              
@@ -77,13 +77,24 @@ export default ClusterResult;
 
 const GetTradeName = (props)=>{
     const {Trades} = props
+    const [TradeAllocationTotal, setTradeAllocationTotal] = useState(0)
+    const TradeWoRatioForDemo=(num)=>{
+        return ((num/TradeAllocationTotal)*100).toFixed(2)
+    }
+
+    useEffect(()=>{
+        let TWV=0
+        Trades[1].map((value,i)=>{TWV= TWV+value})
+        setTradeAllocationTotal(TWV)
+    },[])
+
     return(
         <ul>
             {
                 Trades[0].map((trade,i)=>{
                     return(
                         <li key={i}>
-                            {trade} <strong>{Trades[1][i]}</strong>
+                            {trade} <strong>{ TradeWoRatioForDemo(Trades[1][i]) }%</strong>
                         </li>
                     )
                 })
@@ -92,7 +103,7 @@ const GetTradeName = (props)=>{
         </ul>
     )
 }
-
+ 
 
 const GetClientName = (props)=>{
     const {clients} = props

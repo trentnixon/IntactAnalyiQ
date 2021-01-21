@@ -53,7 +53,7 @@ export default function PermanentDrawerRight(props) {
 
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-            <h1>Intact AnaltyiQ </h1>
+            <h1>Intact AnalytiQ </h1>
             <p>Front end Portal</p>
          
         </Toolbar>
@@ -64,7 +64,7 @@ export default function PermanentDrawerRight(props) {
       
       <main className="Public">  
         <div className={classes.toolbar} />
-            <PublicNavigation />
+         
             <div  className="InnerFrame">
                 {props.children}
             </div>
@@ -76,6 +76,9 @@ export default function PermanentDrawerRight(props) {
     </div>
   );
 }
+
+
+//    <PublicNavigation />
 
 /*
 

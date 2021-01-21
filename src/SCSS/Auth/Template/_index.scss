@@ -19,5 +19,39 @@
     .InnerFrame{
         padding: 2rem;
         text-align: center;
+
+        .AuthLayout{
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            align-content: flex-start;
+            min-height: 100vh;
+            .Header{
+                width: 100%;
+                    h2{
+                       
+                        color: $color4;
+                        text-transform: uppercase;
+                    }
+            }
+            
+            .Content{
+                flex-grow: 2;
+                width: 100%;
+                    p{
+                        
+                    }
+            }
+            .Footer{
+                border-top: 1px solid $color5;
+                width: 100%;
+                padding: .5rem 1rem 0 ;
+            }
+        }
+
     } 
+
+  
 }

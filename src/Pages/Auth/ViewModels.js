@@ -3,32 +3,50 @@ import {useContext_STRAPI_FULL} from "../../Context/STRAPI";
 import {useContext_SCAN_FULL} from "../../Context/SCAN";
 import {useContext_AUTH_FULL} from "../../Context/AUTH";
 import{FetchPreviousScans} from "../../actions/authUser"
+
+import GroupWorkIcon from '@material-ui/icons/GroupWork';
+import LocationDisabledIcon from '@material-ui/icons/LocationDisabled';
+import LocationSearchingIcon from '@material-ui/icons/LocationSearching';
+import PersonPinIcon from '@material-ui/icons/PersonPin';
+import LocationCityIcon from '@material-ui/icons/LocationCity';
+
+
 import {HandleTZDate} from "../../actions/HandleUX";
 import ScanHistoryRefreshBtn from "./Components/buttons/HistoryRerfresh";
 import ViewSingleResultBtn from "./Components/buttons/ViewSingleResultBtn";
-
+import Footer from "./Components/Layout/Footer"
 const Profile = ()=>{
-    const STRAPI = useContext_STRAPI_FULL();
     const AUTH = useContext_AUTH_FULL();
-    const SCAN = useContext_SCAN_FULL();
-
-   // useEffect(()=>{ FetchPreviousScans() },[])
-   
     return(
-        <>
-        <div className="SectionHeaderWithControls">
-            <h1>Stored Models</h1> 
-            <div className="controls">
-                {  AUTH.RefreshScanHistory ? <Refreshloading />: <ScanHistoryRefreshBtn /> }
+        <div className="AuthLayout">
+            <div className="Header">
+                <h2>Models</h2>
             </div>
+
+            <div className="Content">
+                <div className="BtnWrapper">
+                    {  AUTH.RefreshScanHistory ? <Refreshloading />: <ScanHistoryRefreshBtn /> }
+                </div>
+                <ModelHistory />
+            </div>
+
+            <Footer />
         </div>
-           
-           <div className="ModelHistory">
+    )
+}
+
+export default Profile;
+
+
+const ModelHistory = ()=>{
+    const AUTH = useContext_AUTH_FULL();
+    return(
+        <div className="ModelHistory">
             <ul className="ScanHistoryList">
                     <li>
                         <div className="header">
                             <div>Name</div>
-                            <div>Date Created</div>
+                            <div>&nbsp;</div>
                             <div>Status</div>
                         </div>         
                     </li>
@@ -46,16 +64,20 @@ const Profile = ()=>{
                              </div>
 
                              <div className="body">
-                                <div>{scan.Description}</div>
+                                
                                 <div className="ResultStats">
                                     <ul>
-                                        <li>Clusters Found : {scan.IntCluster}</li>
-                                        <li>Clients Sourced : {scan.IntClients}</li>
-                                        <li>Sites Scanned : {scan.IntSites}</li>
-                                        <li>Sites Grouped : {(scan.IntSites-scan.IntLocationsunaccommodated)}</li>
-                                        <li>Sites Unaccommodated: {scan.IntLocationsunaccommodated}</li>
+                                        <li><PersonPinIcon /><span>{scan.IntClients}</span>Clients</li>
+                                        <li><LocationCityIcon /><span>{scan.IntSites}</span>Locations</li>
+                                        <li><GroupWorkIcon /><span>{scan.IntCluster}</span>Clusters</li>
+                                        <li><LocationSearchingIcon /><span>{(scan.IntSites-scan.IntLocationsunaccommodated)}</span>Inscope</li>
+                                        <li><LocationDisabledIcon /><span>{scan.IntLocationsunaccommodated}</span>Unaccommodated</li>
                             
                                     </ul>
+                                </div>
+                                <h3>Model Description</h3>
+                                <div className="description">
+                                        {scan.Description}
                                 </div>
                              </div>
 
@@ -70,22 +92,14 @@ const Profile = ()=>{
             }
                 </ul>
            </div>
-          
-        </>
     )
 }
 
-export default Profile;
-
-
-
 const Refreshloading=()=>{
     return(
-        <>
+        
             <div className="loader">
                 <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
             </div>
-            <h3>Fetching Scan Status</h3>
-        </>
     )
 }

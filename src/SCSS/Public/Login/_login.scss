@@ -1,0 +1,67 @@
+.LoginForm{
+  
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+    img{
+        width: 180px;
+        margin: 0 0 1rem 0;
+    }
+
+    h1{
+        font-size: 4rem;
+        margin: 0 0 1rem ;
+        padding: 0;
+        line-height: 2.5rem;
+        font-weight: 100;
+        letter-spacing: 7px;
+      }
+      h2{
+        font-size: 1.1rem;
+        margin: 0;
+        padding: 0;
+        font-weight: 100;
+        letter-spacing: 1px;
+        font-weight: 800;
+
+        color: $color5;
+      }
+
+    .LoginContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        width: 60%;
+        
+       button{
+           padding: 0.5rem 2rem;
+           margin: 1rem 0 ;
+           border:1px solid $color1;
+           border-radius: $borderRadius;
+           cursor: pointer;
+       }
+
+        >div{
+            margin: .3rem 0 ;
+            width: 100%;
+            div{
+                width: 100%;
+            }
+        }
+    
+        .disclaimer{
+            margin: 2rem 0 ;
+            p{
+              font-size: .8rem;
+              line-height: .9rem;
+              color: $color5;
+            }
+          }
+    }
+}

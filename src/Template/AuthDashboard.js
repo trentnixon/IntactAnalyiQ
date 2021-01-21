@@ -50,7 +50,7 @@ export default function PermanentDrawerRight(props) {
 
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-            <h1>Intact AnaltyiQ </h1>
+            <h1>Intact AnalytiQ </h1>
             <p>Front end Portal</p>
          
         </Toolbar>

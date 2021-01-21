@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-
+import Button from '@material-ui/core/Button';
 import {useContext_SCAN_FULL} from "../../../Context/SCAN";
 
 import {FetchSelectedItems} from "../../../actions/HandleScanProcess";
@@ -18,13 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 /* Handle Scna Form*/
 export default function CreateNewScanForm() {
-
-
-  return (
-        <>
-            <ScanForm />
-        </>
-  );
+  return (<ScanForm />);
 }
 
 
@@ -86,21 +80,24 @@ const ScanForm = ()=>{
           
             <TextField 
                 id="outlined-basic" 
-                label="Scan Name" 
+                label="Model Name" 
                 variant="outlined" 
                 onChange={handleTitle}
             />
             
             <TextField
                 id="outlined-multiline-static"
-                label="Description"
+                label="Model Description"
                 multiline
                 rows={6}
                 onChange={handleDescription}
                 variant="outlined"
                 />
 
-            <button onClick={()=>{handleClick()}}>Send</button>
+            
+            <Button variant="contained" onClick={()=>{handleClick()} } className="CreateModel">
+                Create Model
+            </Button>
                 
         </div>
         )

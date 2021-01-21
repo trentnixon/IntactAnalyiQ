@@ -34,9 +34,7 @@ export default function BasicTextFields() {
 const Processing = ()=>{
    
     return(
-        <>
-            processing
-        </>
+        <><h3>Authenticating User ...</h3></>
     )
 }
 
@@ -70,21 +68,25 @@ const LoginForm = ()=>{
     return(
         <div className="LoginContainer">
             <Error />
-            <TextField 
-                id="outlined-basic" 
-                label="e-mail" 
-                variant="outlined" 
-                onChange={handleEmail}
-            />
-            <TextField
-                id="standard-password-input"
-                label="password"
-                type="password"
-                autoComplete="current-password"
-                variant="outlined"
-                onChange={handlePassword}
-            />
-            <button onClick={()=>{handleClick()}}>Login</button>
+            <div className="loginInput">
+                <TextField 
+                    id="outlined-basic" 
+                    label="e-mail" 
+                    variant="outlined" 
+                    onChange={handleEmail}
+                />
+            </div>
+            <div className="loginInput">
+                <TextField
+                    id="standard-password-input"
+                    label="password"
+                    type="password"
+                    autoComplete="current-password"
+                    variant="outlined"
+                    onChange={handlePassword}
+                />
+            </div>
+            <button className="SelectClientBtn" onClick={()=>{handleClick()}}>Login</button>
                 
         </div>
         )

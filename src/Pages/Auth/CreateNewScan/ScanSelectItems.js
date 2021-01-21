@@ -59,9 +59,13 @@ const ScanSelectItems=()=>{
 
     return(
         <div>
-            <h2>Select Items</h2>
-            <BtnBacktoScanOptions />
-            <ReviewSelectionBtn />
+            <h2>Select Clients for Model</h2>
+            
+            <div className="BtnWrapper">
+                <ReviewSelectionBtn />
+                <BtnBacktoScanOptions />
+            </div>
+            
             <div className="Dataset_Selection">
                 <div>
                     <ul>

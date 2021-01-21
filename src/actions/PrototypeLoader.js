@@ -6,8 +6,8 @@ import axios from 'axios';
 
 
 const useAPILOCATION = () => {
-    //const APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
-    const APILOCATION = 'http://localhost:1337/'
+    const APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
+    //const APILOCATION = 'http://localhost:1337/'
     return APILOCATION
 }
 

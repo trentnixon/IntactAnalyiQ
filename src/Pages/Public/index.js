@@ -12,11 +12,11 @@ import ComponentUnAuth from "./unAuth/UnAuth";
 
 const publicPath='demo'
 const routes = [
-    { Rpath: `/${publicPath}/`, component: ComponentLanding, exact:true},
-    { Rpath: `/${publicPath}/about`, component: ComponentAbout, exact:false},
-    { Rpath: `/${publicPath}/contact`, component: ComponentContact, exact:false},
-    { Rpath: `/${publicPath}/login`, component: ComponentLogin, exact:false},
-    { Rpath: `/${publicPath}/unauthorized`, component: ComponentUnAuth, exact:false},
+    { Rpath: `/${publicPath}/`, component: ComponentLogin, exact:true},
+   // { Rpath: `/${publicPath}/about`, component: ComponentAbout, exact:false},
+   // { Rpath: `/${publicPath}/contact`, component: ComponentContact, exact:false},
+   // { Rpath: `/${publicPath}/login`, component: ComponentLogin, exact:false},
+   // { Rpath: `/${publicPath}/unauthorized`, component: ComponentUnAuth, exact:false},
   ];
 
 

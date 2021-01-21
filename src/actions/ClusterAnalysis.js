@@ -55,9 +55,13 @@ const GroupArray =(arr) =>{
 
   export const findClientName=(id)=>{
     const Clients = store.getState().STRAPI.UserData.Customers;
-    let FoundClient = find(Clients, function(o) { return o.id === id; })
-    return FoundClient.name
-  }
+    let FoundClient = find(Clients, function(o) { return o.id === id; });
+
+    if(FoundClient !== undefined)
+      return FoundClient.name 
+  
+    return false
+   }
 
     const ResourcesRequired = (TradesUsed)=>{
       //console.log(TradesUsed);

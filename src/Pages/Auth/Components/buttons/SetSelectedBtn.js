@@ -16,8 +16,8 @@ export default function ContainedButtons() {
 
   return (
     <div className={classes.root}>
-        <Button variant="contained" onClick={()=>{SetSelected(true)} } color="primary">
-            Scan this Selection
+        <Button variant="contained" onClick={()=>{SetSelected(true)} } className="CreateModelMeta">
+            Next
         </Button>
     </div> 
   );

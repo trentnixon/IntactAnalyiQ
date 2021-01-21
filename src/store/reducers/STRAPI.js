@@ -44,7 +44,7 @@ const STRAPI = (state=InitialState, action) =>{
                     // eslint-disable-next-line 
                 break
                 }
-        case "STORETRADETYPES":{
+        case "STORETRADETYPES":{ 
                     return {...state, UserData:{...state.UserData, tradetypes :action.payload} }
                         // eslint-disable-next-line 
                     break

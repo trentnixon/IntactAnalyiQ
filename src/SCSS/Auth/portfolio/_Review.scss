@@ -1,0 +1,22 @@
+.ModelReview{
+    margin: 2rem 0 ;
+    display: flex;
+
+    >div{
+        margin: 0 1rem;
+    }
+    >div:nth-child(1){
+        width: 60%;
+    }
+
+    .LoginContainer{
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 3rem;
+
+        >div{
+            margin: .5rem 0;
+        }
+    }
+
+}

@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
 
-const Profile = ()=>{
+import Footer from "./Components/Layout/Footer";
 
-    
+const Profile = ()=>{    
     return(
-        <>
-           <h1>Profile</h1>
-           <h2>User : Name</h2>
+        <div className="AuthLayout">
+        <div className="Header">
+            <h1>Profile</h1>
+            <h2>User</h2>
+        </div>
 
-           <div>
+        <div className="Content">
+            <div>
                
                <h2>What is a Model</h2>
                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
@@ -21,10 +24,10 @@ const Profile = ()=>{
                 <h2>Comparing Models</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
             </div>
-               
-              <div>
             </div>
-        </>
+
+            <Footer />
+    </div>
     )
 }
 

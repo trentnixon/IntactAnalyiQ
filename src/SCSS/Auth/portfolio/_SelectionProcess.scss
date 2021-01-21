@@ -1,9 +1,10 @@
 .Dataset_Selection{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: flex-start;
     align-content: flex-start;
+    margin: 1rem 0;
     div{
         border: 1px solid $color5;
         width: 40%; 

@@ -11,6 +11,12 @@ import store from './store/';
 import {LoadPrototype} from "./actions/PrototypeLoader";
 import {JWT} from "./actions/authUser";
 
+/*
+git add .
+git commit -am "FirstPushTest"
+git push heroku master
+
+*/
 const PrepApp = new LoadPrototype();
 const JWTCHECK = JWT();
 PrepApp.Fetch();

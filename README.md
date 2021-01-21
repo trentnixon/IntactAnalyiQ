@@ -1,2 +1,3 @@
-# Intact Analyiq
-VSC Changes Test
+# Intact AnalytiQ
+
+Create README

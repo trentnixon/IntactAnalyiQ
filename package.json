@@ -32,8 +32,7 @@
     "start": "react-scripts start -FAST_REFRESH=true",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "npm install npm run build "
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

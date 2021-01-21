@@ -20,7 +20,9 @@ git push heroku master
 const PrepApp = new LoadPrototype();
 const JWTCHECK = JWT();
 PrepApp.Fetch();
-
+//let APIKEY='AIzaSyBeaJXqrVv11ir4TY77jJZKhO1iDhGIfiM'
+let APIKEY= process.env.googleapi;
+// 'AIzaSyALF9F0ml86QsWwtB0bCC7mszlTsv6U8BE'
 ReactDOM.render(
     <Provider store={ store }>
       <LoadScript  googleMapsApiKey={APIKEY} >

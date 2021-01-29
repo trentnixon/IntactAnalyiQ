@@ -12,7 +12,7 @@ import BlurCircularIcon from '@material-ui/icons/BlurCircular';
 import DataUsageIcon from '@material-ui/icons/DataUsage';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 import CompareIcon from '@material-ui/icons/Compare';
-
+import DashboardIcon from '@material-ui/icons/Dashboard';
 
 const Login = ()=>{
 
@@ -20,6 +20,11 @@ const Login = ()=>{
     return(
 
         <List className="AuthNavigation">
+            
+            <ListItem button key='UI Components' component={Link} to={`/UIComponents`}>
+                <ListItemIcon><DashboardIcon /></ListItemIcon>
+                <ListItemText primary='UI Components' />
+            </ListItem>
             <ListItem button key='Profile' component={Link} to={`/`}>
                 <ListItemIcon><PersonPinIcon /></ListItemIcon>
                 <ListItemText primary='Profile' />
@@ -54,23 +59,5 @@ export default Login
 
 /**
  * 
- * *  <ul>
-        <li><Link to={`/`}>Landing</Link></li>
-        <li><Link to={`/listData`}>Data return</Link></li>
-        <li><Link to={`/prototype/primaryfeature`}>Primary Feature</Link></li>
-    </ul>
-       <ListItem button key='MarkerBasedScan' component={Link} to={`/MarkerBasedScan`}>
-                <ListItemIcon><MapIcon /></ListItemIcon>
-                <ListItemText primary='Portfolio' />
-          </ListItem>
-
-     <ListItem button key='Primary Feature' component={Link} to={`/prototype/primaryfeature`}>
-                <ListItemIcon><MapIcon /></ListItemIcon>
-                <ListItemText primary='Primary Feature Test' />
-          </ListItem>
-
-            <ListItem button key='View Results' component={Link} to={`/results`}>
-                <ListItemIcon><DataUsageIcon /></ListItemIcon>
-                <ListItemText primary='View Results' /> 
-          </ListItem>
+ * *
  */

@@ -2,14 +2,8 @@
 // Private Functions
 import store from "../store/index"
 import axios from 'axios';
+import {useAPILOCATION} from "./authUser"
 
-
-
-const useAPILOCATION = () => {
-    const APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
-    //const APILOCATION = 'http://localhost:1337/'
-    return APILOCATION
-}
 
 /*
 export function LoginSequence(arr){

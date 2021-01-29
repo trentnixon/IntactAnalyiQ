@@ -22,7 +22,7 @@ import ComponentCreateModel from "./CreateModel";
 import ComponentViewModels from "./ViewModels";
 import CompareComponent from "./CompareModels";
 import ComponentScan from "./ResourceAllocationScan"
-
+import UIComponents from "./UICompnents/index"
 //import ResultsComponent from "./MarkerBasedScan/MarkerBasedScan";
 import ResultsComponent from "./SingleModelResult";
 
@@ -34,7 +34,8 @@ const routes = [
     { Rpath: "/MarkerBasedScan", component: ComponentScan, exact:false},
     { Rpath: "/integity", component: ComponentDataDump, exact:false},
     { Rpath: "/results", component: ResultsComponent, exact:false},
-    
+    { Rpath: "/UIComponents", component: UIComponents, exact:false},
+  
 ];
 
 const Auth = (props)=>{
@@ -83,7 +84,7 @@ export default Auth
 const FetchData=()=>{
 
     const [Fetch, setFetch] = useState(null)
-    
+    const STRAPI = useContext_STRAPI_FULL();
 
     useEffect(()=>{
         if(Fetch === null){
@@ -98,6 +99,10 @@ const FetchData=()=>{
                 <div className="loader">
                 <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
                 <LogoMainWhite />
+                
+                {
+                    STRAPI.DataError ? 'There was an Error loading the data. Please try again later':''
+                }
               <Disclaimer />
             </div>
         </div>

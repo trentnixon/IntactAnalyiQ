@@ -18,13 +18,15 @@ const SelectandReview = ()=>{
  
         return(
             <>
-                { USERSCAN.ScanOptionSelected === 0?<Single />:<Compare /> }
+                {
+                USERSCAN.SetSelectedDatabase ? <ReviewSelection />:<SelectScanItems />
+            } 
             </>
         )
 }
 
 
-
+/*
 const Single = ()=>{
 
     const SCAN = useContext_SCAN_FULL();
@@ -50,6 +52,7 @@ const Compare = ()=>{
         </div>
     )
 }
+*/
 /*
  
 */

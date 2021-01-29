@@ -2,14 +2,8 @@
 // Private Functions
 import store from "../store/index"
 import axios from 'axios';
+import {useAPILOCATION} from "./authUser"
 
-
-
-const useAPILOCATION = () => {
-        const APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
-        //const APILOCATION = 'http://localhost:1337/'
-        return APILOCATION
-    }
 
 
 export const CreateNewScan = (value)=>{  store.dispatch({ type:'CREATENEWDATASET', payload:value});} 
@@ -50,7 +44,7 @@ export const ResetCreateNewModel = ()=>{
     store.dispatch({ type:'USERSCANPROCESSING', payload:false})
 }
 
-export const FetchSelectedItems = async  (DATA, TITLE, DESCRIPTION)=>{
+export const FetchSelectedItems = async  (DATA, TITLE, DESCRIPTION, S,E)=>{
 
     let IDStr=[];
     DATA.map((customer,i)=>{
@@ -75,7 +69,7 @@ export const FetchSelectedItems = async  (DATA, TITLE, DESCRIPTION)=>{
 
     //await axios.get(ENDPOINT+IDStr.toString()) 
 
-   await axios({ url: ENDPOINT+'/'+ScanName+'/'+ScanDescription+'/'+AuthUSer.id+'/'+IDStr.toString(), method: 'get', headers: axiosHeader})
+   await axios({ url: ENDPOINT+'/'+[S,E].toString()+'/'+ScanName+'/'+ScanDescription+'/'+AuthUSer.id+'/'+IDStr.toString(), method: 'get', headers: axiosHeader})
         .then(function (res) {
             console.log("Create Model Return Value from Server", res.data);
             

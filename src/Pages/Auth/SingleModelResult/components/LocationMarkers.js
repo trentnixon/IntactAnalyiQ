@@ -19,7 +19,7 @@ const divStyle = {
     styles: [{
         height: 53,
         url: "/clusters/m1.png",
-        width: 53,
+        width: 53, 
 
       },
       {
@@ -90,12 +90,13 @@ const MarkerBasedLocationMarkers = ()=>{
           centerPoint.sites.map((site,ii)=>{
 
               Targeticon = {
-                path: "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
+                //path: "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
+                path:"M-24-48h48v48h-48z",
                 fillColor: RegionColor(centerPoint.scanCategory),
                 fillOpacity: .9,
                 anchor: new window.google.maps.Point(0,0),
                 strokeWeight: 0,
-                scale: 1
+                scale: .3
             }; 
           
             
@@ -106,7 +107,7 @@ const MarkerBasedLocationMarkers = ()=>{
                         key={site.name}
                         onLoad={onLoadMarker}
                         title={site.name}
-                        label={site.name}
+                        //label={site.name}
                         icon={Targeticon}
                         onClick={()=>{OnMarkerClick(site.name, centerPoint.scanCategory)}}
                         position={{

@@ -15,4 +15,4 @@ const ResultMap = ()=>{
     )
 }
 
-export default ResultMap;
+export default ResultMap; 

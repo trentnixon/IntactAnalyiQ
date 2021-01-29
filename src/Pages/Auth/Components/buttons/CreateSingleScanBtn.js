@@ -21,16 +21,8 @@ export default function ContainedButtons() {
   return (
     <div className={classes.root}>
         <Button variant="contained" onClick={HandleSingle} className="SelectClientBtn">
-            Select Clients
+            Select Clients 
         </Button>
-
     </div>
   );
 }
-
-/*
-
-        <Button variant="contained" color="secondary">
-            Comparison Scan
-        </Button>
-*/

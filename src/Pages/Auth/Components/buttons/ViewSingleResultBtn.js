@@ -27,7 +27,7 @@ export default function IconButtons(props) {
     const {scanID, scan} = props
     const SCAN = useContext_SCAN_FULL();
     useEffect(()=>{
-      //console.log(SCAN.SelectedModelUI, scanID)
+      console.log(SCAN)
     },[SCAN])
 
     return (

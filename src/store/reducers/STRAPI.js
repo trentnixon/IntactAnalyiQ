@@ -9,6 +9,7 @@ const InitialState ={
         sites:null, 
     },
 
+    DataError:false
     /*
     sites:null,
     Customers:null,
@@ -33,6 +34,12 @@ const STRAPI = (state=InitialState, action) =>{
                         // eslint-disable-next-line 
             break
             }
+
+        case "DATAFETCHFAIL":{
+                return {...state, DataError:action.payload}
+                            // eslint-disable-next-line 
+                break
+                }
                
          case "STORECUSTOMERS":{
             return {...state, UserData:{...state.UserData, Customers :action.payload} }

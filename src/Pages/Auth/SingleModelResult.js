@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React  from 'react'
 
 // components
 import ResultHeader from "./SingleModelResult/ResultHeader"
@@ -10,9 +10,10 @@ const SingleModelResult = ()=>{
         <>
             <ResultHeader />
             <ResultMap />
-            <ResultClusterResults />
+            
         </>
-    )
+    ) 
 }
-
+ 
+//<ResultClusterResults />
 export default SingleModelResult; 

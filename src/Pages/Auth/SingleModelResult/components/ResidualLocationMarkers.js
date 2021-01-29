@@ -59,12 +59,13 @@ const MarkerBasedLocationMarkersALL = ()=>{
         let StoreMarkers=[]         
                 markers.map((site,i)=>{
                     Targeticon = {
-                        path: "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
+                        //path: "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
+                        path:"M-24-48h48v48h-48z",
                         fillColor: '#3D3D3D',
-                        fillOpacity: .9,
+                        fillOpacity: 1,
                         anchor: new window.google.maps.Point(0,0),
                         strokeWeight: 0,
-                        scale: .5,
+                        scale: .2,
                         zIndex:10
                     };
                     StoreMarkers.push( 
@@ -73,7 +74,7 @@ const MarkerBasedLocationMarkersALL = ()=>{
                                 key={i}
                                 onLoad={onLoadMarker}
                                 title={site.name}
-                                label={site.name}
+                                //label={site.name}
                                 icon={Targeticon}
                                 onClick={()=>{OnMarkerClick(site.name)}}
                                 position={{

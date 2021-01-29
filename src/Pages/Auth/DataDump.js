@@ -2741,7 +2741,7 @@ export default Prototype
 
 const containerStyle = { height: "500px", width: "auto" };
 
-const IntroText = ()=>{
+const IntroText = ()=>{ 
     
     const [path,setPath] = useState([])
     let points=[[-38.102144,145.188240],[-38.238180,145.622208],[-38.042684,145.194773],[-38.152917,145.538663],[-37.945280,145.225428],[-38.045387,145.122987]]

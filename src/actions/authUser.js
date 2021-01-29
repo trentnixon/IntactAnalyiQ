@@ -7,11 +7,18 @@ import axios from 'axios';
 
 // lazy testing only Fix this!
 
-const useAPILOCATION = () => {
-        const APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
-        //const APILOCATION = 'http://localhost:1337/'
+export const useAPILOCATION = () => {
+        let APILOCATION;
+        if (process.env.NODE_ENV !== 'production') {
+                APILOCATION = 'http://localhost:1337/'
+        }
+        else
+        {
+                APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
+        }        
+        
         return APILOCATION
-}
+} 
 
 
 export const StrapiAuth = async (u,p)=>{
@@ -99,14 +106,14 @@ export const FetchSingleScanResult = (scanID, scan)=>{
        axios({ url: AWSURL+scanID+'.json', method: 'get'})
         .then((result) => { 
         
-                console.log(result.data);
+                //console.log(result.data);
                 //result.data.SCANSTATE
                 const UICHANGE={active:true,processing:false, activeID:scanID}   
                 store.dispatch({ type:'STORESELECTEDMODEL', payload:result.data}); 
                 store.dispatch({ type:'STORESELECTEDMODELMETA', payload:scan}); 
                 
                 store.dispatch({ type:'STORESELECTEDUI', payload:UICHANGE}); 
-                console.log(scan)
+                //console.log(scan)
                 }).catch(function (thrown) {
                         if (axios.isCancel(thrown)) { console.log('Request canceled', thrown.message);
                         } else { console.log("ERROR", thrown);}
@@ -122,9 +129,7 @@ const FetchAPI = (Route, TYPE, i=0)=>{
         //console.log(JWTToken)
         const axiosHeader = {
                 'Content-Type': 'application/x-www-form-urlencoded',
-               
                 'Authorization': "Bearer " + JWTToken
-                        
        }
       
 
@@ -132,7 +137,7 @@ const FetchAPI = (Route, TYPE, i=0)=>{
         axios({ url: APIFETCH, method: 'get', headers: axiosHeader})
         .then((result) => { 
         
-                console.log(result);
+                //console.log(result);
                 store.dispatch({ type:TYPE, payload:result.data});
 
                 }).catch(function (thrown) {
@@ -141,21 +146,33 @@ const FetchAPI = (Route, TYPE, i=0)=>{
                                 console.log("ERROR", thrown);
                                 console.log("i = ", i)
                                 if(i<3){
-                                        FetchAPI(Route, TYPE, i=i+1)
+                                        
+                                        setTimeout(()=>{ FetchAPI(Route, TYPE, i=i+1) },3000)
+                                }
+                                else{
+                                        store.dispatch({ type:'DATAFETCHFAIL', payload:true}); 
                                 }
                                 
                         }
                 });
 }
 
+
+
+
+
+
 export const FetchDataIntegrity=()=>{
         // list out the items needed to fetch
         // do a look up to see if these items are already in the reducer
         
-        GetTradeTypes()
-        GetCustomers();
-        GetTradeAllocations()
-        FetchPreviousScans()
+     
+        GetTradeTypes();
+        // FOr testing purposes pause this one
+        setTimeout(()=>{ GetCustomers(); },3000)
+        
+       GetTradeAllocations();
+        FetchPreviousScans();
 }
 
 

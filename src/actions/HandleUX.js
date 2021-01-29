@@ -162,28 +162,28 @@ export function HandleFilterChange(TYPE, VALUE){
 export function RegionColor(region){
   switch (region) {
       case 'SameBuilding':
-            return '#CD0074'
-        break;
+            return '#B2007C' 
+            break;
       case 'CBD':
-              return '#00CC00'
+              return '#DC000B'
         break;
       case 'InnerCity':
-              return '#561F77'
+              return '#04419B'
           break;
       case 'Metro':
-              return '#1042AB'
+              return '#11B700'
           break;
       case 'OuterMetro':
-              return '#176B6B'
+              return '#330193'
           break;
         case 'Regional':
-          return '#1F8E1F'
+          return '#FF7400'
           break;
         case 'Remote':
-          return '#F36A00'
+          return '#3D1324'
           break; 
       case 'ExtremeRemote':
-            return '#9D121C'
+            return '#111D2F'
           break;   
      
   }

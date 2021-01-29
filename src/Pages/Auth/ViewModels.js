@@ -15,6 +15,7 @@ import {HandleTZDate} from "../../actions/HandleUX";
 import ScanHistoryRefreshBtn from "./Components/buttons/HistoryRerfresh";
 import ViewSingleResultBtn from "./Components/buttons/ViewSingleResultBtn";
 import Footer from "./Components/Layout/Footer"
+
 const Profile = ()=>{
     const AUTH = useContext_AUTH_FULL();
     return(
@@ -29,7 +30,7 @@ const Profile = ()=>{
                 </div>
                 <ModelHistory />
             </div>
-
+            
             <Footer />
         </div>
     )
@@ -40,16 +41,24 @@ export default Profile;
 
 const ModelHistory = ()=>{
     const AUTH = useContext_AUTH_FULL();
+
+    const HandleDate=(timestamp)=>{
+        var a = new Date(timestamp * 1000);
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = a.getDate();
+        var time = date + ' ' + month + ' ' + year;
+        return time;
+        
+    }
+    useEffect(()=>{
+        console.log(AUTH.ScanHistory);
+    },[AUTH.ScanHistory])
     return(
         <div className="ModelHistory">
             <ul className="ScanHistoryList">
-                    <li>
-                        <div className="header">
-                            <div>Name</div>
-                            <div>&nbsp;</div>
-                            <div>Status</div>
-                        </div>         
-                    </li>
+                    
 
             {
                 AUTH.ScanHistory.map((scan,i)=>{
@@ -58,34 +67,34 @@ const ModelHistory = ()=>{
                         <li key={i}>
 
                              <div className="header">
-                                <div>{scan.Name}</div>
-                                <div>{HandleTZDate(scan.createdAt)}</div>
-                                <div className={scan.ScanState}>{scan.ScanState}</div>
+                                <div><h1>{scan.Name}</h1></div>
+                                <p><strong>{HandleDate(scan.DateStart)} - {HandleDate(scan.DateEnd) }</strong></p>
+                              
+                                { scan.ScanState=== 'Complete'? <CTA scan={scan}/>: <ProcessingStatus scan={scan} />  }
                              </div>
+                            
 
                              <div className="body">
-                                
-                                <div className="ResultStats">
-                                    <ul>
-                                        <li><PersonPinIcon /><span>{scan.IntClients}</span>Clients</li>
-                                        <li><LocationCityIcon /><span>{scan.IntSites}</span>Locations</li>
-                                        <li><GroupWorkIcon /><span>{scan.IntCluster}</span>Clusters</li>
-                                        <li><LocationSearchingIcon /><span>{(scan.IntSites-scan.IntLocationsunaccommodated)}</span>Inscope</li>
-                                        <li><LocationDisabledIcon /><span>{scan.IntLocationsunaccommodated}</span>Unaccommodated</li>
-                            
-                                    </ul>
-                                </div>
-                                <h3>Model Description</h3>
+                               
                                 <div className="description">
                                         {scan.Description}
                                 </div>
+                                <div className="ResultStats">
+                                    <ul> 
+                                        <li><span>{scan.IntClients}</span><PersonPinIcon />Clients</li>
+                                        <li><span>{scan.IntCluster}</span><GroupWorkIcon />Clusters</li>
+                                        <li><span>{scan.IntSites}</span><LocationCityIcon />Locations</li>
+                                        <li><span>{(scan.IntSites-scan.IntLocationsunaccommodated)}</span><LocationSearchingIcon />Inscope</li>
+                                        <li><span>{scan.IntLocationsunaccommodated}</span><LocationDisabledIcon />Out of Scope</li>
+                            
+                                    </ul>
+                                </div>
+                               
                              </div>
 
-                             <div className="cta">
-                                <div><ViewSingleResultBtn scanID={scan.id} scan={scan}/></div>
-                                <div>Delete</div>
-                             </div>
-                        
+                                <CreatedAt scan={scan}/>
+                                { scan.ScanState=== 'Complete'? <ProcessingStatus scan={scan} />: false }
+                             
                         </li>
                     )
                 })
@@ -101,5 +110,48 @@ const Refreshloading=()=>{
             <div className="loader">
                 <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
             </div>
+    )
+}
+
+
+const CreatedAt=(props)=>{
+    const {scan} = props
+    return(
+        <ul className="ModelDateRange">
+                                <li>
+                                    <p><small>Created : {HandleTZDate(scan.createdAt)}</small></p>
+                                </li>                               
+                            </ul>
+    )
+}
+
+
+
+const ProcessingStatus=(props)=>{
+    const {scan} = props
+    return(<>
+            <div className={`${scan.ScanState} status`}>
+                {scan.ScanState}
+                <br />
+                {
+                    scan.ScanState=== 'Complete' ? `Time Take ${scan.CreateModel_TimeTaken}`:`ETA: ${scan.CreateModel_RemainingTime} `
+                }
+                
+            </div>
+           
+
+    </>
+        
+    )
+}
+
+
+const CTA = (props)=>{
+    const {scan} = props
+    return(
+        <div className="cta">
+            <div><ViewSingleResultBtn scanID={scan.id} scan={scan}/></div>
+            <div>Delete</div>
+        </div>
     )
 }

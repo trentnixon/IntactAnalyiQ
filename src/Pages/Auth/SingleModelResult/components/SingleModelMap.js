@@ -7,7 +7,7 @@ import Markers from "./LocationMarkers";
 import ResidualMarkers from "./ResidualLocationMarkers";
 import CenterPoints from "./MarkersCenterpoints";
 import MarkerBasedResults from "./MarkerBasedResults";
-
+import Polygons from "./Polygons"
 
 const containerStyle = { height: "700px", width: "auto" };
 const Map=()=>{
@@ -22,13 +22,16 @@ const Map=()=>{
                         zoom={14}
                     >
                         { /* Child components, such as markers, info windows, etc. */ }
-                        <CenterPoints />
+                        
                         <Markers />
                         <ResidualMarkers />
+                        <Polygons />
                     </GoogleMap>
                 
                     </div>
                 )
 }
+
+//<CenterPoints />
 
 export default Map;

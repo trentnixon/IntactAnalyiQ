@@ -10,7 +10,7 @@ import {RegionColor} from "../../../../actions/HandleUX"
 const MarkerCenterpoints = ()=>{
     const SCAN = useContext_SCAN_FULL();
     const [Centerpoints, setCenterpoints] = useState(null)
-    
+     
     const CreateCenterpoints = ()=>{
         let StorePoints=[]       
         SCAN.SelectedModel.STOREMARKERCENTERPOINTS.map((center,i)=>{

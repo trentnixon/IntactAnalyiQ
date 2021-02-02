@@ -1,0 +1,148 @@
+
+ul.Card_List{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: center;
+    align-self: flex-start;
+    flex-wrap: wrap;
+
+    li.Card{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        align-content: flex-start;
+        width: 48%;
+   
+        //border:1px solid $color4;
+         //border-radius: $borderRadius;
+        margin: .1rem .1rem 1rem;
+        padding: 0;
+        -webkit-box-shadow: 7px 11px 32px -8px rgba(110,110,110,1);
+        -moz-box-shadow: 7px 11px 32px -8px rgba(110,110,110,1);
+        box-shadow: 7px 11px 32px -8px rgba(110,110,110,1);
+
+        .Card_Header{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            align-content: center;
+            width: 100%;
+            padding: 5rem 1rem 2rem;
+            background-color: $color3;
+            color: $color1;
+            
+            h2{
+                color: $color1;
+                font-weight: 100;
+            }
+
+            div.cta{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: center;
+                align-content: center;
+                width: 25%;
+                text-align: center;
+                margin-top: 1rem;
+              
+               
+                button,a{
+                    padding: 0;
+                    svg{ fill:$color2}
+                }
+                div{
+                    .loader{
+                        width: 200px;
+                    }
+                }
+            }
+            
+        }
+
+
+
+        .Card_Body{
+            padding: 1.5rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            align-content: flex-start;
+
+
+                .ResultStats{
+                    width: 100%;
+                    margin-top: 1rem;
+                    ul{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        align-content: center;
+
+                        li{
+                            display: flex;
+                            flex-direction: column;
+                            text-align: center;
+                            align-content: flex-end;
+                            align-items: center;
+                            justify-content: flex-end;
+                            align-self: flex-end;
+                            span{
+                                font-weight: 800;
+                                font-size: 1em;
+                            }
+                            svg{
+                                width: 30px;
+                                height: 30px;
+                                fill:$color2
+                            }
+                        }
+                    }
+                }
+        }
+
+
+        .Card_Footer{
+          
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            align-content: flex-start;
+        }
+
+        div.ModelDateCreated{
+            padding: .4rem;
+            width: 100%;
+            p{
+                margin: 0;
+                text-align: right;
+            }
+            
+        }
+        div.status{
+              
+            color:$colorLink;
+            padding: .4rem;
+            text-align: center;
+            border-bottom:3px solid $colorFalse;
+        }
+        div.status.Complete{
+            padding: .4rem;
+            color: $color3;
+            font-weight: 800;
+            border-bottom:3px solid $colorTrue;
+            width: 100%;
+            text-align: left;
+        }
+    }
+}

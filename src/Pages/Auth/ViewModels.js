@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
-import {useContext_STRAPI_FULL} from "../../Context/STRAPI";
-import {useContext_SCAN_FULL} from "../../Context/SCAN";
-import {useContext_AUTH_FULL} from "../../Context/AUTH";
-import{FetchPreviousScans} from "../../actions/authUser"
+import {useContext_STRAPI_FULL} from "Context/STRAPI";
+import {useContext_SCAN_FULL} from "Context/SCAN";
+import {useContext_AUTH_FULL} from "Context/AUTH";
+import{FetchPreviousScans} from "actions/authUser"
+
+// Layout
+import {H1, H2, H3,H4, P, S} from "./Components/Type";
+import Section from "./Components/Layout/Section"
 
 import GroupWorkIcon from '@material-ui/icons/GroupWork';
 import LocationDisabledIcon from '@material-ui/icons/LocationDisabled';
@@ -11,7 +15,7 @@ import PersonPinIcon from '@material-ui/icons/PersonPin';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 
 
-import {HandleTZDate} from "../../actions/HandleUX";
+import {HandleTZDate} from "actions/HandleUX";
 import ScanHistoryRefreshBtn from "./Components/buttons/HistoryRerfresh";
 import ViewSingleResultBtn from "./Components/buttons/ViewSingleResultBtn";
 import Footer from "./Components/Layout/Footer"
@@ -20,16 +24,21 @@ const Profile = ()=>{
     const AUTH = useContext_AUTH_FULL();
     return(
         <div className="AuthLayout">
-            <div className="Header">
-                <h2>Models</h2>
-            </div>
-
-            <div className="Content">
-                <div className="BtnWrapper">
-                    {  AUTH.RefreshScanHistory ? <Refreshloading />: <ScanHistoryRefreshBtn /> }
+                <div className="Header">
+                    <H2 Copy={`View Models`} />
                 </div>
-                <ModelHistory />
-            </div>
+
+                <div className="Content">
+        
+                        <div className="ControlBar">
+                            {  AUTH.RefreshScanHistory ? <Refreshloading />: <ScanHistoryRefreshBtn /> }
+                        </div> 
+                    
+                    <Section>
+                        <ModelHistory />
+                    </Section>
+                
+                </div>
             
             <Footer />
         </div>
@@ -57,28 +66,29 @@ const ModelHistory = ()=>{
     },[AUTH.ScanHistory])
     return(
         <div className="ModelHistory">
-            <ul className="ScanHistoryList">
+            <ul className="Card_List">
                     
 
             {
                 AUTH.ScanHistory.map((scan,i)=>{
                     //console.log(scan);
                     return(
-                        <li key={i}>
+                        <li key={i} className="Card">
 
-                             <div className="header">
-                                <div><h1>{scan.Name}</h1></div>
+                             <div className="Card_Header">
+                                <div><H2 Copy={scan.Name}/></div>
                                 <p><strong>{HandleDate(scan.DateStart)} - {HandleDate(scan.DateEnd) }</strong></p>
                               
                                 { scan.ScanState=== 'Complete'? <CTA scan={scan}/>: <ProcessingStatus scan={scan} />  }
                              </div>
                             
 
-                             <div className="body">
+                             <div className="Card_Body">
                                
                                 <div className="description">
-                                        {scan.Description}
+                                    <P Copy={scan.Description}/>    
                                 </div>
+
                                 <div className="ResultStats">
                                     <ul> 
                                         <li><span>{scan.IntClients}</span><PersonPinIcon />Clients</li>
@@ -91,25 +101,22 @@ const ModelHistory = ()=>{
                                 </div>
                                
                              </div>
-
+                             <div className="Card_Footer">
                                 <CreatedAt scan={scan}/>
                                 { scan.ScanState=== 'Complete'? <ProcessingStatus scan={scan} />: false }
-                             
+                             </div>
                         </li>
                     )
                 })
             }
-                </ul>
-           </div>
+            </ul>
+        </div>
     )
 }
 
 const Refreshloading=()=>{
     return(
-        
-            <div className="loader">
-                <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-            </div>
+        <div className="loader"><div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>
     )
 }
 
@@ -117,11 +124,9 @@ const Refreshloading=()=>{
 const CreatedAt=(props)=>{
     const {scan} = props
     return(
-        <ul className="ModelDateRange">
-                                <li>
-                                    <p><small>Created : {HandleTZDate(scan.createdAt)}</small></p>
-                                </li>                               
-                            </ul>
+        <div className="ModelDateCreated">
+            <S Copy={`Created : ${HandleTZDate(scan.createdAt)}`}/>                        
+        </div>
     )
 }
 
@@ -131,15 +136,14 @@ const ProcessingStatus=(props)=>{
     const {scan} = props
     return(<>
             <div className={`${scan.ScanState} status`}>
-                {scan.ScanState}
-                <br />
-                {
-                    scan.ScanState=== 'Complete' ? `Time Take ${scan.CreateModel_TimeTaken}`:`ETA: ${scan.CreateModel_RemainingTime} `
-                }
                 
+                {
+                    scan.ScanState=== 'Complete' ? `Processing Time ${scan.CreateModel_TimeTaken}`:`ETA: ${scan.CreateModel_RemainingTime} `
+                }
+                <br />
+                {scan.ScanState}
+             
             </div>
-           
-
     </>
         
     )

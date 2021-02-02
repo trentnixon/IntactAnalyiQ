@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import{NumberReducer} from "../../../../actions/HandleUX";
+import{NumberReducer} from "actions/HandleUX";
 
 //import DeleteClusterBtn from "../Controls/buttons/DeleteClusterBtn";
 //import BacktoMap from "../Controls/buttons/BacktoMapBtn";

@@ -6,8 +6,8 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
-import {useContext_COMPARE_FULL} from "../../../../Context/COMPARE";
-import {numberWithCommas, GroupArrayByOccurances} from "../../../../actions/HandleUX";
+import {useContext_COMPARE_FULL} from "Context/COMPARE";
+import {numberWithCommas, GroupArrayByOccurances} from "actions/HandleUX";
 
 const useStyles = makeStyles((theme) => ({
     root: {

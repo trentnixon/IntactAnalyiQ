@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {useContext_SCAN_FULL} from "../../../../Context/SCAN";
+import {useContext_SCAN_FULL} from "Context/SCAN";
 import { Link} from "react-router-dom";
 import IconButton from '@material-ui/core/IconButton';
 
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import GetAppIcon from '@material-ui/icons/GetApp';
-import{FetchSingleScanResult} from "../../../../actions/authUser"
+import{FetchSingleScanResult} from "actions/authUser"
 
 
 // this button has 3 states
@@ -26,9 +26,7 @@ const useStyles = makeStyles((theme) => ({
 export default function IconButtons(props) {
     const {scanID, scan} = props
     const SCAN = useContext_SCAN_FULL();
-    useEffect(()=>{
-      console.log(SCAN)
-    },[SCAN])
+    useEffect(()=>{},[SCAN])
 
     return (
           <>
@@ -101,7 +99,7 @@ const ViewResult = (props)=>{
     <div className={classes.root}>
       <IconButton aria-label="refresh"
        component={Link}
-       to='/results'
+       to='/results/locations'
        >
         <VisibilityIcon />
       </IconButton>

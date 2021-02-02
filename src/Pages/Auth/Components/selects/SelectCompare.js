@@ -1,8 +1,8 @@
 import React from 'react';
 // Context
-import {useContext_AUTH_FULL} from "../../../../Context/AUTH";
+import {useContext_AUTH_FULL} from "Context/AUTH";
 // Actions
-import {StoreCompareItem} from "../../../../actions/HandleCompare"
+import {StoreCompareItem} from "actions/HandleCompare"
 
 
 import { makeStyles } from '@material-ui/core/styles';

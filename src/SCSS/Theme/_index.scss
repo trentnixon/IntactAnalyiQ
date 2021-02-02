@@ -1,5 +1,16 @@
 
 img{ max-width: fit-content;}
-
+// Variables
 @import "./variables";
+
+// UX Page of Compoenents
+@import "./UXTestPage";
+
+// Type
 @import "./type"; 
+
+// DashboardLayout
+@import "./Layout";
+
+// Components
+@import "./Components/components";

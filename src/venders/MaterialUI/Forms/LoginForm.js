@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {useContext_AUTH_FULL} from "../../../Context/AUTH";
+import {useContext_AUTH_FULL} from "Context/AUTH";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-import {StrapiAuth} from "../../../actions/authUser";
+import {StrapiAuth} from "actions/authUser";
 
 const useStyles = makeStyles((theme) => ({
   root: {

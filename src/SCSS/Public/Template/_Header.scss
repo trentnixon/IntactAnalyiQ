@@ -1,6 +1,7 @@
 .MuiAppBar-colorPrimary{
-    background-color: $color4;
+    background-color: $color3;
     justify-content: center;
+    border-bottom: 3px solid $color2;
     div{
         flex-direction: column;
         justify-content: center;
@@ -8,16 +9,17 @@
         align-content: flex-end;
         h1{
             margin: 0;
-            line-height: 1.8rem;
-            font-weight: 100;
-            font-size: 1.8rem;
+            line-height: 1rem;
+            font-size: 1.5rem;
+            color: $color1;
         }
         p{
             text-transform: uppercase;
             font-size: .7rem;
-            letter-spacing: 2px;
+            letter-spacing: 2.3px;
             margin: 0;
             padding: 0;
+            color: $color1;
         }
     }
 }

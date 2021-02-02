@@ -1,0 +1,26 @@
+
+.BtnWrapper{
+    border:1px solid $color5;
+    border-radius: $borderRadius;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+@mixin btnColor($BG,$FG) { background-color: $BG; color: $FG; }
+
+
+.btn-Select{ @include btnColor($colorWhite,$color3);}
+.btn-Select:hover{ @include btnColor($color2,$colorWhite);}
+
+.btn-Back{ @include btnColor($colorWhite,$colorFalse);}
+.btn-Back:hover{ @include btnColor($colorFalse,$color1);}
+
+.btn-Next{ @include btnColor($colorWhite,$colorLink);}
+.btn-Next:hover{ @include btnColor($colorLink,$color1);}
+
+.btn-Confirm{ @include btnColor($colorWhite,$color2);}
+.btn-Confirm:hover{ @include btnColor($color4,$color2);}
+
+.btn-Create{ @include btnColor($colorWhite,$colorTrue);}
+.btn-Create:hover{ @include btnColor($colorTrue,$color1);}

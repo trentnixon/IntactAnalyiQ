@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import {ResetCompare} from "../../../../actions/HandleCompare";
+import {ResetCompare} from "actions/HandleCompare";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,7 +16,7 @@ export default function ContainedButtons() {
 
   return (
     <div className={classes.root}>
-        <Button variant="contained" onClick={()=>{ResetCompare(true)} } className="ResetModelComparison">
+        <Button variant="contained" onClick={()=>{ResetCompare(true)} } className="btn-Back">
             Reset Comparison
         </Button>
     </div> 

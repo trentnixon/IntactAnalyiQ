@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import {CreateNewScan} from "../../../../actions/HandleScanProcess";
+import {CreateNewScan} from "actions/HandleScanProcess";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +20,7 @@ export default function ContainedButtons() {
 
   return (
     <div className={classes.root}>
-        <Button variant="contained" onClick={HandleSingle} className="SelectClientBtn">
+        <Button variant="contained" onClick={HandleSingle} className="btn-Next">
             Select Clients 
         </Button>
     </div>

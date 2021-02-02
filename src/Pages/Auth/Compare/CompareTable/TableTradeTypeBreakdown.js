@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
-import {useContext_COMPARE_FULL} from "../../../../Context/COMPARE";
-import {numberWithCommas} from "../../../../actions/HandleUX";
-import {FindTradeTypeAllocation} from "../../../../actions/ClusterAnalysis";
+import {useContext_COMPARE_FULL} from "Context/COMPARE";
+import {numberWithCommas} from "actions/HandleUX";
+import {FindTradeTypeAllocation} from "actions/ClusterAnalysis";
 const Title='Model Trades';
 
 const TableWorkOrders = ()=>{

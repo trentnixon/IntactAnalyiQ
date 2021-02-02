@@ -1,24 +1,11 @@
 
-
-.AuthNavigation{
-    ul{
-        a{
-            div{
-                svg{
-                    fill: $color1;
-                    border:1px solid;
-                }
-            }
-        }
-    }
-   
-}
+@import "./AuthNavigation";
 
 .Auth{
     width: 100vw;
     .InnerFrame{
         padding: 2rem;
-        text-align: center;
+
 
         .AuthLayout{
             text-align: left;
@@ -40,9 +27,6 @@
             .Content{
                 flex-grow: 2;
                 width: 100%;
-                    p{
-                        
-                    }
             }
             .Footer{
                 border-top: 1px solid $color5;

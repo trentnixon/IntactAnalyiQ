@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import RefreshIcon from '@material-ui/icons/Refresh';
 
-import{FetchPreviousScans} from "../../../../actions/authUser"
+import{FetchPreviousScans} from "actions/authUser"
 
 const useStyles = makeStyles((theme) => ({
   root: {

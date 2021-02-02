@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import {SetSelected} from "../../../../actions/HandleScanProcess";
+import {SetSelected} from "actions/HandleScanProcess";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,7 +16,7 @@ export default function ContainedButtons() {
 
   return (
     <div className={classes.root}>
-        <Button variant="contained" onClick={()=>{SetSelected(true)} } className="CreateModelMeta">
+        <Button variant="contained" onClick={()=>{SetSelected(true)} } className="btn-Next">
             Next
         </Button>
     </div> 

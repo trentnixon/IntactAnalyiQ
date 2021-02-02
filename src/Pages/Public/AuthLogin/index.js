@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {useContext_AUTH_FULL} from "../../../Context/AUTH";
+import {useContext_AUTH_FULL} from "Context/AUTH";
 import { useHistory } from "react-router-dom";
 import {LogoMain} from "../../../Assets/logo"
 import LoginForm from "../../../venders/MaterialUI/Forms/LoginForm"

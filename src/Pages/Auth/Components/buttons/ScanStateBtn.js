@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react'
-import {ScanState} from "../../../../actions/HandleUX";
-import {useContext_SCAN_FULL} from "../../../../Context/SCAN";
+import {ScanState} from "actions/HandleUX";
+import {useContext_SCAN_FULL} from "Context/SCAN";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -35,7 +35,7 @@ const ScanSwitch = ()=>{
     },[SCAN])
     return(
         <div className="ScanBtnContainer">
-             <Button variant="contained" onClick={handle} disabled={btn.disabled} >
+             <Button variant="contained" onClick={handle} className="btn-Next" disabled={btn.disabled} >
                 {btn.label}
             </Button>
         

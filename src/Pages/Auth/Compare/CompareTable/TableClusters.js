@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import {useContext_COMPARE_FULL} from "../../../../Context/COMPARE";
-import {numberWithCommas} from "../../../../actions/HandleUX";
+import {useContext_COMPARE_FULL} from "Context/COMPARE";
+import {numberWithCommas} from "actions/HandleUX";
 import { runInContext } from 'lodash';
 const Title='Clusters';
 

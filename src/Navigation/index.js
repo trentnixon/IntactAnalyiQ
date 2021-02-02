@@ -3,12 +3,12 @@ import { BrowserRouter as Router} from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 
 // Context 
- import {STRAPIContextProvider} from "../Context/STRAPI";
- import {SCANContextProvider} from "../Context/SCAN";
- import {AUTHContextProvider} from "../Context/AUTH";
- import {COMPAREContextProvider} from "../Context/COMPARE";
+ import {STRAPIContextProvider} from "Context/STRAPI";
+ import {SCANContextProvider} from "Context/SCAN";
+ import {AUTHContextProvider} from "Context/AUTH";
+ import {COMPAREContextProvider} from "Context/COMPARE";
 
- //import {UXContextProvider} from "../Context/UX";
+ //import {UXContextProvider} from "Context/UX";
 // Components
 import history from  '../History'
 

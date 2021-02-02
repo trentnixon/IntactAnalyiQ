@@ -3,11 +3,11 @@ import { BrowserRouter as Router} from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 
-import {useContext_AUTH_FULL} from "../../Context/AUTH";
-import {useContext_STRAPI_FULL} from "../../Context/STRAPI";
+import {useContext_AUTH_FULL} from "Context/AUTH";
+import {useContext_STRAPI_FULL} from "Context/STRAPI";
 
 // actions
-import {FetchDataIntegrity} from "../../actions/authUser";
+import {FetchDataIntegrity} from "actions/authUser";
 // Components
 import history from  '../../History'
 import DashBoard from "../../Template/AuthDashboard"

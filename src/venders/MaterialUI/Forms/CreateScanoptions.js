@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import {useContext_SCAN_FULL} from "../../../Context/SCAN";
+import {useContext_SCAN_FULL} from "Context/SCAN";
 
 
 import DateFnsUtils from '@date-io/date-fns';
@@ -14,7 +14,7 @@ import {
 } from '@material-ui/pickers';
 
 
-import {FetchSelectedItems} from "../../../actions/HandleScanProcess";
+import {FetchSelectedItems} from "actions/HandleScanProcess";
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -113,7 +113,7 @@ const ScanForm = ()=>{
                 />
 
             
-            <Button variant="contained" onClick={()=>{handleClick()} } className="CreateModel">
+            <Button variant="contained" onClick={()=>{handleClick()} } className="btn-Confirm">
                 Create Model
             </Button>
                 

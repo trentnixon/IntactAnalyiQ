@@ -20,7 +20,7 @@ git push heroku master
 const PrepApp = new LoadPrototype();
 const JWTCHECK = JWT();
 PrepApp.Fetch();
-//let APIKEY='AIzaSyBeaJXqrVv11ir4TY77jJZKhO1iDhGIfiM'
+
 let APIKEY= process.env.googleapi;
 
 ReactDOM.render(

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import {useContext_SCAN_FULL} from "../../../../Context/SCAN";
+import {useContext_SCAN_FULL} from "Context/SCAN";
 import ClusterResults from "../Results/ClusterResults";
-import {GroupArrayByOccurances} from "../../../../actions/HandleUX";
+import {GroupArrayByOccurances} from "actions/HandleUX";
 
 const MarkerBasedResults = ()=>{
     const SCAN = useContext_SCAN_FULL();

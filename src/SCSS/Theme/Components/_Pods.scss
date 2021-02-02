@@ -1,0 +1,64 @@
+.Pod_List{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: center;
+    align-self: flex-start;
+    flex-wrap: wrap;
+
+    li.Pod:hover{
+        background-color: $color3;
+        cursor: pointer;
+        transition: all .8s;
+        .Data{
+            p{
+                color:$color1
+            }
+        }
+    }
+
+
+    li.Pod{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        align-content: flex-start;
+        align-self: stretch;
+        padding: 1rem 2rem;
+        flex-grow: 1;
+        //border:1px solid $color4;
+         //border-radius: $borderRadius;
+        margin: .1rem .1rem 1rem;
+        background-color: $colorWhite;
+        -webkit-box-shadow: 7px 11px 32px -8px rgba(110,110,110,1);
+        -moz-box-shadow: 7px 11px 32px -8px rgba(110,110,110,1);
+        box-shadow: 7px 11px 32px -8px rgba(110,110,110,1);
+
+        div{
+            width: 100%;
+        }
+
+        .Title{
+            h4{
+                text-align: center;
+                color: $color2;
+                margin: 7px 0;
+            }
+        }
+        .Data{
+            p{
+                text-align: center;
+                font-size: 1.5rem;
+                line-height: 1.6rem;
+                margin: 0;
+            }
+        }
+        .Strong{
+            p{
+                font-weight: 800;
+            }
+        }
+    }
+}

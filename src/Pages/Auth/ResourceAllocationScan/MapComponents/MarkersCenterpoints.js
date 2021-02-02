@@ -1,9 +1,9 @@
 
 import React, { useEffect, useState } from 'react'
 import { Circle } from '@react-google-maps/api';
-import {useContext_SCAN_FULL} from "../../../../Context/SCAN";
+import {useContext_SCAN_FULL} from "Context/SCAN";
 
-import {RegionColor} from "../../../../actions/HandleUX"
+import {RegionColor} from "actions/HandleUX"
 
 
 

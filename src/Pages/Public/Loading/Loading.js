@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import {useContext_UX_FULL} from "../../../Context/UX";
+import {useContext_UX_FULL} from "Context/UX";
 import {LogoMainWhite} from "../../../Assets/logo"
 import { useHistory, withRouter } from "react-router-dom";
 const Loading=()=>{

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {useContext_COMPARE_FULL} from "../../../Context/COMPARE";
+import {useContext_COMPARE_FULL} from "Context/COMPARE";
 import ResetModels from "../Components/buttons/ResetCompareModels";
 
 // Import Table

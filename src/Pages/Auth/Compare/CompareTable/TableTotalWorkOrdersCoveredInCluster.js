@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
-import {useContext_COMPARE_FULL} from "../../../../Context/COMPARE";
-import {numberWithCommas} from "../../../../actions/HandleUX";
+import {useContext_COMPARE_FULL} from "Context/COMPARE";
+import {numberWithCommas} from "actions/HandleUX";
 
 const Title='Work Orders Covered in Model';
 const Title2='Covered %';

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
-//import {useContext_STRAPI_FULL} from "../../../Context/STRAPI";
-//import {useContext_UX_FULL} from "../../../Context/UX";
-import {useContext_SCAN_FULL} from "../../../Context/SCAN";
-import {ScanSites} from "../../../actions/HandleMarkerBasedScan";
+//import {useContext_STRAPI_FULL} from "Context/STRAPI";
+//import {useContext_UX_FULL} from "Context/UX";
+import {useContext_SCAN_FULL} from "Context/SCAN";
+import {ScanSites} from "actions/HandleMarkerBasedScan";
 import { GoogleMap,} from '@react-google-maps/api';
 
 // Components

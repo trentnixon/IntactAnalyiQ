@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import {useContext_SCAN_FULL} from "../../Context/SCAN";
-import CreateButton from "./Components/buttons/CreateSingleScanBtn"
-import SelectandReview from "./CreateNewScan/SelectandReview";
+import React, { useEffect } from 'react'
+import {useContext_SCAN_FULL} from "Context/SCAN";
 
-import Footer from "./Components/Layout/Footer"
+// Components
+import CreateButton from "Pages/Auth/Components/buttons/CreateSingleScanBtn"
+import SelectandReview from "Pages/Auth/CreateModel/SelectandReview";
+import Footer from "Pages/Auth/Components/Layout/Footer"
+
 const CreateNewScan = ()=>{
   
     const SCAN = useContext_SCAN_FULL();
@@ -34,7 +36,7 @@ const ScanSelectScanType=()=>{
     return( 
         <div>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <div className="BtnWrapper">
+            <div className="ControlBar">
                 <CreateButton />
             </div> 
             

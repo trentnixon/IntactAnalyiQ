@@ -1,14 +1,14 @@
 
 import React, {useEffect, useState} from 'react'
 
-import {useContext_UX_FULL} from "../../../../Context/UX";
-import {useContext_SCAN_FULL} from "../../../../Context/SCAN";
+import {useContext_UX_FULL} from "Context/UX";
+import {useContext_SCAN_FULL} from "Context/SCAN";
 
 import {interpolate} from "d3-interpolate";
 import {  Marker  } from '@react-google-maps/api';
 //const iconBase ="https://developers.google.com/maps/documentation/javascript/examples/full/images/";
 import {uniqBy} from 'lodash'; 
-import {RegionColor} from "../../../../actions/HandleUX"
+import {RegionColor} from "actions/HandleUX"
 
 const divStyle = {
     background: `white`,

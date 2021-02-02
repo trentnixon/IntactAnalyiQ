@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {useContext_COMPARE_FULL} from "../../../Context/COMPARE";
+import {useContext_COMPARE_FULL} from "Context/COMPARE";
 
 
 import SelectCompare from "../Components/selects/SelectCompare"

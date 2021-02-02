@@ -1,5 +1,5 @@
 import React from 'react'
-import {RegionColor} from "../../../../actions/HandleUX"
+import {RegionColor} from "actions/HandleUX"
 
 const ColorKey = ()=>{
     return (

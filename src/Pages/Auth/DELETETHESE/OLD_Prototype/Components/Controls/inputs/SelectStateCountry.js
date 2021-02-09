@@ -39,10 +39,6 @@ const  MaterialUISelectCountry = () =>{
    
   useEffect(()=>{},[Value]);
 
-  useEffect(()=>{
-    console.log(COUNTRIES)
-  },[COUNTRIES]);
- 
     return (
       <div>
        

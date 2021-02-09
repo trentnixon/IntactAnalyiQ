@@ -42,17 +42,17 @@ const HeaderLocations=()=>{
       
         SumByClient = client.reduce(function (r, o) { (r[o.client])? r[o.client] += o.sum : r[o.client] = o.sum; return r; }, {});
         let Data=[]
-       console.log(SumByClient)
+       //console.log(SumByClient)
        Object.keys(SumByClient).map(function(key, i) {
         Data.push({ name: findClientName(key), value: SumByClient[key] })
        
         }) 
       
-        console.log(Data);
+        //console.log(Data);
         setByClient(Data)
     }
 
-    useEffect(()=>{ console.log(MODEL)  },[]) 
+ 
     useEffect(()=>{ByClient()},[MODEL])
 
     return(

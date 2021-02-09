@@ -1,22 +1,24 @@
 import React, {useEffect, useState} from 'react'
-import {useContext_SCAN_FULL} from "Context/SCAN";
+
+// Context
+import {useContext_UX_FULL} from "Context/UX";
+
+// Actions
+import {ClusterNumbersByResourceType} from "actions/CreateSingleViewModel"
 import {GroupArrayByOccurances} from "actions/HandleUX";
 
 const ClusterByCategory = () =>{
-    const SCAN = useContext_SCAN_FULL();
+
+    const UX = useContext_UX_FULL();
     const [CategoryOccurance,setCategoryOccurance ] = useState([[]]) 
 
-    const extractResults=()=>{
-        let CategoryInt=[]
-            SCAN.SelectedModel.STOREMARKERCENTERPOINTS.map((result,i)=>{
-                CategoryInt.push(result.scanCategory)
-                return true
-            })
-        setCategoryOccurance(GroupArrayByOccurances(CategoryInt))
-    }
-
-    useEffect(()=>{extractResults()},[SCAN])
-
+    useEffect(()=>{ 
+        // Set State
+            // Group returned Values
+                // Get number of resources
+        setCategoryOccurance(GroupArrayByOccurances(ClusterNumbersByResourceType())) 
+    },[UX])
+ 
     return(
                 <ul className="Stat_Bar">
                     {

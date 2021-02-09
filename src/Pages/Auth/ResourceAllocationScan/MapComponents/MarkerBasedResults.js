@@ -9,7 +9,7 @@ const MarkerBasedResults = ()=>{
     const [Results, setResults] = useState(null)
     const [CategoryOccurance,setCategoryOccurance ] = useState([[]])
     const extractResults=()=>{
-        console.log(SCAN.MarkerScanCenterPoints);
+        //console.log(SCAN.MarkerScanCenterPoints);
 
         let ResultArr=[];
         let CategoryInt=[]

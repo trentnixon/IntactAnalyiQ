@@ -81,7 +81,7 @@ export function ScanSites(){
 
     this.ArrayState = ()=>{
         if((this.ScanAreas.length-1) === this.ProcessPointer || this.SearchThisList.length  === 0){
-            console.log("SCAN COMPLETE")
+            //console.log("SCAN COMPLETE")
             this.Global();
             return true
         }else{
@@ -91,7 +91,7 @@ export function ScanSites(){
 
     this.PointerState=(int)=>{
         if(int === (this.SearchThisList.length-1) && int > 0){
-            console.log("Int and Arr are the Same")
+            //console.log("Int and Arr are the Same")
             this.ProcessPointer = this.ProcessPointer + 1
             this.ProcessScan(this.ScanAreas[this.ProcessPointer], 0);
             return true
@@ -152,7 +152,7 @@ export function ScanSites(){
                         resourceQuota.push(weight[this.ScanAreas[this.ProcessPointer].name]) 
                     }
                     else{
-                        console.log("Max Quota Hit for this cluster in this Category. remove the existing sites")
+                        //console.log("Max Quota Hit for this cluster in this Category. remove the existing sites")
                     }
                 }
             })
@@ -176,7 +176,7 @@ export function ScanSites(){
     // Power Functions 
     // Start Here
     this.Search=()=>{
-        console.log("Begin Marker Search")
+        //console.log("Begin Marker Search")
         // 1. OrderSites on site weighting
         this.JSONparse();
         // 2,
@@ -306,9 +306,9 @@ export function ScanSites(){
 
     this.Global = ()=>{
 
-        console.log("this.GlobalCluster", this.GlobalCluster.length);
-        console.log("this.CatchNoLongLat", this.CatchNoLongLat.length);
-        console.log("this.SearchThisList", this.SearchThisList.length);
+        //console.log("this.GlobalCluster", this.GlobalCluster.length);
+        //console.log("this.CatchNoLongLat", this.CatchNoLongLat.length);
+        //console.log("this.SearchThisList", this.SearchThisList.length);
 
 
         store.dispatch({ type:'SCANSTATE', payload:false}); 

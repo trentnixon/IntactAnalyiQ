@@ -1,0 +1,20 @@
+.GlobalFilter{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0 0rem;
+    position: sticky;
+    top: 4rem;
+    z-index: 100;
+    background-color: #fafafa;
+    p{
+        text-align: right;
+        margin: .5rem 0 0 0;
+    }
+    .options{
+        display: flex;
+        flex-direction: row-reverse;
+        div{
+            width:10rem
+        }
+    }
+}

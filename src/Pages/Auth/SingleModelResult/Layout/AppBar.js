@@ -14,6 +14,7 @@ import LocationCityIcon from '@material-ui/icons/LocationCity';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import PeopleIcon from '@material-ui/icons/People';
 
+import FilterChips from "./FilterChips";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -22,22 +23,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function BottomAppBar() {
   const classes = useStyles();
-
+  
   return (
     <React.Fragment>
-  
+    
       <AppBar position="fixed" className={`ModelSingleResultBottom ${classes.appBar} `}>
+            <FilterChips />
             <Toolbar className="ModelSingleResultAppBar">
-         
+            
             <IconButton edge="end" color="inherit" component={Link} to={`/results/locations`} >
                 <LocationCityIcon />
                 <p>locations</p>
             </IconButton>
             <IconButton edge="end" color="inherit" component={Link} to={`/results/trades`} >
                 <BuildIcon />
-                <p>Trades</p>
+                <p>Resources</p>
             </IconButton>
             
             <IconButton edge="end" color="inherit" component={Link} to={`/results/clients`} >

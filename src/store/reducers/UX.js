@@ -1,13 +1,18 @@
 const InitialState ={
     STRAPIRECEIVED:false,
-    AreaSelectFilter:{country:null,state:null,region:null,city:null},
+   
     SelectedArea:null,
+  
+    AreaSelectFilter:{ByResourceType:null,ByClusterType:null,ByClient:null},
+
     MapParameters:{
-        LatLngBoundaries:null,
+        LatLngBoundaries:{
+            lat: -25.274399,
+            lng: 133.775131
+        },
         BoundaryCenterPoint:null,
-        zoom:null,
-        markers:null,
-        SetMap:false
+        zoom:4,
+        Location:"Australia"
     }
 } 
  
@@ -55,7 +60,23 @@ const UX = (state=InitialState, action) =>{
                 return {...state, MapParameters:action.payload}
                                 // eslint-disable-next-line 
                 break
-            }            
+            }     
+        case "SETMAPCLUSTERTYPE":{
+                return {...state, AreaSelectFilter:{...state.AreaSelectFilter, ByClusterType:action.payload}}
+                                // eslint-disable-next-line 
+                break
+            }
+        case "SETMAPRESOURCETYPE":{
+            return {...state, AreaSelectFilter:{...state.AreaSelectFilter, ByResourceType:action.payload}}
+                            // eslint-disable-next-line 
+            break
+        }
+        case "SETFILTERCLIENT":{
+            return {...state, AreaSelectFilter:{...state.AreaSelectFilter, ByClient:action.payload}}
+                            // eslint-disable-next-line 
+            break
+        }     
+        
 
     }
     return state;

@@ -15,8 +15,8 @@ export default function ContainedButtons() {
   const classes = useStyles();
 
 
-    const HandleSingle=()=>{ console.log("Create Single", CreateNewScan(0));}
-    const HandleCompare=()=>{ console.log("Create Single", CreateNewScan(1));}
+    const HandleSingle=()=>{}
+    const HandleCompare=()=>{ }
 
   return (
     <div className={classes.root}>

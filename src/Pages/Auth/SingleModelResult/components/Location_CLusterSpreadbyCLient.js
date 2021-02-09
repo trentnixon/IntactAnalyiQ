@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react'
 import {useContext_SCAN_FULL} from "Context/SCAN";
 import {GroupArrayByOccurances} from "actions/HandleUX";
+import {findClientName} from "actions/ClusterAnalysis";
 // Chart
 import PieChart from "venders/apexCharts/SimplePie";
-import RadialSIngleChart from "venders/apexCharts/RadialSIngleChart";
+import RadialMultiChart from "venders/apexCharts/RadialMultiChart";
+
 
 import {H3, P} from "Pages/Auth/Components/Type";
 
-import {uniqBy} from 'lodash'; 
+import {find, findIndex} from 'lodash'; 
 
 const HeaderLocations=()=>{
 
@@ -26,30 +28,10 @@ const HeaderLocations=()=>{
                 CategoryInt.push(result.scanCategory)
                 return true
             })
-/* data = [
-  {
-    subject: 'Math', A: 120, B: 110, fullMark: 150,
-  },
-  {
-    subject: 'Chinese', A: 98, B: 130, fullMark: 150,
-  },
-  {
-    subject: 'English', A: 86, B: 130, fullMark: 150,
-  },
-  {
-    subject: 'Geography', A: 99, B: 100, fullMark: 150,
-  },
-  {
-    subject: 'Physics', A: 85, B: 90, fullMark: 150,
-  },
-  {
-    subject: 'History', A: 65, B: 85, fullMark: 150,
-  },
-];
-*/
+
         let Data=[] 
         let ClientSpread=[]
-            console.log(GroupArrayByOccurances(CategoryInt));
+            //console.log(GroupArrayByOccurances(CategoryInt));
             let RegionArray=GroupArrayByOccurances(CategoryInt);
            
            
@@ -62,33 +44,46 @@ const HeaderLocations=()=>{
                 SCAN.SelectedModel.STOREMARKERCENTERPOINTS.map((CP,i)=>{
                         if(CP.scanCategory === cat)
                         {
+                            
+                            // Check to see if Name exists
+                            let TierID = findIndex(ClientSpread, function(o) { return o.name === cat; })
+                            if(TierID === -1){ ClientSpread.push({name:cat}); }
+                            TierID = findIndex(ClientSpread, function(o) { return o.name === cat; })
+                        
+
+                            
+                           //console.log(ClientSpread[TierID], TierID, ClientSpread)
                             CP.sites.map((client,i)=>{
-                                //ClientPush.push(client.customers)
-                                ClientPush= [...ClientPush, ...client.customers]
+                                client.customers.map((name,i)=>{
+                                    if(ClientSpread[TierID][findClientName(name)] === undefined){
+                                        ClientSpread[TierID][findClientName(name)] = 1
+                                    }else{
+                                        ClientSpread[TierID][findClientName(name)] = ClientSpread[TierID][findClientName(name)]+1
+                                    }
+                                    //console.log()
+                                    //console.log(findClientName(name))
+                                })
                             })
                         }
-                        console.log(cat, GroupArrayByOccurances(ClientPush))
+                       
                 })
             });
 
-        console.log(RegionArray);
+            //console.log(ClientSpread)
 
-        setCategoryOccurance(Data)
+        setCategoryOccurance(ClientSpread)
     }
 
     const inScope=()=>{
         return gl(MODEL.USERSELECTEDLIST)-gl(MODEL.STORERESIDUALMARKERS)
     }
-
-    useEffect(()=>{ console.log(MODEL)  },[]) 
     useEffect(()=>{extractResults()},[SCAN])
-
     return(
         <> 
             <H3 Copy={`Cluster Spread by Client`} />
             <div className="resultCharts">
                 <div>
-                    <RadialSIngleChart Data={CategoryOccurance} term={`Clusters`}/>
+                    <RadialMultiChart Data={CategoryOccurance} term={`Clusters`}/>
                 </div>
                
             </div>

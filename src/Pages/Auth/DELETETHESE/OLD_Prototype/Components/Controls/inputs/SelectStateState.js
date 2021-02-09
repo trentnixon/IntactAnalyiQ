@@ -37,7 +37,7 @@ const  MaterialUISelectState = () =>{
     const handleOpen = () => { setOpen(true); };
    
     useEffect(()=>{},[Value]);
-    useEffect(()=>{ console.log(STATES)},[])
+ 
     return (
       <div>
        

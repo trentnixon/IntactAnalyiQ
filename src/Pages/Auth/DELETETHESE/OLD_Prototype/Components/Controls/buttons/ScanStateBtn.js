@@ -21,12 +21,12 @@ const ScanSwitch = ()=>{
     
     const handle=()=>{  
         ScanState(true);
-        console.log("Scan NOW!!!!! true");
+    
     }
 
     useEffect(()=>{ 
      
-        console.log(SCAN.active)
+
         if(SCAN.active)
             setbtn(btnActivePara)
         if(!SCAN.active)

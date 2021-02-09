@@ -13,14 +13,14 @@ const AddNewRegion = ()=>{
     const [markerRemoved,setmarkerRemoved] = useState([])
     
     const onLoadMarker=(name)=>{
-       // console.log(name)
+       //console.log(name)
     }
 
     const OnMarkerClick=(region,e)=>{
         
         
         setNewRegions(null);
-        console.log("Add new Region : ", region.name, region.id)
+        //console.log("Add new Region : ", region.name, region.id)
        
         let FindRegion = find(Regions, function(o) { return o.id === region.id; });
         UX.SelectedArea.push(FindRegion);

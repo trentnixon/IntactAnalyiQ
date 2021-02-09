@@ -17,15 +17,17 @@ git commit -am "FirstPushTest"
 git push heroku master
 
 */
+require('dotenv').config();
 const PrepApp = new LoadPrototype();
 const JWTCHECK = JWT();
 PrepApp.Fetch();
+//require('dotenv').config()
 
-let APIKEY= process.env.googleapi;
+let APIKEY = process.env.REACT_APP_GOOGLEAPI;
 
 ReactDOM.render(
     <Provider store={ store }>
-      <LoadScript  googleMapsApiKey={APIKEY} >
+      <LoadScript  googleMapsApiKey={APIKEY}  libraries={["visualization"]}>
         <UXContextProvider>
           <React.StrictMode>
             <App />

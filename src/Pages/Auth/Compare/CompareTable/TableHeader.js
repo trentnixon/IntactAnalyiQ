@@ -6,7 +6,7 @@ const TableHeader = ()=>{
     const COMPARE = useContext_COMPARE_FULL();
     
     useEffect(()=>{
-        console.log(COMPARE.CompareData.UserSelected)
+        //console.log(COMPARE.CompareData.UserSelected)
     },[COMPARE])
     
 

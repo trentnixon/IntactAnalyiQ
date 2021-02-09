@@ -27,7 +27,9 @@ import ConfirmCompareBtn from "../Components/buttons/ConfirmCompareBtn";
         CreateSelects()
     },[ModelsSelected])
 
-    useEffect(()=>{ console.log(COMPARE) },[COMPARE])
+    useEffect(()=>{ 
+        //console.log(COMPARE) 
+    },[COMPARE])
     return(
         <>
             <div className="SectionHeaderWithControls">

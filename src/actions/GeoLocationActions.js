@@ -171,8 +171,8 @@ export function PreformScan(){
     /* *************************************************************************************************************** */        
 
     this.Scan=()=>{
-            console.log("START SCAN ")
-            console.log("Scan Filters", this.FilterVariables)
+            //console.log("START SCAN ")
+            //console.log("Scan Filters", this.FilterVariables)
             
             this.BreakBoundaries(this.Boundaries)
             //console.log(this.NESW)

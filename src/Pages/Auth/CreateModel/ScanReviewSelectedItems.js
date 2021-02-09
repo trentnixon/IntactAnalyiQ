@@ -21,7 +21,7 @@ const ReviewSelected = ()=>{
           //  FetchSelectedItems(USERSCAN.UserScanSingleDataSets)
         }
         
-        console.log(USERSCAN.processing)
+     
         
     },[USERSCAN])
     
@@ -53,7 +53,7 @@ const ReviewScanContnt = ()=>{
           //  FetchSelectedItems(USERSCAN.UserScanSingleDataSets)
         }
         
-        console.log(USERSCAN.processing)
+    
         
     },[USERSCAN])
     return(

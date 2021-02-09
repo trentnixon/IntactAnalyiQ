@@ -13,7 +13,16 @@ const SimpleRadial = (props)=>{
             <PolarGrid />
             <PolarAngleAxis dataKey="name" />
             <PolarRadiusAxis />
-            <Radar name={term} dataKey="value" stroke="#030303" fill="#030303" fillOpacity={0.6} />
+            
+            {
+                Data.map((tier,i)=>{
+                    //console.log(tier )
+                    return(
+                        <Radar key={`cell-${i}`} name={tier.name} dataKey={tier} stroke="#030303" fill="#030303" fillOpacity={0.6} />
+                    )
+                })
+            }
+            
             <Tooltip />
             <Legend />
         </RadarChart>

@@ -50,14 +50,7 @@ const ScanBox = ()=>{
     const [Gridpoints, setGridpoints] = useState(null)
     const [GridPointer, setGridPointer] = useState(null)
 
-
-
-
-
     const ScrolltoCluster=()=>{
-        console.log(clusterId)
-       
-       
         setOpen(false);
         setTimeout(()=>{document.getElementById(clusterId).scrollIntoView({ behavior: 'smooth' });},500)
     }

@@ -22,7 +22,7 @@ const RecourseAllocationScan = ()=>{
         // Pass only fully loaded sites
         let SiteList=[]
         STRAPI.sites.map((site)=>{
-                console.log(site.count)
+                //console.log(site.count)
     
                 // Add any new rules if required
                 if(site.count.length!== 0){

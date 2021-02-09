@@ -18,7 +18,6 @@ const HeaderLocations=()=>{
         return gl(MODEL.USERSELECTEDLIST)-gl(MODEL.STORERESIDUALMARKERS)
     }
 
-    useEffect(()=>{ console.log(MODEL)  },[]) 
     return(
         <> 
             <H2 Copy={`Locations`} />

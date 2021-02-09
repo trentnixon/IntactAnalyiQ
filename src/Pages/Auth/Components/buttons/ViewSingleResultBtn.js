@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import store from "store/index"
 import { makeStyles } from '@material-ui/core/styles';
 import {useContext_SCAN_FULL} from "Context/SCAN";
 import { Link} from "react-router-dom";
@@ -95,11 +96,18 @@ const ViewResult = (props)=>{
   const {scanID} = props
   const classes = useStyles();
   
+  const ClearOldModel=()=>{
+    //console.log("Clear out old Model")
+    store.dispatch({ type:'MODELREVIEWREADY', payload:false});
+  }
+
   return (
     <div className={classes.root}>
       <IconButton aria-label="refresh"
-       component={Link}
-       to='/results/locations'
+        component={Link}
+        onClick={ClearOldModel}
+        to='/results/locations'
+
        >
         <VisibilityIcon />
       </IconButton>

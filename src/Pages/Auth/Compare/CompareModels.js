@@ -21,7 +21,7 @@ import TableTradeType from "./TableTradeTypes";
 const ModelComparision = ()=>{
     const COMPARE = useContext_COMPARE_FULL();
     useEffect(()=>{
-        console.log(COMPARE)
+        //console.log(COMPARE)
     },[COMPARE])
     
     return( 

@@ -1,27 +1,18 @@
 import React, {useEffect} from 'react'
 import {useContext_SCAN_FULL} from "Context/SCAN";
-import { numberWithCommas} from "actions/HandleUX";
-import {H4,H3, P} from "../../Components/Type";
-// Chart
-//import PieChart from "../../../../venders/apexCharts/SimplePie";
+import { numberWithCommas, gl} from "actions/HandleUX";
+import {H4,H3, P} from "Pages/Auth/Components/Type"
 
 const HeaderLocations=()=>{
 
     const SCAN = useContext_SCAN_FULL();
     const MODEL = SCAN.SelectedModel
- 
-    const gl=(data)=>{
-        return data.length
-    }
+    const inScope=()=>{ return gl(MODEL.USERSELECTEDLIST)-gl(MODEL.STORERESIDUALMARKERS) }
+    useEffect(()=>{ },[SCAN]);
 
-    const inScope=()=>{
-        return gl(MODEL.USERSELECTEDLIST)-gl(MODEL.STORERESIDUALMARKERS)
-    }
-
-    useEffect(()=>{ console.log(MODEL)  },[]) 
     return(
         <> 
-            <H3 Copy={`Breakdown`} />
+            <H3 Copy={`Global Breakdown`} />
           
                 <ul className="Pod_List">
                     <li className="Pod">

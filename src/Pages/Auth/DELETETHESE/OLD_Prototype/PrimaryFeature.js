@@ -15,7 +15,7 @@ const GeoSourceResources = ()=>{
         return isTrue
     }
 
-    useEffect(()=>{ console.log(UX.AreaSelectFilter)},[UX.AreaSelectFilter])
+    useEffect(()=>{},[UX.AreaSelectFilter])
 
     if(RegionSelected()){return(<ScanResultsLayout />)}
     else {return( <SelectARegion /> )}

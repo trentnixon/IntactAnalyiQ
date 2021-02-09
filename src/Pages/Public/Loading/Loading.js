@@ -6,7 +6,7 @@ const Loading=()=>{
     const UX = useContext_UX_FULL();
     const Pushhistory = useHistory();
     useEffect(()=>{
-        console.log(UX)
+        //console.log(UX)
         if(UX.STRAPIRECEIVED){ Pushhistory.push("/demo");}
     },[UX])
     return(

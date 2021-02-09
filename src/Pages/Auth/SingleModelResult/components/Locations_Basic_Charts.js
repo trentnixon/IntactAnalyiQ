@@ -1,57 +1,51 @@
 import React, {useEffect, useState} from 'react'
-import {useContext_SCAN_FULL} from "Context/SCAN";
-import {GroupArrayByOccurances} from "actions/HandleUX";
+// Context
+import {useContext_UX_FULL} from "Context/UX";
+// Actions
+import {ChartData_ClustersBy_ResourceType, ChartData_SitesInScope} from "actions/CreateSingleViewModel"
+// Layout
+import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
 // Chart
 import PieChart from "venders/apexCharts/SimplePie";
 import RadialSIngleChart from "venders/apexCharts/RadialSIngleChart";
 
-const HeaderLocations=()=>{
 
-    const SCAN = useContext_SCAN_FULL();
-    const MODEL = SCAN.SelectedModel
+const Chart1={
+    Icon:'radial',
+    Header:"Clusters as a Radial",
+    Tip:"Use the Filters",
+    Copy:"The Radial Graph shows the number of clusters per cluster type in a given model. Use the 'Resource Type' filter to find cluster numbers fopr a specific resource."
+}
+
+const Chart2={
+    Icon:'pie',
+    Header:"Sites covered in Model",
+    Tip:"Use the Filters",
+    Copy:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+}
+
+const Locations_Radial_Pie_Charts=()=>{
+    const UX = useContext_UX_FULL(); 
     const [CategoryOccurance,setCategoryOccurance ] = useState([[]]) 
-
-    const gl=(data)=>{
-        return data.length
-    }
-
-    const extractResults=()=>{
-        let CategoryInt=[]
-            SCAN.SelectedModel.STOREMARKERCENTERPOINTS.map((result,i)=>{
-                CategoryInt.push(result.scanCategory)
-                return true
-            })
-        let Data=[] 
-            console.log(GroupArrayByOccurances(CategoryInt));
-            let RegionArray=GroupArrayByOccurances(CategoryInt);
-            RegionArray[0].map((cat,i)=>{
-              
-                Data.push({ name: cat, value: RegionArray[1][i] })
-               
-            });
-
-        setCategoryOccurance(Data)
-    }
-
-    const inScope=()=>{
-        return gl(MODEL.USERSELECTEDLIST)-gl(MODEL.STORERESIDUALMARKERS)
-    }
-
-    useEffect(()=>{ console.log(MODEL)  },[]) 
-    useEffect(()=>{extractResults()},[SCAN])
-
+    const [PieNumbers,setPieNumbers ] = useState([[]]) 
+    
+    useEffect(()=>{  
+        setCategoryOccurance(ChartData_ClustersBy_ResourceType())
+        setPieNumbers(ChartData_SitesInScope())
+    },[UX]) 
+    
+    useEffect(()=>{ },[CategoryOccurance,PieNumbers])
     return(
-        <> 
-            <div className="resultCharts">
-                <div>
-                    <RadialSIngleChart Data={CategoryOccurance} term={`Clusters`}/>
-                </div>
-                 <div>
-                    <PieChart Data={[{ name: 'InScope', value: inScope() }, { name: 'Out of Scope', value: gl(MODEL.STORERESIDUALMARKERS) }]}/>
-                </div>
+        <div className="resultCharts">
+            <div>
+                <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header}  Copy={Chart1.Copy} Tip={Chart1.Tip} />
+                <RadialSIngleChart Data={CategoryOccurance} term={`Clusters`}/>
             </div>
-        </>
+            <div>
+                <ChartHeader Icon={Chart2.Icon} Header={Chart2.Header}  Copy={Chart2.Copy} Tip={Chart2.Tip} />
+                <PieChart Data={PieNumbers}/>
+            </div>
+        </div>
     )
 }
-//<PieChart Data={CategoryOccurance}/>
-export default HeaderLocations;
+export default Locations_Radial_Pie_Charts;

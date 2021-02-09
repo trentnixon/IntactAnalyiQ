@@ -37,7 +37,7 @@ const LocationMarkers = ()=>{
       const FindMinMax=(Data)=>{
         let arr=[]
 
-        console.log("FindMinMax", Data)
+        //console.log("FindMinMax", Data)
         Data.map((marker,i)=>{ 
        
             if(marker.count[0] != null){
@@ -51,12 +51,12 @@ const LocationMarkers = ()=>{
 
 
       const CreateMarkers = (markers)=>{
-        console.log("markers", markers)
+        //console.log("markers", markers)
          let MinMax = FindMinMax(markers);
          let NewMarkers =    uniqBy(markers, 'combined');
          let StoreMarkers=[]
          
-         console.log('CreateMarkers', markers.length, NewMarkers.length);
+         //console.log('CreateMarkers', markers.length, NewMarkers.length);
          
          NewMarkers.map((marker, i)=>{
                      let fillVariable;

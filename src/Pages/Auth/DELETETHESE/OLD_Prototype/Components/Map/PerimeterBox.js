@@ -7,7 +7,7 @@ import { Rectangle} from '@react-google-maps/api';
 
     const UX = useContext_UX_FULL();
     const [RecBounds, setRecBounds] = useState(null)
-    const onLoadRec = ()=>{ console.log("REC BOX DONE")}
+    const onLoadRec = ()=>{}
 
         useEffect(()=>{
             setRecBounds(

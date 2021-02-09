@@ -3,8 +3,6 @@ import store from "../store/index"
 import axios from 'axios';
 
 
-
-
 // lazy testing only Fix this!
 
 export const useAPILOCATION = () => {
@@ -56,7 +54,7 @@ export const JWT=()=>{
         
         let JWT = localStorage.getItem('jwt');
         let JWTID = localStorage.getItem('jwtid');
-        console.log(JWT);
+      
         if(JWT !== null){
                 store.dispatch({ type:'AUTHUSERJWT', payload:JWT});
         }
@@ -144,7 +142,7 @@ const FetchAPI = (Route, TYPE, i=0)=>{
                         if (axios.isCancel(thrown)) { console.log('Request canceled', thrown.message);
                         } else { 
                                 console.log("ERROR", thrown);
-                                console.log("i = ", i)
+                                //console.log("i = ", i)
                                 if(i<3){
                                         
                                         setTimeout(()=>{ FetchAPI(Route, TYPE, i=i+1) },3000)
@@ -177,25 +175,25 @@ export const FetchDataIntegrity=()=>{
 
 
 const GetCustomers=()=>{
-        console.log("GetCustomers")
+        //console.log("GetCustomers")
         if(store.getState().STRAPI.UserData.Customers === false)
                 FetchAPI('customers/intact', 'STORECUSTOMERS')        
 }
 
 const GetSites=()=>{
-        console.log("GetSites")
+        //console.log("GetSites")
         if(store.getState().STRAPI.sites === false)
                 FetchAPI('sites/intact', 'STORESITES')        
 }
 
 const GetTradeTypes=()=>{
-        console.log("GetTradeTypes")
+        //console.log("GetTradeTypes")
         if(store.getState().STRAPI.UserData.tradetypes === false)
                 FetchAPI('trade-types/intact', 'STORETRADETYPES')         
 }
 
 const GetTradeAllocations=()=>{
-        console.log("GetTradeAllocations")
+        //console.log("GetTradeAllocations")
         if(store.getState().STRAPI.UserData.tradeAllocationRatio === false)
                 FetchAPI('trade-allocation-ratios', 'STORETRADEALLOCATION')        
 }

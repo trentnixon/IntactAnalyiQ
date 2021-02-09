@@ -6,7 +6,7 @@ import axios from 'axios';
 export const StoreCompareItem = (scan,i)=>{
     const UserSelected = store.getState().COMPARE.CompareData.UserSelected;
     UserSelected[i] = scan
-    console.log(scan,i, UserSelected)
+    //console.log(scan,i, UserSelected)
     store.dispatch({ type:'STOREUSERSELECTED', payload:UserSelected});
 }
 
@@ -35,14 +35,14 @@ export const ResetCompare = ()=>{
 export const FetchCompareModel = (scanID, int, total)=>{
 
 
-    console.log("scanID", scanID, int)
+    //console.log("scanID", scanID, int)
     const AWSURL=' https://intactanalytiq.s3-ap-southeast-2.amazonaws.com/';
    // 6002d5ece940b655642d22df.json
    // headers: axiosHeader
    axios({ url: AWSURL+scanID+'.json', method: 'get'})
     .then((result) => { 
     
-            console.log(result.data);
+            //console.log(result.data);
             //result.data.SCANSTATE
             const FetchedModels = store.getState().COMPARE.CompareData.FetchedModels;
 

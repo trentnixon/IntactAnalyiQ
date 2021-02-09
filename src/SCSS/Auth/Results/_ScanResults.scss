@@ -2,7 +2,7 @@
 
 .ModelSingleHeader{
     border-bottom: 1px solid $color4;
-    padding: 0 3rem 1rem 0rem;
+    padding: 0;
     margin: 0 0 1rem 0 ;
     h2{
         text-align: left;
@@ -17,7 +17,7 @@
             text-align: right;
         }
     }
-}
+} 
 
 .MetaRow{
     display: flex;

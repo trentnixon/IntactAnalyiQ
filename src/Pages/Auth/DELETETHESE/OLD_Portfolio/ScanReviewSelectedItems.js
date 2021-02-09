@@ -19,7 +19,7 @@ const ReviewSelected = ()=>{
           //  FetchSelectedItems(USERSCAN.UserScanSingleDataSets)
         }
         
-        console.log(USERSCAN.UserWorkingDataSet_Single)
+        //console.log(USERSCAN.UserWorkingDataSet_Single)
         
     },[USERSCAN.UserWorkingDataSet_Single])
     

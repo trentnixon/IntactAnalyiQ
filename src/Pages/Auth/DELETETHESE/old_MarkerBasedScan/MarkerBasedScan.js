@@ -29,7 +29,7 @@ const MarkerBasedScan = ()=>{
         // Pass only fully loaded sites
         let SiteList=[]
         STRAPI.sites.map((site)=>{
-                console.log(site.count)
+                //console.log(site.count)
     
                 // Add any new rules if required
                 if(site.count.length!== 0){
@@ -49,7 +49,7 @@ const MarkerBasedScan = ()=>{
 
     useEffect(()=>{ 
       
-      console.log(SCAN.SelectedModel)
+      //console.log(SCAN.SelectedModel)
       //SCANCOMPLETE
      
     },[SCAN])
@@ -72,7 +72,7 @@ const containerStyle = { height: "600px", width: "auto" };
 const Map=()=>{
     const SCAN = useContext_SCAN_FULL();
     useEffect(()=>{
-        console.log(SCAN.SelectedModel)
+        //console.log(SCAN.SelectedModel)
     },[SCAN])
 return(
     <div className="ScanMapMain" id="MainMap">

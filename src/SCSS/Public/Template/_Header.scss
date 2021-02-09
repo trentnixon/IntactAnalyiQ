@@ -22,4 +22,26 @@
             color: $color1;
         }
     }
+    .PacketofChips{
+        position: absolute;
+        right: .5rem;
+        top:-2.5rem;
+        flex-direction: row;
+        h3{
+            text-align: center;
+            font-size: .8rem;
+            width: 100%;
+        }
+        div{
+            flex-direction: row;
+            align-items: center;
+            align-self: center;
+            align-content: center;
+            justify-content: center;
+            .MuiChip-label{
+                overflow: visible;
+            }
+        }
+        
+    }
 }

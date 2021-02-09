@@ -1,7 +1,8 @@
 .resultCharts{
     display: flex;
     flex-direction: row;
-    div{
-        width: 50% ;
+    >div{
+      flex-grow: 1;
+      margin: 0 2rem;
     }
 }

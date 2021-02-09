@@ -9,7 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 import ApartmentIcon from '@material-ui/icons/Apartment';
 import BlurCircularIcon from '@material-ui/icons/BlurCircular';
-import DataUsageIcon from '@material-ui/icons/DataUsage';
+//import DataUsageIcon from '@material-ui/icons/DataUsage';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 import CompareIcon from '@material-ui/icons/Compare';
 import DashboardIcon from '@material-ui/icons/Dashboard';
@@ -45,10 +45,7 @@ const Login = ()=>{
           </ListItem>
         
 
-          <ListItem button key='Data return' component={Link} to={`/integity`}>
-                <ListItemIcon><DataUsageIcon /></ListItemIcon>
-                <ListItemText primary='Data integity' /> 
-          </ListItem>
+         
         </List>
    
 
@@ -58,6 +55,9 @@ const Login = ()=>{
 export default Login
 
 /**
- * 
+ *  <ListItem button key='Data return' component={Link} to={`/integity`}>
+                <ListItemIcon><DataUsageIcon /></ListItemIcon>
+                <ListItemText primary='Data integrity' /> 
+          </ListItem>
  * *
  */

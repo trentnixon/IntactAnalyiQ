@@ -1,5 +1,5 @@
 .ScanMapMain{
-    width: 98%;
+    width: 100%;
     margin: 0 auto;
     border-radius: $borderRadius;
     border:1px solid white;
@@ -23,26 +23,33 @@
         justify-content: center;
         align-items: center;
         align-content: center;
-        width: 100%; 
-        margin: 1rem 0;
+        width: 100%;
+        margin: .2rem 0 0 0;
+
         div{
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             align-content: center;
-            margin: 0 .5rem;
+            margin: 0;
+            position: relative;
+            width: 100%;
             span{
-                width: 20px;
+                width: 100%;
                 height: 20px;
-                border-radius: 100px;
-                margin-bottom: 10px
+                border-radius: 0;
+                margin-bottom: 0;
+                position: absolute;
             }
             h2{
-                font-size: 1rem;
+                font-size: .6rem;
                 letter-spacing: 1px;
-                color: $color5;
+                color: white;
                 text-transform: uppercase;
+                z-index: 10;
+                line-height: 1rem;
+                margin: 0;
             }
         }
     }

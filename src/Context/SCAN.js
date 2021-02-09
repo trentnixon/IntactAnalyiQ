@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 Reducer State
 
-
 */
 // Create Draft Context for provider
 
@@ -22,7 +21,7 @@ export const useContext_SCAN_FULL = ()=>{
 export const SCANContextProvider = ({children})=>{
         const SCAN = useSelector(state => state.SCANSTATE );
 
-    useMemo(()=>{  console.log("Context STRAPI ",  SCAN); },[SCAN]) 
+    useMemo(()=>{  },[SCAN]) 
 
     return(
             <Context_SCAN_FULL.Provider value={SCAN}>

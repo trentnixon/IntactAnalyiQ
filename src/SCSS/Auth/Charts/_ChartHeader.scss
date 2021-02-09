@@ -1,0 +1,32 @@
+.ChartHeader{
+        display: flex;
+        flex-direction: column;
+        margin: 1rem 0rem 1rem 0rem;
+        .InfoIcons{
+            display: flex;
+            flex-direction: row-reverse;
+
+            .help{ color:$colorLink;}
+            .warning{ color: $colorFalse;}
+            .interactive{ color: $colorTrue;}
+        }
+
+        .Content{
+            display: flex;
+            flex-direction: row;
+            h4{
+                border-bottom: 1px solid;
+                margin-bottom: .5rem;
+                padding-bottom: .2rem;
+            }
+            p{
+                font-size: .9rem;
+            }
+            svg{
+                width: 3.5rem;
+                height: 3.5rem;
+                margin: 0 0rem 0 1rem;
+                fill:$color2;
+            }
+        }
+}

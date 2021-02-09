@@ -21,7 +21,7 @@ const ResourceAllocationMap=()=>{
 
     const SCAN = useContext_SCAN_FULL();
     useEffect(()=>{
-        console.log(SCAN.MarkerScanResults)
+        //console.log(SCAN.MarkerScanResults)
     },[SCAN])
 return(
     <div className="ScanMapMain" id="MainMap">

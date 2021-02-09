@@ -1,15 +1,12 @@
-import React  from 'react'
+import React from 'react'
 import { Route, Switch,useRouteMatch } from "react-router-dom";
+
+
 // Layout 
 import AppBar from "Pages/Auth/SingleModelResult/Layout/AppBar"
 import HeaderTitles from "Pages/Auth/SingleModelResult/Layout/HeaderTitle"
-// components
-//import ResultHeader from "./SingleModelResult/OLD_ResultHeader"
-//import ResultMap from "./SingleModelResult/OLD_ResultMap"
-//import ResultClusterResults from "./SingleModelResult/ResultClusterResults"
 
 // Sub Sections 
-
  import SubSection_Locations from "Pages/Auth/SingleModelResult/SubSections/SubSection_Locations";
  import SubSection_Client from "Pages/Auth/SingleModelResult/SubSections/SubSection_Client";
  import SubSection_FullMap from "Pages/Auth/SingleModelResult/SubSections/SubSection_FullMap";
@@ -18,8 +15,10 @@ import HeaderTitles from "Pages/Auth/SingleModelResult/Layout/HeaderTitle"
  import SubSection_Workorders from "Pages/Auth/SingleModelResult/SubSections/SubSection_Workorders";
   
 
-const SingleModelResult = ()=>{
-    let match = useRouteMatch();
+
+const SingleModelResult = ()=>{ 
+    let match = useRouteMatch(); 
+    
     return(
         <>
             <HeaderTitles />
@@ -28,13 +27,14 @@ const SingleModelResult = ()=>{
                             <SubSection_Locations />
                         </Route>
                         
+                        <Route path={`${match.path}/trades`}>
+                            <SubSection_Trade />
+                        </Route>  
+                         
                         <Route path={`${match.path}/clients`}>
                             <SubSection_Client />
                         </Route>
 
-                        <Route path={`${match.path}/trades`}>
-                            <SubSection_Trade />
-                        </Route> 
 
                         <Route path={`${match.path}/workorders`}>
                             <SubSection_Workorders />
@@ -47,14 +47,12 @@ const SingleModelResult = ()=>{
                         <Route path={`${match.path}/cluster`}>
                             <SubSection_Clusters />
                         </Route>
-                        
+                         
                     </Switch> 
             <AppBar />
         </>
     ) 
 }
- //  <ResultHeader />
- // <ResultMap />
-//<ResultClusterResults /> 
+
 export default SingleModelResult; 
 

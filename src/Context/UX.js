@@ -23,7 +23,7 @@ export const useContext_UX_FULL = ()=>{
 export const UXContextProvider = ({children})=>{
         const UX = useSelector(state => state.UX );
 
-    useMemo(()=>{  console.log("Context STRAPI ",  UX); },[UX]) 
+    useMemo(()=>{  },[UX]) 
 
     return(
             <Context_UX_FULL.Provider value={UX}>

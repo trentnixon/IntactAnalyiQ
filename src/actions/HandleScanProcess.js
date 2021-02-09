@@ -16,19 +16,19 @@ export const SetSelected = (value)=>{
 
 export const StoreSelected_Single =(Data)=>{
 
-    console.log(Data);
+    //console.log(Data);
     store.dispatch({ type:'USERSTORESINGLEDATASET', payload:Data});
 } 
 
 export const BacktoScanOptions = ()=>{
-        console.log("BACK");
+        //console.log("BACK");
         CreateNewScan(false)
         SetSelected(false)
         StoreSelected_Single([])    
 }
 
 export const BacktoAddItemsSingle = ()=>{
-    console.log("BACK to Select");
+    //console.log("BACK to Select");
     
     SetSelected(false)
    // StoreSelected_Single([]) 
@@ -59,8 +59,8 @@ export const FetchSelectedItems = async  (DATA, TITLE, DESCRIPTION, S,E)=>{
     
     
 
-    console.log("Items sent to Strapi ", IDStr.length)
-    console.log(AuthUSer.id,  TITLE, DESCRIPTION)
+    //console.log("Items sent to Strapi ", IDStr.length)
+    //console.log(AuthUSer.id,  TITLE, DESCRIPTION)
     const ScanName=TITLE
     const ScanDescription=DESCRIPTION
     
@@ -71,7 +71,7 @@ export const FetchSelectedItems = async  (DATA, TITLE, DESCRIPTION, S,E)=>{
 
    await axios({ url: ENDPOINT+'/'+[S,E].toString()+'/'+ScanName+'/'+ScanDescription+'/'+AuthUSer.id+'/'+IDStr.toString(), method: 'get', headers: axiosHeader})
         .then(function (res) {
-            console.log("Create Model Return Value from Server", res.data);
+            //console.log("Create Model Return Value from Server", res.data);
             
         })
         .catch(function (error) {

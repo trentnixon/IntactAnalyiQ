@@ -39,8 +39,8 @@ const GroupArray =(arr) =>{
         && cluster.GroupedBoxBoundaryLimits[3] < outer[3]
       )
       { Inside = true}
-      console.log(outer, cluster.GroupedBoxBoundaryLimits)
-        console.log(Inside)
+      //console.log(outer, cluster.GroupedBoxBoundaryLimits)
+        //console.log(Inside)
     })
   }
 
@@ -91,7 +91,7 @@ const findTradeParent = (trade)=>{
     //console.log(trade)
     return 'undefined'
   }else{
-   // console.log(trade, FoundType.trade_allocation_ratio.Name)
+   //console.log(trade, FoundType.trade_allocation_ratio.Name)
     return FoundType.trade_allocation_ratio.Name;
   }
  
@@ -130,7 +130,7 @@ export const SitesbyTier = (data)=>{
       
     })
 
-    console.log(GroupArray(tiers))
+    //console.log(GroupArray(tiers))
     return GroupArray(tiers)
 }
 
@@ -148,7 +148,7 @@ export const SitesbyTier = (data)=>{
 
 
 const Removeinteriors = (Results)=>{
-  console.log(Results)
+  //console.log(Results)
   Results.map((results)=>{
       FindInterior(results.GroupedBoxBoundaryLimits, Results)
   })
@@ -221,7 +221,7 @@ const ClusterCost=(ClusterAssetBreakdown)=>{
                     
                      // I DONT THINK THIS IS CORRECT
                     WorkOrderValue = PUSHWorkOrdersTrueNumber.reduce((a, b) => a + b, 0)
-                    console.log("PUSHWorkOrdersTrueNumber", PUSHWorkOrdersTrueNumber)
+                    //console.log("PUSHWorkOrdersTrueNumber", PUSHWorkOrdersTrueNumber)
                     let IndexThis = findIndex(PUSHJobTypeWorkOrderCount, function(o) { return o.name === jobtype.name; })
                     
                     if(IndexThis === -1){ 
@@ -268,7 +268,7 @@ const ClusterCost=(ClusterAssetBreakdown)=>{
 
     Results.map((cluster,i)=>{
 
-      console.log(cluster, cluster.SplitTradeTypeCount)
+      //console.log(cluster, cluster.SplitTradeTypeCount)
     })
       /*
         minValueDay = 2
@@ -322,7 +322,7 @@ const ClusterCost=(ClusterAssetBreakdown)=>{
 
 export function ClusterAnalysis(Results){
     const STRAPI = store.getState().STRAPI;
-    console.log("ClusterAnalysis", Results);
+    //console.log("ClusterAnalysis", Results);
     
     // Let group some of the Data points into Meta data
     // Group by WO
@@ -370,7 +370,7 @@ export function ClusterAnalysis(Results){
 
     */
    
-    console.log("FINAL RESULT ", Results)
+    //console.log("FINAL RESULT ", Results)
     
     //store.dispatch({ type:'STORERESULTS', payload:Results}); 
 }

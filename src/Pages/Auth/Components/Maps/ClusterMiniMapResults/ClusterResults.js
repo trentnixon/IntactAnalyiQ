@@ -24,7 +24,7 @@ const ClusterResult = (props)=>{
     }
  
     useEffect(()=>{ 
-        console.log(result)
+        //console.log(result)
         //FindClusterTotal(result)
         SumWorkorders(result.sites) 
         SumTradeType(result.sites)

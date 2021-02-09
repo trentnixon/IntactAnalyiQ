@@ -22,7 +22,7 @@ const ScanSelectItems=()=>{
     const handleAdd=(customer)=>{
     
         let Index= findIndex(Selected, function(o) { return o.id === customer.id; });
-        console.log(Index)
+        //console.log(Index)
         if(Index === -1){
             let NewSelected = [...Selected, customer]; 
             setSelected(NewSelected)

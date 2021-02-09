@@ -8,7 +8,9 @@ import ModelComparision from "./Compare/CompareModels";
  const CompareModels=()=>{
 
     const COMPARE = useContext_COMPARE_FULL();
-    useEffect(()=>{ console.log(COMPARE.CompareProcessing) },[COMPARE])
+    useEffect(()=>{ 
+        //console.log(COMPARE.CompareProcessing) 
+    },[COMPARE])
 
     return(
         <>

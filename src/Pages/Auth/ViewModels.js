@@ -62,7 +62,7 @@ const ModelHistory = ()=>{
         
     }
     useEffect(()=>{
-        console.log(AUTH.ScanHistory);
+        //console.log(AUTH.ScanHistory);
     },[AUTH.ScanHistory])
     return(
         <div className="ModelHistory">
@@ -141,7 +141,7 @@ const ProcessingStatus=(props)=>{
                     scan.ScanState=== 'Complete' ? `Processing Time ${scan.CreateModel_TimeTaken}`:`ETA: ${scan.CreateModel_RemainingTime} `
                 }
                 <br />
-                {scan.ScanState}
+                {scan.ScanState} 
              
             </div>
     </>

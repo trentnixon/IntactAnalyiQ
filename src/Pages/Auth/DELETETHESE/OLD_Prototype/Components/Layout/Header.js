@@ -33,7 +33,7 @@ const FeatureHeader = ()=>{
    
 
    const handleRemove = (item)=>{
-        console.log("Remove this item", item.id, UX.SelectedArea)
+        //console.log("Remove this item", item.id, UX.SelectedArea)
         let index = findIndex( UX.SelectedArea, function(o) { return o.id === item.id; })
         UX.SelectedArea.splice(index, 1);
         CreateMapParameters(UX.SelectedArea)
@@ -41,7 +41,7 @@ const FeatureHeader = ()=>{
 
 
    useEffect(()=>{
-       console.log("UX.SelectedArea", UX.SelectedArea)
+       //console.log("UX.SelectedArea", UX.SelectedArea)
         WorkorderCount()
     },[UX.MapParameters])
 

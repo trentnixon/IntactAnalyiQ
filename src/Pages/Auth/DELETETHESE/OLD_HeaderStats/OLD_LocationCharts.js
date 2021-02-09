@@ -21,7 +21,7 @@ const HeaderLocations=()=>{
                 return true
             })
         let Data=[]
-            console.log(GroupArrayByOccurances(CategoryInt));
+            //console.log(GroupArrayByOccurances(CategoryInt));
             let RegionArray=GroupArrayByOccurances(CategoryInt);
             RegionArray[0].map((cat,i)=>{
               
@@ -36,7 +36,7 @@ const HeaderLocations=()=>{
         return gl(MODEL.USERSELECTEDLIST)-gl(MODEL.STORERESIDUALMARKERS)
     }
 
-    useEffect(()=>{ console.log(MODEL)  },[]) 
+
     useEffect(()=>{extractResults()},[SCAN])
 
     return(

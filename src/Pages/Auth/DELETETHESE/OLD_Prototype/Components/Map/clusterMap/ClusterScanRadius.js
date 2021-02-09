@@ -31,7 +31,7 @@ const ClusterScanRadius = (props)=>{
 
     useEffect(()=>{
       //options.radius= (SCAN.LocationFilter.SearchRadius*100)
-      console.log((SCAN.LocationFilter.SearchRadius*100))
+      //console.log((SCAN.LocationFilter.SearchRadius*100))
     },[SCAN])
     return(
         <>

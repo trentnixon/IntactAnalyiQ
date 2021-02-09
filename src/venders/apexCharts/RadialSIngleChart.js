@@ -1,8 +1,6 @@
 import React from 'react';
-import {
-  Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,ResponsiveContainer,Legend, Tooltip
-} from 'recharts';
-
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,ResponsiveContainer,Legend, Tooltip} from 'recharts';
+import {colorArray} from "actions/HandleUX";
 
 
 const SimpleRadial = (props)=>{
@@ -13,7 +11,7 @@ const SimpleRadial = (props)=>{
             <PolarGrid />
             <PolarAngleAxis dataKey="name" />
             <PolarRadiusAxis />
-            <Radar name={term} dataKey="value" stroke="#030303" fill="#030303" fillOpacity={0.6} />
+            <Radar name={term} dataKey="value" stroke={colorArray[0]} fill={colorArray[0]} fillOpacity={0.6} />
             <Tooltip />
             <Legend />
         </RadarChart>

@@ -20,7 +20,7 @@ const CulsterResults = ()=>{
     }
 
     useEffect(()=>{
-        console.log(SCAN.SelectedModel.STOREMARKERCENTERPOINTS)
+        //console.log(SCAN.SelectedModel.STOREMARKERCENTERPOINTS)
         if(SCAN.SelectedModel.STOREMARKERCENTERPOINTS !==null)
             extractResults()
         

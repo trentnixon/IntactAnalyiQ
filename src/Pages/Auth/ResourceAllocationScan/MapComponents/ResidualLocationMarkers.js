@@ -39,7 +39,7 @@ const MarkerBasedLocationMarkersALL = ()=>{
       const FindMinMax=(Data)=>{
         let arr=[]
 
-        console.log("FindMinMax", Data)
+        //console.log("FindMinMax", Data)
         Data.map((marker,i)=>{ 
        
             if(marker.count[0] != null){
@@ -54,7 +54,7 @@ const MarkerBasedLocationMarkersALL = ()=>{
 
       const CreateMarkers = (markers)=>{
 
-        console.log("markers", markers)
+        //console.log("markers", markers)
         
         let StoreMarkers=[]         
                 markers.map((site,i)=>{

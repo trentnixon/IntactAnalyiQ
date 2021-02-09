@@ -7,7 +7,7 @@ import {useContext_SCAN_FULL} from "Context/SCAN";
 import {interpolate} from "d3-interpolate";
 import {  Marker, MarkerClusterer  } from '@react-google-maps/api';
 //const iconBase ="https://developers.google.com/maps/documentation/javascript/examples/full/images/";
-import {uniqBy} from 'lodash'; 
+import {findIndex} from 'lodash'; 
 import {RegionColor} from "actions/HandleUX"
 
 const divStyle = {
@@ -29,7 +29,7 @@ const divStyle = {
       },
       {
         height: 66,
-        url: "/clusters/m3.png",
+        url: "/clusters/m3.png",    
         width: 66,
       },
       {
@@ -67,7 +67,7 @@ const MarkerBasedLocationMarkers = ()=>{
       const FindMinMax=(Data)=>{
         let arr=[]
 
-        console.log("FindMinMax", Data)
+        //console.log("FindMinMax", Data)
         Data.map((marker,i)=>{ 
        
             if(marker.count[0] != null){
@@ -86,7 +86,22 @@ const MarkerBasedLocationMarkers = ()=>{
         let StoreMarkers=[];
 
         markers.map((centerPoint,i)=>{
-          //console.log(centerPoint.sites)
+
+          //console.log(centerPoint, UX.AreaSelectFilter.ByResourceType)
+/* ******************************************************************************** */         
+// Map Filters
+
+// Filter Results by Cluster Type
+          if(UX.AreaSelectFilter.ByClusterType !== null)  
+            if(centerPoint.scanCategory != UX.AreaSelectFilter.ByClusterType)
+              return
+// Filter Results by Reource Type 
+            if(UX.AreaSelectFilter.ByResourceType !== null)  
+             if(findIndex(centerPoint.resourceQuota, function(o) { return o.Trade === UX.AreaSelectFilter.ByResourceType}) === -1)
+              return
+// End Map Filters
+/* ******************************************************************************** */  
+
           centerPoint.sites.map((site,ii)=>{
 
               Targeticon = {
@@ -142,6 +157,7 @@ const MarkerBasedLocationMarkers = ()=>{
           CreateMarkers(SCAN.SelectedModel.STOREMARKERCENTERPOINTS)
       },[SCAN.SelectedModel])
 
+      useEffect(()=>{ },[UX])
       return(  <>
                
                  <MarkerClusterer options={mcOptions} maxZoom={12} minimumClusterSize={30}>

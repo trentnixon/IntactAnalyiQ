@@ -7,6 +7,7 @@ import { Route, Switch } from "react-router-dom";
  import {SCANContextProvider} from "Context/SCAN";
  import {AUTHContextProvider} from "Context/AUTH";
  import {COMPAREContextProvider} from "Context/COMPARE";
+ import {SINGLEContextProvider} from "Context/SINGLE";
 
  //import {UXContextProvider} from "Context/UX";
 // Components
@@ -31,15 +32,17 @@ const Main_Routes = (props)=>{
       <STRAPIContextProvider>
         <AUTHContextProvider> 
           <COMPAREContextProvider>
-            <Router  history={history}>
-              <Switch>
-                  <>
-                            {
-                                routes.map((route, i) => (<Route key={i}  exact={route.exact} path={route.Rpath} render={()=> <route.component {... props}/> }/> ))
-                            }
-                    </>
-              </Switch>
-            </Router>
+            <SINGLEContextProvider>
+              <Router  history={history}>
+                <Switch>
+                    <>
+                              {
+                                  routes.map((route, i) => (<Route key={i}  exact={route.exact} path={route.Rpath} render={()=> <route.component {... props}/> }/> ))
+                              }
+                      </>
+                </Switch>
+              </Router>
+            </SINGLEContextProvider>
           </COMPAREContextProvider>
         </AUTHContextProvider>
       </STRAPIContextProvider>

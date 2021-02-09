@@ -106,9 +106,9 @@ const DisplayMap=()=>{
 
         axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${OBJ.lat},${OBJ.lng}&key=AIzaSyCfjTtkNqCy9J_CTva17nVpWqRff8CeCjI`)
         .then((res)=>{ 
-                console.log(res);
+                //console.log(res);
                 if(res.data.results.length > 0 ){
-                    console.log(res.formatted_address)
+                    //console.log(res.formatted_address)
                     setCenteredLocation(res.data.results[0].formatted_address)
                 }
                 else{
@@ -166,7 +166,7 @@ const GeoSourceResources = (props)=>{
 
 
       useEffect(()=>{ 
-          console.log("New Location Selected")
+          //console.log("New Location Selected")
             findBoundary(SelectedRegion.sites); 
         }, [SelectedRegion])
 

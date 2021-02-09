@@ -1,13 +1,43 @@
 // Private Functions
 import store from "../store/index"
+
 //import axios from 'axios';
 import {distancetoPoint} from "./GeoLocationActions"
 import { findIndex} from 'lodash'; 
 
 
+export const colorArray = ['#030303', '#787878', '#575757', '#999A9A', '#D4D4D3', '#313231', '#777777', '#575757', '#3A3A3A', '#444444',];
+
+export function setMainMapLocation(Location){
+  const NewLocation = {
+    LatLngBoundaries:Location.Center,
+    BoundaryCenterPoint:null,
+    zoom:Location.Zoom,
+    Location:Location.Name
+}
+  store.dispatch({ type:'STOREMAPPARAMETERS', payload:NewLocation});
+}
+
+
+export const SetMapClusterType = (type)=>{
+  store.dispatch({ type:'SETMAPCLUSTERTYPE', payload:type});
+}
+
+export const SetMapResourceType = (type)=>{
+  //console.log(type)
+  store.dispatch({ type:'SETMAPRESOURCETYPE', payload:type});
+}
+
+export const SetFilterClient = (type)=>{
+  //console.log(type)
+  store.dispatch({ type:'SETFILTERCLIENT', payload:type});
+}
+
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+export const gl=(data)=>{ return data.length }
 
 export function AreaFilter(type, value){
     //console.log('AreaFilter', value)
@@ -15,26 +45,26 @@ export function AreaFilter(type, value){
 }
 
 export function ScanState(value){
-    console.log('ScanState', value)
+   //console.log('ScanState', value)
     store.dispatch({ type:'SCANSTATE', payload:value});
 }
 
 export function SelectedRegion(SelectedRegion){
 
-    console.log(SelectedRegion)
+    //console.log(SelectedRegion)
     store.dispatch({ type:'STORESELECTEDAREA', payload:SelectedRegion});
 
 }
 
 export function RemoveClusterItem(Haystack, Needle){ 
 
-    console.log("Delete Cluster");
-    console.log(Haystack, Needle);
+    //console.log("Delete Cluster");
+    //console.log(Haystack, Needle);
     let index = findIndex( Haystack, function(o) { return o.Boundary === Needle; })
-    console.log(index);
+    //console.log(index);
 
     Haystack.splice(index, 1)
-    console.log(Haystack);
+    //console.log(Haystack);
     store.dispatch({ type:'STORERESULTS', payload:Haystack}); 
 }
 
@@ -69,7 +99,7 @@ export function CreateMapParameters(DATA){
             
             let distance = distancetoPoint(LatLngBoundaries[0],LatLngBoundaries[2], LatLngBoundaries[1],LatLngBoundaries[3],'K')
            
-           // console.log('distance', (distance*1000), setZoomLevel((distance*1000).toFixed(0)));
+           //console.log('distance', (distance*1000), setZoomLevel((distance*1000).toFixed(0)));
            
             let zoom = setZoomLevel((distance*1000).toFixed(0))
             let SetMap = true
@@ -84,13 +114,13 @@ export function CreateMapParameters(DATA){
             }
 
             //console.log("MapParameters", MapParameters)
-            store.dispatch({ type:'STOREMAPPARAMETERS', payload:MapParameters});
+           //store.dispatch({ type:'STOREMAPPARAMETERS', payload:MapParameters});
 }
 
 
 
 function setZoomLevel(meters) { 
-    console.log(`Zoom level set meters: ${meters}`); 
+    //console.log(`Zoom level set meters: ${meters}`); 
 
     switch (meters) {
         case (meters < 1128):
@@ -155,7 +185,7 @@ export function NumberReducer (labelValue) {
 
 
 export function HandleFilterChange(TYPE, VALUE){
-    console.log(TYPE, VALUE)
+    //console.log(TYPE, VALUE)
     store.dispatch({ type:TYPE, payload:VALUE});
 }
 
@@ -189,6 +219,91 @@ export function RegionColor(region){
   }
 }
 
+
+export const getDate=(timeStamp)=>{ 
+
+  const milliseconds = timeStamp * 1000 
+
+  const dateObject = new Date(milliseconds)
+  //console.log(dateObject.getFullYear())
+  //let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  let options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+  const humanDateFormat = dateObject.toLocaleString('en-UK',options) //2019-12-9 10:30:15
+
+  return humanDateFormat
+ }
+
+
+
+function parseDate(input) {
+  // Transform date from text to date
+var parts = input.match(/(\d+)/g);
+// new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
+}
+
+
+export const workingDaysBetweenDates = (S1, E1) => {
+  const S1Date = S1 * 1000; 
+  const E1Date = E1 * 1000;
+  
+  const S1dateObject = new Date(S1Date)
+  const E1dateObject = new Date(E1Date)
+
+  let d0 = `${S1dateObject.getFullYear()}/${S1dateObject.getMonth()}/${S1dateObject.getDay()}`
+  let d1= `${E1dateObject.getFullYear()}/${E1dateObject.getMonth()}/${E1dateObject.getDay()}`
+  /* Two working days and an sunday (not working day) */
+  var holidays = [''];
+  var startDate = parseDate(d0);
+  var endDate = parseDate(d1);  
+
+// Validate input
+  if (endDate <= startDate) {
+    return 0;
+  }
+
+// Calculate days between dates
+  var millisecondsPerDay = 86400 * 1000; // Day in milliseconds
+  startDate.setHours(0, 0, 0, 1);  // Start just after midnight
+  endDate.setHours(23, 59, 59, 999);  // End just before midnight
+  var diff = endDate - startDate;  // Milliseconds between datetime objects    
+  var days = Math.ceil(diff / millisecondsPerDay);
+
+  // Subtract two weekend days for every week in between
+  var weeks = Math.floor(days / 7);
+  days -= weeks * 2;
+
+  // Handle special cases
+  var startDay = startDate.getDay();
+  var endDay = endDate.getDay();
+    
+  // Remove weekend not previously removed.   
+  if (startDay - endDay > 1) {
+    days -= 2;
+  }
+  // Remove start day if span starts on Sunday but ends before Saturday
+  if (startDay == 0 && endDay != 6) {
+    days--;  
+  }
+  // Remove end day if span ends on Saturday but starts after Sunday
+  if (endDay == 6 && startDay != 0) {
+    days--;
+  }
+  /* Here is the code */
+  holidays.forEach(day => {
+    if ((day >= d0) && (day <= d1)) {
+      /* If it is not saturday (6) or sunday (0), substract it */
+      if ((parseDate(day).getDay() % 6) != 0) {
+        days--;
+      }
+    }
+  });
+
+  return days
+}
+
+
+
 export const GroupArrayByOccurances =(arr) =>{
   var a = [],b = [],prev;
   arr.sort();
@@ -212,3 +327,13 @@ export const HandleTZDate = (DATE)=>{
 
  // return NewDate[0]
 }
+
+
+
+
+// UX Filters
+ export const HandleResourceFilter=(item, filter)=>{
+    if(findIndex(item.resourceQuota, function(o) { return o.Trade === filter}) === -1)
+      return false  
+        return true
+ }

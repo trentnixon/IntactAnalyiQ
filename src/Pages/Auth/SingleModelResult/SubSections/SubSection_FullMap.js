@@ -8,12 +8,12 @@ const SubSection_FullMap = ()=>{
 
     return(
         <>
-         <H1 Copy={`Full Map`} />
+         <H1 Copy={`Model Overview`} />
             <Section>
                 <Map_Full_Main />
             </Section>
         </>
-    ) 
+    )  
 } 
 
 export default SubSection_FullMap;

@@ -8,7 +8,7 @@ ul.Stat_Bar{
     align-content: center;
     background-color: $color3;
     padding: .2rem .5rem; 
-
+    border-radius: $borderRadius;
     h3{ text-align: left; width: 100%;}
     
     li{
@@ -31,6 +31,9 @@ ul.Stat_Bar{
     }
 }
  
+ul.Stat_Bar+ul.Stat_Bar{ margin: .1 rem 0; }
+
+
 ul.Stat_Bar.Column{
     flex-direction: column;
     li{

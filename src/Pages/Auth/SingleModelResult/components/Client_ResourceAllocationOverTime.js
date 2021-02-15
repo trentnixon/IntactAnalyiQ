@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {useContext_UX_FULL} from "Context/UX";
 // Actions
-import {CreateOBJ_Client_ResourceAllocation_Overtime} from "actions/CreateSingleViewModel"
+import {CreateOBJ_Client_WO_Overtime} from "actions/CreateSingleViewModel"
 import {colorArray} from "actions/HandleUX";
 // Layout
 import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
-
+import DiagramContainer from "Pages/Auth/Components/Layout/DiagramContainer"
 import {orderBy} from 'lodash'
 
 import {
@@ -28,32 +28,35 @@ const Trade_Radial_Charts=()=>{
     const [CategoryOccurance,setCategoryOccurance ] = useState([[]]) 
 
     const Ignore=['UnixDate','name','Resource Allocation']
-
+    const str='Resource_Count_'
     const FindLabels = ()=>{
         let Labels=[]  
         CategoryOccurance.map((item,i)=>{
             //console.log(item, 'name')
               
             Object.keys(item).map((key,ii)=>{
-                    if(Ignore.indexOf(key) === -1){
-                        if(Labels.indexOf(key) === -1){
-                            Labels.push(key)
-                        } 
-                    }
+                if(key.includes(str)){
+                    if(Labels.indexOf(key.replace(str,'')) === -1){
+                        Labels.push(key.replace(str,''))
+                    } 
+                }
                 })
-                //console.log(Labels)
          })
 
          return Labels;
     }
 
-    useEffect(()=>{  setCategoryOccurance(CreateOBJ_Client_ResourceAllocation_Overtime())   },[UX]) 
-    
+    useEffect(()=>{       
+         
+        //console.log(CreateOBJ_Client_WO_Overtime())
+        setCategoryOccurance(CreateOBJ_Client_WO_Overtime())   
+        },[UX]) 
     useEffect(()=>{
      
      },[CategoryOccurance])
 
     return(
+        <DiagramContainer>
             <div className="resultCharts">
                 <div>
                         <ChartHeader 
@@ -80,7 +83,7 @@ const Trade_Radial_Charts=()=>{
                                         {
                                             FindLabels().map((label,i)=>{
                                                 return(
-                                                    <Line type="monotone" dataKey={label} stroke={colorArray[i]} />
+                                                    <Line type="monotone" name={`${label}`} dataKey={`${str}${label}`} stroke={colorArray[i]} />
                                                 )
                                             })
                                         }
@@ -89,6 +92,7 @@ const Trade_Radial_Charts=()=>{
                         </div>
                 </div>
             </div>
+        </DiagramContainer>
     )
 }
 export default Trade_Radial_Charts;

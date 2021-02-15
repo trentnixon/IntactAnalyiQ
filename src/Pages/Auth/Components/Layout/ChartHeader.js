@@ -8,6 +8,7 @@ import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import TouchAppIcon from '@material-ui/icons/TouchApp';
 import MapIcon from '@material-ui/icons/Map';
+import FilterListIcon from '@material-ui/icons/FilterList';
 
 import {H4, P} from "Pages/Auth/Components/Type";
 import Tooltip from '@material-ui/core/Tooltip';
@@ -26,6 +27,9 @@ const ChartHeader=(props)=>{
           break;
           case 'map':
             DisplayIcon = <MapIcon />
+          break;
+          case 'funnel':
+            DisplayIcon = <FilterListIcon />
           break;
           default:
             DisplayIcon = <AssessmentIcon />

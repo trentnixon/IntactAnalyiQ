@@ -1,54 +1,37 @@
-import React from 'react'
-import {useContext_SCAN_FULL} from "Context/SCAN";
+import React, { useEffect } from 'react'
 import {numberWithCommas} from "actions/HandleUX";
-
+import {WorkorderTotals} from 'actions/CreateSingleViewModel'
 // Template
-import Section from "Pages/Auth/Components/Layout/Section"
-import {H4,H3, P} from "Pages/Auth/Components/Type";
+//import Section from "Pages/Auth/Components/Layout/Section"
+import {H4, P} from "Pages/Auth/Components/Type";
 
 
-const HeaderTotalWorkOrder = ()=>{
-    const SCAN = useContext_SCAN_FULL();
-    const Model = SCAN.SelectedModel;
-    
-    const TotalWorkOrders=(Data)=>{
-        let TotalWOs=[]
-        Data.map((site,i)=>{
-            if(site.SumWorkOrder !== undefined) 
-                TotalWOs.push(site.SumWorkOrder)
-        })
-        return TotalWOs.reduce((a, b) => a + b, 0)
-    } 
-
-    const WOsCoveredInModel = ()=>{ 
-        let ModelTotal=[];
-            Model.STOREMARKERCENTERPOINTS.map((site)=>{
-                ModelTotal.push(TotalWorkOrders(site.sites))
-            })
-        return ModelTotal.reduce((a, b) => a + b, 0)
-    }
-
+const WOrkOrders_TotalWorkOrder = ()=>{
+    useEffect(()=>{console.log(WorkorderTotals())})
     return(
-        <> 
-        <H3 Copy={`Breakdown`} />
-   
+        <>
                 <ul className="Pod_List">
                     <li className="Pod">
-                        <div className="Data"><P Copy= {numberWithCommas(TotalWorkOrders(Model.USERSELECTEDLIST))}/></div>
-                        <div className="Title"> <H4 Copy={`Clients Total Work Orders`}/></div>
+                        <div className="Data"><P Copy= {numberWithCommas(WorkorderTotals().reduce((a, b) => a + b, 0))}/></div>
+                        <div className="Title"> <H4 Copy={`Total Work orders in Model`}/></div>
                     </li>
                     
                     <li className="Pod">
-                       
-                        <div className="Data"><P Copy={numberWithCommas(WOsCoveredInModel())} /></div>
+                        <div className="Data"><P Copy={numberWithCommas(WorkorderTotals()[0])} /></div>
                         <div className="Title"> <H4 Copy={`Work Orders Covered in model`}/></div>
-                        <div className="Data Strong"><P Copy={`${((WOsCoveredInModel()/TotalWorkOrders(Model.USERSELECTEDLIST))*100).toFixed(2)}%`} />
+                        <div className="Data Strong"><P Copy={`${((WorkorderTotals()[0]/WorkorderTotals().reduce((a, b) => a + b, 0))*100).toFixed(2)}%`} />
                     </div>
                     </li>
-                  
-                </ul>
+
+                    <li className="Pod">
+                       <div className="Data"><P Copy={numberWithCommas(WorkorderTotals()[1])} /></div>
+                       <div className="Title"> <H4 Copy={`Work Orders Out of Scope`}/></div>
+                       <div className="Data Strong"><P Copy={`${((WorkorderTotals()[1]/WorkorderTotals().reduce((a, b) => a + b, 0))*100).toFixed(2)}%`} />
+                   </div>
+                   </li>
+                </ul> 
        
         </>
     )
 }
-export default HeaderTotalWorkOrder;
+export default WOrkOrders_TotalWorkOrder;

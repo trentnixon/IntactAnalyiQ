@@ -6,7 +6,7 @@ import {CreateOBJ_WO_Overtime} from "actions/CreateSingleViewModel"
 import {colorArray} from "actions/HandleUX";
 // Layout
 import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
-
+import DiagramContainer from "Pages/Auth/Components/Layout/DiagramContainer"
 import {orderBy} from 'lodash'
 
 import {
@@ -17,13 +17,13 @@ const Chart1={
     Icon:'bar',
     Header:"Workorders",
     Tip:"Use the Filters",
-    Copy:`The Bar Graph shows the number of Resource Allocations over the time period of the Model. 
+    Copy:`The Bar Graph shows the number of Work Orders over the time period of the Model. 
         Use the 'Cluster Type' and 'Resource type' filters to filter the chart to a specific Recourse or cluster type`
 }
 
 
 const Trade_Radial_Charts=()=>{
-
+ 
     const UX = useContext_UX_FULL();
     const [CategoryOccurance,setCategoryOccurance ] = useState([[]]) 
 
@@ -34,6 +34,7 @@ const Trade_Radial_Charts=()=>{
      },[CategoryOccurance])
 
     return(
+        <DiagramContainer>
             <div className="resultCharts">
                 <div>
                     <ChartHeader 
@@ -64,6 +65,7 @@ const Trade_Radial_Charts=()=>{
                     </div>
                 </div>
             </div>
+        </DiagramContainer>
     )
 }
 export default Trade_Radial_Charts;

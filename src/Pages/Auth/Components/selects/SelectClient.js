@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {useContext_UX_FULL} from "Context/UX";
 import {useContext_SCAN_FULL} from "Context/SCAN";
-import {SetFilterClient } from "actions/HandleUX";
-import {FindClientList} from "actions/CreateSingleViewModel"
+import {SetFilterClient , FindClientList} from "actions/HandleUX";
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';

@@ -8,7 +8,7 @@ import {H1} from "Pages/Auth/Components/Type";
 // components
 import Locations_Basic_Stats from "../components/Locations_Basic_Stats"
 import Locations_Basic_Charts from "../components/Locations_Basic_Charts";
-import Locations_ByTier from "../components/Locations_ByTier";
+
 import LocationHeatMap from "../components/Location_Heatmap";
 import Location_ResourceSpread from "../components/Location_ResourceSpread";
 import Location_WorkorderSpread from "../components/Location_WorkOrderSpread";
@@ -18,16 +18,15 @@ const SubSection_Locations = ()=>{
         <>
             <H1 Copy={`Locations`} /> 
             <Section>
-            Out of Scope breakdown 
-                <Locations_Basic_Stats />   
+                Out of Scope breakdown 
+                <Locations_Basic_Stats />    
                 <Locations_Basic_Charts />
-                <Locations_ByTier />
+               
                 <LocationHeatMap />
-                <Location_ResourceSpread />
-                <Location_WorkorderSpread />
-              
-            </Section> 
-
+                <Location_ResourceSpread />      
+                <Location_WorkorderSpread /> 
+            </Section>  
+  
         </>
     )
 }

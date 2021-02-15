@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react'
 import {useContext_SCAN_FULL} from "Context/SCAN";
 import {useContext_UX_FULL} from "Context/UX";
 // Actions
-import {colorArray} from "actions/HandleUX";
+import DiagramContainer from "Pages/Auth/Components/Layout/DiagramContainer"
 
-import {CreateRadial_ResourcesAgainstClusters} from "actions/CreateSingleViewModel"
+import {OBJ_RESOURCES_GLOBAL} from "actions/CreateSingleViewModel"
 import {H1,H2,H4,P} from "Pages/Auth/Components/Type";
 import {find} from 'lodash'
 
@@ -16,19 +16,19 @@ const Trade_Radial_Charts=()=>{
     const [tradeVolume, setTradeVolume] = useState(0)
 
     useEffect(()=>{ 
-        console.log(SCAN.SelectedModel.STOREMARKERCENTERPOINTS) 
-        let SetVolume = (CreateRadial_ResourcesAgainstClusters())
-        let FindObj = find(SetVolume, function(o) { return o.name == UX.AreaSelectFilter.ByResourceType; });
+  
+        let FindObj = find(OBJ_RESOURCES_GLOBAL(), function(o) { return o.name == UX.AreaSelectFilter.ByResourceType; });
         setTradeVolume(FindObj)
     },[UX]) 
-    
+     
 
     return( 
+        <DiagramContainer>
             <div >
                 <H4 Copy={` Resource Type Selected : ${tradeVolume.name}`}/>
-                <H4 Copy={`Resource Allocation : ${tradeVolume.value}`}/>
-                
+                <H4 Copy={`Resource Allocation : ${tradeVolume.Resources}`}/>
             </div>
+        </DiagramContainer>
     )
 }
 export default Trade_Radial_Charts;

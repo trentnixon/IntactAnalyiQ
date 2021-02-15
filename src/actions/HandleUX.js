@@ -253,6 +253,7 @@ export const workingDaysBetweenDates = (S1, E1) => {
   let d0 = `${S1dateObject.getFullYear()}/${S1dateObject.getMonth()}/${S1dateObject.getDay()}`
   let d1= `${E1dateObject.getFullYear()}/${E1dateObject.getMonth()}/${E1dateObject.getDay()}`
   /* Two working days and an sunday (not working day) */
+ // var holidays = ['2018-05-03', '2018-05-05', '2018-05-07'];
   var holidays = [''];
   var startDate = parseDate(d0);
   var endDate = parseDate(d1);  
@@ -328,8 +329,21 @@ export const HandleTZDate = (DATE)=>{
  // return NewDate[0]
 }
 
-
-
+// CLient Name for Filter
+export const FindClientList = ()=>{
+  const MODEL = store.getState().SCANSTATE;
+  let ClientNames = []
+  MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
+      Object.keys(model.ClientGroupedBy).map(function(key, index) {
+          model.ClientGroupedBy[key].map((c,ii)=>{
+              if(ClientNames.indexOf(c.Customer) === -1){
+                  ClientNames.push(c.Customer)
+              }
+          })
+      })
+  })
+  return ClientNames
+}
 
 // UX Filters
  export const HandleResourceFilter=(item, filter)=>{

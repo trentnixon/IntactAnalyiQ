@@ -27,6 +27,7 @@
         right: .5rem;
         top:-2.5rem;
         flex-direction: row;
+      
         h3{
             text-align: center;
             font-size: .8rem;
@@ -38,8 +39,10 @@
             align-self: center;
             align-content: center;
             justify-content: center;
+            background-color: $color2;
             .MuiChip-label{
                 overflow: visible;
+              
             }
         }
         

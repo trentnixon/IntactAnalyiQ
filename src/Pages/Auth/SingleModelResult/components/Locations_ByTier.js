@@ -1,36 +1,20 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect } from 'react'
 
 // Context
 import {useContext_UX_FULL} from "Context/UX";
-
+import Stats_Bar from "Pages/Auth/Components/Layout/Stats_Bar";
 // Actions
-import {ClusterNumbersByResourceType} from "actions/CreateSingleViewModel"
-import {GroupArrayByOccurances} from "actions/HandleUX";
+import {OBJ_CLUSTER_GLOBAL} from "actions/CreateSingleViewModel"
 
 const ClusterByCategory = () =>{
-
     const UX = useContext_UX_FULL();
-    const [CategoryOccurance,setCategoryOccurance ] = useState([[]]) 
+    useEffect(()=>{
+     },[UX])
 
-    useEffect(()=>{ 
-        // Set State
-            // Group returned Values
-                // Get number of resources
-        setCategoryOccurance(GroupArrayByOccurances(ClusterNumbersByResourceType())) 
-    },[UX])
- 
     return(
-                <ul className="Stat_Bar">
-                    {
-                        CategoryOccurance[0].map((cat,i)=>{
-                            return(
-                                <li key={i}>
-                                        {cat} : {CategoryOccurance[1][i]}
-                                </li>
-                            ) 
-                        })
-                    }
-                </ul>
+        <>
+            <Stats_Bar data={OBJ_CLUSTER_GLOBAL()} name={`name`} value={`Appearances`}/> 
+        </>
     )
 }
 

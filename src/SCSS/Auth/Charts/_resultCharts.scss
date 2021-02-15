@@ -1,8 +1,10 @@
 .resultCharts{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     >div{
       flex-grow: 1;
-      margin: 0 2rem;
+      width: 50%;
+      margin: 0rem;
     }
 }

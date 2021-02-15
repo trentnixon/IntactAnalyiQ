@@ -1,71 +1,110 @@
-import React, {useEffect, useState} from 'react'
-import {useContext_SCAN_FULL} from "Context/SCAN";
-import {findClientName} from "actions/ClusterAnalysis";
+import React, { useEffect }  from 'react'
+import {numberWithCommas} from "actions/HandleUX";
+import {OBJ_CLIENT_RESOURCES, OBJ_CLUSTER_GLOBAL} from 'actions/CreateSingleViewModel'
+
 // Chart
-import PieChart from "venders/apexCharts/SimplePie";
+//import PieChart from "venders/apexCharts/SimplePie";
+import { ResponsiveContainer,PieChart, Pie,Legend, Tooltip,Cell,Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis} from 'recharts';
+import Stats_Bar from "Pages/Auth/Components/Layout/Stats_Bar";
+import DiagramContainer from "Pages/Auth/Components/Layout/DiagramContainer"
+import {colorArray} from "actions/HandleUX";
 
+// Layout
+import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
+// Nivo 
+import NivoPie from "venders/Nivo/NivoPie"
+import NivoRadial from "venders/Nivo/NivoRadial"
+const Chart1={
+    Icon:'pie',
+    Header:"Client Work Order Spread",
+    Tip:"Use the Filters",
+    Copy:`The chart details the work orders in the model spread over clients`
+}
 
-const HeaderLocations=()=>{
+const Chart2={
+    Icon:'pie',
+    Header:"Cluster Work Order Spread",
+    Tip:"Use the Filters",
+    Copy:`The chart details the work orders in the model spread over Clusters`
+}
 
-    const SCAN = useContext_SCAN_FULL();
-    const MODEL = SCAN.SelectedModel
-    const [byClient, setByClient] = useState([])
+const WorkOrderByClient=()=>{
 
-    const TotalWorkOrders=(Data)=>{
-        let TotalWOs=[]
-        Data.map((site,i)=>{
-            if(site.SumWorkOrder !== undefined) 
-                TotalWOs.push(site.SumWorkOrder)
-        })
-        return TotalWOs.reduce((a, b) => a + b, 0)
-    }
-
-    const WOsCoveredInModel = ()=>{
-        let ModelTotal=[];
-        MODEL.STOREMARKERCENTERPOINTS.map((site)=>{
-                ModelTotal.push(TotalWorkOrders(site.sites))
-            })
-        return ModelTotal.reduce((a, b) => a + b, 0)
-    }
-
-    const ByClient=()=>{
-        let client=[];
-        let SumByClient
-        MODEL.STOREMARKERCENTERPOINTS.map((sites,i)=>{
-            sites.sites.map((site,i)=>{
-                client.push({
-                    sum:site.SumWorkOrder,
-                    client:site.customers[0]
-                })
-            })
-        })
-      
-        SumByClient = client.reduce(function (r, o) { (r[o.client])? r[o.client] += o.sum : r[o.client] = o.sum; return r; }, {});
-        let Data=[]
-       //console.log(SumByClient)
-       Object.keys(SumByClient).map(function(key, i) {
-        Data.push({ name: findClientName(key), value: SumByClient[key] })
-       
-        }) 
-      
-        //console.log(Data);
-        setByClient(Data)
-    }
-
-    useEffect(()=>{ByClient()},[MODEL])
-
+    useEffect(()=>{
+        console.log(OBJ_CLUSTER_GLOBAL())
+    },[])
     return(
-        <> 
-            <div className="resultCharts">
+        <DiagramContainer> 
+        
+            <div className="resultCharts"> 
+           
                 <div>
-                    <PieChart Data={[{ name: 'Work orders Covered', value: WOsCoveredInModel() },{ name: 'Work Orders Not Included', value: (TotalWorkOrders(MODEL.USERSELECTEDLIST)-WOsCoveredInModel()) }]}/>
+                <ChartHeader 
+                        Icon={Chart1.Icon}
+                        Header={Chart1.Header}  
+                        Tip={Chart1.Tip} 
+                        Copy={Chart1.Copy}
+                    />
+                    <div style={{height: 300}}>
+                        <NivoPie data={OBJ_CLIENT_RESOURCES()} id={`name`} value={'Work Orders'} />
+                    </div>
+
+                    
                 </div>
+
                 <div>
-                    <PieChart Data={byClient}/>
+                    <ChartHeader 
+                        Icon={Chart2.Icon}
+                        Header={Chart2.Header}
+                        Tip={Chart2.Tip}
+                        Copy={Chart2.Copy}
+                    />
+                    
+                   
+
+                    <div style={{height: 300}}>
+                        <NivoRadial 
+                            data={OBJ_CLUSTER_GLOBAL()} 
+                            id={`name`} 
+                            value={'Work Orders'} 
+                            Label={'Work Orders'}
+                        />
+                    </div>
+
                 </div>
             </div>
-        </>
+
+            <Stats_Bar data={OBJ_CLIENT_RESOURCES()} name={`name`} value={`Work Orders`}/> 
+            <Stats_Bar data={OBJ_CLUSTER_GLOBAL()} name={`name`} value={`Work Orders`}/> 
+        </DiagramContainer>
     )
 }
-export default HeaderLocations;
-//
+export default WorkOrderByClient;
+
+
+/*
+ <ResponsiveContainer width='100%' height={300}>
+                        <RadarChart  outerRadius={100}  data={OBJ_CLUSTER_GLOBAL()}>
+                            <PolarGrid />
+                            <PolarAngleAxis dataKey="name" />
+                            <PolarRadiusAxis />
+                            <Radar name={'Work Orders'} dataKey="Work Orders" stroke={colorArray[0]} fill={colorArray[0]} fillOpacity={0.6} />
+                            <Tooltip />
+                            <Legend />
+                        </RadarChart>
+                    </ResponsiveContainer>
+<ResponsiveContainer width='100%' height={300}>
+                        <PieChart >
+                            <Pie dataKey="Work Orders" isAnimationActive={false} data={OBJ_CLIENT_RESOURCES()}  outerRadius={80} fill="#ffbf00" label >
+                            {
+                                OBJ_CLIENT_RESOURCES().map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={colorArray[index]}/>
+                                ))
+                            }   
+                        </Pie>
+                        <Tooltip />
+                        <Legend /> 
+                        </PieChart>
+                    </ResponsiveContainer>
+
+*/

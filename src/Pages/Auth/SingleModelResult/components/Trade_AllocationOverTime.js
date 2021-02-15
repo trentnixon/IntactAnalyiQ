@@ -1,13 +1,16 @@
 import React, {useEffect, useState} from 'react'
-import {useContext_SCAN_FULL} from "Context/SCAN";
+//import {useContext_SCAN_FULL} from "Context/SCAN";
 import {useContext_UX_FULL} from "Context/UX";
 // Actions
-import {CreateOBJ_ResourcesAgainstDates} from "actions/CreateSingleViewModel"
+import {OBJ_DATESPREAD_TRADE} from "actions/CreateSingleViewModel"
 import {colorArray} from "actions/HandleUX";
 // Layout
 import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
-
+import DiagramContainer from "Pages/Auth/Components/Layout/DiagramContainer"
 import {orderBy} from 'lodash'
+import {H3} from "Pages/Auth/Components/Type";
+// NIvo
+import NivoLine from "venders/Nivo/NivoLine";
 
 import {
     BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,ResponsiveContainer
@@ -24,17 +27,18 @@ const Chart1={
 
 const Trade_Radial_Charts=()=>{
 
-    const SCAN = useContext_SCAN_FULL();
+    //const SCAN = useContext_SCAN_FULL();
     const UX = useContext_UX_FULL();
-    const [CategoryOccurance,setCategoryOccurance ] = useState([[]]) 
+    const [ResourcesOverTime,setResourcesOverTime ] = useState([[]]) 
 
-    useEffect(()=>{  setCategoryOccurance(CreateOBJ_ResourcesAgainstDates())   },[UX]) 
+    useEffect(()=>{ setResourcesOverTime(OBJ_DATESPREAD_TRADE()) },[UX]) 
     
-    useEffect(()=>{
-        console.log(orderBy(CategoryOccurance,'UnixDate'))
-     },[CategoryOccurance])
+    useEffect(()=>{},[ResourcesOverTime]) 
 
     return(
+        <>
+         <H3 Copy={`Title Required`} />
+        <DiagramContainer>
             <div className="resultCharts">
                 <div>
                     <ChartHeader 
@@ -44,10 +48,32 @@ const Trade_Radial_Charts=()=>{
                         Copy={Chart1.Copy}
                     />
                 
-                    <div style={{ width: '100%', height: 400 }}>
+                   
+                    <div style={{height: 400}}>
+                    <NivoLine 
+                        data={orderBy(ResourcesOverTime,'UnixDate')} 
+                        Xaxis={`name`} 
+                        Yaxis={UX.AreaSelectFilter.ByResourceType} 
+                        value={'Resources'}
+                        label = {`Resource Allocation`}
+                    />
+                </div>
+                </div>
+
+             
+               
+            </div>
+        </DiagramContainer>
+        </>
+    )
+}
+export default Trade_Radial_Charts;
+/*
+
+ <div style={{ width: '100%', height: 400 }}>
                         <ResponsiveContainer>
                             <BarChart
-                                data={orderBy(CategoryOccurance,'UnixDate')}
+                                data={orderBy(ResourcesOverTime,'UnixDate')}
                                 margin={{
                                 top: 5, right: 0, left: 0, bottom: 5,
                                 }}
@@ -58,13 +84,7 @@ const Trade_Radial_Charts=()=>{
                                 <Tooltip />
                                 <Legend />              
                                     <Bar dataKey={UX.AreaSelectFilter.ByResourceType} fill={colorArray[0]} />
-                                 
-                            
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
-                </div>
-            </div>
-    )
-}
-export default Trade_Radial_Charts;
+*/

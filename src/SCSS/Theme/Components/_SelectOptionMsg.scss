@@ -1,0 +1,17 @@
+.PleaseSelectOption{
+    border:1px solid $color5;
+    background-color: $color3;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    justify-content: space-evenly;
+
+    svg{
+        fill: $color2;
+        width: 5rem;
+        height: 5rem;
+    }
+}

@@ -1,33 +1,28 @@
 import React, {useEffect, useState} from 'react'
 import {useContext_UX_FULL} from "Context/UX";
-import {Client_Split_by_Resources, Client_Split_by_Site,Client_Split_by_WorkOrders } from "actions/CreateSingleViewModel"
+import {OBJ_CLIENT_GLOBAL_Filter } from "actions/CreateSingleViewModel"
 import {H3} from "Pages/Auth/Components/Type";
 
 const ClusterByClientName = ()=>{
     const UX = useContext_UX_FULL(); 
+    const [ClientBreakDown,setClientBreakDown ] = useState([[]]) 
 
-    const [ClientResources,setClientResources] = useState([[]]) 
-    const [ClientSites,setClientSites] = useState([[]]) 
-    const [ClientWorkOrders,setClientWorkOrders ] = useState([[]]);
-    
-    useEffect(()=>{ 
-        setClientResources(Client_Split_by_Resources())
-        setClientSites(Client_Split_by_Site())
-        setClientWorkOrders(Client_Split_by_WorkOrders())
+    useEffect(()=>{    
+        setClientBreakDown(OBJ_CLIENT_GLOBAL_Filter())
+        //console.log(OBJ_CLIENT_GLOBAL_Filter())
     },[UX]) 
 
     return(
         <>
-            
             <ul className="Stat_Bar Column">
             <H3 Copy={`Resources Allocations`} />
             {
-                ClientResources.map((key, i)=> {
+                ClientBreakDown.map((key, i)=> {
                     return(
                         <li key={i}>
                             <div>
                                 <div>{key.name} </div>
-                                <div>{key.value} </div>
+                                <div>{key.Resources} </div>
                             </div>
                         </li>
                         )
@@ -35,12 +30,12 @@ const ClusterByClientName = ()=>{
             }
              <H3 Copy={`Sites`} />
              {
-                ClientSites.map((key, i)=> {
+                ClientBreakDown.map((key, i)=> {
                     return(
                         <li key={i}>
                             <div>
                                 <div>{key.name} </div>
-                                <div>{key.value} </div>
+                                <div>{key.['Total Sites']} </div>
                             </div>
                         </li>
                         )
@@ -48,21 +43,18 @@ const ClusterByClientName = ()=>{
             }
             <H3 Copy={`Workorders`} />
              {
-                ClientWorkOrders.map((key, i)=> {
+                ClientBreakDown.map((key, i)=> {
                     return(
                         <li key={i}>
                             <div>
                                 <div>{key.name} </div>
-                                <div>{key.value} </div>
+                                <div>{key.['Work Orders']} </div>
                             </div>
                         </li>
                         )
                     })        
             }
-
             </ul>
-
-      
         </>
     )
 }

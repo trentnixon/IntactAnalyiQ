@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {useContext_UX_FULL} from "Context/UX";
 // Actions
-import {CreateObj_Clustertype_WorkOrders} from "actions/CreateSingleViewModel"
+import {OBJ_CLUSTER_GLOBAL} from "actions/CreateSingleViewModel"
 // Layout
 import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
-import Section from "Pages/Auth/Components/Layout/Section"
-
+import DiagramContainer from "Pages/Auth/Components/Layout/DiagramContainer"
+import {colorArray} from "actions/HandleUX";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,ResponsiveContainer } from 'recharts';
 
 
@@ -22,29 +22,28 @@ const LocationResourceSpread = ()=>{
     const [BarData, setBarData] = useState([])
    
 
-    useEffect(()=>{ setBarData(CreateObj_Clustertype_WorkOrders()) },[UX])
+    useEffect(()=>{ setBarData(OBJ_CLUSTER_GLOBAL())   },[UX])
 
     useEffect(()=>{},[UX])
     return(
-        <Section>
+        <DiagramContainer>
             <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header}  Copy={Chart1.Copy} Tip={Chart1.Tip} />
             <ResponsiveContainer width='100%' height={300}>
-                <BarChart data={BarData} margin={{ top: 20, right: 0, left: 0, bottom: 20}}>
+                <BarChart data={BarData} margin={{  top: 20, right: 0, left: 0, bottom: 0,}}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
                     <Legend />
 
-                        <Bar dataKey="HandyMan" stackId="a" fill="#030303" />
-                        <Bar dataKey="Electrician" stackId="a" fill="#575757" />
-                        <Bar dataKey="Plumber" stackId="a" fill="#D4D4D3" />
-                        <Bar dataKey="Specialized" stackId="a" fill="#3A3A3A" />
+                        <Bar dataKey="work_order_HandyMan" name="HandyMan" stackId="a" fill={colorArray[0]} />
+                        <Bar dataKey="work_order_Electrician" name="Electrician" stackId="a" fill={colorArray[1]} />
+                        <Bar dataKey="work_order_Plumber" name="Plumber" stackId="a" fill={colorArray[2]} />
+                        <Bar dataKey="work_order_Specialized" name="Specialized" stackId="a" fill={colorArray[3]} />
                     
                 </BarChart>
             </ResponsiveContainer>
-        </Section>
+        </DiagramContainer>
     ) 
 }
-// '#030303', '#D4D4D3', '#313231', '#777777', '#999A9A', '#575757',  '#3A3A3A', '#787878', '#575757', '#444444'
 export default LocationResourceSpread;

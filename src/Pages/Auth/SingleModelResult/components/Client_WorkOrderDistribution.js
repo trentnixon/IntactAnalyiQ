@@ -2,14 +2,14 @@ import React, { useEffect, useState }  from 'react'
 import {useContext_UX_FULL} from "Context/UX";
 
 import {
-    OBJ_CLIENT_GLOBAL_Filter,
+    OBJ_CLUSTER_GLOBAL,
     OBJ_RESOURCES_GLOBAL
+    
 } from "actions/CreateSingleViewModel"
 // Template
-import Section from "Pages/Auth/Components/Layout/Section"
 import Stats_Bar from "Pages/Auth/Components/Layout/Stats_Bar";
-import {H2,H3,H4, P} from "Pages/Auth/Components/Type";
 import DiagramContainer from "Pages/Auth/Components/Layout/DiagramContainer"
+import {H3} from "Pages/Auth/Components/Type";
 // Layout
 import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
 // Chart
@@ -22,16 +22,16 @@ import NivoPie from "venders/Nivo/NivoPie"
 
 const Chart1={
     Icon:'pie',
-    Header:"Client Resource Allocation",
+    Header:"Work Order Spread",
     Tip:"Use the Filters",
-    Copy:"Graph shows the Resource Allocation for the selected client"
+    Copy:"Graph shows the Work Order spread across resource type within the Model"
 }
 
 const Chart2={
     Icon:'pie',
-    Header:"Resources Cluster Spread",
+    Header:"Work Orders by Cluster",
     Tip:"Use the Filters",
-    Copy:"Graph shows the Resource distribution for the selected client by Cluster"
+    Copy:"Graph shows the Work Order Spread across Cluster Type within the Model"
 }
 
 /* ************************************** */
@@ -39,39 +39,36 @@ const Chart2={
 // Move to own file
 
 
-const ClientResourceSpread = ()=>{
+const ClientWOrkOrderSpread = ()=>{
     const UX = useContext_UX_FULL();
 
     const [ClientSpread, setClientSpread] = useState([])
     const [ClientClusterSpread, setClientClusterSpread] = useState([])
-    
     useEffect(()=>{
         setClientSpread(OBJ_RESOURCES_GLOBAL())
-        setClientClusterSpread(OBJ_CLIENT_GLOBAL_Filter())
+        setClientClusterSpread(OBJ_CLUSTER_GLOBAL())
     },[UX])
 
     return(
         <>
-        <H3 Copy={`Resource Spread`}/>
+        <H3 Copy={`Work Order Spread distribution `}/>
         <DiagramContainer>
-            
         <div className="resultCharts">
             <div>
                 <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header}  Copy={Chart1.Copy} Tip={Chart1.Tip} />
-                    <div style={{height: 300}}>
-                        <NivoPie data={ClientSpread} id={`name`} value={'Resources'} />
+                <div style={{height: 300}}>
+                        <NivoPie data={ClientSpread} id={`name`} value={'Work Orders'} />
                     </div>
 
-              
+                
             </div>
-
             <div>
                 <ChartHeader Icon={Chart2.Icon} Header={Chart2.Header}  Copy={Chart2.Copy} Tip={Chart2.Tip} />
-                <div style={{height: 300}}>
-                        <NivoPie data={ClientClusterSpread} id={`name`} value={'Resources'} />
-                    </div>
 
-                   
+                <div style={{height: 300}}>
+                        <NivoPie data={ClientClusterSpread} id={`name`} value={'Work Orders'} />
+                    </div>
+                
             </div>
         </div>
         { ClientSpread.length !== 0 ? <ClientStatBar ClientSpread={ClientSpread} ClientClusterSpread={ClientClusterSpread}/>: false }
@@ -80,44 +77,45 @@ const ClientResourceSpread = ()=>{
     )
 }
 
-export default ClientResourceSpread;
+
+export default ClientWOrkOrderSpread;
 
 const ClientStatBar = (props)=>{
     const {ClientClusterSpread, ClientSpread} = props
     return(<>
-                <Stats_Bar data={ClientSpread} name={`name`} value={`Resources`}/>
-                <Stats_Bar data={ClientClusterSpread} name={`name`} value={`Resources`}/>
+            <Stats_Bar data={ClientSpread} name={`name`} value={`Work Orders`}/>
+            <Stats_Bar data={ClientClusterSpread} name={`name`} value={`Work Orders`}/> 
         </>
     )
 }
 
 /*
-  <ResponsiveContainer width='100%' height={300}>
+
+<ResponsiveContainer width='100%' height={300}>
                     <PieChart >
-                        <Pie dataKey="Resources" isAnimationActive={false} data={ClientSpread}  outerRadius={80} fill="#ffbf00" label >
+                        <Pie dataKey="Work Orders" isAnimationActive={false} data={ClientSpread}  outerRadius={80} fill="#ffbf00" label >
                             {
-                                ClientSpread.map((entry, index) => (
+                            ClientSpread.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={colorArray[index]}/>
+                            ))
+                            }   
+                        </Pie>
+                        <Tooltip />
+                        <Legend /> 
+                    </PieChart>
+                </ResponsiveContainer>
+<ResponsiveContainer width='100%' height={300}>
+                    <PieChart >
+                        <Pie dataKey="Work Orders" isAnimationActive={false} data={ClientClusterSpread}  outerRadius={80} fill="#ffbf00" label >
+                            {
+                                ClientClusterSpread.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={colorArray[index]}/>
                                 ))
                             }   
                         </Pie>
-                        <Tooltip /> 
+                        <Tooltip />
                         <Legend /> 
                     </PieChart>
                 </ResponsiveContainer>
-
-                 <ResponsiveContainer width='100%' height={300}>
-                        <PieChart >
-                            <Pie dataKey="Resources" isAnimationActive={false} data={ClientClusterSpread}  outerRadius={80} fill="#ffbf00" label >
-                                {
-                                    ClientClusterSpread.map((entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={colorArray[index]}/>
-                                    ))
-                                }   
-                            </Pie>
-                            <Tooltip />
-                            <Legend /> 
-                        </PieChart>
-                    </ResponsiveContainer>
 
 */

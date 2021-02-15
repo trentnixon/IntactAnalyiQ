@@ -27,6 +27,7 @@ const ByTradeRatio = ()=>{
         <>
         <H2 Copy={`Workorders by Trade Type`} />
         <Section>
+        
             <ul className="Stat_Bar">
                 {
                     TradeAllocation[0].map((trade,i)=>{

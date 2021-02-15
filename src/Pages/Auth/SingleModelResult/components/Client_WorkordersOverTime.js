@@ -5,7 +5,7 @@ import {CreateOBJ_Client_WO_Overtime} from "actions/CreateSingleViewModel"
 import {colorArray} from "actions/HandleUX";
 // Layout
 import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
-
+import DiagramContainer from "Pages/Auth/Components/Layout/DiagramContainer"
 import {orderBy} from 'lodash'
 
 import {
@@ -27,33 +27,34 @@ const Trade_Radial_Charts=()=>{
     const UX = useContext_UX_FULL();
     const [CategoryOccurance,setCategoryOccurance ] = useState([[]]) 
 
-    const Ignore=['UnixDate','name','Work Orders']
-
+    const str='WorkOrder_Count_'
     const FindLabels = ()=>{
         let Labels=[]  
+
         CategoryOccurance.map((item,i)=>{
             //console.log(item, 'name')
               
-            Object.keys(item).map((key,ii)=>{
-                    if(Ignore.indexOf(key) === -1){
-                        if(Labels.indexOf(key) === -1){
-                            Labels.push(key)
-                        } 
-                    }
-                })
-                //console.log(Labels)
+            Object.keys(item).map((key,ii)=>{  
+                if(key.includes(str)){
+                    if(Labels.indexOf(key.replace(str,'')) === -1){
+                        Labels.push(key.replace(str,''))
+                    } 
+                }
+            })
          })
-
          return Labels;
     }
 
-    useEffect(()=>{  setCategoryOccurance(CreateOBJ_Client_WO_Overtime())   },[UX]) 
+    useEffect(()=>{          
+        setCategoryOccurance(CreateOBJ_Client_WO_Overtime())   
+    },[UX]) 
     
     useEffect(()=>{
      
      },[CategoryOccurance])
 
     return(
+        <DiagramContainer>
             <div className="resultCharts">
                 <div>
                         <ChartHeader 
@@ -80,7 +81,7 @@ const Trade_Radial_Charts=()=>{
                                         {
                                             FindLabels().map((label,i)=>{
                                                 return(
-                                                    <Line type="monotone" dataKey={label} stroke={colorArray[i]} />
+                                                    <Line type="monotone" name={`${label}`} dataKey={`${str}${label}`} stroke={colorArray[i]} />
                                                 )
                                             })
                                         }
@@ -89,6 +90,7 @@ const Trade_Radial_Charts=()=>{
                         </div>
                 </div>
             </div>
+        </DiagramContainer>
     )
 }
 export default Trade_Radial_Charts;

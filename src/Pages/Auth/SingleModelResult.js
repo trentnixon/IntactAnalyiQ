@@ -26,14 +26,14 @@ const SingleModelResult = ()=>{
                         <Route path={`${match.path}/locations`}>
                             <SubSection_Locations />
                         </Route>
-                        
+                          
                         <Route path={`${match.path}/trades`}>
                             <SubSection_Trade />
                         </Route>  
                          
                         <Route path={`${match.path}/clients`}>
                             <SubSection_Client />
-                        </Route>
+                        </Route> 
 
 
                         <Route path={`${match.path}/workorders`}>

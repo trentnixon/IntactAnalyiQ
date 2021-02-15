@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 // Actions
-import {Resources_HeatMap} from "actions/CreateSingleViewModel"
+import {WorkOrder_HeatMap} from "actions/CreateSingleViewModel"
 // Context
 import {useContext_UX_FULL} from "Context/UX";
 import { GoogleMap,HeatmapLayer  } from '@react-google-maps/api';
@@ -15,7 +15,7 @@ const LocationHeatMap = ()=>{
     const [HeatMapDataLength, setHeatMapDataLength] = useState([])
 
     useEffect(()=>{ 
-       let HeatMap = Resources_HeatMap() 
+       let HeatMap = WorkOrder_HeatMap() 
        setHeatMapDataLength(HeatMap[1])
        setHeatMapData(HeatMap[0])
     },[UX])
@@ -31,7 +31,7 @@ const LocationHeatMap = ()=>{
                             Use the  'Cluster Type' and  'Resource type' Filters to deep dive into more specific areas "
                 />
                 
-                <p>{HeatMapDataLength} resources scanned in results</p>
+                <p>{HeatMapDataLength} WorkOrders scanned in results</p>
 
             <GoogleMap  
                 mapContainerStyle={containerStyle}

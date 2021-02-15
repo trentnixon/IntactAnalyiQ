@@ -12,39 +12,33 @@ import TradeSpecific_ClientBreakdown from "Pages/Auth/SingleModelResult/componen
 import TradeSpecific_Overview from "Pages/Auth/SingleModelResult/components/Trade_Specific_Overview";
 import Trade_Ratios from "Pages/Auth/SingleModelResult/components/Trade_Ratios";
 import TradeHeatMap from  "Pages/Auth/SingleModelResult/components/Trade_Heatmap";
-
+import FaceIcon from '@material-ui/icons/Face';
 
 const SubSection_Trade = ()=>{
     const UX = useContext_UX_FULL();
     return(
         <>
-        <H1 Copy={`Resources`} />
+        <H1 Copy={`Resources`} /> 
         <Section>
       
            
             stat bar : resource figures
             stat bar resources by client.
-            Bar WO spread over resources
-            Bar : resources by cluster type
+            Bar WO spread over resources 
+            Bar : resources by cluster type 
            
-        
-
-            <Trade_ResourceAllocation />
-             
+            <Trade_ResourceAllocation />  
             <Trade_Radial_Charts />
-            <Trade_Radial_Clients />   
+            <Trade_Radial_Clients />     
             <TradeHeatMap />
                 <Section>
-                    <H2 Copy={`Resource Specific Stats`} />
-                    <P Copy={`Use the Resource filter to select a Resource Type. The currently selected Resource should show in the bottom corner`}/>
+                    {
+                            UX.AreaSelectFilter.ByResourceType === null ? <SelectATrade /> :<TradeSpecificComponents />
+                        }
                 </Section>
-            {
-                  UX.AreaSelectFilter.ByResourceType === null ? <SelectATrade /> :<TradeSpecificComponents />
-            }
-            
         </Section>  
            
-       </>
+       </> 
     ) 
 }
 
@@ -55,16 +49,20 @@ export default SubSection_Trade;
 const SelectATrade = ()=>{
     return(
         <Section>
-            <H4 Copy={`No Resource Type Selected`}/>
-            <P Copy={`To use this Section a Resource Type must be selected from the Filter Above.`} />
+            <div className="PleaseSelectOption">
+                <FaceIcon />
+                <H4 Copy={`No Resource Type Selected`}/>
+                <P Copy={`To use this Section a Resource Type must be selected from the Filter Above.`} />
+            </div>
+            
         </Section>
     )
 }
 
 const TradeSpecificComponents=()=>{
     return(
-        <Section>
-                <TradeSpecific_Overview />
+        <Section className="SelectedItem">
+                <TradeSpecific_Overview />   
                 <TradeSpecific_ClientBreakdown />
                 <Trade_ResourceAllocationOverTime />
                 

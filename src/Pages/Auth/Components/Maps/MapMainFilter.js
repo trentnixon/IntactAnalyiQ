@@ -10,7 +10,6 @@ const MapFilter=()=>{
                 <li><ByCapitalCities /> </li>
                 <li><ByClusterType/></li>
                 <li> <ByResourceType /></li>
-               
             </ul>
         )
 }

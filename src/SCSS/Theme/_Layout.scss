@@ -2,7 +2,38 @@
 
 // Section
 .Section{
-    padding: 1rem 0 2rem;
+    padding: 1rem 0 4rem;
     //border-bottom: 1px solid $color4;
     margin: 0 0 1rem 0;
+}
+.Section.SelectedItem{
+    margin: 0 4rem;
+    padding: 3rem;
+    background-color: $color4;
+    border-radius: $borderRadius;
+
+    h2{
+        color: $color3;
+    }
+    h3{
+        color: $color1;
+    }
+    .DiagramContainer{
+        margin: 0 0 3rem ;
+    }
+}
+
+.DiagramContainer{
+    border: 1px solid  $color1;
+    margin: 2rem 0;
+    border-radius: $borderRadius;
+    padding: 1rem;
+    background-color: $color1;
+
+    .resultCharts{
+        >div{
+           // border: 1px solid;
+            padding: 0 1rem;
+        }
+    }
 }

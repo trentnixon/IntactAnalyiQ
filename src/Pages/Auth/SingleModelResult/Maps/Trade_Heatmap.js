@@ -3,25 +3,28 @@ import React, {useEffect, useState} from 'react'
 import {Resources_HeatMap} from "actions/CreateSingleViewModel"
 // Context
 import {useContext_UX_FULL} from "Context/UX";
+import {useContext_SCAN_FULL} from "Context/SCAN";
 import { GoogleMap,HeatmapLayer  } from '@react-google-maps/api';
 import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
-
+import {H3} from 'Pages/Auth/Components/Type';
 const containerStyle = { height: "500px", width: "auto" };
 
 const LocationHeatMap = ()=>{
     
-    const UX = useContext_UX_FULL(); 
+    const UX = useContext_UX_FULL();
+    const MODEL = useContext_SCAN_FULL();
+
     const [HeatMapData, setHeatMapData] = useState([])
     const [HeatMapDataLength, setHeatMapDataLength] = useState([])
 
     useEffect(()=>{ 
        let HeatMap = Resources_HeatMap() 
-       setHeatMapDataLength(HeatMap[1])
-       setHeatMapData(HeatMap[0])
-    },[UX])
-
+       setHeatMapDataLength(HeatMap[1].toFixed(2))
+       setHeatMapData(HeatMap[0]) 
+    },[UX,MODEL])
+ 
     return( 
-        <>
+        <> 
        
             <div className="ScanMapMain" id="MainMap">
             <ChartHeader 
@@ -31,8 +34,8 @@ const LocationHeatMap = ()=>{
                             Use the  'Cluster Type' and  'Resource type' Filters to deep dive into more specific areas "
                 />
                 
-                <p>{HeatMapDataLength} resources scanned in results</p>
-
+             
+                <H3 Copy={`${HeatMapDataLength} Resources scanned in results`}  />
             <GoogleMap  
                 mapContainerStyle={containerStyle}
                 center={UX.MapParameters.LatLngBoundaries}

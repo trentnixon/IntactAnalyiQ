@@ -18,9 +18,7 @@ const GlobalFilter = ()=>{
                     <SelectClient />    
                     <FilterByResourceType /> 
                     <FilterByClusterType />
-                    
                 </div>
-                
             </div>
         </> 
     )

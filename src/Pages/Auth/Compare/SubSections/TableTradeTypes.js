@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 
     // Trade TYpes
-import TradetypeBreakDown from "./CompareTable/TableTradeTypeBreakdown";
+import TradetypeBreakDown from "../CompareTable/TableTradeTypeBreakdown";
 const TableSectionTradeTypes = ()=>{
     return(
         <>

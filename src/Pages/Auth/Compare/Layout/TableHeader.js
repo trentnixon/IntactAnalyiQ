@@ -12,7 +12,7 @@ const TableHeader = ()=>{
 
     return(
         <div className="ComparisonRow TableHeader">
-            <div>&nbsp;</div>
+            <div></div>
             {
                 COMPARE.CompareData.UserSelected.map((model,i)=>{
                     return(
@@ -21,7 +21,8 @@ const TableHeader = ()=>{
                         </div>
                     )
                 })
-            }
+            } 
+           
         </div>
     )
 }

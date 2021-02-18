@@ -97,7 +97,7 @@ export const FetchSingleScanResult = (scanID, scan)=>{
         store.dispatch({ type:'STORESELECTEDUI', payload:{active:false,processing:true,activeID:scanID} }); 
 
 
-        console.log("scanID", scanID)
+        console.log("scanID", scanID, 'scan', scan)
         const AWSURL=' https://intactanalytiq.s3-ap-southeast-2.amazonaws.com/';
        // 6002d5ece940b655642d22df.json
        // headers: axiosHeader

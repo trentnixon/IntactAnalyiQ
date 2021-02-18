@@ -11,7 +11,7 @@ import Trade_ResourceAllocationOverTime from "Pages/Auth/SingleModelResult/compo
 import TradeSpecific_ClientBreakdown from "Pages/Auth/SingleModelResult/components/Trade_Specific_ClientBreakdown";
 import TradeSpecific_Overview from "Pages/Auth/SingleModelResult/components/Trade_Specific_Overview";
 import Trade_Ratios from "Pages/Auth/SingleModelResult/components/Trade_Ratios";
-import TradeHeatMap from  "Pages/Auth/SingleModelResult/components/Trade_Heatmap";
+import TradeHeatMap from  "Pages/Auth/SingleModelResult/Maps/Trade_Heatmap";
 import FaceIcon from '@material-ui/icons/Face';
 
 const SubSection_Trade = ()=>{
@@ -25,12 +25,12 @@ const SubSection_Trade = ()=>{
             stat bar : resource figures
             stat bar resources by client.
             Bar WO spread over resources 
-            Bar : resources by cluster type 
+            Bar : resources by cluster type  
            
             <Trade_ResourceAllocation />  
             <Trade_Radial_Charts />
             <Trade_Radial_Clients />     
-            <TradeHeatMap />
+            <TradeHeatMap /> 
                 <Section>
                     {
                             UX.AreaSelectFilter.ByResourceType === null ? <SelectATrade /> :<TradeSpecificComponents />
@@ -61,7 +61,7 @@ const SelectATrade = ()=>{
 
 const TradeSpecificComponents=()=>{
     return(
-        <Section className="SelectedItem">
+        <Section className="SelectedItem"> 
                 <TradeSpecific_Overview />   
                 <TradeSpecific_ClientBreakdown />
                 <Trade_ResourceAllocationOverTime />

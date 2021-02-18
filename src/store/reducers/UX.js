@@ -3,7 +3,7 @@ const InitialState ={
    
     SelectedArea:null,
   
-    AreaSelectFilter:{ByResourceType:null,ByClusterType:null,ByClient:null},
+    AreaSelectFilter:{ByResourceType:null,ByClusterType:null,ByClient:null, ByModel:null},
 
     MapParameters:{
         LatLngBoundaries:{
@@ -76,6 +76,13 @@ const UX = (state=InitialState, action) =>{
                             // eslint-disable-next-line 
             break
         }     
+
+        case "SETFILTERMODEL":{
+            return {...state, AreaSelectFilter:{...state.AreaSelectFilter, ByModel:action.payload}}
+                            // eslint-disable-next-line 
+            break
+        }     
+        
         
 
     }

@@ -25,7 +25,7 @@ const SingleModelResult = ()=>{
                     <Switch> 
                         <Route path={`${match.path}/locations`}>
                             <SubSection_Locations />
-                        </Route>
+                        </Route> 
                           
                         <Route path={`${match.path}/trades`}>
                             <SubSection_Trade />
@@ -34,7 +34,7 @@ const SingleModelResult = ()=>{
                         <Route path={`${match.path}/clients`}>
                             <SubSection_Client />
                         </Route> 
-
+ 
 
                         <Route path={`${match.path}/workorders`}>
                             <SubSection_Workorders />
@@ -47,7 +47,7 @@ const SingleModelResult = ()=>{
                         <Route path={`${match.path}/cluster`}>
                             <SubSection_Clusters />
                         </Route>
-                         
+                          
                     </Switch> 
             <AppBar />
         </>

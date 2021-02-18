@@ -9,7 +9,7 @@ import {H1} from "Pages/Auth/Components/Type";
 import Locations_Basic_Stats from "../components/Locations_Basic_Stats"
 import Locations_Basic_Charts from "../components/Locations_Basic_Charts";
 
-import LocationHeatMap from "../components/Location_Heatmap";
+import LocationHeatMap from "../Maps/Location_Heatmap";
 import Location_ResourceSpread from "../components/Location_ResourceSpread";
 import Location_WorkorderSpread from "../components/Location_WorkOrderSpread";
 const SubSection_Locations = ()=>{
@@ -21,7 +21,7 @@ const SubSection_Locations = ()=>{
                 Out of Scope breakdown 
                 <Locations_Basic_Stats />    
                 <Locations_Basic_Charts />
-               
+                
                 <LocationHeatMap />
                 <Location_ResourceSpread />      
                 <Location_WorkorderSpread /> 

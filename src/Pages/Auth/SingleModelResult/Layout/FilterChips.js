@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import {useContext_UX_FULL} from "Context/UX";
 
-import {SetMapResourceType,SetMapClusterType,SetFilterClient } from "actions/HandleUX";
+import {SetMapResourceType,SetMapClusterType,SetFilterClient,SetFilterModel } from "actions/HandleUX";
 import {findClientName} from "actions/ClusterAnalysis"
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,6 +9,8 @@ import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import AccountTreeIcon from '@material-ui/icons/AccountTree';
+
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -30,6 +32,7 @@ const FilterChips = ()=>{
             { UX.AreaSelectFilter.ByResourceType != null ? <ResourceChip /> : false }
             { UX.AreaSelectFilter.ByClusterType != null ? <ClusterChip /> : false }
             { UX.AreaSelectFilter.ByClient != null ? <ClientChip /> : false }
+            { UX.AreaSelectFilter.ByModel != null ? <ModelChip /> : false }
             
         </div>
     )
@@ -38,6 +41,15 @@ const FilterChips = ()=>{
 export default FilterChips;
 
 
+const ModelChip=()=>{
+    const UX = useContext_UX_FULL();
+    const handleDelete = () => {  SetFilterModel(null) };
+    //onClick={handleDelete}
+    useEffect(()=>{console.log( UX.AreaSelectFilter.ByModel)},[UX])
+    return(
+        <Chip label={ UX.AreaSelectFilter.ByModel} clickable  className="TradeChip"  icon={<AccountTreeIcon />} />
+    )
+}
 const ResourceChip=()=>{
     const UX = useContext_UX_FULL();
     const handleDelete = () => {  SetMapResourceType(null) };

@@ -16,7 +16,7 @@ const ClusterByClientName = ()=>{
         <>
             <ul className="Stat_Bar Column">
             <H3 Copy={`Resources Allocations`} />
-            {
+            { 
                 ClientBreakDown.map((key, i)=> {
                     return(
                         <li key={i}>

@@ -8,33 +8,24 @@ import ModelComparision from "./Compare/CompareModels";
  const CompareModels=()=>{
 
     const COMPARE = useContext_COMPARE_FULL();
-    useEffect(()=>{ 
-        //console.log(COMPARE.CompareProcessing) 
-    },[COMPARE])
-
+    useEffect(()=>{ },[COMPARE])
     return(
-        <>
-         { COMPARE.CompareProcessing ? <FetchingModels /> :<UIswitch /> }          
-        </>
+        <> { COMPARE.CompareProcessing ? <FetchingModels /> :<UIswitch /> } </>
     )
 }
 
 export default CompareModels
 
 
-const UIswitch = ()=>{
+const UIswitch = ()=>{ 
     const COMPARE = useContext_COMPARE_FULL();
     return(
-        <>
-            { COMPARE.CompareStatus ? <ModelComparision /> :<SelectModels /> }
-        </>
+        <> { COMPARE.CompareStatus ? <ModelComparision /> :<SelectModels /> } </>
     )
 }
 
 const FetchingModels = ()=>{
     return(
-        <>
-            <h1>Fetching Models</h1>
-        </>
+        <> <h1>Fetching Models</h1> </>
     )
-}
+} 

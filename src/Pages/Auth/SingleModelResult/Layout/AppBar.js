@@ -14,7 +14,8 @@ import LocationCityIcon from '@material-ui/icons/LocationCity';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import PeopleIcon from '@material-ui/icons/People';
 
-import FilterChips from "./FilterChips";
+
+import FilterChips from "Pages/Auth/SingleModelResult/Layout/FilterChips";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {

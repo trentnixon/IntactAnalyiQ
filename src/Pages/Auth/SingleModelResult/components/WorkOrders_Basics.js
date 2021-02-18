@@ -29,7 +29,7 @@ const WOrkOrders_TotalWorkOrder = ()=>{
                        <div className="Data Strong"><P Copy={`${((WorkorderTotals()[1]/WorkorderTotals().reduce((a, b) => a + b, 0))*100).toFixed(2)}%`} />
                    </div>
                    </li>
-                </ul> 
+                </ul>  
        
         </>
     )

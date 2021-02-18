@@ -42,7 +42,7 @@ import {findClientName} from "actions/ClusterAnalysis"
 // OBJ_[ROOT]_CALCULATED_FILTER
 /* ************************************************************************************************* */
 
-/************************* */
+/************************* */ 
 // MAIN OBJ "CLUSTERS vs Trade"
 /************************* */
 
@@ -133,7 +133,7 @@ export const OBJ_CLUSTER_GLOBAL=()=>{
 // model.SitesGroupedBy
 /************************* */
 
-export const OBJ_SITE_GLOBAL = ()=>{
+export const OBJ_SITE_GLOBAL = ()=>{ 
     /*
         Exports
         {
@@ -282,8 +282,6 @@ export const OBJ_CLIENT_RESOURCES=()=>{
 
 
 
-
-
 /************************* */
 // MAIN OBJ "Resources GLOBAL"
 
@@ -302,7 +300,7 @@ export const OBJ_RESOURCES_GLOBAL=(Filters=['ByClusterType','ByResourceType','By
             Resources: 7.390000000000001
             Work Orders: 470
             name: "Electrician"
-        }
+        } 
     */
     // Get Filters 
     const UX = store.getState().UX

@@ -3,38 +3,19 @@ import React from 'react'
 import PieChartIcon from '@material-ui/icons/PieChart';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import BubbleChartIcon from '@material-ui/icons/BubbleChart';
-
 import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import TouchAppIcon from '@material-ui/icons/TouchApp';
 import MapIcon from '@material-ui/icons/Map';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import {ChartIcon} from 'actions/HandleUX';
 
 import {H4, P} from "Pages/Auth/Components/Type";
 import Tooltip from '@material-ui/core/Tooltip';
 const ChartHeader=(props)=>{
     const{ Header,Copy, Icon} = props
-    let DisplayIcon;
-    switch (Icon) {
-        case 'bar':
-            DisplayIcon = <AssessmentIcon />
-          break;
-          case 'pie':
-            DisplayIcon = <PieChartIcon />
-          break;
-          case 'radial':
-            DisplayIcon = <BubbleChartIcon />
-          break;
-          case 'map':
-            DisplayIcon = <MapIcon />
-          break;
-          case 'funnel':
-            DisplayIcon = <FilterListIcon />
-          break;
-          default:
-            DisplayIcon = <AssessmentIcon />
-        
-      }
+    let DisplayIcon = ChartIcon(Icon);
+
     return(
         <div className="ChartHeader">
             <div className="InfoIcons">

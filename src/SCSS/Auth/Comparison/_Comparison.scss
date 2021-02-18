@@ -1,13 +1,51 @@
 
+
+.ModelComparisonContainer{
+    display: flex;
+    flex-direction: row-reverse;
+    flex-grow: 1;
+    flex-wrap: nowrap;
+    width: 100%;
+        .ModelComparisonFilter{
+            width: 20%;
+                h4{
+                    text-align: center;
+                    font-size: .8rem;
+                }
+            .GlobalFilter{
+                margin: 0;
+                padding: 0rem 0rem;
+                .options{
+                    flex-direction: column;
+                    div{
+                        width: 98%;
+                    }
+                }
+            }
+        }
+
+        .PacketofChips{
+            position: fixed;
+            bottom: 5px;
+            div{
+                background-color: $color2;
+            }
+        }
+}
+
 .ModelComparisonTable{
-    border:1px solid $color1;
+    //border:1px solid $color1;
     display: flex;
     flex-direction: column;
     border-radius: $borderRadius;
+    width: 80%;
     font-size: .95rem;
     .TableHeader{
-        padding: 0rem;
+        padding: 0rem; 
         border-radius: $borderRadius;
+        position: sticky;
+        top: 102px;
+        z-index: 500;
         div{
             background-color: $color4;
             padding: 1.2rem;
@@ -16,7 +54,7 @@
                 color: $color1;
                 font-weight: 100;
                 letter-spacing: -1px;
-                margin: 0;
+                margin: 0; 
             }
            
         }
@@ -25,9 +63,52 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        flex-wrap: wrap;
+        border-radius: $borderRadius;
+        .FullWidth{ 
+            width: 100%;
+            text-align: center !important;
+            h2{
+                font-size: 1rem !important;
+                font-weight: 100 !important;
+                margin: 0;
+                text-align: left;
+            }
+             
+        }
+
+        .ShowInt{
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 400;
+            background-color: #656565;
+            color: #e6e6e6;
+            letter-spacing: -1px;
+            
+            font-family: 'Montserrat', sans-serif;
+            margin: 1px 0 ;
+            h2{
+                color: #e6e6e6;
+                margin: 0;
+                font-size: 1.2rem;
+                line-height: 2.2rem;
+                text-align: left;
+                font-weight: 100;
+                font-family: 'Montserrat', sans-serif;
+            }
+            span{
+                font-size: 1rem;
+                letter-spacing: -1px;
+            }
+            span.positive{ color: $colorTrue; }
+            span.negitive{ color: $colorFalse; }
+           
+        }
         >div{
             width: 33.3%;
+            //flex-grow: 1;
             padding: .3rem 1rem;
+           // margin: 0 1px;
             text-align: right;
         }
 
@@ -70,16 +151,22 @@
         margin: .5rem 0;
 
         .SectionHeader{
-            background-color: $color5;
-            padding: .1rem .5rem;
-            border-radius: $borderRadius;
+            z-index: 100;
+            padding: 0rem .5rem;
+            position: sticky;
+            top: 67px;
+            background-color: #fafafa;
+
             h2{
-                color: $color1;
+                color: $color4;
+               
                 text-align: left;
-                font-size: .9rem;
-                font-weight: 600;
+                font-size: 1.15rem;
+                font-weight: 100;
                 letter-spacing: 0;
-                margin: 0;
+                margin: 2rem 0 .5rem 0;
+                text-transform: uppercase;
+                padding: 0 0 .2rem;
             }
         }
     }

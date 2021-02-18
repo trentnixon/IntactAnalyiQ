@@ -4,9 +4,49 @@ import store from "../store/index"
 //import axios from 'axios';
 import {distancetoPoint} from "./GeoLocationActions"
 import { findIndex} from 'lodash'; 
-
-
+// Icons
+import PieChartIcon from '@material-ui/icons/PieChart';
+import AssessmentIcon from '@material-ui/icons/Assessment';
+import BubbleChartIcon from '@material-ui/icons/BubbleChart';
+import LiveHelpIcon from '@material-ui/icons/LiveHelp';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+import TouchAppIcon from '@material-ui/icons/TouchApp';
+import MapIcon from '@material-ui/icons/Map';
+import FilterListIcon from '@material-ui/icons/FilterList';
+import TimelineIcon from '@material-ui/icons/Timeline';
 export const colorArray = ['#030303', '#787878', '#575757', '#999A9A', '#D4D4D3', '#313231', '#777777', '#575757', '#3A3A3A', '#444444',];
+
+
+export const ChartIcon =(Icon)=>{
+  let DisplayIcon; 
+  switch (Icon) {
+    case 'bar':
+        DisplayIcon = <AssessmentIcon />
+      break;
+      case 'pie':
+        DisplayIcon = <PieChartIcon />
+      break;
+      case 'radial':
+        DisplayIcon = <BubbleChartIcon />
+      break;
+      case 'map':
+        DisplayIcon = <MapIcon />
+      break;
+      case 'funnel':
+        DisplayIcon = <FilterListIcon />
+      break;
+      case 'line':
+        DisplayIcon = <TimelineIcon />
+      break;
+
+      
+      default:
+        DisplayIcon = <AssessmentIcon />
+    
+  }
+  return DisplayIcon;
+}
+
 
 export function setMainMapLocation(Location){
   const NewLocation = {
@@ -23,6 +63,8 @@ export const SetMapClusterType = (type)=>{
   store.dispatch({ type:'SETMAPCLUSTERTYPE', payload:type});
 }
 
+
+
 export const SetMapResourceType = (type)=>{
   //console.log(type)
   store.dispatch({ type:'SETMAPRESOURCETYPE', payload:type});
@@ -31,6 +73,11 @@ export const SetMapResourceType = (type)=>{
 export const SetFilterClient = (type)=>{
   //console.log(type)
   store.dispatch({ type:'SETFILTERCLIENT', payload:type});
+}
+
+export const SetFilterModel = (type)=>{
+  console.log('SetFilterModel', type)
+  store.dispatch({ type:'SETFILTERMODEL', payload:type});
 }
 
 export function numberWithCommas(x) {

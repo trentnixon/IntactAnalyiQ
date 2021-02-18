@@ -34,7 +34,7 @@ export default function CompareSelect(props) {
         StoreCompareItem(event.target.value, pos)
     };
 
-  return (
+  return ( 
     <>
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel id="demo-simple-select-outlined-label">Model</InputLabel>

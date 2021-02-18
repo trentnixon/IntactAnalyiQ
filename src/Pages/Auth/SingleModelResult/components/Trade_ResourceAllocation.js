@@ -24,7 +24,7 @@ const ResourceAllocationRatios = ()=>{
         <>  
         <H3 Copy={`Model Resource Allocations`} />
      
-            <ul className="Pod_List">
+            <ul className="Pod_List"> 
             <li className="Pod">
                     <div className="Data"><P Copy={WorkorderTotals().reduce((a, b) => a + b, 0)}/></div>
                     <div className="Title"> <H4 Copy={`Work Order Total`}/></div>

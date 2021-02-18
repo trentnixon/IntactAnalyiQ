@@ -8,7 +8,7 @@ import WorkOrder_Radial_Charts from "Pages/Auth/SingleModelResult/components/Wor
 import WorkOrder_Basic_Charts from "Pages/Auth/SingleModelResult/components/WorkOrders_Basic_Charts";
 
 import WorkordersOverTime from "Pages/Auth/SingleModelResult/components/WorkOrders_OverTime";
-import WorkOrderHeatMap from   "Pages/Auth/SingleModelResult/components/WorkOrder_Heatmap";
+import WorkOrderHeatMap from   "Pages/Auth/SingleModelResult/Maps/WorkOrder_Heatmap";
 const SubSection_Workorders = ()=>{
 
     return(
@@ -19,9 +19,9 @@ const SubSection_Workorders = ()=>{
             <WorkOrder_Radial_Charts /> 
             <WorkOrder_Basic_Charts />
             <WorkOrderHeatMap />
-            <WorkordersOverTime /> 
+            <WorkordersOverTime />  
          </Section> 
-             
+              
         </>
     )  
 }

@@ -27,7 +27,7 @@ const SubSection_Client = ()=>{
                  UX.AreaSelectFilter.ByClient === null ? <SelectAClient /> :<ClientSingleSelected />
             }
        </>
-    ) 
+    )  
 } 
  
 export default SubSection_Client;  

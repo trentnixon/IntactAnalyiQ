@@ -29,7 +29,7 @@ const TableClusterBreakdown = ()=>{
     }
 
 
-    useEffect(()=>{ },[COMPARE])
+    useEffect(()=>{    console.log(COMPARE)},[COMPARE])
 
     return(
         <div className={classes.root}>

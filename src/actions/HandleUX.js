@@ -58,11 +58,12 @@ export function setMainMapLocation(Location){
   store.dispatch({ type:'STOREMAPPARAMETERS', payload:NewLocation});
 }
 
-
+/* ********************************************************************************* */
+// Handle Various  Filters
+/* ********************************************************************************* */
 export const SetMapClusterType = (type)=>{
   store.dispatch({ type:'SETMAPCLUSTERTYPE', payload:type});
 }
-
 
 
 export const SetMapResourceType = (type)=>{
@@ -80,6 +81,27 @@ export const SetFilterModel = (type)=>{
   store.dispatch({ type:'SETFILTERMODEL', payload:type});
 }
 
+export const SetFilterPolygon = (type)=>{
+  console.log('SETFILTERPOLYGON', type)
+  store.dispatch({ type:'SETFILTERPOLYGON', payload:type});
+  
+}
+
+export const SetFilterMarkerType = (type)=>{
+  console.log('SETFILTERMARKERTYPE', type)
+  store.dispatch({ type:'SETFILTERMARKERTYPE', payload:type});
+}
+
+
+export const SetSelectedCluster = (type)=>{
+  console.log('SETSELECTEDCLUSTER', type)
+  store.dispatch({ type:'SETSELECTEDCLUSTER', payload:type});
+}
+
+
+/* ********************************************************************************* */
+// END Filters
+/* ********************************************************************************* */
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

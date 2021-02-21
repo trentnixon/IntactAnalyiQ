@@ -2,8 +2,7 @@
     width: 100%;
     margin: 0 auto;
 
- 
-   
+
     >h2{ 
         width: 100%; 
         text-align: left;
@@ -17,6 +16,83 @@
         color: $color5;
         font-size: 1.1rem;
     }
+
+    #MainMap{
+        >div:nth-child(1){
+            width:100% !important;
+        }
+
+        .SiteInfoWindow{
+            padding: 1rem 1rem 1.5rem;
+            color: white;
+            font-size: .9rem;
+            line-height: .8rem;
+            width: 400px;
+            ul{
+                display: flex;
+               flex-direction: column;
+               width: 100%;
+               li{
+                display: flex;
+                justify-content: space-between;
+               }
+            }
+            h3{
+                margin: 0;
+                color: $color2;
+            }
+        }
+
+        .gm-style-iw-c,.gm-style-iw-d,.gm-style-iw-t::after, .gm-style-iw-c{
+            background-color: $color3;
+            background: $color3;
+            overflow: hidden !important;            
+        }
+       
+        div.InfoBox{
+            padding: .5rem 1rem;
+            background-color: $color3;
+            z-index: 90;
+            h3{ text-align: center;}
+            ul{
+                li{
+                    color: $color1;
+                    display: flex;
+                    flex-grow: 1;
+                    justify-content: space-between;
+                    align-items: center;
+                    align-content: center;
+                    flex-wrap: wrap;
+
+                    span{font-weight: 400; color: $color2;}
+                    ul{
+                        width: 100%;
+                        padding: .5rem ;
+                        li{
+                            color: $color1;
+                            span{
+                                color: $color1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        div.hide{
+            width: 0%;
+            transition: width .5s;
+            padding: 0;
+        }
+        div.show{
+            width: 40%;
+            transition: width .5s;
+        }
+        display: flex;
+    }
+
+
+
     .MapColorKey{
         display: flex;
         justify-content: center;

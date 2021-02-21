@@ -46,7 +46,7 @@ const ByComparabelModel = ()=>{
         MODEL.CompareData.UserSelected.map((model,i)=>{ options.push(model.Name) })
         setOPTIONS(options)
     }
-
+ 
     useEffect(()=>{ setType(UX.AreaSelectFilter.ByModel) },[UX])
 
     useEffect(()=>{ 

@@ -8,13 +8,29 @@
         align-content: center;
         a{
             margin: 0 5px;
+            text-decoration: none;
             span{
                 display: flex;
                 flex-direction: column;
 
-                svg{}
-                p{     font-size: .4rem;
+                svg,p{
+                    fill: $color1;
+                    color:  $color1;
+                }
+                p{   font-size: .4rem;
                     font-weight: 100;}
+            }
+        }
+
+        a.selected{
+           text-decoration: none;
+            span{
+            
+
+                svg{fill: $color2;
+                    color:  $color2;}
+                p{     fill: $color2;
+                    color:  $color2;}
             }
         }
     }

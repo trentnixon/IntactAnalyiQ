@@ -7,6 +7,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import {find} from 'lodash'
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: theme.spacing(2),
     },
   }));
+
 const ByCapitalCities = ()=>{
     const UX = useContext_UX_FULL()
     const CapitalCities=[
@@ -67,16 +69,27 @@ const ByCapitalCities = ()=>{
         }
 ]
 
-    const classes = useStyles();
-    const [city, setCity] = React.useState(UX.MapParameters.Location);
 
+    const classes = useStyles();
+    const [city, setCity] = useState(UX.MapParameters.Location);
+    const [OPTIONS, setOPTIONS] = useState([])
+    
+    
     const handleChange = (event, key, payload) => { 
         //console.log(CapitalCities[event.target.value])
-        
-        setMainMapLocation(CapitalCities[event.target.value]); 
-        setCity(CapitalCities[event.target.value].Name)
+        let Selected = find(CapitalCities, function(o) { return o.Name === event.target.value; })    
+        setMainMapLocation(Selected); 
+        setCity(event.target.value)
     
     };
+
+    const CreateOptions=()=>{
+        let options=[]
+        CapitalCities.map((model,i)=>{ options.push(model.Name) })
+        setOPTIONS(options)
+    }
+
+    useEffect(()=>{CreateOptions()},[])
 
     return(
        <FormControl variant="outlined" className={`${classes.formControl} Map_Filters`}>
@@ -88,12 +101,10 @@ const ByCapitalCities = ()=>{
                 onChange={handleChange}
                 label="Select Major City"
                 >
-          <MenuItem value=""> <em>Select</em> </MenuItem>
-
           {
-              CapitalCities.map((city,i)=>{
+              OPTIONS.map((city,i)=>{
                   return(
-                    <MenuItem key={i} value={i}>{city.Name}</MenuItem>
+                    <MenuItem key={i} value={city}>{city}</MenuItem>
                   )
               })
           }

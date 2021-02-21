@@ -25,9 +25,9 @@ const Locations_Radial_Pie_Charts=()=>{
                 <Chart_Pie_OutofScope />
             </div> 
             
-            <Stats_Bar data={OBJ_CLUSTER_GLOBAL()} id={`name`} value={`Appearances`}/>
+            <Stats_Bar data={OBJ_CLUSTER_GLOBAL()} name={`name`} value={`Appearances`}/>
             
-        </DiagramContainer>
+        </DiagramContainer> 
     )
 }
 

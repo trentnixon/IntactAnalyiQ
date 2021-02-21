@@ -5,15 +5,18 @@ import {useContext_UX_FULL} from "Context/UX";
 import {useContext_SCAN_FULL} from "Context/SCAN";
 
 import {interpolate} from "d3-interpolate";
-import {  Marker, MarkerClusterer  } from '@react-google-maps/api';
+import {  Marker, MarkerClusterer,InfoWindow  } from '@react-google-maps/api';
+
 //const iconBase ="https://developers.google.com/maps/documentation/javascript/examples/full/images/";
 import {findIndex} from 'lodash'; 
 import {RegionColor} from "actions/HandleUX"
+import {findClientName} from "actions/ClusterAnalysis";
 
 const divStyle = {
-    background: `white`,
-    padding: 1
-  }
+  background: `yellow`,
+  border: `1px solid #ccc`,
+  padding: 15
+}
  
   const mcOptions = {
     styles: [{
@@ -30,7 +33,7 @@ const divStyle = {
       {
         height: 66,
         url: "/clusters/m3.png",    
-        width: 66,
+        width: 66, 
       },
       {
         height: 78,
@@ -52,11 +55,27 @@ const MarkerBasedLocationMarkers = ()=>{
     const UX = useContext_UX_FULL();
     const SCAN = useContext_SCAN_FULL();
     const [DisplayMarkers,setDisplayMarkers] = useState(null)
-   
-    let Targeticon = { };
+    const [ShowInfoWindow, setShowInfoWindow] = useState(false)
+    const [InfoWindowContent, setInfoWindowContent] = useState(false)
 
-    const onLoadMarker = marker => {console.log('marker Created')}
-    const OnMarkerClick=(name, Region)=>{console.log("Marker Clicked", name, Region) }
+
+
+
+    let Targeticon = { };
+    let Homeicon={}
+    const onLoadMarker = marker => {
+      //console.log('marker Created')
+    }
+
+    const OnMarkerClick=(point, Region)=>{
+      console.log("Marker Clicked", point, Region) 
+      
+      setInfoWindowContent(point)
+      setShowInfoWindow(true)
+      
+  
+    
+    }
 
 
       const ColorMe = (val)=>{
@@ -82,15 +101,20 @@ const MarkerBasedLocationMarkers = ()=>{
 
       const CreateMarkers = (markers,  clusterer)=>{
 
-        //console.log("markers", markers)
+       
         let StoreMarkers=[];
 
         markers.map((centerPoint,i)=>{
 
-          //console.log(centerPoint, UX.AreaSelectFilter.ByResourceType)
+         // console.log("centerPoint", centerPoint)
+
+  
 /* ******************************************************************************** */         
 // Map Filters
-
+// Filter Results by Polygon Select
+    if(UX.AreaSelectFilter.ByPolygon !== null)  
+            if(centerPoint.name != UX.AreaSelectFilter.ByPolygon)
+                return
 // Filter Results by Cluster Type
           if(UX.AreaSelectFilter.ByClusterType !== null)  
             if(centerPoint.scanCategory != UX.AreaSelectFilter.ByClusterType)
@@ -102,7 +126,39 @@ const MarkerBasedLocationMarkers = ()=>{
 // End Map Filters
 /* ******************************************************************************** */  
 
-          centerPoint.sites.map((site,ii)=>{
+          if(UX.AreaSelectFilter.ByMarkerType === 'Center Points Only'){
+
+            Homeicon = {
+              //path: "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
+              path:"M38.8823 0.384155L0.579987 34.26H10.06V74.76H66.94V34.26H76.42L38.8823 0.384155Z",
+              fillColor: RegionColor(centerPoint.scanCategory),
+              fillOpacity: .9,
+              anchor: new window.google.maps.Point(50,50),
+              strokeWeight: 0,
+              scale: .3
+          }; 
+    
+      
+                StoreMarkers.push( 
+                    
+                        <Marker
+                            clusterer={clusterer}
+                            key={centerPoint.name}
+                            onLoad={onLoadMarker}
+                            title={centerPoint.name}
+                            //label={site.name}
+                            icon={Homeicon}
+                            //onClick={()=>{OnMarkerClick(centerPoint)}}
+                            position={{
+                                    lat: parseFloat(centerPoint.center.lat),
+                                    lng: parseFloat(centerPoint.center.lng)
+                                }}
+                        />
+                  )
+
+
+          }else{
+            centerPoint.StripedSites.map((site,ii)=>{
 
               Targeticon = {
                 //path: "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
@@ -113,53 +169,63 @@ const MarkerBasedLocationMarkers = ()=>{
                 strokeWeight: 0,
                 scale: .3
             }; 
-          
-            
-            StoreMarkers.push( 
-                
-                    <Marker
-                        clusterer={clusterer}
-                        key={site.name}
-                        onLoad={onLoadMarker}
-                        title={site.name}
-                        //label={site.name}
-                        icon={Targeticon}
-                        onClick={()=>{OnMarkerClick(site.name, centerPoint.scanCategory)}}
-                        position={{
-                                lat: parseFloat(site.lat),
-                                lng: parseFloat(site.long)
-                            }}
-                    />
-                
-            )
-            })
-        })
-        /*
-        Object.keys(markers).map((key, value)=>{
-            //console.log(markers[key], value)
-              markers[key].map((sites,i)=>{
-                  sites.map((site,ii)=>{
-
-                  
-                  })
+      
+        
+                  StoreMarkers.push( 
+                      
+                          <Marker
+                              clusterer={clusterer}
+                              key={site.name}
+                              onLoad={onLoadMarker}
+                              title={site.name}
+                              //label={site.name}
+                              icon={Targeticon}
+                              onClick={()=>{OnMarkerClick(site, centerPoint.scanCategory)}}
+                              position={{
+                                      lat: parseFloat(site.lat),
+                                      lng: parseFloat(site.long)
+                                  }}
+                          />
+                    )
               })
-          })*/
-     //   setDisplayMarkers(StoreMarkers);
-        return StoreMarkers;
+
+          }// end ByMarkerType Filter ELSE
+          
+          
+          
+          
+          })
+          return StoreMarkers;
         }
-
-
- 
-   
 
       useEffect(()=>{ 
         if(CreateMarkers(SCAN.SelectedModel.STOREMARKERCENTERPOINTS) != undefined)
           CreateMarkers(SCAN.SelectedModel.STOREMARKERCENTERPOINTS)
       },[SCAN.SelectedModel])
 
+
+      const onLoad = infoWindow => {
+        console.log('infoWindow: ', infoWindow)
+      }
+      
+      const onClose = (infoWindow)=>{
+        console.log('onClose: ',infoWindow)
+        setShowInfoWindow(false)
+      }
+
+
       useEffect(()=>{ },[UX])
       return(  <>
                
+              {
+                ShowInfoWindow ? <InfoWindow  onLoad={onLoad} position={ { lat: InfoWindowContent.lat, lng: InfoWindowContent.long }}  onCloseClick={onClose}>
+                                    <div style={{ }}>
+                                        <InfoWindowDetails InfoWindowContent={InfoWindowContent}/>
+                                    </div>
+                                </InfoWindow> : false
+              }
+                
+
                  <MarkerClusterer options={mcOptions} maxZoom={12} minimumClusterSize={30}>
                     {(clusterer) =>
                        CreateMarkers(SCAN.SelectedModel.STOREMARKERCENTERPOINTS, clusterer)
@@ -170,12 +236,43 @@ const MarkerBasedLocationMarkers = ()=>{
 
 }
 
-
 export default MarkerBasedLocationMarkers;
 
-//  {DisplayMarkers}
-/*
-locations.map((location) => (
-                        <Marker key={createKey(location)} position={location} clusterer={clusterer} />
-                      ))
-*/
+
+
+const InfoWindowDetails = (props)=>{
+  const {InfoWindowContent} = props
+  return(
+      <div  className="SiteInfoWindow" >
+          <h3>Site Info</h3>
+          <ul>
+              <li>
+                  <span>Address : </span>
+                  <span>{InfoWindowContent.name}</span>
+              </li>
+              <li>
+                  <span>Work Orders : </span>
+                  <span>{InfoWindowContent.SumWorkOrder}</span>
+              </li>
+              <li>
+                  <span>Clients : </span>
+                  <span>
+                    <ul>
+                        <li>
+                              {
+                                InfoWindowContent.customers.map((customer,i)=>{
+                                  return(
+                                    <li key={i}>
+                                        {findClientName(customer)}
+                                    </li>
+                                  )
+                                })
+                              }
+                          </li> 
+                  </ul></span>
+              </li>
+              
+          </ul>
+      </div>
+  )
+}

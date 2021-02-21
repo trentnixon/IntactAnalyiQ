@@ -14,7 +14,7 @@ const ResultMap = ()=>{
                 <MapColorKey />
                 <Map_SingleModelReview_FULLModel />
             </div>
-        </>
+        </> 
     )
 }
 

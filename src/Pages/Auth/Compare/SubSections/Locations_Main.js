@@ -76,7 +76,7 @@ const TableSectionWorkorders = ()=>{
                     <CompareTableTotalLocations />
                     <CompareClusters />
 
-                    <SectionChart Charts={Charts} />  
+                    <SectionChart Charts={Charts} />   
           </div>   
      
     )

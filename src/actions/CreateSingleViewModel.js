@@ -81,8 +81,8 @@ export const OBJ_CLUSTER_GLOBAL=()=>{
             Clusters_ByClient[Index].Appearances = Clusters_ByClient[Index].Appearances + 1;
 
             Object.keys(model.ClientGroupedBy).map((key,ii)=>{
+
                 model.ClientGroupedBy[key].map((q,ii)=>{
-                    //console.log(q)
                     /* Run 'ByResourceType' Filter ********************************** */       
                     if(!RunFilter(q.Trade ,UX.AreaSelectFilter.ByResourceType)) return false
                     /* ********************************** */ 
@@ -228,8 +228,12 @@ export const OBJ_CLIENT_RESOURCES=()=>{
 
   
     MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
-        //console.log(model)
         
+        //console.log(model)
+          /* ********************************** */       
+        // Run Filter
+        if(!RunFilter(model.name,UX.AreaSelectFilter.ByPolygon)) return false
+        /* ********************************** */ 
         /* ********************************** */       
         // Run Filter
         if(!RunFilter(model.scanCategory,UX.AreaSelectFilter.ByClusterType)) return false
@@ -312,6 +316,11 @@ export const OBJ_RESOURCES_GLOBAL=(Filters=['ByClusterType','ByResourceType','By
     MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
         //console.log(model)
         
+        /* ********************************** */       
+        // Run Filter
+        if(!RunFilter(model.name,UX.AreaSelectFilter.ByPolygon)) return false
+        /* ********************************** */ 
+
         /* ********************************** */       
         // Run Filter
         if(Filters.indexOf('ByClusterType') !== -1){
@@ -409,7 +418,10 @@ export const OBJ_CLIENT_GLOBAL_Filter =  ()=>{
 
     MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
         
-
+        /* ********************************** */       
+        // Run Filter
+        if(!RunFilter(model.name,UX.AreaSelectFilter.ByPolygon)) return false
+        /* ********************************** */ 
         /* Run 'ByClusterType' Filter ********************************** */       
             if(!RunFilter(model.scanCategory,UX.AreaSelectFilter.ByClusterType)) return false
         /* ************************************************************* */ 
@@ -456,6 +468,24 @@ export const OBJ_CLIENT_GLOBAL_Filter =  ()=>{
 }
 
 
+
+export const OBJ_CENTERPOINTS=()=>{
+    /*
+        Exports
+            {}
+    */
+    const UX = store.getState().UX
+    const MODEL = store.getState().SCANSTATE
+    let CenterPoints=[];
+
+    MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
+            console.log(model)
+            CenterPoints.push({name:model.name,type:model.scanCategory})
+    })
+
+    return CenterPoints;
+
+}
 /* ************************************************************************************************* */
 // END MAIN OBJ COLLECTIONS
 /* ************************************************************************************************* */
@@ -513,7 +543,10 @@ export const Resources_HeatMap=()=>{
    let Quota=[]
    MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
        
-
+        /* ********************************** */       
+        // Run Filter
+        if(!RunFilter(model.name,UX.AreaSelectFilter.ByPolygon)) return false
+        /* ********************************** */ 
        /* ********************************** */       
        // Run Filter
        if(!RunFilter(model.scanCategory ,UX.AreaSelectFilter.ByClusterType)) return false
@@ -559,7 +592,10 @@ export const WorkOrder_HeatMap=()=>{
    
    MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
        
-
+        /* ********************************** */       
+        // Run Filter
+        if(!RunFilter(model.name,UX.AreaSelectFilter.ByPolygon)) return false
+        /* ********************************** */ 
        /* ********************************** */       
        // Run Filter
        if(!RunFilter(model.scanCategory ,UX.AreaSelectFilter.ByClusterType)) return false
@@ -629,9 +665,14 @@ export const OBJ_DATESPREAD_TRADE=()=>{
     let Resources_Clients=[]
   
     MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
-        //console.log(model)
-       
-        /* ********************************** */       
+        console.log(model)
+       // 
+        
+       /* ********************************** */       
+        // Run Filter
+        if(!RunFilter(model.name,UX.AreaSelectFilter.ByPolygon)) return false
+        /* ********************************** */ 
+       /* ********************************** */       
         // Run Filter
         if(!RunFilter(model.scanCategory,UX.AreaSelectFilter.ByClusterType)) return false
         /* ********************************** */ 
@@ -689,7 +730,10 @@ export const CreateOBJ_Client_WO_Overtime=()=>{
   
     MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
         //console.log(model)
-       
+        /* ********************************** */       
+        // Run Filter
+        if(!RunFilter(model.name,UX.AreaSelectFilter.ByPolygon)) return false
+        /* ********************************** */ 
         /* ********************************** */       
         // Run Filter
         if(!RunFilter(model.scanCategory,UX.AreaSelectFilter.ByClusterType)) return false

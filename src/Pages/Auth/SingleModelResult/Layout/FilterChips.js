@@ -1,7 +1,15 @@
 import React, { useEffect } from 'react';
 import {useContext_UX_FULL} from "Context/UX";
 
-import {SetMapResourceType,SetMapClusterType,SetFilterClient,SetFilterModel } from "actions/HandleUX";
+import {
+        SetMapResourceType,
+        SetMapClusterType,
+        SetFilterClient,
+        SetFilterModel,
+        SetFilterPolygon,
+        SetSelectedCluster } 
+        from "actions/HandleUX";
+
 import {findClientName} from "actions/ClusterAnalysis"
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,7 +18,7 @@ import FaceIcon from '@material-ui/icons/Face';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
-
+import LayersIcon from '@material-ui/icons/Layers';
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -33,13 +41,27 @@ const FilterChips = ()=>{
             { UX.AreaSelectFilter.ByClusterType != null ? <ClusterChip /> : false }
             { UX.AreaSelectFilter.ByClient != null ? <ClientChip /> : false }
             { UX.AreaSelectFilter.ByModel != null ? <ModelChip /> : false }
+            { UX.AreaSelectFilter.ByPolygon != null ? <PolygonChip /> : false }
             
         </div>
     )
 }
-
+ 
 export default FilterChips;
 
+
+const PolygonChip=()=>{
+    const UX = useContext_UX_FULL();
+    const handleDelete = () => {  
+        SetFilterPolygon(null) 
+        SetSelectedCluster(null)
+    };
+    //onClick={handleDelete}
+    useEffect(()=>{console.log( UX.AreaSelectFilter.ByPolygon)},[UX])
+    return(
+        <Chip label={ UX.AreaSelectFilter.ByPolygon} clickable  className="PolygonChip"  onClick={handleDelete}  icon={<LayersIcon />} />
+    )
+}
 
 const ModelChip=()=>{
     const UX = useContext_UX_FULL();
@@ -47,7 +69,7 @@ const ModelChip=()=>{
     //onClick={handleDelete}
     useEffect(()=>{console.log( UX.AreaSelectFilter.ByModel)},[UX])
     return(
-        <Chip label={ UX.AreaSelectFilter.ByModel} clickable  className="TradeChip"  icon={<AccountTreeIcon />} />
+        <Chip label={ UX.AreaSelectFilter.ByModel} clickable  className="ModelChip" onClick={handleDelete}  icon={<AccountTreeIcon />} />
     )
 }
 const ResourceChip=()=>{

@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Switch,useRouteMatch } from "react-router-dom";
-
-
+import {useContext_SCAN_FULL} from "Context/SCAN";
+import { useHistory } from "react-router-dom";
 // Layout 
 import AppBar from "Pages/Auth/SingleModelResult/Layout/AppBar"
 import HeaderTitles from "Pages/Auth/SingleModelResult/Layout/HeaderTitle"
@@ -16,9 +16,25 @@ import HeaderTitles from "Pages/Auth/SingleModelResult/Layout/HeaderTitle"
   
 
 
+const ModelCheck = ()=>{
+    const MODEL = useContext_SCAN_FULL()
+    let match = useRouteMatch(); 
+    const Pushhistory = useHistory();
+    useEffect(()=>{
+            console.log()
+            if(MODEL.SelectedModel === null){
+                Pushhistory.push("/view-models");
+            }
+    },[MODEL])
+    return(
+        <div>
+            { MODEL.SelectedModel === null ? false:<SingleModelResult />}
+        </div>
+    )
+}
+
 const SingleModelResult = ()=>{ 
     let match = useRouteMatch(); 
-    
     return(
         <>
             <HeaderTitles />
@@ -35,7 +51,6 @@ const SingleModelResult = ()=>{
                             <SubSection_Client />
                         </Route> 
  
-
                         <Route path={`${match.path}/workorders`}>
                             <SubSection_Workorders />
                         </Route>
@@ -48,11 +63,11 @@ const SingleModelResult = ()=>{
                             <SubSection_Clusters />
                         </Route>
                           
-                    </Switch> 
+                    </Switch>  
             <AppBar />
         </>
     ) 
 }
 
-export default SingleModelResult; 
+export default ModelCheck; 
 

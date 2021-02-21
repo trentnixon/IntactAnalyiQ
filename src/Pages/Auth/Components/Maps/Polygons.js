@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import {useContext_SCAN_FULL} from "Context/SCAN";
 import {useContext_UX_FULL} from "Context/UX";
-import {RegionColor} from "actions/HandleUX"
 import {Polygon} from '@react-google-maps/api';
 import {findIndex} from 'lodash'; 
+import {RegionColor, SetFilterPolygon,SetSelectedCluster} from "actions/HandleUX";
 
 const options = {
     fillColor: "lightblue",
@@ -25,6 +25,12 @@ const Polygons = ()=>{
     const UX = useContext_UX_FULL();
     const [DisplayPolygons, setPolygons] = useState([])
 
+    const handleClick=(centerpoint)=>{
+        console.log("Polygon Clicked", centerpoint)
+        SetFilterPolygon(centerpoint.name)
+        SetSelectedCluster(centerpoint)
+    }
+
     const CreatePolygons = ()=>{
         let CreatePolyPaths=[]
         SCAN.SelectedModel.STOREMARKERCENTERPOINTS.map((centerpoint,i)=>{
@@ -36,6 +42,11 @@ const Polygons = ()=>{
 
         //console.log(centerpoint.scanCategory)
         // Filter Results by Cluster Type    
+        if(UX.AreaSelectFilter.ByPolygon !== null)  
+            if(centerpoint.name != UX.AreaSelectFilter.ByPolygon)
+                return
+
+
         if(UX.AreaSelectFilter.ByClusterType !== null)  
             if(centerpoint.scanCategory != UX.AreaSelectFilter.ByClusterType)
                 return
@@ -44,6 +55,7 @@ const Polygons = ()=>{
         if(UX.AreaSelectFilter.ByResourceType !== null)  
             if(findIndex(centerpoint.resourceQuota, function(o) { return o.Trade === UX.AreaSelectFilter.ByResourceType}) === -1)
                  return
+
 
 // End Map Filters
 /* ******************************************************************************** */         
@@ -65,7 +77,10 @@ const Polygons = ()=>{
                     PolygonPath.push({ lat: point[0], lng: point[1]})
                 })
                 CreatePolyPaths.push(
-                    <Polygon paths={PolygonPath} options={options} />
+                    <Polygon 
+                        onClick={()=>{handleClick(centerpoint)}}    
+                        paths={PolygonPath} 
+                        options={options} />
                 )
                 
         })

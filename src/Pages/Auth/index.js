@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router} from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
-
+import {useContext_SCAN_FULL} from "Context/SCAN";
 import {useContext_AUTH_FULL} from "Context/AUTH";
 import {useContext_STRAPI_FULL} from "Context/STRAPI";
 
@@ -32,7 +32,7 @@ const routes = [
     { Rpath: "/create-model", component: ComponentCreateModel, exact:false},
     { Rpath: "/compare-models", component: CompareComponent, exact:false},
     { Rpath: "/MarkerBasedScan", component: ComponentScan, exact:false},
-    { Rpath: "/integity", component: ComponentDataDump, exact:false},
+    { Rpath: "/integrity", component: ComponentDataDump, exact:false},
     { Rpath: "/results", component: ResultsComponent, exact:false},
     { Rpath: "/UIComponents", component: UIComponents, exact:false},
   
@@ -132,6 +132,7 @@ const LoadingCopy=()=>{
 const AuthRouters = (props)=>{
 
     const AUTH = useContext_AUTH_FULL();
+    const MODEL = useContext_SCAN_FULL()
     const Pushhistory = useHistory();
     const STRAPI = useContext_STRAPI_FULL();
 
@@ -148,6 +149,9 @@ const AuthRouters = (props)=>{
         }
     }, [AUTH])
 
+    useEffect(()=>{
+        console.log(MODEL.SelectedModel)
+    },[MODEL])
     return(
       
         <Router  basename={'/auth/'} >

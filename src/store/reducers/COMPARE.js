@@ -5,7 +5,6 @@ const InitialState ={
         UserSelected:[],
         FetchedModels:[]
     },
-
 }
  
 

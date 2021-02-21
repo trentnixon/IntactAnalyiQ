@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import { Link} from "react-router-dom";
-
+import { NavLink } from 'react-router-dom'
 import List from '@material-ui/core/List';
 
 import ListItem from '@material-ui/core/ListItem';
@@ -20,35 +20,43 @@ const Login = ()=>{
     return(
 
         <List className="AuthNavigation">
-            
-            <ListItem button key='UI Components' component={Link} to={`/UIComponents`}>
-                <ListItemIcon><DashboardIcon /></ListItemIcon>
-                <ListItemText primary='UI Components' />
-            </ListItem>
-            <ListItem button key='Profile' component={Link} to={`/`}>
-                <ListItemIcon><PersonPinIcon /></ListItemIcon>
-                <ListItemText primary='Profile' />
-          </ListItem>
-          
-          <ListItem button key='Create Model' component={Link} to={`/create-model`}>
-                <ListItemIcon><BlurCircularIcon /></ListItemIcon>
-                <ListItemText primary='Create Model' /> 
-          </ListItem>
+            <NavLink to={`/UIComponents`} activeClassName="selected">
+                <ListItem button key='UI Components' >
+                    <ListItemIcon><DashboardIcon /></ListItemIcon>
+                    <ListItemText primary='UI Components' />
+                </ListItem>
+            </NavLink>
 
-          <ListItem button key='View Models' component={Link} to={`/view-models`}>
-                <ListItemIcon><ApartmentIcon /></ListItemIcon>
-                <ListItemText primary='View Models' /> 
-          </ListItem>
-          <ListItem button key='Compare Models' component={Link} to={`/compare-models`}>
-                <ListItemIcon><CompareIcon /></ListItemIcon>
-                <ListItemText primary='Compare Models' /> 
-          </ListItem>
-        
+            <NavLink to={`/`} exact activeClassName="selected">
+                <ListItem button key='Profile' component={Link} to={`/`}>
+                    <ListItemIcon><PersonPinIcon /></ListItemIcon>
+                    <ListItemText primary='Profile' />
+            </ListItem> 
+            </NavLink>
 
-         
+           <NavLink to={`/create-model`} activeClassName="selected">
+                <ListItem button key='Create Model' >
+                        <ListItemIcon><BlurCircularIcon /></ListItemIcon>
+                        <ListItemText primary='Create Model' /> 
+                </ListItem>
+           </NavLink>
+
+       
+            <NavLink to={`/view-models`} activeClassName="selected">
+                <ListItem button key='View Models' >
+                        <ListItemIcon><ApartmentIcon /></ListItemIcon>
+                        <ListItemText primary='View Models' /> 
+                </ListItem>
+            </NavLink>
+
+            <NavLink to={`/compare-models`} activeClassName="selected">
+                <ListItem button key='Compare Models' >
+                        <ListItemIcon><CompareIcon /></ListItemIcon>
+                        <ListItemText primary='Compare Models' /> 
+                </ListItem>
+            </NavLink>
+
         </List>
-   
-
     )
 }
 

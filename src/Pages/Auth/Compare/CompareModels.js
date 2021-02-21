@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {useContext_COMPARE_FULL} from "Context/COMPARE";
-import ResetModels from "../Components/buttons/ResetCompareModels";
+
+import ResetModels from "Pages/Auth/Components/buttons/ResetCompareModels"
 
 // Import Table
 import TableHeader from "Pages/Auth/Compare/Layout/TableHeader"
@@ -28,29 +29,6 @@ const ModelComparision = ()=>{
     
     return( 
         <>
-           {
-               COMPARE.CompareData.FetchedModels.length < 2 ? <LoadingCompare />:<ResetModels />
-           }
-        </>
-    )
-}
-
-export default ModelComparision;
-
-
-
-const LoadingCompare = ()=>{
-    return(
-        <>
-        <ResetModels />
-        <h1>Fetching Data</h1>
-        </>
-    )
-}
-
-const CompareModels = ()=>{
-    return( 
-        <>
             <h1>Comparison Results</h1> 
             <ResetModels />
             <div className="ModelComparisonContainer">
@@ -75,3 +53,5 @@ const CompareModels = ()=>{
         </>
     )
 }
+
+export default ModelComparision;

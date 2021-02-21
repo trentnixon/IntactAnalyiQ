@@ -3,7 +3,14 @@ const InitialState ={
    
     SelectedArea:null,
   
-    AreaSelectFilter:{ByResourceType:null,ByClusterType:null,ByClient:null, ByModel:null},
+    AreaSelectFilter:{
+        ByResourceType:null,
+        ByClusterType:null,
+        ByClient:null, 
+        ByModel:null,
+        ByPolygon:null,
+        ByMarkerType:'Show All'
+    },
 
     MapParameters:{
         LatLngBoundaries:{
@@ -12,7 +19,11 @@ const InitialState ={
         },
         BoundaryCenterPoint:null,
         zoom:4,
-        Location:"Australia"
+        Location:"Australia",
+    },
+    ClusterParameters:{
+        SelectedCluster:null,
+        SelectedLocation:null,
     }
 } 
  
@@ -81,9 +92,30 @@ const UX = (state=InitialState, action) =>{
             return {...state, AreaSelectFilter:{...state.AreaSelectFilter, ByModel:action.payload}}
                             // eslint-disable-next-line 
             break
-        }     
+        }  
+        case "SETFILTERPOLYGON":{
+            return {...state, AreaSelectFilter:{...state.AreaSelectFilter, ByPolygon:action.payload}}
+                            // eslint-disable-next-line 
+            break
+        }
+        case "SETFILTERMARKERTYPE":{
+            return {...state, AreaSelectFilter:{...state.AreaSelectFilter, ByMarkerType:action.payload}}
+                            // eslint-disable-next-line 
+            break
+        }   
         
         
+        // Selected CLuster
+        case "SETSELECTEDCLUSTER":{
+            return {...state, ClusterParameters:{...state.ClusterParameters, SelectedCluster:action.payload}}
+                            // eslint-disable-next-line 
+            break
+        }  
+        case "SETSELECTEDLOCATION":{
+            return {...state, ClusterParameters:{...state.ClusterParameters, SelectedLocation:action.payload}}
+                            // eslint-disable-next-line 
+            break
+        }   
 
     }
     return state;

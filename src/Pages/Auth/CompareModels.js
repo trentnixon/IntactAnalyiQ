@@ -4,8 +4,9 @@ import {useContext_COMPARE_FULL} from "Context/COMPARE";
 // Components
 import SelectModels from "./Compare/SelectModels";
 import ModelComparision from "./Compare/CompareModels";
+import ResetModels from "Pages/Auth/Components/buttons/ResetCompareModels"
 
- const CompareModels=()=>{
+const CompareModels=()=>{
 
     const COMPARE = useContext_COMPARE_FULL();
     useEffect(()=>{ },[COMPARE])
@@ -26,6 +27,6 @@ const UIswitch = ()=>{
 
 const FetchingModels = ()=>{
     return(
-        <> <h1>Fetching Models</h1> </>
+        <> <h1>Fetching Models</h1><ResetModels /> </> 
     )
 } 

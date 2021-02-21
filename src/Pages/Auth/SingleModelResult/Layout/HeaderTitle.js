@@ -24,20 +24,16 @@ const HeaderTitle = ()=>{
     },[SCAN])
     return(
         <>
-          
-        <div className="ModelSingleHeader">
-                
-                <h2>Model : {SCANMODELMETA.Name}</h2>
+            <div className="ModelSingleHeader">
                 <h4>Date Range : {startDate}  - {endDate }</h4>
                 <h4>Working Days Counted : {WorkingDays}</h4>
-                <p>{SCANMODELMETA.Description}</p>
+                <h2>{SCANMODELMETA.Name}</h2>
                 <div className="created"><p>Created : {HandleTZDate(SCANMODELMETA.createdAt)}</p></div>
-               
-        </div> 
-        <GlobalFilter />
+            </div> 
+            <GlobalFilter />
         </>
     )
 }
-
+//   <p>{SCANMODELMETA.Description}</p>
 export default HeaderTitle;
 

@@ -49,6 +49,7 @@ export default function PermanentDrawerRight(props) {
       <CssBaseline />
 
       <AppBar position="fixed" className={classes.appBar}>
+      {`process.env.NODE_ENV ${process.env.NODE_ENV}` }
         <Toolbar>
             <h1>Intact AnalytiQ </h1>
             <p>Front end Portal</p>

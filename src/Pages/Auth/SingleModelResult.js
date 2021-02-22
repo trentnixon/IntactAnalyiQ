@@ -24,7 +24,7 @@ const ModelCheck = ()=>{
             console.log()
             if(MODEL.SelectedModel === null){
                 Pushhistory.push("/view-models");
-            }
+            } 
     },[MODEL])
     return(
         <div>

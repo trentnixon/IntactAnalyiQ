@@ -26,7 +26,7 @@ const Profile = ()=>{
         <div className="AuthLayout">
                 <div className="Header">
                     <H2 Copy={`View Models`} />
-                    {`process.env.NODE_ENV ${process.env.NODE_ENV}` }
+                  
                 </div>
 
                 <div className="Content">

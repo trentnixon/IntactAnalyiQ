@@ -20,6 +20,7 @@ import ScanHistoryRefreshBtn from "./Components/buttons/HistoryRerfresh";
 import ViewSingleResultBtn from "./Components/buttons/ViewSingleResultBtn";
 import Footer from "./Components/Layout/Footer"
 
+
 const Profile = ()=>{
     const AUTH = useContext_AUTH_FULL();
     return(
@@ -63,12 +64,15 @@ const ModelHistory = ()=>{
         
     }
     useEffect(()=>{
-        //console.log(AUTH.ScanHistory);
+        console.log(AUTH.ScanHistory);
+       let needle='V12'
+       const results = AUTH.ScanHistory.filter( h => h.Name.includes(needle) );
+
+       console.log(results);
     },[AUTH.ScanHistory])
     return(
         <div className="ModelHistory">
             <ul className="Card_List">
-                    
 
             {
                 AUTH.ScanHistory.map((scan,i)=>{

@@ -304,7 +304,7 @@ export const getDate=(timeStamp)=>{
 
  export const monthDiff = (d1, d2) => {
   var months;
-  console.log(d1)
+
   months = (d2.getFullYear() - d1.getFullYear()) * 12;
   months -= d1.getMonth();
   months += d2.getMonth();

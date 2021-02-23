@@ -8,8 +8,9 @@ import axios from 'axios';
 export const useAPILOCATION = () => {
         let APILOCATION;
         if (process.env.NODE_ENV !== 'production') {
-//                APILOCATION = 'http://localhost:1337/'
+                //APILOCATION = 'http://localhost:1337/'
                 APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
+                
         }
         else
         {
@@ -72,7 +73,7 @@ export const JWT=()=>{
 export const FetchPreviousScans = ()=>{
         
         const axiosHeader = {Authorization: "Bearer " + store.getState().AUTH.jwt}
-        const APIFETCH = useAPILOCATION()+'scan-histories?UserID='+store.getState().AUTH.user.id+'&_sort=createdAt:DESC'
+        const APIFETCH = useAPILOCATION()+'scan-histories?users_permissions_user.id='+store.getState().AUTH.user.id+'&_sort=createdAt:DESC'
         
         // Tell UI whats going on;
         store.dispatch({ type:'REFRESHSCANHISTORY', payload:true});
@@ -128,7 +129,7 @@ const FetchAPI = (Route, TYPE, i=0)=>{
         //console.log(JWTToken)
         const axiosHeader = {
                 'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': "Bearer " + JWTToken
+                'Authorization': "Bearer " + JWTToken,    
        }
       
 
@@ -157,6 +158,28 @@ const FetchAPI = (Route, TYPE, i=0)=>{
 }
 
 
+const GraphQLFetch = (Route, TYPE)=>{
+        const APIFETCH =useAPILOCATION()+'graphql'
+        const JWTToken = store.getState().AUTH.jwt;
+        //console.log(JWTToken)
+        const axiosHeader = {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + JWTToken,    
+       }
+        console.log(APIFETCH)
+       let QUERY = `{customers {name} }`
+
+        axios({ url: APIFETCH, method: 'post', data: {query: `${QUERY}` }, headers: axiosHeader})
+        .then((result) => { 
+        
+                console.log(result);
+                //store.dispatch({ type:TYPE, payload:result.data});
+
+                }).catch(function (thrown) {
+                       
+                });
+
+}
 
 
 
@@ -168,17 +191,20 @@ export const FetchDataIntegrity=()=>{
      
         GetTradeTypes();
         // FOr testing purposes pause this one
-        setTimeout(()=>{ GetCustomers(); },3000)
-        
-       GetTradeAllocations();
+        //setTimeout(()=>{ GetCustomers(); },3000)
+        GetCustomers();
+         GetTradeAllocations();
         FetchPreviousScans();
+
+        //GraphQLFetch()
 }
 
 
 const GetCustomers=()=>{
         //console.log("GetCustomers")
         if(store.getState().STRAPI.UserData.Customers === false)
-                FetchAPI('customers/intact', 'STORECUSTOMERS')        
+                FetchAPI('customers/intact', 'STORECUSTOMERS')       
+               //`{customers {name} }` 
 }
 
 const GetSites=()=>{
@@ -190,7 +216,7 @@ const GetSites=()=>{
 const GetTradeTypes=()=>{
         //console.log("GetTradeTypes")
         if(store.getState().STRAPI.UserData.tradetypes === false)
-                FetchAPI('trade-types/intact', 'STORETRADETYPES')         
+                FetchAPI('trade-types', 'STORETRADETYPES')         
 }
 
 const GetTradeAllocations=()=>{

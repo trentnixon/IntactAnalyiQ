@@ -32,7 +32,7 @@ export function LoadPrototype(){
         }
       `
     this.LimitedRequest = `{ name id }`
-
+ 
     
     this.Store={customers:true,SmallFetch:true, sites:true}
 

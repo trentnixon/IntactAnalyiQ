@@ -20,12 +20,7 @@ const Login = ()=>{
     return(
 
         <List className="AuthNavigation">
-            <NavLink to={`/UIComponents`} activeClassName="selected">
-                <ListItem button key='UI Components' >
-                    <ListItemIcon><DashboardIcon /></ListItemIcon>
-                    <ListItemText primary='UI Components' />
-                </ListItem>
-            </NavLink>
+           
 
             <NavLink to={`/`} exact activeClassName="selected">
                 <ListItem button key='Profile' component={Link} to={`/`}>
@@ -55,7 +50,12 @@ const Login = ()=>{
                         <ListItemText primary='Compare Models' /> 
                 </ListItem>
             </NavLink>
-
+            <NavLink to={`/UIComponents`} activeClassName="selected">
+                <ListItem button key='UI Components' >
+                    <ListItemIcon><DashboardIcon /></ListItemIcon>
+                    <ListItemText primary='UI Components' />
+                </ListItem>
+            </NavLink>
         </List>
     )
 }

@@ -6,6 +6,8 @@ import ReviewSelectionBtn from "../Components/buttons/SetSelectedBtn";
 import {StoreSelected_Single} from "actions/HandleScanProcess";
 import BtnBacktoScanOptions from "../Components/buttons/BacktoScanType";
 
+import Select_FilterClients from "Pages/Auth/Components/selects/Select_CreateModelFilter";
+
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -17,7 +19,7 @@ const ScanSelectItems=()=>{
     const USERSCAN = SCAN.UserScanState;
     const [nonSelected, setNonselected] = useState([])
     const [Selected, setSelected] = useState([])
-
+    const [filter, setFilter] =  useState(null)
 
     const handleAdd=(customer)=>{
     
@@ -31,7 +33,7 @@ const ScanSelectItems=()=>{
         setNonselected(RemoveSelected)
         
             
-    }
+    } 
 
     const handleRemove=(customer)=>{
 
@@ -56,6 +58,13 @@ const ScanSelectItems=()=>{
         StoreSelected_Single(Selected)
     },[Selected,nonSelected])
 
+    useEffect(()=>{
+        if(filter != null){
+            const results = JSON.parse(JSON.stringify(STRAPI.UserData.Customers)).filter( h => h.name.toLowerCase().includes(filter.toLowerCase()) );
+            setNonselected(results);
+        }
+      
+    },[filter])
     return(
         <div>
             <h2>Select Clients for Model</h2>
@@ -64,9 +73,11 @@ const ScanSelectItems=()=>{
                 <ReviewSelectionBtn />
                 <BtnBacktoScanOptions />
             </div>
-            
+       
+            <Select_FilterClients setFilter={setFilter}/>
             <div className="Dataset_Selection">
                 <div>
+                  
                     <ul>
                             {
                                 

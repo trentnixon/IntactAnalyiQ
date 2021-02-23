@@ -11,6 +11,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,ResponsiveC
     Header:"Work Orders Spread over Cluster Type",
     Tip:"Use the Filters",
     Icon:'bar',
+    filters:['client','resource',],
     Copy:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
 }
 
@@ -24,7 +25,7 @@ const LocationResourceSpread = ()=>{
     useEffect(()=>{},[UX])
     return(
         <div>
-        <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header}  Copy={Chart1.Copy} Tip={Chart1.Tip} />
+            <ChartHeader  {...Chart1}/>
             <ResponsiveContainer width='100%' height={300}>
                 <BarChart data={BarData} margin={{  top: 20, right: 0, left: 0, bottom: 0,}}>
                     <CartesianGrid strokeDasharray="3 3" />

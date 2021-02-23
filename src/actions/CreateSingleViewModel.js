@@ -421,6 +421,8 @@ export const OBJ_CLIENT_GLOBAL_Filter =  ()=>{
         /* ********************************** */       
         // Run Filter
         if(!RunFilter(model.name,UX.AreaSelectFilter.ByPolygon)) return false
+
+       //console.log(model)
         /* ********************************** */ 
         /* Run 'ByClusterType' Filter ********************************** */       
             if(!RunFilter(model.scanCategory,UX.AreaSelectFilter.ByClusterType)) return false
@@ -479,7 +481,7 @@ export const OBJ_CENTERPOINTS=()=>{
     let CenterPoints=[];
 
     MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
-            console.log(model)
+            //console.log(model)
             CenterPoints.push({name:model.name,type:model.scanCategory})
     })
 
@@ -619,7 +621,7 @@ export const WorkOrder_HeatMap=()=>{
             })
         })
 
-        console.log(TotalWOs.reduce((a, b) => a + b, 0))
+        //console.log(TotalWOs.reduce((a, b) => a + b, 0))
       
         let n=0
         while (n <= Math.ceil((TotalWOs.reduce((a, b) => a + b, 0)))) {
@@ -665,8 +667,7 @@ export const OBJ_DATESPREAD_TRADE=()=>{
     let Resources_Clients=[]
   
     MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
-        console.log(model)
-       // 
+        //console.log(model)
         
        /* ********************************** */       
         // Run Filter
@@ -910,7 +911,7 @@ export const  WorkorderTotals=()=>{
 
     //console.log(MODEL)
     MODEL.STOREMARKERCENTERPOINTS.map((model,i)=>{
-           // console.log(model)
+           //console.log(model)
            // model.StripedSites.map((site,i)=>{
            //     TotalWOs.push(site.SumWorkOrder)
            // })

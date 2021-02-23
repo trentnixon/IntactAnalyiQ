@@ -15,6 +15,7 @@ const Chart1={
     Icon:'radial',
     Header:"Client Work Order Spread",
     Tip:"Use the Filters",
+    filters:['resource','client'],
     Copy:`The chart details the work orders in the model spread over clients`
 }
 
@@ -25,7 +26,7 @@ const WorkOrder_Radial_Cluster=()=>{
     useEffect(()=>{ },[UX,MODEL])
     return(
         <div>
-        <ChartHeader  Icon={Chart1.Icon} Header={Chart1.Header} Tip={Chart1.Tip} Copy={Chart1.Copy} />  
+        <ChartHeader  {...Chart1}/>
         <div style={{height: 300}}>
             <NivoRadial 
                 data={OBJ_CLUSTER_GLOBAL()} 

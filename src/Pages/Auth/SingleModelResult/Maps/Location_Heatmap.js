@@ -12,6 +12,7 @@ const Chart1={
     Icon:'map',
     Header:"Heat map of Sites based in model",
     Tip:"Use the Filters",
+    filters:['cluster'],
     Copy:"The Heat map Below shows high volume areas of locations. Filter site by clusters by using the ' cluster type' Filter option"
 }
 
@@ -31,8 +32,7 @@ const LocationHeatMap = ()=>{
     return(
         <>
             <div className="ScanMapMain" id="MainMap">
-               
-                <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header}  Copy={Chart1.Copy} Tip={Chart1.Tip} />
+                <ChartHeader  {...Chart1}/>
                 <H3 Copy={`${HeatMapDataLength} Locations scanned in results`}  />
                 <GoogleMap 
                     mapContainerStyle={containerStyle}

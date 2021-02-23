@@ -15,7 +15,8 @@ const Chart1={
     Icon:'pie',
     Header:"Resources Allocation to Cluster Type",
     Tip:"Use the Filters",
-    Copy:"The Radial Graph shows the number of Resource Allocations by Cluster Type in a given model. Use the 'Cluster Type' filter to find Resource Allocation numbers for a specific resource."
+    filters:['cluster'],
+    Copy:"The Pie Graph shows "
 }
 
 
@@ -31,7 +32,7 @@ const Trade_Radial_Charts=()=>{
     
     return(
         <div>
-            <ChartHeader  Icon={Chart1.Icon}Header={Chart1.Header} Tip={Chart1.Tip}Copy={Chart1.Copy}/>
+            <ChartHeader  {...Chart1}/>
             <div style={{height: 300}}>
                 <NivoPie data={ResourceSpread} id={`name`} value={'Resources'} />
             </div>

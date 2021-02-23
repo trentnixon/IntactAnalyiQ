@@ -12,6 +12,7 @@ const Chart1={
     Icon:'radial',
     Header:"Clusters as a Radial",
     Tip:"Use the Filters",
+    filters:[''],
     Copy:"The Radial Graph shows the number of clusters per cluster type in a given model."
 }
 

@@ -18,6 +18,7 @@ const Chart1={
     Icon:'bar',
     Header:"Client work orders over time",
     Tip:"Use the Filters",
+    filters:['cluster','resource',],
     Copy:`This Composition chart shows the selected clients work order distribution over time against the total work orders in the Model
             Use the filters to dive deeper into a resource or cluster type`
 }
@@ -53,7 +54,7 @@ const Client_Line_Workorders=()=>{
 
     return(
         <div>
-            <ChartHeader  Icon={Chart1.Icon} Header={Chart1.Header}   Tip={Chart1.Tip}  Copy={Chart1.Copy}/>
+            <ChartHeader  {...Chart1}/>
 
             <div style={{ width: '100%', height: 400 }}>
                 <ResponsiveContainer>

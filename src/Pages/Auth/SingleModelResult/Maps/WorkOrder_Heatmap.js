@@ -10,6 +10,14 @@ import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
 import {H3} from 'Pages/Auth/Components/Type';
 const containerStyle = { height: "500px", width: "auto" };
 
+const Chart1={
+    Icon:'radial',
+    Header:"Resources Allocation to Cluster Type",
+    Tip:"Use the Filters",
+    filters:['cluster','resource','client'],
+    Copy:"This heat map shows areas of high volume Resource Allocation within the model."
+}
+
 const LocationHeatMap = ()=>{
     
     const UX = useContext_UX_FULL(); 
@@ -25,28 +33,18 @@ const LocationHeatMap = ()=>{
 
     return( 
         <>
-       
             <div className="ScanMapMain" id="MainMap">
-            <ChartHeader 
-                    Icon='map'
-                    Header="Heat map of Resource Allocation based on Cluster Types"
-                    Copy="This heat map shows areas of high volume Resource Allocation within the model. 
-                            Use the  'Cluster Type' and  'Resource type' Filters to deep dive into more specific areas "
-                />
-                
-                
+                <ChartHeader  {...Chart1}/>
                 <H3 Copy={`${HeatMapDataLength} WorkOrders scanned in results`}  />
-            <GoogleMap  
-                mapContainerStyle={containerStyle}
-                center={UX.MapParameters.LatLngBoundaries}
-                zoom={UX.MapParameters.zoom}
-                mapTypeId="satellite"
-            
-            >
+                <GoogleMap  
+                    mapContainerStyle={containerStyle}
+                    center={UX.MapParameters.LatLngBoundaries}
+                    zoom={UX.MapParameters.zoom}
+                    mapTypeId="satellite"
+                >
                 <HeatmapLayer data={HeatMapData} />
-            </GoogleMap> 
-            
-        </div>
+                </GoogleMap>
+            </div>
         </>
     )
 }

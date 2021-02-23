@@ -17,6 +17,7 @@ const Chart1={
     Icon:'bar',
     Header:"Workorders",
     Tip:"Use the Filters",
+    filters:['cluster','resource'],
     Copy:`The Bar Graph shows the number of Work Orders over the time period of the Model. 
         Use the 'Cluster Type' and 'Resource type' filters to filter the chart to a specific Recourse or cluster type`
 }
@@ -32,12 +33,7 @@ const Workorder_Bar_Overtime=()=>{
 
     return(
         <div>
-                    <ChartHeader 
-                        Icon={Chart1.Icon}
-                        Header={Chart1.Header} 
-                        Tip={Chart1.Tip} 
-                        Copy={Chart1.Copy}
-                    />
+                    <ChartHeader  {...Chart1}/>
                 
                     <div style={{ width: '100%', height: 400 }}>
                         <ResponsiveContainer>

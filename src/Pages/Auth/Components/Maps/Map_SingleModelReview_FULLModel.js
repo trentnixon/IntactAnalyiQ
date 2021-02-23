@@ -68,11 +68,13 @@ const MapClusterInfo = ()=>{
     const SELECTED = UX.ClusterParameters.SelectedCluster;
 
 
-    const WOS = ()=>{
+    const WOS = (Trade)=>{
         let Count=[]
-        SELECTED.StripedSites.map((wos,i)=>{
-            Count.push(wos.SumWorkOrder)
+        console.log('SELECTED',SELECTED.ResourcesGroupedBy[Trade])
+        SELECTED.ResourcesGroupedBy[Trade].map((wos,i)=>{
+            Count.push(wos.WOS)
         })
+        console.log(Count, Count.reduce((a, b) => a + b, 0))
         return Count.reduce((a, b) => a + b, 0)
     }
 
@@ -139,7 +141,18 @@ const MapClusterInfo = ()=>{
                          </ul>   
                 </li>
 
-                <li><span>Work Orders :</span>{WOS()} </li>    
+                <li><span>Work Orders :</span>
+                
+                <ul>
+                            {SELECTED.resourceQuota.map((q,i)=>{
+                                return(
+                                    <li key={i}>
+                                        <span>{q.Trade} </span> { WOS(q.Trade)}
+                                    </li>
+                                )
+                            })}
+                         </ul> 
+                </li>    
             </ul>
                 
         </div>

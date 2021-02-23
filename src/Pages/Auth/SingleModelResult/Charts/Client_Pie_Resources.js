@@ -13,6 +13,7 @@ const Chart1={
     Icon:'pie',
     Header:"By Resource Allocation",
     Tip:"Use the Filters",
+    filters:['cluster','resource',],
     Copy:"Graph shows the Resource Allocation to each client within the Model"
 }
 
@@ -26,7 +27,7 @@ const Client_Pie_Resources= ()=>{
  
     return(
         <div>
-            <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header}  Copy={Chart1.Copy} Tip={Chart1.Tip} />
+            <ChartHeader  {...Chart1}/>
             <div style={{height: 300}}>
                 <NivoPie data={ClientBreakDown} id={`name`} value={'Resources'} />
             </div>

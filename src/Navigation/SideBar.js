@@ -20,10 +20,8 @@ const Login = ()=>{
     return(
 
         <List className="AuthNavigation">
-           
-
             <NavLink to={`/`} exact activeClassName="selected">
-                <ListItem button key='Profile' component={Link} to={`/`}>
+                <ListItem button key='Profile'>
                     <ListItemIcon><PersonPinIcon /></ListItemIcon>
                     <ListItemText primary='Profile' />
             </ListItem> 

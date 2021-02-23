@@ -309,6 +309,7 @@ export const getDate=(timeStamp)=>{
   months -= d1.getMonth();
   months += d2.getMonth();
 
+  //months = months+1
   return months <= 0 ? 0 : months;
 }
 

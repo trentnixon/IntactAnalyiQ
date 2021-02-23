@@ -16,6 +16,7 @@ const Chart1={
     Icon:'line',
     Header:"Resources Allocation over time",
     Tip:"Use the Filters",
+    filters:['cluster'],
     Copy:`The Bar Graph shows the number of Resource Allocations over the time period of the Model. 
         Use the 'Cluster Type' and 'Resource type' filters to filter the chart to a specific Recourse or cluster type`
 }
@@ -34,12 +35,7 @@ const Trade_Radial_Charts=()=>{
     return(
         <div className="resultCharts">
         <div>
-            <ChartHeader 
-                Icon={Chart1.Icon}
-                Header={Chart1.Header} 
-                Tip={Chart1.Tip} 
-                Copy={Chart1.Copy}
-            />
+           <ChartHeader  {...Chart1}/>
             <div style={{height: 400}}>
                 <NivoLine 
                     data={orderBy(ResourcesOverTime,'UnixDate')} 

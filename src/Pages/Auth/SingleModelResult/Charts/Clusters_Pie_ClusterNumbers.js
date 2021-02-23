@@ -15,7 +15,8 @@ const Chart2={
     Icon:'pie',
     Header:"Sites covered in Model",
     Tip:"Use the Filters",
-    Copy:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+    filters:['client','resource',],
+    Copy:"...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
 }
 
 const Chart_Pie_OutofScope = ()=>{
@@ -25,9 +26,8 @@ const Chart_Pie_OutofScope = ()=>{
 
     return(
         <div>
-            <ChartHeader Icon={Chart2.Icon} Header={Chart2.Header}  Copy={Chart2.Copy} Tip={Chart2.Tip} />
+            <ChartHeader  {...Chart2}/>
             <div style={{height: 300}}>
-            
                 <NivoPie data={OBJ_CLUSTER_GLOBAL()} id={`name`} value={'Appearances'}/>
             </div>
         </div>

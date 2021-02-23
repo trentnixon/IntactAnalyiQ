@@ -12,7 +12,7 @@ const NivoPie=(props)=>{
     const [VolumeSize, setVolumeSize] = useState([])
     const [ValueSize, setValueSize] = useState([])
     const CreateNivoData=()=>{
-            console.log(data)
+
             let Nivo=[]
             let NivoRadialKeys=[]
             let CreateVolumeSize=[]
@@ -78,7 +78,7 @@ const NivoPie=(props)=>{
             tickSize: 10,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'Place Work orders, Size on Site numbers',
+            legend: 'Vertical  =  Work orders,  Horizontal = Numbers of sites in cluster',
             legendPosition: 'middle',
             legendOffset: -46
         }}
@@ -87,7 +87,7 @@ const NivoPie=(props)=>{
             tickSize: 10,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'price if vertical, group if horizontal',
+            legend: 'Vertical  =  Work orders,  Horizontal = Numbers of sites in cluster',
             legendPosition: 'middle',
             legendOffset: 76
         }}
@@ -96,7 +96,7 @@ const NivoPie=(props)=>{
             tickSize: 10,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'group if vertical, price if horizontal',
+            legend: 'Vertical  =  Work orders,  Horizontal = Numbers of sites in cluster',
             legendPosition: 'middle',
             legendOffset: 46
         }}
@@ -105,7 +105,7 @@ const NivoPie=(props)=>{
             tickSize: 10,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'price if vertical, group if horizontal',
+            legend: 'Vertical  =  Work orders,  Horizontal = Numbers of sites in cluster',
             legendPosition: 'middle',
             legendOffset: -76
         }}

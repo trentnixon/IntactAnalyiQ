@@ -52,7 +52,7 @@ export default function CompareSelect(props) {
           {
               AUTH.ScanHistory.map((scan,i)=>{
                   return(
-                    <MenuItem value={scan}>{scan.Name}</MenuItem>
+                    <MenuItem value={scan} key={i}>{scan.Name}</MenuItem>
                   )
               })
           }

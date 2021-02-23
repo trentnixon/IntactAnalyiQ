@@ -16,6 +16,7 @@ const ResourceAllocationRatios = ()=>{
 
 
     useEffect(()=>{
+        console.log(OBJ_SITE_GLOBAL())
         setResourceSum(sumBy(OBJ_SITE_GLOBAL(), function(o) { return o['Resources']; }).toFixed(2))
         setWorkingDays(workingDaysBetweenDates(SCAN.SelectedModelMeta.DateStart,SCAN.SelectedModelMeta.DateEnd))
     },[])
@@ -26,12 +27,12 @@ const ResourceAllocationRatios = ()=>{
      
             <ul className="Pod_List"> 
             <li className="Pod">
-                    <div className="Data"><P Copy={WorkorderTotals().reduce((a, b) => a + b, 0)}/></div>
+                    <div className="Data"><P Copy={WorkorderTotals()[0]}/></div>
                     <div className="Title"> <H4 Copy={`Work Order Total`}/></div>
                 </li> 
                 <li className="Pod">
                     <div className="Data"><P Copy= {ResourceSum}/></div>
-                    <div className="Title"> <H4 Copy={`Resource Allocation`}/></div>
+                    <div className="Title"> <H4 Copy={`Total Resource Allocation`}/></div>
                 </li> 
                 <li className="Pod"> 
                     <div className="Data"><P Copy= {WorkingDays}/></div>

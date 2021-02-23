@@ -7,12 +7,12 @@ import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
 
 // Nivo 
 import NivoPie from "venders/Nivo/NivoPie"
-import NivoRadial from "venders/Nivo/NivoRadial"
 
 const Chart1={
     Icon:'radial',
     Header:"Work Orders Spread over Resource Type",
     Tip:"Use the Filters",
+    filters:[''],
     Copy:"The Radial Graph shows the Work Order Spread over specific Resource Types. Use the 'Cluster Type' filter to find Work Order numbers for a specific resource."
 }
 
@@ -30,7 +30,7 @@ const Workorder_pie_outofscope=()=>{
     
     return(
         <div>
-            <ChartHeader  Icon={Chart1.Icon} Header={Chart1.Header} Tip={Chart1.Tip} Copy={Chart1.Copy} />                        
+            <ChartHeader  {...Chart1}/>                       
             <div style={{height: 300}}>
                 <NivoPie data={PieData} id={`name`} value={'value'} />
             </div>

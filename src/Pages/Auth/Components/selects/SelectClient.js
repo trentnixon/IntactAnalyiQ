@@ -60,12 +60,12 @@ const ByResourceType = ()=>{
                 onChange={handleChange}
                 label="Select Client"
             >
-                <MenuItem value={null}> <em>All</em> </MenuItem>
+                <MenuItem value={''}> <em>All</em> </MenuItem>
 
                 {
                     Clients.map((client,i)=>{
                         return(
-                            <MenuItem  value={client}>{findClientName(client)}</MenuItem>
+                            <MenuItem   key={i}  value={client}>{findClientName(client)}</MenuItem>
                         )
                     })
                 }

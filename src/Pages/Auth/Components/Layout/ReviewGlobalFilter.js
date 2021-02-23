@@ -16,7 +16,7 @@ const GlobalFilter = ()=>{
             <div className="GlobalFilter">
                 <div className="options">
                     <SelectClient />    
-                    <FilterByResourceType /> 
+                    <FilterByResourceType />  
                     <FilterByClusterType />
                 </div>
             </div>

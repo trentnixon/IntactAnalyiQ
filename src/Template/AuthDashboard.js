@@ -70,7 +70,7 @@ export default function PermanentDrawerRight(props) {
       
         <SideBar />
        
-      </Drawer>
+      </Drawer> 
       
       <main className="Auth">  
          <div className={classes.toolbar} />

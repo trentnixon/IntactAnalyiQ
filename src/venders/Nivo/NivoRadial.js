@@ -33,32 +33,32 @@ const NivoPie=(props)=>{
 
     return(
         <ResponsiveRadar
-        data={NivoData}
-        keys={[Label]}
-        indexBy={'Name'}
-        colors={colorArray}
-        maxValue="auto"
-        margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
-        curve="linearClosed"
-        borderWidth={1}
-        borderColor="#ffc200"
-        gridLevels={15}
-        gridShape="circular"
-        gridLabelOffset={26}
-        enableDots={true}
-        dotSize={10}
-        dotColor="#ffc200"
-        dotBorderWidth={2}
-        dotBorderColor="#ffc200"
-        enableDotLabel={true}
-        dotLabel="value"
-        dotLabelYOffset={-12}
-        colors={{ scheme: 'nivo' }}
-        fillOpacity={0.5}
-        blendMode="multiply"
-        animate={true}
-        motionConfig="wobbly"
-        isInteractive={true}
+            data={NivoData}
+            keys={[Label]}
+            indexBy={'Name'}
+            colors={colorArray}
+            maxValue="auto"
+            margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
+            curve="linearClosed"
+            borderWidth={1}
+            borderColor="#ffc200" 
+            gridLevels={15}
+            gridShape="circular"
+            gridLabelOffset={26}
+            enableDots={true}
+            dotSize={10}
+            dotColor="#ffc200"
+            dotBorderWidth={2}
+            dotBorderColor="#ffc200"
+            enableDotLabel={true}
+            dotLabel="value"
+            dotLabelYOffset={-12}
+            colors={{ scheme: 'nivo' }}
+            fillOpacity={0.5}
+            blendMode="multiply"
+            animate={true}
+            motionConfig="wobbly"
+            isInteractive={true}
        
     />
     )

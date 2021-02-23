@@ -10,10 +10,18 @@ import MapIcon from '@material-ui/icons/Map';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import {ChartIcon} from 'actions/HandleUX';
 
+
+import FaceIcon from '@material-ui/icons/Face';
+import LocationCityIcon from '@material-ui/icons/LocationCity';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import AccountTreeIcon from '@material-ui/icons/AccountTree';
+import LayersIcon from '@material-ui/icons/Layers';
+
+
 import {H4, P} from "Pages/Auth/Components/Type";
 import Tooltip from '@material-ui/core/Tooltip';
 const ChartHeader=(props)=>{
-    const{ Header,Copy, Icon} = props
+    const{ Header,Copy, Icon,filters=[]} = props
     let DisplayIcon = ChartIcon(Icon);
 
     return(
@@ -22,9 +30,9 @@ const ChartHeader=(props)=>{
                 <Tooltip title="Small Helpful tip">
                     <LiveHelpIcon  className="help"/> 
                 </Tooltip>
-                <Tooltip title="Chart can be affected by Filters">
-                    <ErrorOutlineIcon className="warning"/>
-                </Tooltip>
+
+                <Filters filters={filters}/>
+
                 <Tooltip title="Chart is Interactive">
                     <TouchAppIcon className="interactive" />
                 </Tooltip>
@@ -42,3 +50,25 @@ const ChartHeader=(props)=>{
 }
 
 export default ChartHeader;
+
+const Filters = (props)=>{
+    const {filters} = props
+    const Chips={
+        cluster:<Tooltip title="Chart can be affected by Cluster  Filter"><LocationCityIcon className="warning"/></Tooltip>,
+        resource:<Tooltip title="Chart can be affected by Resource Filter"><FaceIcon className="warning"/></Tooltip>,
+        client:<Tooltip title="Chart can be affected by Client Filter"><PeopleAltIcon className="warning"/></Tooltip>
+    }
+
+    return(
+        <>
+            {
+                filters.map((filter,i)=>{
+                    return(
+                        <> { Chips[filter]} </>
+                    )
+                })
+            }
+        </>      
+    )
+}
+

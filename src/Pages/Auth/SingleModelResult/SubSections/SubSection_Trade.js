@@ -19,14 +19,7 @@ const SubSection_Trade = ()=>{
     return(
         <>
         <H1 Copy={`Resources`} /> 
-        <Section>
-      
-           
-            stat bar : resource figures
-            stat bar resources by client.
-            Bar WO spread over resources 
-            Bar : resources by cluster type  
-           
+        <Section>           
             <Trade_ResourceAllocation />  
             <Trade_Radial_Charts />
             <Trade_Radial_Clients />     

@@ -18,6 +18,7 @@ const Chart1={
     Icon:'pie',
     Header:"Resource Breakdown by Client",
     Tip:"Use the Filters",
+    filters:['cluster'],
     Copy:`This chart shows the breakdown of selected resource by Allocation spread over the clients in the Model`
 }
 
@@ -30,7 +31,7 @@ const Resources_Pie_ClientBreakdown = ()=>{
 
     return( 
                 <div>   
-                    <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header}Tip={Chart1.Tip} Copy={Chart1.Copy} />
+                    <ChartHeader  {...Chart1}/>
                     <div style={{height: 300}}>
                         <NivoPie data={CategoryOccurance} id={`name`} value={'Sum'} />
                     </div>

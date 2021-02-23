@@ -11,6 +11,7 @@ const Chart1={
     Icon:'pie',
     Header:"Client Work Order Spread",
     Tip:"Use the Filters",
+    filters:['cluster','resource'],
     Copy:`The chart details the work orders in the model spread over clients`
 }
 
@@ -20,7 +21,7 @@ const WorkOrder_Pie_ByClient=()=>{
     useEffect(()=>{ },[UX,MODEL])
     return(
         <div>
-            <ChartHeader  Icon={Chart1.Icon} Header={Chart1.Header} Tip={Chart1.Tip} Copy={Chart1.Copy} />  
+            <ChartHeader  {...Chart1}/> 
             <div style={{height: 300}}>
                 <NivoPie data={OBJ_CLIENT_RESOURCES()} id={`name`} value={'Work Orders'} />
             </div>

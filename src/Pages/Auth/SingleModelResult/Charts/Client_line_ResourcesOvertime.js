@@ -18,6 +18,7 @@ const Chart1={
     Icon:'bar',
     Header:"Clients Resource Allocation over time",
     Tip:"Use the Filters",
+    filters:['cluster','resource',],
     Copy:`This Composition chart shows the selected clients Resource Allocation over time against the total Resource Allocation in the Model
             Use the filters to dive deeper into a resource or cluster type`
 }
@@ -55,13 +56,8 @@ const Trade_Radial_Charts=()=>{
 
     return(
         <div>
-                <ChartHeader 
-                    Icon={Chart1.Icon}
-                    Header={Chart1.Header}  
-                    Tip={Chart1.Tip} 
-                    Copy={Chart1.Copy}
-                />
-
+               <ChartHeader  {...Chart1}/>
+ 
                 <div style={{ width: '100%', height: 400 }}>
                     <ResponsiveContainer>
                         <ComposedChart

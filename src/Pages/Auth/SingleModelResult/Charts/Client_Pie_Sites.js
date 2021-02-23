@@ -13,6 +13,7 @@ const Chart1={
     Icon:'pie',
     Header:"By Location",
     Tip:"Use the Filters",
+    filters:['cluster','resource',],
     Copy:"Graph shows the Location spread of each client within the Model"
 }
 
@@ -30,10 +31,10 @@ const Client_Pie_Sites= ()=>{
  
     return(
         <div>
-            <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header}  Copy={Chart1.Copy} Tip={Chart1.Tip} />
+            <ChartHeader  {...Chart1}/>            
             <div style={{height: 300}}>
-                        <NivoPie data={ClientBreakDown} id={`name`} value={'Total Sites'} />
-                    </div>
+                <NivoPie data={ClientBreakDown} id={`name`} value={'Total Sites'} />
+            </div>
         </div> 
     )
 }

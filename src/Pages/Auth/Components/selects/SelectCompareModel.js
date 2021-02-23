@@ -68,7 +68,7 @@ const ByComparabelModel = ()=>{
                 {
                    OPTIONS.map((model,i)=>{
                         return(
-                            <MenuItem  value={model}>{model}</MenuItem>
+                            <MenuItem  key={i}  value={model}>{model}</MenuItem>
                         )
                     })
                 }

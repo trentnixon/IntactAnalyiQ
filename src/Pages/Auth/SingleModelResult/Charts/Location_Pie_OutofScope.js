@@ -11,10 +11,11 @@ import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
 // nivo
 import NivoPie from "venders/Nivo/NivoPie"
 
-const Chart2={
+const Chart1={
     Icon:'pie',
     Header:"Sites covered in Model",
     Tip:"Use the Filters",
+    filters:['cluster','resource','client'],
     Copy:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
 }
 
@@ -34,7 +35,7 @@ const Chart_Pie_OutofScope = ()=>{
 
     return(
         <div>
-            <ChartHeader Icon={Chart2.Icon} Header={Chart2.Header}  Copy={Chart2.Copy} Tip={Chart2.Tip} />
+            <ChartHeader  {...Chart1}/>
             <div style={{height: 300}}>
                 <NivoPie data={ChartData} id={`id`} value={'value'}/>
             </div>

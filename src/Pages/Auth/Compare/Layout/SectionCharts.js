@@ -45,7 +45,7 @@ const SectionCharts = (props)=>{
            <div className="SectionChart">
 
                 <div className="Options">
-                    
+                     
                     <ul className="SelectAChart">
                         {
                             Charts.map((chart,i)=>{

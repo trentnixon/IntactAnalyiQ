@@ -14,6 +14,7 @@ const Chart1={
     Icon:'radial',
     Header:"Resources Allocation to Cluster Type",
     Tip:"Use the Filters",
+    filters:['cluster','resource','client'],
     Copy:"The Radial Graph shows the number of Resource Allocations by Cluster Type in a given model. Use the 'Cluster Type' filter to find Resource Allocation numbers for a specific resource."
 }
 
@@ -30,8 +31,8 @@ const Resources_Radial_Resources = ()=>{
 
     return(
         <div>
-            <ChartHeader  Icon={Chart1.Icon}Header={Chart1.Header} Tip={Chart1.Tip}Copy={Chart1.Copy}/>
-            <div style={{height: 300}}>
+            <ChartHeader  {...Chart1}/>
+            <div style={{height: 300}}> 
                 <NivoRadial 
                     data={ResourceSpread} 
                     id={`name`} 

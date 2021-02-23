@@ -11,6 +11,7 @@ const Chart1={
     Icon:'radial',
     Header:"Work Orders Spread over Resource Type",
     Tip:"Use the Filters",
+    filters:['cluster'],
     Copy:"The Radial Graph shows the Work Order Spread over specific Resource Types. Use the 'Cluster Type' filter to find Work Order numbers for a specific resource."
 }
 
@@ -26,7 +27,7 @@ const Workorders_Radial_Workorders=()=>{
     
     return(
         <div>
-            <ChartHeader  Icon={Chart1.Icon} Header={Chart1.Header} Tip={Chart1.Tip} Copy={Chart1.Copy} />     
+            <ChartHeader  {...Chart1}/>    
             <div style={{height: 300}}>
                 <NivoRadial 
                     data={CategoryOccurance} 

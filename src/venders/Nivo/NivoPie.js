@@ -7,7 +7,6 @@ const NivoPie=(props)=>{
     const {data,id,value} = props
     const [NivoData, setNivoData] = useState([])
     const CreateNivoData=()=>{
-            console.log(id,value)
             let Nivo=[]
             data.map((row,i)=>{
                 Nivo.push({

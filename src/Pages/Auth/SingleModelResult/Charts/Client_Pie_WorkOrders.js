@@ -13,6 +13,7 @@ const Chart1={
     Icon:'pie',
     Header:"By Work Orders",
     Tip:"Use the Filters",
+    filters:['cluster','resource',],
     Copy:"Graph shows the Work Order spread for each client within the Model"
 }
 
@@ -26,11 +27,11 @@ const Client_Pie_Workorders= ()=>{
     
     return(
         <div>
-            <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header}  Copy={Chart1.Copy} Tip={Chart1.Tip} />
+            <ChartHeader  {...Chart1}/>  
             <div style={{height: 300}}>
                         <NivoPie data={ClientBreakDown} id={`name`} value={'Work Orders'} />
                 </div>
         </div> 
-    )
+    ) 
 }
 export default Client_Pie_Workorders;

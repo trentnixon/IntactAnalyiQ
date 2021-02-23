@@ -70,4 +70,4 @@ const SubSection_FullMap = ()=>{
     )  
 } 
 
-export default SubSection_FullMap; 
+export default SubSection_FullMap;  

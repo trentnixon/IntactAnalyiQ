@@ -8,8 +8,8 @@ import axios from 'axios';
 export const useAPILOCATION = () => {
         let APILOCATION;
         if (process.env.NODE_ENV !== 'production') {
-                APILOCATION = 'http://localhost:1337/'
-                //APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
+                //APILOCATION = 'http://localhost:1337/'
+                APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
                 
         }
         else
@@ -158,7 +158,7 @@ const FetchAPI = (Route, TYPE, i=0)=>{
 }
 
 
-const GraphQLFetch = (Route, TYPE)=>{
+const GraphQLFetch = (Route,Name, TYPE)=>{
         const APIFETCH =useAPILOCATION()+'graphql'
         const JWTToken = store.getState().AUTH.jwt;
         //console.log(JWTToken)
@@ -167,13 +167,13 @@ const GraphQLFetch = (Route, TYPE)=>{
                 'Authorization': "Bearer " + JWTToken,    
        }
         console.log(APIFETCH)
-       let QUERY = `{customers {name} }`
+       let QUERY = Route
 
         axios({ url: APIFETCH, method: 'post', data: {query: `${QUERY}` }, headers: axiosHeader})
         .then((result) => { 
         
-                console.log(result);
-                //store.dispatch({ type:TYPE, payload:result.data});
+                console.log(result.data.data[Name]);
+                store.dispatch({ type:TYPE, payload:result.data.data[Name]});
 
                 }).catch(function (thrown) {
                        
@@ -193,7 +193,7 @@ export const FetchDataIntegrity=()=>{
         // FOr testing purposes pause this one
         //setTimeout(()=>{ GetCustomers(); },3000)
         GetCustomers();
-         GetTradeAllocations();
+        GetTradeAllocations();
         FetchPreviousScans();
 
         //GraphQLFetch()
@@ -216,7 +216,9 @@ const GetSites=()=>{
 const GetTradeTypes=()=>{
         //console.log("GetTradeTypes")
         if(store.getState().STRAPI.UserData.tradetypes === false)
-                FetchAPI('trade-types', 'STORETRADETYPES')         
+              //  FetchAPI('trade-types/intact', 'STORETRADETYPES')      
+                GraphQLFetch(`{tradeTypes { id name trade_allocation_ratio{Name id} } }`,'tradeTypes','STORETRADETYPES')  
+                
 }
 
 const GetTradeAllocations=()=>{

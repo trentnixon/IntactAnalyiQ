@@ -8,8 +8,8 @@ import axios from 'axios';
 export const useAPILOCATION = () => {
         let APILOCATION;
         if (process.env.NODE_ENV !== 'production') {
-                APILOCATION = 'http://localhost:1337/'
-                //APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
+                //APILOCATION = 'http://localhost:1337/'
+                APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
                 
         }
         else

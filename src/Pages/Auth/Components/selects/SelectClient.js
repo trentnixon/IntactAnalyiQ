@@ -60,7 +60,7 @@ const ByResourceType = ()=>{
                 onChange={handleChange}
                 label="Select Client"
             >
-                <MenuItem value={''}> <em>All</em> </MenuItem>
+                <MenuItem value={undefined}> <em>All</em> </MenuItem>
 
                 {
                     Clients.map((client,i)=>{

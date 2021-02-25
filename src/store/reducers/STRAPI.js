@@ -2,7 +2,7 @@ const InitialState ={
     
     UserData:{
         Customers:false,
-        tradeAllocationRatio:false,
+        //tradeAllocationRatio:false,
         tradetypes:false
     },
     IntegrityData:{
@@ -10,17 +10,7 @@ const InitialState ={
     },
 
     DataError:false
-    /*
-    sites:null,
-    Customers:null,
-    Countries:null,
-    States:null,
-    Regions:null,
-    JobType:null,
-    tradeType:null,
-    industryType:null,
-    ratioModel:null,
-     */
+
 }
  
 

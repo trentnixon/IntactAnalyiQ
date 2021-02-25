@@ -37,11 +37,11 @@ const FilterChips = ()=>{
     return(
         <div className={`PacketofChips ${classes.root}`}>
                 
-            { UX.AreaSelectFilter.ByResourceType != null ? <ResourceChip /> : false }
-            { UX.AreaSelectFilter.ByClusterType != null ? <ClusterChip /> : false }
-            { UX.AreaSelectFilter.ByClient != null ? <ClientChip /> : false }
-            { UX.AreaSelectFilter.ByModel != null ? <ModelChip /> : false }
-            { UX.AreaSelectFilter.ByPolygon != null ? <PolygonChip /> : false }
+            { UX.AreaSelectFilter.ByResourceType != undefined ? <ResourceChip /> : false }
+            { UX.AreaSelectFilter.ByClusterType != undefined ? <ClusterChip /> : false }
+            { UX.AreaSelectFilter.ByClient != undefined ? <ClientChip /> : false }
+            { UX.AreaSelectFilter.ByModel != undefined ? <ModelChip /> : false }
+            { UX.AreaSelectFilter.ByPolygon != undefined ? <PolygonChip /> : false }
             
         </div>
     )
@@ -53,8 +53,8 @@ export default FilterChips;
 const PolygonChip=()=>{
     const UX = useContext_UX_FULL();
     const handleDelete = () => {  
-        SetFilterPolygon(null) 
-        SetSelectedCluster(null)
+        SetFilterPolygon(undefined) 
+        SetSelectedCluster(undefined)
     };
     //onClick={handleDelete}
     useEffect(()=>{console.log( UX.AreaSelectFilter.ByPolygon)},[UX])
@@ -65,7 +65,7 @@ const PolygonChip=()=>{
 
 const ModelChip=()=>{
     const UX = useContext_UX_FULL();
-    const handleDelete = () => {  SetFilterModel(null) };
+    const handleDelete = () => {  SetFilterModel(undefined) };
     //onClick={handleDelete}
     useEffect(()=>{console.log( UX.AreaSelectFilter.ByModel)},[UX])
     return(
@@ -74,7 +74,7 @@ const ModelChip=()=>{
 }
 const ResourceChip=()=>{
     const UX = useContext_UX_FULL();
-    const handleDelete = () => {  SetMapResourceType(null) };
+    const handleDelete = () => {  SetMapResourceType(undefined) };
     useEffect(()=>{console.log( UX.AreaSelectFilter.ByResourceType)},[UX])
     return(
         <Chip label={ UX.AreaSelectFilter.ByResourceType} clickable  className="TradeChip" onClick={handleDelete} icon={<FaceIcon />} />
@@ -84,7 +84,7 @@ const ResourceChip=()=>{
 
 const ClusterChip=()=>{
     const UX = useContext_UX_FULL();
-    const handleDelete = () => {  SetMapClusterType(null) };
+    const handleDelete = () => {  SetMapClusterType(undefined) };
     useEffect(()=>{console.log( UX.AreaSelectFilter.ByClusterType)},[UX])
     return(
         <Chip label={ UX.AreaSelectFilter.ByClusterType} clickable  className="TradeChip" onClick={handleDelete} icon={<LocationCityIcon />} />
@@ -93,7 +93,7 @@ const ClusterChip=()=>{
 
 const ClientChip=()=>{
     const UX = useContext_UX_FULL();
-    const handleDelete = () => {  SetFilterClient(null) };
+    const handleDelete = () => {  SetFilterClient(undefined) };
     useEffect(()=>{console.log( UX.AreaSelectFilter.ByClient)},[UX])
     return(
         <Chip label={ findClientName(UX.AreaSelectFilter.ByClient)} clickable  className="TradeChip" onClick={handleDelete} icon={<PeopleAltIcon />} />

@@ -9,7 +9,7 @@ import {H1,H2,H4,P} from "Pages/Auth/Components/Type";
 import {find} from 'lodash'
 
 
-const Trade_Radial_Charts=()=>{
+const TradeSpecificOverview=()=>{
 
     const SCAN = useContext_SCAN_FULL();
     const UX = useContext_UX_FULL();
@@ -19,7 +19,9 @@ const Trade_Radial_Charts=()=>{
   
         let FindObj = find(OBJ_RESOURCES_GLOBAL(), function(o) { return o.name == UX.AreaSelectFilter.ByResourceType; });
         setTradeVolume(FindObj)
-    },[UX]) 
+
+        console.log(tradeVolume, UX.AreaSelectFilter.ByResourceType)
+    },[UX.AreaSelectFilter.ByResourceType]) 
      
 
     return( 
@@ -31,4 +33,4 @@ const Trade_Radial_Charts=()=>{
         </DiagramContainer>
     )
 }
-export default Trade_Radial_Charts;
+export default TradeSpecificOverview;

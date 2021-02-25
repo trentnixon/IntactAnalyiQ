@@ -4,11 +4,11 @@ const InitialState ={
     SelectedArea:null,
   
     AreaSelectFilter:{
-        ByResourceType:null,
-        ByClusterType:null,
-        ByClient:null, 
-        ByModel:null,
-        ByPolygon:null,
+        ByResourceType:undefined,
+        ByClusterType:undefined,
+        ByClient:undefined, 
+        ByModel:undefined,
+        ByPolygon:undefined,
         ByMarkerType:'Show All'
     },
 

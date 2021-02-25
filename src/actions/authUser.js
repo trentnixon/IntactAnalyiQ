@@ -8,8 +8,8 @@ import axios from 'axios';
 export const useAPILOCATION = () => {
         let APILOCATION;
         if (process.env.NODE_ENV !== 'production') {
-                //APILOCATION = 'http://localhost:1337/'
-                APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
+                APILOCATION = 'http://localhost:1337/'
+                //APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
                 
         }
         else
@@ -131,8 +131,6 @@ const FetchAPI = (Route, TYPE, i=0)=>{
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': "Bearer " + JWTToken,    
        }
-      
-
 
         axios({ url: APIFETCH, method: 'get', headers: axiosHeader})
         .then((result) => { 
@@ -158,6 +156,8 @@ const FetchAPI = (Route, TYPE, i=0)=>{
 }
 
 
+
+
 const GraphQLFetch = (Route,Name, TYPE)=>{
         const APIFETCH =useAPILOCATION()+'graphql'
         const JWTToken = store.getState().AUTH.jwt;
@@ -171,14 +171,11 @@ const GraphQLFetch = (Route,Name, TYPE)=>{
 
         axios({ url: APIFETCH, method: 'post', data: {query: `${QUERY}` }, headers: axiosHeader})
         .then((result) => { 
-        
-                console.log(result.data.data[Name]);
-                store.dispatch({ type:TYPE, payload:result.data.data[Name]});
-
+                        console.log(result.data.data[Name]);
+                        store.dispatch({ type:TYPE, payload:result.data.data[Name]});
                 }).catch(function (thrown) {
                        
-                });
-
+        });
 }
 
 
@@ -188,14 +185,12 @@ export const FetchDataIntegrity=()=>{
         // list out the items needed to fetch
         // do a look up to see if these items are already in the reducer
         
-     
         GetTradeTypes();
-        // FOr testing purposes pause this one
-        //setTimeout(()=>{ GetCustomers(); },3000)
         GetCustomers();
-        GetTradeAllocations();
         FetchPreviousScans();
 
+
+        //GetTradeAllocations();
         //GraphQLFetch()
 }
 
@@ -206,19 +201,20 @@ const GetCustomers=()=>{
                 FetchAPI('customers/intact', 'STORECUSTOMERS')       
                //`{customers {name} }` 
 }
-
-const GetSites=()=>{
-        //console.log("GetSites")
-        if(store.getState().STRAPI.sites === false)
-                FetchAPI('sites/intact', 'STORESITES')        
-}
-
 const GetTradeTypes=()=>{
         //console.log("GetTradeTypes")
         if(store.getState().STRAPI.UserData.tradetypes === false)
               //  FetchAPI('trade-types/intact', 'STORETRADETYPES')      
                 GraphQLFetch(`{tradeTypes { id name trade_allocation_ratio{Name id} } }`,'tradeTypes','STORETRADETYPES')  
                 
+}
+
+
+
+const GetSites=()=>{
+        //console.log("GetSites")
+        if(store.getState().STRAPI.sites === false)
+                FetchAPI('sites/intact', 'STORESITES')        
 }
 
 const GetTradeAllocations=()=>{

@@ -25,7 +25,7 @@ import {findClientName} from "actions/ClusterAnalysis"
 // FILTERS
 
     const RunFilter=(filter,ByType)=>{
-        if(ByType != null){
+        if(ByType != undefined){
             if(filter != ByType )
                 return false
         }return true        

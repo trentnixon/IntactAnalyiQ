@@ -9,7 +9,7 @@ const NivoPie=(props)=>{
     const [NivoData, setNivoData] = useState([])
     
     const CreateNivoData=()=>{
-            console.log(Xaxis,value)
+            //console.log(Xaxis,value)
             let Nivo=[{ 'id':Yaxis, "color": "#ffc200", 'data':[]}]
 
             data.map((row,i)=>{
@@ -20,13 +20,12 @@ const NivoPie=(props)=>{
                     
                 })
             }) 
-            console.log(Nivo)
+            //console.log(Nivo)
             setNivoData(Nivo)
     }
 
     useEffect(()=>{ 
-        console.log(data);
-
+        //console.log(data);
         CreateNivoData() },[data])
 
 

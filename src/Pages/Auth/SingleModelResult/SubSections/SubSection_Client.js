@@ -24,7 +24,7 @@ const SubSection_Client = ()=>{
                 <ClientResourceAllocationOverTime />
             </Section>
             {
-                 UX.AreaSelectFilter.ByClient === null ? <SelectAClient /> :<ClientSingleSelected />
+                 UX.AreaSelectFilter.ByClient === undefined ? <SelectAClient /> :<ClientSingleSelected />
             }
        </>
     )  

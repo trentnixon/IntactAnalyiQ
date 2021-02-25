@@ -62,7 +62,7 @@ const SubSection_FullMap = ()=>{
                 <Map_Full_Main />
 
                 { 
-                    UX.AreaSelectFilter.ByPolygon === null ? false : <SectionChart Charts={Charts}  />
+                    UX.AreaSelectFilter.ByPolygon === undefined ? false : <SectionChart Charts={Charts}  />
                 }
                 
             </Section >

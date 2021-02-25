@@ -26,7 +26,7 @@ const SubSection_Trade = ()=>{
             <TradeHeatMap /> 
                 <Section>
                     {
-                            UX.AreaSelectFilter.ByResourceType === null ? <SelectATrade /> :<TradeSpecificComponents />
+                            UX.AreaSelectFilter.ByResourceType === undefined ? <SelectATrade /> :<TradeSpecificComponents />
                         }
                 </Section>
         </Section>  

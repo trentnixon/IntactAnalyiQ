@@ -42,17 +42,17 @@ const Polygons = ()=>{
 
         //console.log(centerpoint.scanCategory)
         // Filter Results by Cluster Type    
-        if(UX.AreaSelectFilter.ByPolygon !== null)  
+        if(UX.AreaSelectFilter.ByPolygon !== undefined)  
             if(centerpoint.name != UX.AreaSelectFilter.ByPolygon)
                 return
 
 
-        if(UX.AreaSelectFilter.ByClusterType !== null)  
+        if(UX.AreaSelectFilter.ByClusterType !== undefined)  
             if(centerpoint.scanCategory != UX.AreaSelectFilter.ByClusterType)
                 return
 
         // Filter Results by Reource Type  
-        if(UX.AreaSelectFilter.ByResourceType !== null)  
+        if(UX.AreaSelectFilter.ByResourceType !== undefined)  
             if(findIndex(centerpoint.resourceQuota, function(o) { return o.Trade === UX.AreaSelectFilter.ByResourceType}) === -1)
                  return
 

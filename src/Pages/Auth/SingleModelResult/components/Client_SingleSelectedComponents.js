@@ -37,7 +37,6 @@ const ClientSpecificComponents = ()=>{
         </Section>
     )
 }
- 
 
 
 const ByClientBaseNumbers = ()=>{

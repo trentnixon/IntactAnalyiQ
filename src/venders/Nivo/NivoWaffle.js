@@ -8,7 +8,7 @@ const NivoPie=(props)=>{
     const [NivoData, setNivoData] = useState([])
     const [NivoWaffleTotal, setNivoWaffleTotal] = useState([])
     const CreateNivoData=()=>{
-            console.log(id,value)
+            //console.log(id,value)
             let NivoWaffleTotal=[]
             let NivoWaffleData=[]
             data.map((row,i)=>{
@@ -19,15 +19,14 @@ const NivoPie=(props)=>{
                     "value": row[value],
                 })
             })
-            console.log(NivoWaffleData)
+            //console.log(NivoWaffleData)
             //console.log(NivoRadialKeys)
             setNivoData(NivoWaffleData)
             setNivoWaffleTotal(NivoWaffleTotal.reduce((a, b) => a + b, 0))
     }
 
     useEffect(()=>{ 
-        
-        console.log(data)
+        //console.log(data)
         CreateNivoData() 
     },[data])
 

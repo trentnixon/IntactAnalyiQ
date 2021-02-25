@@ -384,6 +384,7 @@ export const OBJ_RESOURCES_GLOBAL=(Filters=['ByClusterType','ByResourceType','By
     })
   
  
+    console.log(orderBy(Resources_Clients, ['name'], []))
    return orderBy(Resources_Clients, ['name'], [])
 
 }

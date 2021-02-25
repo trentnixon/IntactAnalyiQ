@@ -24,13 +24,13 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    backgroundColor:'#ffc20e',
+    backgroundColor:'#89b2c3',
     zIndex:99
   },
   drawerPaper: {
     width: drawerWidth,
     backgroundColor:'#fff',
-    borderRight:'1px solid #ffc20e'
+    borderRight:'1px solid #89b2c3'
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,

@@ -34,7 +34,7 @@ const Map=()=>{
                         
                         <MapClusterContainer />
                         
-                    </div>
+                    </div> 
                 )
 }
 

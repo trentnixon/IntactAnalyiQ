@@ -20,6 +20,7 @@
 
 
     li.Pod{
+        @include BoxShadow();
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -29,15 +30,19 @@
         padding: 1rem 2rem;
         flex-grow: 1;
         //border:1px solid $color4;
-         //border-radius: $borderRadius;
+        border-radius: $borderRadius;
         margin: .1rem .1rem 1rem;
         background-color: $colorWhite;
-        -webkit-box-shadow: 7px 11px 32px -8px rgba(110,110,110,1);
-        -moz-box-shadow: 7px 11px 32px -8px rgba(110,110,110,1);
-        box-shadow: 7px 11px 32px -8px rgba(110,110,110,1);
-
+        position: relative;
         div{
             width: 100%;
+        }
+
+        svg{
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            fill:$color2;
         }
 
         .Title{
@@ -45,6 +50,13 @@
                 text-align: center;
                 color: $color2;
                 margin: 7px 0;
+            }
+            p{
+                small{
+                    width: 100%;
+                    font-size: .8rem;
+                    text-align: center;
+                }
             }
         }
         .Data{

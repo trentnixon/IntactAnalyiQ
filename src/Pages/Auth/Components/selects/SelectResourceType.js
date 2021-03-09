@@ -52,7 +52,7 @@ const ByResourceType = ()=>{
                 onChange={handleChange}
                 label="Select Resource Type"
                 >
-                <MenuItem value={undefined}> <em>All</em> </MenuItem>
+                <MenuItem value={false}>ALL</MenuItem>
 
                 {
                     ResourceType.map((Resource,i)=>{

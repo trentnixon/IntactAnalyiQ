@@ -3,9 +3,45 @@
 
 .Auth{
     width: 100vw;
+    
+    
+    .OuterContainer{
+        display: flex;
+
+        .PacketofChips{
+            position: fixed;
+            right: .5rem;
+            bottom: .5rem;
+            flex-direction: row;
+          
+            h3{
+                text-align: center;
+                font-size: .8rem;
+                width: 100%;
+            }
+            div{
+                flex-direction: row;
+                align-items: center;
+                align-self: center;
+                align-content: center;
+                justify-content: center;
+                background-color: $color2;
+                
+                .MuiChip-label{
+                    overflow: visible;
+                    color: $colorWhite;
+                }
+                svg{
+                    fill:$colorWhite;
+                }
+            }
+            
+        }
+
+    }
     .InnerFrame{
         padding: 2rem;
-
+        width: 70vw;
 
         .AuthLayout{
             text-align: left;
@@ -28,14 +64,91 @@
                 flex-grow: 2;
                 width: 100%;
             }
-            .Footer{
-                border-top: 1px solid $color5;
-                width: 100%;
-                padding: .5rem 1rem 0 ;
-            }
+
+           
         }
 
     } 
 
+    .SideBarRight{
+        width: 20vw;
+        //background-color: #89b2c3;
+        height: 100vh;
+        position: sticky;
+        top: 4rem;
+        border-left: 1px solid rgba(137, 178, 195,0.2);
+        padding: 2rem 1rem 0 1rem;
+    }
+
+    .ModelViewNav{
+      
+        width: 4rem;
+        border-left: 1px solid rgba(137, 178, 195, 0.2);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 80vh;
+        position: sticky;
+        top: 4rem;
+
+            a.selected{
+                background-color:  $color2;
+                svg{
+                    fill: $color1;
+                }
+                p{
+                    color: $color1;
+                }
+            }
+            a{
+                text-decoration: none;
+                button{
+                    width: 4rem;
+                    span{
+                        display: flex;
+                        flex-direction: column;
+                        
+                        svg{
+                            fill: $color5;
+                        }
+                        p{
+                            font-size: .6rem;
+                            line-height: .7rem;
+                            color: $color5;
+                        }
+                    }
+                }
+            }
+    }
   
+}
+
+.Footer{
+    border-top: 1px solid $color2;
+    width: 100%;
+    padding: .5rem 1rem 0;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    align-content: center;
+    justify-content: space-between;
+
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        padding: .5rem 0;
+        img{
+            height: 30px;
+            width: auto;
+            padding: 0 1rem;
+        }
+        p{
+            font-size: .6rem;
+            margin: 0;
+            padding: 0;
+        }
+    }
 }

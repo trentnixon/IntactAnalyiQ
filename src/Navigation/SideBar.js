@@ -13,24 +13,24 @@ import BlurCircularIcon from '@material-ui/icons/BlurCircular';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 import CompareIcon from '@material-ui/icons/Compare';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import AccountTreeIcon from '@material-ui/icons/AccountTree';
+import BuildIcon from '@material-ui/icons/Build';
 
 const Login = ()=>{
 
     useEffect(()=>{},[])
     return(
-
+ 
         <List className="AuthNavigation">
             <NavLink to={`/`} exact activeClassName="selected">
                 <ListItem button key='Profile'>
                     <ListItemIcon><PersonPinIcon /></ListItemIcon>
-                    <ListItemText primary='Profile' />
             </ListItem> 
             </NavLink>
 
            <NavLink to={`/create-model`} activeClassName="selected">
                 <ListItem button key='Create Model' >
                         <ListItemIcon><BlurCircularIcon /></ListItemIcon>
-                        <ListItemText primary='Create Model' /> 
                 </ListItem>
            </NavLink>
 
@@ -38,20 +38,35 @@ const Login = ()=>{
             <NavLink to={`/view-models`} activeClassName="selected">
                 <ListItem button key='View Models' >
                         <ListItemIcon><ApartmentIcon /></ListItemIcon>
-                        <ListItemText primary='View Models' /> 
+                        
                 </ListItem>
             </NavLink>
 
             <NavLink to={`/compare-models`} activeClassName="selected">
                 <ListItem button key='Compare Models' >
                         <ListItemIcon><CompareIcon /></ListItemIcon>
-                        <ListItemText primary='Compare Models' /> 
+                        
                 </ListItem>
             </NavLink>
+            
+
+            
+            <NavLink to={`/release-notes`} activeClassName="selected">
+                <ListItem button key='release-notes' >
+                    <ListItemIcon><BuildIcon /></ListItemIcon>
+                    
+                </ListItem>
+            </NavLink>
+            <NavLink to={`/pipeline`} activeClassName="selected">
+                <ListItem button key='pipeline' >
+                    <ListItemIcon><AccountTreeIcon /></ListItemIcon>
+                    
+                </ListItem>
+            </NavLink>
+
             <NavLink to={`/UIComponents`} activeClassName="selected">
                 <ListItem button key='UI Components' >
                     <ListItemIcon><DashboardIcon /></ListItemIcon>
-                    <ListItemText primary='UI Components' />
                 </ListItem>
             </NavLink>
         </List>
@@ -60,10 +75,10 @@ const Login = ()=>{
 
 export default Login
 
-/**
- *  <ListItem button key='Data return' component={Link} to={`/integity`}>
-                <ListItemIcon><DataUsageIcon /></ListItemIcon>
-                <ListItemText primary='Data integrity' /> 
-          </ListItem>
- * *
- */
+/*
+<ListItemText primary='Profile' />
+<ListItemText primary='Create Model' /> 
+<ListItemText primary='View Models' /> 
+<ListItemText primary='Compare Models' /> 
+<ListItemText primary='UI Components' />
+*/

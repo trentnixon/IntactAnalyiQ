@@ -51,47 +51,39 @@ const ReviewScanContnt = ()=>{
     
         if(USERSCAN.UserWorkingDataSet_Single.length === 0){
           //  FetchSelectedItems(USERSCAN.UserScanSingleDataSets)
-        }
-        
-    
-        
+        } 
     },[USERSCAN])
     return(
-        <div>
-                <h2>Name and Save Model</h2>
-                
+        <>
+            <div className="InnerFrame">
+                    <h2>Model Name and Description</h2>
+                    <p>Add a clear and consis name and description for this model. This will be used later when comparing and anylisis models against each other.</p>
+                       
+                    <div className="ModelReview">
+                        <ScanForm  DataSet={USERSCAN.UserScanSingleDataSets} />
+                    </div>
+                   
+            </div>
+            <div className="SideBarRight">
+                <div>
+                    <h4>Selected Clients</h4>
+                    <ul> 
+                        {
+                            USERSCAN.UserScanSingleDataSets.map((item,i)=>{
+                                return(
+                                    <li key={i}>
+                                        {item.name}
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
                 <div className="ControlBar">
                     <BacktoSelectItems />
                 </div>
-            
-
-                <div className="ModelReview">
-                    <div>
-                        <h2>Model Name and Description</h2>
-                        <p>Add a clear and consis name and description for this model. This will be used later when comparing and anylisis models against each other.</p>
-                        <ScanForm  DataSet={USERSCAN.UserScanSingleDataSets} />
-                    </div>
-                    <div>
-                        <ul> 
-                            {
-                                USERSCAN.UserScanSingleDataSets.map((item,i)=>{
-                                    return(
-                                        <li key={i}>
-                                            {item.name}
-                                        </li>
-                                    )
-                                })
-                            }
-                        </ul>
-                    </div>
-
-
-                   
-                </div>
-               
-
-               
-        </div>
+            </div>
+        </>
     )
 }
 

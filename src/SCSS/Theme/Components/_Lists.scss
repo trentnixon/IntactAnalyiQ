@@ -12,6 +12,7 @@
         align-self: flex-start;
         flex-wrap: wrap;
         >li{
+            @include BoxShadow();
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
@@ -23,11 +24,7 @@
              //border-radius: $borderRadius;
             margin: .1rem .1rem 1rem;
             padding: 0;
-           
-           
-            -webkit-box-shadow: 7px 11px 32px -8px rgba(110,110,110,1);
-            -moz-box-shadow: 7px 11px 32px -8px rgba(110,110,110,1);
-            box-shadow: 7px 11px 32px -8px rgba(110,110,110,1);
+            
 
                 div.header{
                     display: flex;
@@ -166,5 +163,57 @@
                 width: 100%;
             }
         }
+    }
+}
+
+
+.clusterList{
+
+    display: flex;
+    flex-direction: column;
+    .Header{
+        font-weight: 800;
+        position: sticky;
+        top: 4rem;
+        background-color: $color4;
+        padding: 1rem 0;
+        z-index: 50;
+        color: $color1;
+        div.sortable{
+            cursor: pointer;
+            color: $color5;
+        }
+    }
+
+
+   
+    li{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-grow: 1;
+        align-items: center;
+        align-content: center;
+        border-bottom: 1px solid $color2;
+
+        div{
+            display: flex;
+            align-items: center;
+            align-content: center;
+            justify-content: flex-start;
+            width: 10%;
+            padding: .5rem;
+            
+        }
+
+            div:nth-child(1), div:nth-child(2),div:nth-child(5){
+                width: 25%;
+            }
+           
+           
+            div:nth-child(5){
+                display: flex;
+                flex-direction: column;
+            }
     }
 }

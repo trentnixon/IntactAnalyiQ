@@ -3,12 +3,12 @@ const InitialState ={
    
     SelectedArea:null,
   
-    AreaSelectFilter:{
-        ByResourceType:undefined,
-        ByClusterType:undefined,
-        ByClient:undefined, 
-        ByModel:undefined,
-        ByPolygon:undefined,
+    AreaSelectFilter:{ 
+        ByResourceType:false,
+        ByClusterType:false,
+        ByClient:false, 
+        ByModel:false,
+        ByPolygon:false,
         ByMarkerType:'Show All'
     },
 
@@ -22,8 +22,8 @@ const InitialState ={
         Location:"Australia",
     },
     ClusterParameters:{
-        SelectedCluster:null,
-        SelectedLocation:null,
+        SelectedCluster:false,
+        SelectedLocation:false,
     }
 } 
  

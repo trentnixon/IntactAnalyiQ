@@ -8,7 +8,7 @@ import { Route, Switch } from "react-router-dom";
  import {AUTHContextProvider} from "Context/AUTH";
  import {COMPAREContextProvider} from "Context/COMPARE";
  import {SINGLEContextProvider} from "Context/SINGLE";
-
+ import {COMMSContextProvider} from "Context/COMMS";
  //import {UXContextProvider} from "Context/UX";
 // Components
 import history from  '../History'
@@ -33,6 +33,7 @@ const Main_Routes = (props)=>{
         <AUTHContextProvider> 
           <COMPAREContextProvider>
             <SINGLEContextProvider>
+            <COMMSContextProvider>
               <Router  history={history}>
                 <Switch>
                     <>
@@ -42,6 +43,7 @@ const Main_Routes = (props)=>{
                       </>
                 </Switch>
               </Router>
+              </COMMSContextProvider>
             </SINGLEContextProvider>
           </COMPAREContextProvider>
         </AUTHContextProvider>

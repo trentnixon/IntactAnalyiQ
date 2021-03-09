@@ -14,24 +14,34 @@ import Trade_Ratios from "Pages/Auth/SingleModelResult/components/Trade_Ratios";
 import TradeHeatMap from  "Pages/Auth/SingleModelResult/Maps/Trade_Heatmap";
 import FaceIcon from '@material-ui/icons/Face';
 
+
+import GlobalFilter from "Pages/Auth/Components/Layout/ReviewGlobalFilter";
+import ModelMeta from "Pages/Auth/SingleModelResult/Layout/ModelMeta";
+import AppBar from "Pages/Auth/SingleModelResult/Layout/AppBar"
+
 const SubSection_Trade = ()=>{
     const UX = useContext_UX_FULL();
+    
     return(
         <>
-        <H1 Copy={`Resources`} /> 
-        <Section>           
-            <Trade_ResourceAllocation />  
-            <Trade_Radial_Charts />
-            <Trade_Radial_Clients />     
-            <TradeHeatMap /> 
+        <div className="InnerFrame">
+            <H2 Copy={`Resources`} /> 
+            <Section>           
+                <Trade_ResourceAllocation />  
+                <Trade_Radial_Charts />
+                <Trade_Radial_Clients />     
+                <TradeHeatMap /> 
                 <Section>
-                    {
-                            UX.AreaSelectFilter.ByResourceType === undefined ? <SelectATrade /> :<TradeSpecificComponents />
-                        }
+                    { UX.AreaSelectFilter.ByResourceType === false ? <SelectATrade /> :<TradeSpecificComponents />}
                 </Section>
-        </Section>  
-           
-       </> 
+            </Section>  
+            </div>
+            <AppBar />
+            <div className="SideBarRight">  
+                <ModelMeta />
+                <GlobalFilter />
+            </div>
+       </>  
     ) 
 }
 

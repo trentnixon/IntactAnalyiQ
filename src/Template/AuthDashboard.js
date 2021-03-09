@@ -4,13 +4,13 @@ import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-
+import {AlogoBlue, AlogoWhite} from 'Assets/logo'
 import Divider from '@material-ui/core/Divider';
 
 import SideBar from "../Navigation/SideBar";
 
 
-const drawerWidth = 240;
+const drawerWidth = 60;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    backgroundColor:'#89b2c3',
+    //backgroundColor:'#89b2c3',
     zIndex:99
   },
   drawerPaper: {
@@ -50,10 +50,12 @@ export default function PermanentDrawerRight(props) {
 
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-       
-
+          <AlogoWhite />
+          <div>
             <h1>Intact AnalytiQ </h1>
             <p> Front end Portal  (Status : {`${process.env.NODE_ENV}` })</p>
+          </div>
+            
         </Toolbar>
       </AppBar>
       
@@ -74,12 +76,9 @@ export default function PermanentDrawerRight(props) {
       
       <main className="Auth">  
          <div className={classes.toolbar} />
-          <div  className="InnerFrame">
-            {props.children}
-          </div>
+         {props.children}
       </main>
-
- 
     </div>
+
   );
 }

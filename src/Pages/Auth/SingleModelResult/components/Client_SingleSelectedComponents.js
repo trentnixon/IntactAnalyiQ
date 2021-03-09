@@ -35,7 +35,7 @@ const ClientSpecificComponents = ()=>{
                 <Client_Selected_ClusterSpread /> 
                   
         </Section>
-    )
+    ) 
 }
 
 

@@ -3,7 +3,8 @@ import {useContext_UX_FULL} from "Context/UX";
 
 import {
     OBJ_CLIENT_GLOBAL_Filter,
-    OBJ_RESOURCES_GLOBAL
+    OBJ_RESOURCES_GLOBAL,
+    OBJ_CLUSTER_GLOBAL
 } from "actions/CreateSingleViewModel"
 // Template
 import Section from "Pages/Auth/Components/Layout/Section"
@@ -47,7 +48,8 @@ const ClientResourceSpread = ()=>{
     
     useEffect(()=>{
         setClientSpread(OBJ_RESOURCES_GLOBAL())
-        setClientClusterSpread(OBJ_CLIENT_GLOBAL_Filter())
+        setClientClusterSpread(OBJ_CLUSTER_GLOBAL())
+        console.log(OBJ_CLUSTER_GLOBAL())
     },[UX])
 
     return(
@@ -66,15 +68,16 @@ const ClientResourceSpread = ()=>{
             </div>
 
             <div>
+               
                 <ChartHeader Icon={Chart2.Icon} Header={Chart2.Header}  Copy={Chart2.Copy} Tip={Chart2.Tip} />
                 <div style={{height: 300}}>
-                        <NivoPie data={ClientClusterSpread} id={`name`} value={'Resources'} />
+                        <NivoPie data={ClientClusterSpread} id={`name`} value={'Resource'} />
                     </div>
 
                    
             </div>
         </div>
-        { ClientSpread.length !== 0 ? <ClientStatBar ClientSpread={ClientSpread} ClientClusterSpread={ClientClusterSpread}/>: false }
+            { ClientSpread.length !== 0 ? <ClientStatBar ClientSpread={ClientSpread} ClientClusterSpread={ClientClusterSpread}/>: false }
         </DiagramContainer>
         </>
     )
@@ -86,38 +89,7 @@ const ClientStatBar = (props)=>{
     const {ClientClusterSpread, ClientSpread} = props
     return(<>
                 <Stats_Bar data={ClientSpread} name={`name`} value={`Resources`}/>
-                <Stats_Bar data={ClientClusterSpread} name={`name`} value={`Resources`}/>
+                <Stats_Bar data={ClientClusterSpread} name={`name`} value={`Resource`}/>
         </>
     )
 }
-
-/*
-  <ResponsiveContainer width='100%' height={300}>
-                    <PieChart >
-                        <Pie dataKey="Resources" isAnimationActive={false} data={ClientSpread}  outerRadius={80} fill="#ffbf00" label >
-                            {
-                                ClientSpread.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={colorArray[index]}/>
-                                ))
-                            }   
-                        </Pie>
-                        <Tooltip /> 
-                        <Legend /> 
-                    </PieChart>
-                </ResponsiveContainer>
-
-                 <ResponsiveContainer width='100%' height={300}>
-                        <PieChart >
-                            <Pie dataKey="Resources" isAnimationActive={false} data={ClientClusterSpread}  outerRadius={80} fill="#ffbf00" label >
-                                {
-                                    ClientClusterSpread.map((entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={colorArray[index]}/>
-                                    ))
-                                }   
-                            </Pie>
-                            <Tooltip />
-                            <Legend /> 
-                        </PieChart>
-                    </ResponsiveContainer>
-
-*/

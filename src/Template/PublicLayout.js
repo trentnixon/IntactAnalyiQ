@@ -49,7 +49,19 @@ export default function PermanentDrawerRight(props) {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
+      <main className="Public">  
+            <div  className="InnerFrame">
+                {props.children}
+            </div>
+      </main>
+    </div>
+  );
+}
+
+
+/*
+<div className={classes.toolbar} />
+ <CssBaseline />
 
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
@@ -59,23 +71,7 @@ export default function PermanentDrawerRight(props) {
         </Toolbar>
       </AppBar>
       
-    
-    
-      
-      <main className="Public">  
-        <div className={classes.toolbar} />
-         
-            <div  className="InnerFrame">
-                {props.children}
-            </div>
-
-            
-      </main>
-
-
-    </div>
-  );
-}
+*/
 
 
 //    <PublicNavigation />

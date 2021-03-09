@@ -24,26 +24,21 @@ import Footer from "./Components/Layout/Footer"
 const Profile = ()=>{
     const AUTH = useContext_AUTH_FULL();
     return(
-        <div className="AuthLayout">
-                <div className="Header">
-                    <H2 Copy={`View Models`} />
-                  
-                </div>
-
-                <div className="Content">
-        
-                        <div className="ControlBar">
-                            {  AUTH.RefreshScanHistory ? <Refreshloading />: <ScanHistoryRefreshBtn /> }
-                        </div> 
-                    
-                    <Section>
-                        <ModelHistory />
-                    </Section>
-                
-                </div>
-            
-            <Footer />
+        <>
+        <div className="OuterContainer">
+            <div className="InnerFrame">
+                <H2 Copy={`View Models`} />
+                <Section><ModelHistory /></Section>   
+            </div>
+               
+            <div className="SideBarRight"> 
+                <div className="ControlBar">
+                    {  AUTH.RefreshScanHistory ? <Refreshloading />: <ScanHistoryRefreshBtn /> }
+                </div> 
+            </div>
         </div>
+        <Footer />
+        </>
     )
 }
 
@@ -73,9 +68,8 @@ const ModelHistory = ()=>{
     return(
         <div className="ModelHistory">
             <ul className="Card_List">
-
-            {
-                AUTH.ScanHistory.map((scan,i)=>{
+            { 
+                AUTH.ScanHistory.map((scan,i)=>{ 
                     //console.log(scan);
                     return(
                         <li key={i} className="Card">
@@ -139,18 +133,16 @@ const CreatedAt=(props)=>{
 
 const ProcessingStatus=(props)=>{
     const {scan} = props
-    return(<>
+    return(
+        <>
             <div className={`${scan.ScanState} status`}>
-                
                 {
                     scan.ScanState=== 'Complete' ? `Processing Time ${scan.CreateModel_TimeTaken}`:`ETA: ${scan.CreateModel_RemainingTime} `
                 }
                 <br />
-                {scan.ScanState} 
-             
+                {scan.ScanState}
             </div>
-    </>
-        
+        </>
     )
 }
 

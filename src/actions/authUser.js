@@ -8,8 +8,8 @@ import axios from 'axios';
 export const useAPILOCATION = () => {
         let APILOCATION;
         if (process.env.NODE_ENV !== 'production') {
-                //APILOCATION = 'http://localhost:1337/'
-                APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
+                APILOCATION = 'http://localhost:1337/'
+                //APILOCATION = 'https://intact-analtyiq.herokuapp.com/'
                 
         }
         else
@@ -158,7 +158,7 @@ const FetchAPI = (Route, TYPE, i=0)=>{
 
 
 
-const GraphQLFetch = (Route,Name, TYPE)=>{
+const GraphQLFetch = (Route,i=0)=>{
         const APIFETCH =useAPILOCATION()+'graphql'
         const JWTToken = store.getState().AUTH.jwt;
         //console.log(JWTToken)
@@ -171,10 +171,23 @@ const GraphQLFetch = (Route,Name, TYPE)=>{
 
         axios({ url: APIFETCH, method: 'post', data: {query: `${QUERY}` }, headers: axiosHeader})
         .then((result) => { 
-                        console.log(result.data.data[Name]);
-                        store.dispatch({ type:TYPE, payload:result.data.data[Name]});
+
+                        // for demo purposes we only need trade types and customers
+                        // this is for dev only NOT for production
+
+                        console.log(result.data);
+                        store.dispatch({ type:'STORETRADETYPES', payload:result.data.data['tradeTypes']});
+                        store.dispatch({ type:'STORECUSTOMERS', payload:result.data.data['customers']});
                 }).catch(function (thrown) {
-                       
+                        console.log("ERROR", thrown);
+                        console.log("i = ", i)
+                        if(i<3){
+                                
+                                setTimeout(()=>{ GraphQLFetch(Route, i=i+1) },3000)
+                        }
+                        else{
+                                store.dispatch({ type:'DATAFETCHFAIL', payload:true}); 
+                        }
         });
 }
 
@@ -197,16 +210,44 @@ export const FetchDataIntegrity=()=>{
 
 const GetCustomers=()=>{
         //console.log("GetCustomers")
-        if(store.getState().STRAPI.UserData.Customers === false)
-                FetchAPI('customers/intact', 'STORECUSTOMERS')       
+      //  if(store.getState().STRAPI.UserData.Customers === false)
+      //          FetchAPI('customers/intact', 'STORECUSTOMERS')       
                //`{customers {name} }` 
+
+               axios({ url: 'https://intactanalytiq.s3-ap-southeast-2.amazonaws.com/cache/5fe17522ab400d456889ac66ccc.json', method: 'get'})
+                        .then((result) => { 
+        
+                                console.log(result);
+                                store.dispatch({ type:'STORECUSTOMERS', payload:result.data});
+
+                        }).catch(function (thrown) {
+                                if (axios.isCancel(thrown)) { console.log('Request canceled', thrown.message);
+                                } else { 
+                                        console.log("ERROR", thrown);     
+                                }
+                        });
 }
+
+
 const GetTradeTypes=()=>{
         //console.log("GetTradeTypes")
         if(store.getState().STRAPI.UserData.tradetypes === false)
               //  FetchAPI('trade-types/intact', 'STORETRADETYPES')      
-                GraphQLFetch(`{tradeTypes { id name trade_allocation_ratio{Name id} } }`,'tradeTypes','STORETRADETYPES')  
-                
+                //GraphQLFetch(`{tradeTypes { id name trade_allocation_ratio{Name id} }}`)  
+                //customers { name id }
+
+                axios({ url: 'https://intactanalytiq.s3-ap-southeast-2.amazonaws.com/cache/60401c70ab55256074ba2da4tt.json', method: 'get'})
+                        .then((result) => { 
+        
+                                console.log(result);
+                                store.dispatch({ type:'STORETRADETYPES', payload:result.data});
+
+                        }).catch(function (thrown) {
+                                if (axios.isCancel(thrown)) { console.log('Request canceled', thrown.message);
+                                } else { 
+                                        console.log("ERROR", thrown);     
+                                }
+                        });
 }
 
 

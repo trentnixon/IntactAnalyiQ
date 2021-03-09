@@ -59,6 +59,7 @@ const NivoPie=(props)=>{
         size={{ key: 'volume', values: [ Math.min(...VolumeSize), Math.max(...VolumeSize) ], sizes: [ 6, 20 ] }}
         forceStrength={1}
         simulationIterations={100}
+        colors={colorArray}
         borderColor={{
             from: 'color',
             modifiers: [
@@ -73,24 +74,8 @@ const NivoPie=(props)=>{
             ]
         }}
         margin={{ top: 80, right: 100, bottom: 80, left: 100 }}
-        axisTop={{
-            orient: 'top',
-            tickSize: 10,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: 'Vertical  =  Work orders,  Horizontal = Numbers of sites in cluster',
-            legendPosition: 'middle',
-            legendOffset: -46
-        }}
-        axisRight={{
-            orient: 'right',
-            tickSize: 10,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: 'Vertical  =  Work orders,  Horizontal = Numbers of sites in cluster',
-            legendPosition: 'middle',
-            legendOffset: 76
-        }}
+       
+       
         axisBottom={{
             orient: 'bottom',
             tickSize: 10,
@@ -100,15 +85,7 @@ const NivoPie=(props)=>{
             legendPosition: 'middle',
             legendOffset: 46
         }}
-        axisLeft={{
-            orient: 'left',
-            tickSize: 10,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: 'Vertical  =  Work orders,  Horizontal = Numbers of sites in cluster',
-            legendPosition: 'middle',
-            legendOffset: -76
-        }}
+       
         motionStiffness={50}
         motionDamping={10}
     />

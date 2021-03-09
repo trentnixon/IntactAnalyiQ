@@ -19,38 +19,44 @@ import Resources_Main from "Pages/Auth/Compare/SubSections/Resources_Main"
     // Clients
 import Clients_Main from "Pages/Auth/Compare/SubSections/Clients_Main";
 
+import NivoNetwork from "venders/Nivo/NivoNetwork"
+import LocationsNetwork from "Pages/Auth/SingleModelResult/components/Locations_Network";
 const ModelComparision = ()=>{
    
     const COMPARE = useContext_COMPARE_FULL();
    
     useEffect(()=>{
-        console.log(COMPARE.CompareData.UserSelected.length)
+        //console.log(COMPARE.CompareData.UserSelected.length)
     },[COMPARE])
     
     return( 
-        <>
-            <h1>Comparison Results</h1> 
-            <ResetModels />
-            <div className="ModelComparisonContainer">
-                <div className="ModelComparisonFilter">
-                    <h4>Review Filters</h4>
-                    <GlobalFilter />
+        <div className="OuterContainer">
+            <div className="InnerFrame">
+                <h2>Comparison Results</h2>
+                <div className="ModelComparisonContainer">
+                    <div className="ModelComparisonTable">
+                   
+                        <TableHeader />
+                        <LocationsNetwork /> 
+                       
+                        <Locations_Main />
+                        <Resources_Main />
+                        <WorkOrders_Main />
+                        <Clients_Main />
+                    </div>
                 </div>
-                <div className="ModelComparisonTable">
-                    <TableHeader />
-                    <Locations_Main />
-    
-                    <Resources_Main />
-    
-                    <WorkOrders_Main />
-                    <Clients_Main />
-                </div> 
-                
-                <FilterChips />
             </div>
-          
+
+            <div className="SideBarRight">
+                <div className="controls">
+                    <h4>Filters</h4>
+                    <GlobalFilter />
+                    <ResetModels />
+                </div>
+            </div>  
         
-        </>
+            <FilterChips />
+        </div>
     )
 }
 

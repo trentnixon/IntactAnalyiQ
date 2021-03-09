@@ -2,7 +2,7 @@
 
 .LoadThis{
 
-    background-color: $color4;
+    background-color: $colorWhite;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -28,7 +28,7 @@
          p{
            font-size: .8rem;
            line-height: .9rem;
-           color: $color5;
+           color: $color4;
          }
        }
         div{
@@ -40,8 +40,9 @@
               //line-height: 2.5rem;
               //font-weight: 100;
               //letter-spacing: 15px;
-              color:$color1;
+              color:$color4;
               border: none;
+             
             }
             h2{
               font-size: 1.1rem;
@@ -50,7 +51,7 @@
               font-weight: 100;
               letter-spacing: 1px;
               font-weight: 100;
-              color:$color2;
+              color:$color4;
             }
         }
 

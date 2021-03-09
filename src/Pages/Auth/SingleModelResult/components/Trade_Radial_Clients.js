@@ -34,15 +34,12 @@ const Trade_Radial_Charts=()=>{
                 return 0
        }
 
-    useEffect(()=>{ 
-        console.log()
-        setCategoryOccurance(OBJ_CLIENT_RESOURCES())  
-        
-    },[UX]) 
+    useEffect(()=>{  setCategoryOccurance(OBJ_CLIENT_RESOURCES())   },[UX]) 
      
 
     useEffect(()=>{
         //console.log(CategoryOccurance)
+        //console.log(UX.AreaSelectFilter.ByResourceType)
     },[CategoryOccurance])
     return(
         <DiagramContainer>
@@ -54,7 +51,7 @@ const Trade_Radial_Charts=()=>{
                 
                     <div style={{height: 300}}>
                         {
-                            UX.AreaSelectFilter.ByResourceType === null ? <SelectResource /> :<NivoWaffle data={CategoryOccurance} id={`name`} value={UX.AreaSelectFilter.ByResourceType} />
+                            UX.AreaSelectFilter.ByResourceType === false ? <SelectResource /> :<NivoWaffle data={CategoryOccurance} id={`name`} value={UX.AreaSelectFilter.ByResourceType} />
                         }
                         
                     </div>

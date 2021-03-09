@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const ByResourceType = ()=>{
 
     const MODEL = useContext_SCAN_FULL()
-    const UX = useContext_UX_FULL()
+    const UX = useContext_UX_FULL() 
     
     const [type,setType] = useState(UX.AreaSelectFilter.ByClient) 
     const Clients = FindClientList()
@@ -37,17 +37,8 @@ const ByResourceType = ()=>{
         SetFilterClient(event.target.value)
         //StoreCompareItem(event.target.value, pos)
     };
-
-  
-   
-
-    useEffect(()=>{ 
-        
-        console.log(UX.AreaSelectFilter.ByClient)
-        setType(UX.AreaSelectFilter.ByResourceType)
-       
-    },[UX])
-
+    
+    useEffect(()=>{ setType(UX.AreaSelectFilter.ByClient) },[UX])
   
 
     return(
@@ -60,7 +51,7 @@ const ByResourceType = ()=>{
                 onChange={handleChange}
                 label="Select Client"
             >
-                <MenuItem value={undefined}> <em>All</em> </MenuItem>
+                <MenuItem value={false}>ALL</MenuItem>
 
                 {
                     Clients.map((client,i)=>{

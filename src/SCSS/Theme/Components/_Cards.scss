@@ -10,6 +10,7 @@ ul.Card_List{
     flex-wrap: wrap;
 
     li.Card{
+        @include BoxShadow();
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -21,9 +22,7 @@ ul.Card_List{
          //border-radius: $borderRadius;
         margin: .1rem .1rem 1rem;
         padding: 0;
-        -webkit-box-shadow: 7px 11px 32px -8px rgba(110,110,110,1);
-        -moz-box-shadow: 7px 11px 32px -8px rgba(110,110,110,1);
-        box-shadow: 7px 11px 32px -8px rgba(110,110,110,1);
+        
 
         .Card_Header{
             display: flex;
@@ -54,7 +53,7 @@ ul.Card_List{
                
                 button,a{
                     padding: 0;
-                    svg{ fill:$color2}
+                    svg{ fill:$color5}
                 }
                 div{
                     .loader{

@@ -1,6 +1,7 @@
 .PleaseSelectOption{
-    border:1px solid $color5;
-    background-color: $color3;
+    border:1px solid $color2;
+    background-color: $color1;
+    border-radius: $borderRadius;
     padding: 2rem;
     display: flex;
     flex-direction: column;

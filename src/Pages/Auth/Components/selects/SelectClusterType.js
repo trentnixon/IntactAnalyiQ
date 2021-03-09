@@ -53,7 +53,7 @@ const ByClusterType = ()=>{
                 onChange={handleChange}
                 label="Select Cluster Type"
                 >
-                <MenuItem value={undefined}> <em>All</em> </MenuItem>
+               <MenuItem value={false}>ALL</MenuItem>
 
                 {
                     ClusterType.map((city,i)=>{

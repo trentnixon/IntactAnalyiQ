@@ -32,23 +32,23 @@ const LocationHeatMap = ()=>{
     },[UX,MODEL])
  
     return( 
-        <> 
+        <div className="DiagramContainer">
        
-            <div className="ScanMapMain" id="MainMap">
-                <ChartHeader  {...Chart1}/>
-                <H3 Copy={`${HeatMapDataLength} Resources scanned in results`}  />
-            <GoogleMap  
-                mapContainerStyle={containerStyle}
-                center={UX.MapParameters.LatLngBoundaries}
-                zoom={UX.MapParameters.zoom}
-                mapTypeId="satellite"
-            
-            >
-                <HeatmapLayer data={HeatMapData} />
-            </GoogleMap> 
-            
-        </div>
-        </>
+                <div className="ScanMapMain" id="MainMap">
+                    <ChartHeader  {...Chart1}/>
+                    <H3 Copy={`${HeatMapDataLength} Resources scanned in results`}  />
+                        <GoogleMap  
+                            mapContainerStyle={containerStyle}
+                            center={UX.MapParameters.LatLngBoundaries}
+                            zoom={UX.MapParameters.zoom}
+                            mapTypeId="satellite"
+                        
+                        >
+                    <HeatmapLayer data={HeatMapData} />
+                </GoogleMap> 
+                
+            </div> 
+        </div> 
     )
 }
 

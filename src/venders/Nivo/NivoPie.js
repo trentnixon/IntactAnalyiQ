@@ -36,7 +36,8 @@ const NivoPie=(props)=>{
             radialLabelsTextColor="#2f2f2f"
             radialLabelsLinkColor={{ from: 'color' }}
             sliceLabelsSkipAngle={10}
-            sliceLabelsTextColor="#ffc200"
+            sliceLabelsTextColor="#fff"
+            sliceLabel={function(e){return e.value.toFixed(2)}}
             radialLabelsLinkStrokeWidth={1}
             radialLabelsTextXOffset={1}
             radialLabelsLinkHorizontalLength={15}    

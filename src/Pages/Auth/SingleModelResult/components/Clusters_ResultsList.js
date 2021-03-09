@@ -28,7 +28,7 @@ const CulsterResults = ()=>{
 
     return(
         <Section>
-            <H2 Copy={`Cluster Breakdown`}/> 
+            
             
             
         </Section>

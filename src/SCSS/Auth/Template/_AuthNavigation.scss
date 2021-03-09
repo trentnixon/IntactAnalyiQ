@@ -4,6 +4,7 @@
         a{
             text-decoration: none;
             div{
+                min-width: auto;
                 svg, span{
                     fill: $color4;
                     color:  $color4;
@@ -12,7 +13,7 @@
                 }
             }
         
-        }
+        } 
        
         a.selected{
             text-decoration: none;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {useContext_AUTH_FULL} from "Context/AUTH";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-
+import {LogoMain,AlogoBlue,AlogoWhite} from "Assets/logo"
 import {StrapiAuth} from "actions/authUser";
 
 const useStyles = makeStyles((theme) => ({
@@ -68,24 +68,32 @@ const LoginForm = ()=>{
     return(
         <div className="LoginContainer">
             <Error />
-            <div className="loginInput">
-                <TextField 
-                    id="outlined-basic" 
-                    label="e-mail" 
-                    variant="outlined" 
-                    onChange={handleEmail}
-                />
+            <div className="LoginlogoFormContainer">
+                <AlogoWhite />
+                <div>
+                    <div className="loginInput">
+                        <TextField 
+                            id="outlined-basic" 
+                            label="e-mail" 
+                            variant="outlined" 
+                            onChange={handleEmail}
+                        />
+                    </div>
+                    <div className="loginInput">
+                        <TextField
+                            id="standard-password-input"
+                            label="password"
+                            type="password"
+                            autoComplete="current-password"
+                            variant="outlined"
+                            onChange={handlePassword}
+                        />
+                    </div>
+                    
+                </div>
+                
             </div>
-            <div className="loginInput">
-                <TextField
-                    id="standard-password-input"
-                    label="password"
-                    type="password"
-                    autoComplete="current-password"
-                    variant="outlined"
-                    onChange={handlePassword}
-                />
-            </div>
+           
             <button className="SelectClientBtn" onClick={()=>{handleClick()}}>Login</button>
                 
         </div>

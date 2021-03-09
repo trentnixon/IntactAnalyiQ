@@ -25,6 +25,8 @@ import ComponentScan from "./ResourceAllocationScan"
 import UIComponents from "./UICompnents/index"
 //import ResultsComponent from "./MarkerBasedScan/MarkerBasedScan";
 import ResultsComponent from "./SingleModelResult";
+import ReleaseNotes from "./ReleaseNotes";
+import Pipeline from "./Pipeline"
 
 const routes = [
     { Rpath: "/", component: ComponentLanding, exact:true},
@@ -35,7 +37,9 @@ const routes = [
     { Rpath: "/integrity", component: ComponentDataDump, exact:false},
     { Rpath: "/results", component: ResultsComponent, exact:false},
     { Rpath: "/UIComponents", component: UIComponents, exact:false},
-  
+    { Rpath: "/release-notes", component: ReleaseNotes, exact:false},
+    { Rpath: "/pipeline", component: Pipeline, exact:false},
+   
 ];
 
 const Auth = (props)=>{
@@ -54,7 +58,7 @@ const Auth = (props)=>{
             Pushhistory.push("/");
         }else{ 
             console.log("USER AUTHED")
-        }
+        } 
     }, [AUTH])
 
 
@@ -157,8 +161,16 @@ const AuthRouters = (props)=>{
         <Router  basename={'/auth/'} >
             <Switch history={history}>
                 <DashBoard>
-                {
-                    routes.map((route, i) => (<Route key={i}  exact={route.exact} path={route.Rpath} render={()=> <route.component {... props}/> }/> ))
+                { 
+                    routes.map((route, i) => (
+                            <Route 
+                                key={i}  
+                                exact={route.exact} 
+                                path={route.Rpath} 
+                                render={()=> <route.component {... props}/> }
+                            /> 
+                        
+                        ))
                 }
                 </DashBoard>
                 </Switch>

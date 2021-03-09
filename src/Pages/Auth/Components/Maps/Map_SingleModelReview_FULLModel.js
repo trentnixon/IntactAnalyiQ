@@ -29,7 +29,7 @@ const Map=()=>{
                             
                             <Markers />
                             <ResidualMarkers />
-                            <Polygons />
+                            <Polygons /> 
                         </GoogleMap>  
                         
                         <MapClusterContainer />
@@ -51,14 +51,14 @@ const MapClusterContainer =()=>{
     useEffect(()=>{
         console.log(UX.ClusterParameters.SelectedCluster)
 
-        UX.ClusterParameters.SelectedCluster === null ? setClass('hide'): setClass('show')
+        UX.ClusterParameters.SelectedCluster == false ? setClass('hide'): setClass('show')
 
     },[UX])
 
 
     return(
         <div className={`${Class} InfoBox`}>
-               {UX.ClusterParameters.SelectedCluster === null ? false: <MapClusterInfo />}
+               {UX.ClusterParameters.SelectedCluster === false ? false: <MapClusterInfo />}
         </div>
     )
 }

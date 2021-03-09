@@ -13,7 +13,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 const ScanSelectItems=()=>{
    
-   
     const STRAPI = useContext_STRAPI_FULL();
     const SCAN = useContext_SCAN_FULL();
     const USERSCAN = SCAN.UserScanState;
@@ -32,7 +31,6 @@ const ScanSelectItems=()=>{
         let RemoveSelected = remove(nonSelected, function(o) {return o.id != customer.id;});
         setNonselected(RemoveSelected)
         
-            
     } 
 
     const handleRemove=(customer)=>{
@@ -66,19 +64,17 @@ const ScanSelectItems=()=>{
       
     },[filter])
     return(
-        <div>
-            <h2>Select Clients for Model</h2>
-            
-            <div className="ControlBar">
-                <ReviewSelectionBtn />
-                <BtnBacktoScanOptions />
-            </div>
-       
-            <Select_FilterClients setFilter={setFilter}/>
-            <div className="Dataset_Selection">
-                <div>
-                  
-                    <ul>
+        <>
+            <div className="InnerFrame">
+                <h2>Select Clients for Model</h2>
+                <p>Loremipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>Loremipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                <Select_FilterClients setFilter={setFilter}/>
+
+                <div className="Dataset_Selection">
+                    <div>
+                        <ul>
                             {
                                 
                                 orderBy(nonSelected, ['name'], ['asc']).map((customer,i)=>{
@@ -95,26 +91,33 @@ const ScanSelectItems=()=>{
                                 })
                             }
                       </ul>
-                </div>
-                <div>
-                    <ul>
-                        {
-                            orderBy(Selected, ['name'], ['asc']).map((customer,i)=>{
-                                return(
-                                    <li key={i} >
-                                        {customer.name}
-                                        <IconButton aria-label="delete"onClick={()=>{handleRemove(customer)}}>
-                                            <DeleteIcon />
-                                        </IconButton>
-                                    </li>
-                                )
-                            })
-                        }
-                  </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            {
+                                orderBy(Selected, ['name'], ['asc']).map((customer,i)=>{
+                                    return(
+                                        <li key={i} >
+                                            {customer.name}
+                                            <IconButton aria-label="delete"onClick={()=>{handleRemove(customer)}}>
+                                                <DeleteIcon />
+                                            </IconButton>
+                                        </li>
+                                    )
+                                })
+                            }
+                    </ul>
+                    </div>
                 </div>
             </div>
-            
-        </div>
+
+            <div className="SideBarRight">
+                <div className="ControlBar">
+                    <ReviewSelectionBtn />
+                    <BtnBacktoScanOptions />
+                </div>
+            </div>
+        </>
     )
 }
 

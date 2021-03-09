@@ -9,7 +9,7 @@ ul.Stat_Bar{
     background-color: $color3;
     padding: .2rem .5rem; 
     border-radius: $borderRadius;
-    h3{ text-align: left; width: 100%;}
+    h3{ text-align: left; width: 100%; color: $color1;}
     
     li{
         display: flex;

@@ -18,10 +18,15 @@ const LocationResourceSpread = ()=>{
     useEffect(()=>{ },[UX, MODEL]) 
 
     return(
+        <>
         <DiagramContainer>
             <ClusterSwarmPlot />
-            <ClusterBar_ResourceAllocation />
         </DiagramContainer>
+        <DiagramContainer>
+          <ClusterBar_ResourceAllocation />
+        </DiagramContainer>
+        </>
+        
     ) 
 }
 export default LocationResourceSpread;

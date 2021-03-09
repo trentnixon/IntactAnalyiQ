@@ -32,7 +32,7 @@ const LocationHeatMap = ()=>{
     },[UX,MODEL])
 
     return( 
-        <>
+        <div className="DiagramContainer">
             <div className="ScanMapMain" id="MainMap">
                 <ChartHeader  {...Chart1}/>
                 <H3 Copy={`${HeatMapDataLength} WorkOrders scanned in results`}  />
@@ -45,7 +45,7 @@ const LocationHeatMap = ()=>{
                 <HeatmapLayer data={HeatMapData} />
                 </GoogleMap>
             </div>
-        </>
+        </div>
     )
 }
 

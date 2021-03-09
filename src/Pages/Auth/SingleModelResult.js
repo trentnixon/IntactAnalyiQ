@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 // Layout 
 import AppBar from "Pages/Auth/SingleModelResult/Layout/AppBar"
 import HeaderTitles from "Pages/Auth/SingleModelResult/Layout/HeaderTitle"
-
+import {H1} from "Pages/Auth/Components/Type";
 // Sub Sections 
  import SubSection_Locations from "Pages/Auth/SingleModelResult/SubSections/SubSection_Locations";
  import SubSection_Client from "Pages/Auth/SingleModelResult/SubSections/SubSection_Client";
@@ -13,8 +13,9 @@ import HeaderTitles from "Pages/Auth/SingleModelResult/Layout/HeaderTitle"
  import SubSection_Clusters from "Pages/Auth/SingleModelResult/SubSections/SubSection_Clusters";
  import SubSection_Trade from "Pages/Auth/SingleModelResult/SubSections/SubSection_Trade";
  import SubSection_Workorders from "Pages/Auth/SingleModelResult/SubSections/SubSection_Workorders";
-  
+ import SubSection_CostAnalysis from "Pages/Auth/SingleModelResult/SubSections/SubSection_CostAnalysis"
 
+ import FilterChips from "Pages/Auth/SingleModelResult/Layout/FilterChips";
 
 const ModelCheck = ()=>{
     const MODEL = useContext_SCAN_FULL()
@@ -37,20 +38,21 @@ const SingleModelResult = ()=>{
     let match = useRouteMatch(); 
     return(
         <>
-            <HeaderTitles />
+          
+                <div className="OuterContainer">
                     <Switch> 
                         <Route path={`${match.path}/locations`}>
-                            <SubSection_Locations />
+                            <SubSection_Locations /> 
                         </Route> 
-                          
+                        
                         <Route path={`${match.path}/trades`}>
                             <SubSection_Trade />
                         </Route>  
-                         
+                        
                         <Route path={`${match.path}/clients`}>
                             <SubSection_Client />
                         </Route> 
- 
+
                         <Route path={`${match.path}/workorders`}>
                             <SubSection_Workorders />
                         </Route>
@@ -62,12 +64,18 @@ const SingleModelResult = ()=>{
                         <Route path={`${match.path}/cluster`}>
                             <SubSection_Clusters />
                         </Route>
-                          
+
+                        <Route path={`${match.path}/costs`}>
+                            <SubSection_CostAnalysis />
+                        </Route>
                     </Switch>  
-            <AppBar />
+                    <FilterChips />
+                </div>
+         
         </>
     ) 
 }
 
 export default ModelCheck; 
-
+//   <AppBar />
+//   <HeaderTitles />

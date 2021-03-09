@@ -14,7 +14,7 @@ const options = {
     clickable: false,
     draggable: false,
     editable: false,
-    geodesic: false,
+    geodesic: false, 
     zIndex: 1
   }
 
@@ -42,17 +42,17 @@ const Polygons = ()=>{
 
         //console.log(centerpoint.scanCategory)
         // Filter Results by Cluster Type    
-        if(UX.AreaSelectFilter.ByPolygon !== undefined)  
+        if(UX.AreaSelectFilter.ByPolygon !== false)  
             if(centerpoint.name != UX.AreaSelectFilter.ByPolygon)
                 return
 
 
-        if(UX.AreaSelectFilter.ByClusterType !== undefined)  
+        if(UX.AreaSelectFilter.ByClusterType !== false)  
             if(centerpoint.scanCategory != UX.AreaSelectFilter.ByClusterType)
                 return
 
         // Filter Results by Reource Type  
-        if(UX.AreaSelectFilter.ByResourceType !== undefined)  
+        if(UX.AreaSelectFilter.ByResourceType !== false)  
             if(findIndex(centerpoint.resourceQuota, function(o) { return o.Trade === UX.AreaSelectFilter.ByResourceType}) === -1)
                  return
 

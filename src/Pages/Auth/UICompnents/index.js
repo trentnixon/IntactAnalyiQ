@@ -7,8 +7,9 @@ import {H1, H2, H3,H4, P, S} from "../Components/Type";
 import Section from "../Components/Layout/Section"
 const UIComponentList = ()=>{
     return(
-        <>
-        <H1 Copy={`UI COMPONENTS`}/>
+        <div className="OuterContainer">
+            <div className="InnerFrame">
+            <H1 Copy={`UI COMPONENTS`}/>
             <Section><BasicTypeOptions /></Section>            
             <Section><ColorPallete /></Section>
             <Section><Cards /></Section>
@@ -16,17 +17,12 @@ const UIComponentList = ()=>{
             <Section><StatBar /></Section>
             <Section><Buttons /></Section>
             <Section><ControlBar /></Section>
-            
-
             <Section>
-               
-             Controls
-            charts
+                Controls
+                charts
             </Section>
-           
-
-
-        </> 
+            </div>
+        </div> 
     )
 }
 

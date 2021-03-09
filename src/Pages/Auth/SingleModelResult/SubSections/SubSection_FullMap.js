@@ -3,7 +3,7 @@ import React  from 'react'
 import {useContext_UX_FULL} from "Context/UX";
 // Template
 import Section from "Pages/Auth/Components/Layout/Section"
-import {H1} from "Pages/Auth/Components/Type";
+import {H2} from "Pages/Auth/Components/Type";
 
 import Map_Full_Main from "Pages/Auth/SingleModelResult/components/Map_Full_MAin";
 import SectionChart from "Pages/Auth/Compare/Layout/SectionCharts"
@@ -16,6 +16,14 @@ import Client_Pie_WorkOrders from 'Pages/Auth/SingleModelResult/Charts/Client_Pi
 import Client_line_ResourcesOvertime from 'Pages/Auth/SingleModelResult/Charts/Client_line_ResourcesOvertime'
 import Client_line_WorkordersOvertime from 'Pages/Auth/SingleModelResult/Charts/Client_line_WorkordersOvertime'
 import WorkOrder_Heatmap from 'Pages/Auth/SingleModelResult/Maps/WorkOrder_Heatmap'
+
+import Cost_Resource_PieCharts from "Pages/Auth/SingleModelResult/components/Cost_Resource_PieCharts";
+import Cost_Resource_OverTime from "Pages/Auth/SingleModelResult/components/Cost_Resource_OverTime";
+
+
+import GlobalFilter from "Pages/Auth/Components/Layout/ReviewGlobalFilter";
+import ModelMeta from "Pages/Auth/SingleModelResult/Layout/ModelMeta";
+import AppBar from "Pages/Auth/SingleModelResult/Layout/AppBar"
 
 const Charts=[
     {
@@ -47,6 +55,16 @@ const Charts=[
         chart: <WorkOrder_Heatmap />,
         label:`HeatMap`,
         tip:'',
+        icon:'map'
+    },{
+        chart: <Cost_Resource_PieCharts />,
+        label:`Resource Cost Split`,
+        tip:'',
+        icon:'pie'
+    },{
+        chart: <Cost_Resource_OverTime />,
+        label:`Resource Cost Over Time`,
+        tip:'',
         icon:'line'
     }
     
@@ -56,16 +74,18 @@ const SubSection_FullMap = ()=>{
     const UX = useContext_UX_FULL();
     console.log(UX.AreaSelectFilter.ByPolygon)
     return(
-        <>
-         <H1 Copy={`Model Overview`} />
+        <><div className="InnerFrame">
+         <H2 Copy={`Model Overview`} />
             <Section>
                 <Map_Full_Main />
-
-                { 
-                    UX.AreaSelectFilter.ByPolygon === undefined ? false : <SectionChart Charts={Charts}  />
-                }
-                
-            </Section >
+                { UX.AreaSelectFilter.ByPolygon === false ? false : <SectionChart Charts={Charts}  /> }
+            </Section > 
+            </div>
+            <AppBar />
+            <div className="SideBarRight"> 
+                <ModelMeta />
+                <GlobalFilter />
+            </div>
         </>
     )  
 } 

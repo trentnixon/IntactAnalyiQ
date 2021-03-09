@@ -25,7 +25,7 @@ const TradeSpecificOverview=()=>{
      
 
     return( 
-        <DiagramContainer>
+        <DiagramContainer> 
             <div >
                 <H4 Copy={` Resource Type Selected : ${tradeVolume.name}`}/>
                 <H4 Copy={`Resource Allocation : ${tradeVolume.Resources}`}/>

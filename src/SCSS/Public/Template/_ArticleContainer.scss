@@ -1,0 +1,22 @@
+.Content{
+    display: flex;
+    flex-wrap: wrap;
+
+    .ArticleContainer{
+        background-color: transparent;
+       
+        h2{
+            margin: 0;
+        }
+        div{
+           // @include BoxShadow();
+           // border:1px solid $colorWhite;
+           // border-radius: $borderRadius;
+           // background-color: $color1;
+            padding: 1rem 2rem;
+    
+        }
+        flex-basis: 98%;
+        margin: 2%;
+    }
+}

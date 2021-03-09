@@ -4,6 +4,7 @@ import store from "../store/index"
 //import axios from 'axios';
 import {distancetoPoint} from "./GeoLocationActions"
 import { findIndex} from 'lodash'; 
+
 // Icons
 import PieChartIcon from '@material-ui/icons/PieChart';
 import AssessmentIcon from '@material-ui/icons/Assessment';
@@ -14,7 +15,13 @@ import TouchAppIcon from '@material-ui/icons/TouchApp';
 import MapIcon from '@material-ui/icons/Map';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import TimelineIcon from '@material-ui/icons/Timeline';
-export const colorArray = ['#030303', '#787878', '#575757', '#999A9A', '#D4D4D3', '#313231', '#777777', '#575757', '#3A3A3A', '#444444',];
+
+//export const colorArray = ['#030303', '#787878', '#575757', '#999A9A', '#D4D4D3', '#313231', '#777777', '#575757', '#3A3A3A', '#444444',];
+export const colorArray = ['#89b2c3', '#D2B953','#D29653','#386E85','#514592', '#3F9F54', '#3C6289', '#D25F53', '#575757', '#D29F53', '#40598D',];
+
+export const LocationcolorArray = ['#514592', '#D29653', '#D2B953','#386E85', '#3F9F54', '#3C6289', '#D25F53', '#575757', '#D29F53', '#40598D',];
+
+export const TradecolorArray = ['#3F5A8C', '#40A151', '#FCF889','#D25C53'];
 
 
 export const ChartIcon =(Icon)=>{
@@ -57,6 +64,8 @@ export function setMainMapLocation(Location){
 }
   store.dispatch({ type:'STOREMAPPARAMETERS', payload:NewLocation});
 }
+
+
 
 /* ********************************************************************************* */
 // Handle Various  Filters

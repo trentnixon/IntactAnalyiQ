@@ -14,6 +14,7 @@ import BuildIcon from '@material-ui/icons/Build';
 import LocationCityIcon from '@material-ui/icons/LocationCity';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import PeopleIcon from '@material-ui/icons/People';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 
 
 import FilterChips from "Pages/Auth/SingleModelResult/Layout/FilterChips";
@@ -74,9 +75,42 @@ const AppNav=[
     Link:'/results/cluster',
     Icon:<BlurCircularIcon />,
     Label:'Clusters'
+  },{
+    Link:'/results/costs',
+    Icon:<MonetizationOnIcon />,
+    Label:'Cost Analysis'
   }
 ]
 
+
+export default function BottomAppBar() {
+  const classes = useStyles();
+  const { button: buttonClass, ...rippleClasses } = classes;
+  return (
+  
+    
+    <div className="ModelViewNav">
+           
+              {
+                AppNav.map((Link,i)=>{
+                    return(
+                      <NavLink key={i} to={Link.Link}  activeClassName="selected">
+                        <IconButton edge="end"  color="inherit" TouchRippleProps={{ classes: rippleClasses }} >
+                              {Link.Icon}
+                              <p>{Link.Label}</p>
+                        </IconButton>
+                      </NavLink>
+                    )
+                })
+              }
+            
+      </div>     
+      
+
+  );
+}
+
+/*
 
 export default function BottomAppBar() {
   const classes = useStyles();
@@ -106,3 +140,4 @@ export default function BottomAppBar() {
     </React.Fragment>
   );
 }
+*/

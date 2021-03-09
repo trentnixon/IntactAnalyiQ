@@ -112,15 +112,15 @@ const MarkerBasedLocationMarkers = ()=>{
 /* ******************************************************************************** */         
 // Map Filters
 // Filter Results by Polygon Select
-    if(UX.AreaSelectFilter.ByPolygon !== undefined)  
+    if(UX.AreaSelectFilter.ByPolygon !== false)  
             if(centerPoint.name != UX.AreaSelectFilter.ByPolygon)
                 return
 // Filter Results by Cluster Type
-          if(UX.AreaSelectFilter.ByClusterType !== undefined)  
+          if(UX.AreaSelectFilter.ByClusterType !== false)  
             if(centerPoint.scanCategory != UX.AreaSelectFilter.ByClusterType)
               return
 // Filter Results by Reource Type 
-            if(UX.AreaSelectFilter.ByResourceType !== undefined)  
+            if(UX.AreaSelectFilter.ByResourceType !== false)  
              if(findIndex(centerPoint.resourceQuota, function(o) { return o.Trade === UX.AreaSelectFilter.ByResourceType}) === -1)
               return
 // End Map Filters

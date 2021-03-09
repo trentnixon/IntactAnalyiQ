@@ -7,7 +7,7 @@ const ColorKey = ()=>{
     const UX = useContext_UX_FULL();
 
     const Opacity=(type)=>{
-        if(UX.AreaSelectFilter.ByClusterType === type || UX.AreaSelectFilter.ByClusterType === null)
+        if(UX.AreaSelectFilter.ByClusterType === type || UX.AreaSelectFilter.ByClusterType === undefined)
             return 1
                 return 0.1;
         

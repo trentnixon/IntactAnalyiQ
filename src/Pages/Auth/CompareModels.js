@@ -20,7 +20,7 @@ export default CompareModels
 
 const UIswitch = ()=>{ 
     const COMPARE = useContext_COMPARE_FULL();
-    return(
+    return( 
         <> { COMPARE.CompareStatus ? <ModelComparision /> :<SelectModels /> } </>
     )
 }

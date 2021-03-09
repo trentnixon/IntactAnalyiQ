@@ -7,16 +7,16 @@
     margin: 0 0 1rem 0;
 }
 .Section.SelectedItem{
-    margin: 0 4rem;
+    margin: 0rem;
     padding: 3rem;
-    background-color: $color4;
+    background-color: $color2;
     border-radius: $borderRadius;
 
     h2{
-        color: $color3;
+        color: $colorWhite;
     }
     h3{
-        color: $color1;
+        color: $colorWhite;
     }
     .DiagramContainer{
         margin: 0 0 3rem ;
@@ -24,11 +24,13 @@
 }
 
 .DiagramContainer{
-    border: 1px solid  $color1;
+    //border: 1px solid  $color2;
     margin: 2rem 0;
     border-radius: $borderRadius;
     padding: 1rem;
-    background-color: $color1;
+    background-color: $colorWhite;
+
+    @include BoxShadow();
 
     .resultCharts{
         >div{

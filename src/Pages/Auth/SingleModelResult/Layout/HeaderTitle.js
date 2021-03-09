@@ -14,11 +14,6 @@ const HeaderTitle = ()=>{
     const [endDate, setEndDate] = useState()
     const [WorkingDays, setWorkingDays] = useState(0) 
                  
-
-
-
-
-
     useEffect(()=>{
         
         monthDiff(new Date(SCAN.SelectedModelMeta.DateStart * 1000),new Date(SCAN.SelectedModelMeta.DateEnd * 1000))
@@ -31,16 +26,20 @@ const HeaderTitle = ()=>{
     return(
         <>
             <div className="ModelSingleHeader">
-                <h4>Date Range : {startDate}  - {endDate }</h4>
-                <h4>Working Days Counted : {WorkingDays}</h4>
-                <h4>Months in Model : {monthDiff(new Date(SCAN.SelectedModelMeta.DateStart * 1000),new Date(SCAN.SelectedModelMeta.DateEnd * 1000))}</h4>
-                <h2>{SCANMODELMETA.Name}</h2>
-                <div className="created"><p>Created : {HandleTZDate(SCANMODELMETA.createdAt)}</p></div>
+            <h2>{SCANMODELMETA.Name}</h2>
+               
             </div> 
-            <GlobalFilter />
+          
         </>
     )
 }
 //   <p>{SCANMODELMETA.Description}</p>
 export default HeaderTitle;
 
+/*
+ <h4>Date Range : {startDate}  - {endDate }</h4>
+                <h4>Working Days Counted : {WorkingDays}</h4>
+                <h4>Months in Model : {monthDiff(new Date(SCAN.SelectedModelMeta.DateStart * 1000),new Date(SCAN.SelectedModelMeta.DateEnd * 1000))}</h4>
+               
+                <div className="created"><p>Created : {HandleTZDate(SCANMODELMETA.createdAt)}</p></div>
+*/

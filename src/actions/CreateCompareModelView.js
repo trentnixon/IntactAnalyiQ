@@ -58,7 +58,7 @@ export const FindPercentageBewtweenTwoNumbers = (Data, i)=>{
 // FILTERS
 
     const RunFilter=(filter,ByType)=>{
-        if(ByType != null){
+        if(ByType != false){
             if(filter != ByType )
                 return false
         }return true        

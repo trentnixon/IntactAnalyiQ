@@ -15,16 +15,12 @@ const CreateNewScan = ()=>{
             console.log(USERSCAN)
     },[USERSCAN])
     return(
-        <div className="AuthLayout">
-            <div className="Header">
-                <h2>Create a Model</h2>
-            </div>
-            <div className="Content">
+        <>
+            <div className="OuterContainer">
                 {USERSCAN.ScanOptionSelected !== false ?<SelectandReview />:<ScanSelectScanType />}  
-            </div>
-
+            </div> 
             <Footer />
-        </div> 
+        </>
     )
 }
 
@@ -33,13 +29,16 @@ export default CreateNewScan;
 
 
 const ScanSelectScanType=()=>{
-    return( 
-        <div>
-            <p>Loremipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <div className="ControlBar">
-                <CreateButton />
-            </div> 
-            
-        </div> 
+    return(  
+        <>
+            <div className="InnerFrame">
+                <h2>Create a Model</h2>
+                <p>Loremipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div className="SideBarRight">
+                <div className="ControlBar"><CreateButton /></div>
+                
+            </div>
+        </> 
     )
 }

@@ -6,7 +6,8 @@
 */
 
 import store from "../store/index"
-import {GroupArrayByOccurances, HandleResourceFilter} from "actions/HandleUX";
+import {GroupArrayByOccurances, HandleResourceFilter, numberWithCommas,colorArray, RegionColor,TradecolorArray} from "actions/HandleUX";
+import {CostPerWorkOrder} from 'actions/CostsandPricings'
 import {findIndex,sumBy,orderBy,groupBy,find, remove} from 'lodash';
 import {findClientName} from "actions/ClusterAnalysis"
 
@@ -25,7 +26,7 @@ import {findClientName} from "actions/ClusterAnalysis"
 // FILTERS
 
     const RunFilter=(filter,ByType)=>{
-        if(ByType != undefined){
+        if(ByType != false){
             if(filter != ByType )
                 return false
         }return true        
@@ -68,6 +69,7 @@ export const OBJ_CLUSTER_GLOBAL=()=>{
     */
     const UX = store.getState().UX
     const MODEL = store.getState().SCANSTATE
+    
     let Clusters_ByClient=[];
 
     MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
@@ -309,7 +311,7 @@ export const OBJ_RESOURCES_GLOBAL=(Filters=['ByClusterType','ByResourceType','By
     // Get Filters 
     const UX = store.getState().UX
     const MODEL = store.getState().SCANSTATE
-
+    const COSTPERWORKORDER = CostPerWorkOrder()
     let Resources_Clients=[]
 
   
@@ -360,10 +362,16 @@ export const OBJ_RESOURCES_GLOBAL=(Filters=['ByClusterType','ByResourceType','By
                     Index = findIndex(Resources_Clients,{name:q.Trade})
                 }
      
-
+  
                 if(Resources_Clients[Index][`Resources`] === undefined)
                 {Resources_Clients[Index][`Resources`] = fixNumber(q.Ratio) }
                 else{Resources_Clients[Index][`Resources`] = fixNumber(Resources_Clients[Index][`Resources`]) + fixNumber(q.Ratio)} 
+
+                if(Resources_Clients[Index][`ResourceCost`] === undefined)
+                {Resources_Clients[Index][`ResourceCost`] = fixNumber(q.Ratio) }
+                else{Resources_Clients[Index][`ResourceCost`] = fixNumber(Resources_Clients[Index][`Resources`]*COSTPERWORKORDER)} 
+
+
 
                 if(Resources_Clients[Index][`Work Orders`] === undefined)
                 {Resources_Clients[Index][`Work Orders`] = fixNumber(q.WOS) }
@@ -481,9 +489,39 @@ export const OBJ_CENTERPOINTS=()=>{
     const MODEL = store.getState().SCANSTATE
     let CenterPoints=[];
 
+    const clientNum=(model)=>{
+        let num=[]
+        Object.keys(model.ClientGroupedBy).map(function(key, index) { num.push(index)})
+        return num;
+    } 
+
+    const resourceQuotatotal = (model)=>{
+        let total=[]
+        model.map((quota,i)=>{
+            total.push(quota.ResourceAllocation)
+        })
+        return total.reduce((a, b) => a + b, 0)
+    }
+
+
+
     MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
-            //console.log(model)
-            CenterPoints.push({name:model.name,type:model.scanCategory})
+            /* ********************************** */       
+            // Run Filter
+            if(!RunFilter(model.scanCategory ,UX.AreaSelectFilter.ByClusterType)) return false
+            /* ********************************** */ 
+
+  
+            CenterPoints.push(
+                    {
+                        name:model.name,
+                        type:model.scanCategory,
+                        sites:model.StripedSites.length,
+                        clients:clientNum(model).length,
+                        resourceQuota:model.resourceQuota,
+                        resourceQuotaTotal:resourceQuotatotal(model.resourceQuota),
+                        model:model
+                    })
     })
 
     return CenterPoints;
@@ -535,9 +573,6 @@ export const MapData_LocationHeatmap=()=>{
  
 export const Resources_HeatMap=()=>{
 
-    // LOOK OVER THIS
-    // POSSIBLY WRONG
-
    // Get Filters 
    const UX = store.getState().UX
    const MODEL = store.getState().SCANSTATE
@@ -580,6 +615,53 @@ export const Resources_HeatMap=()=>{
 }
 
 
+export const COSTANALYSIS_Resources_HeatMap=()=>{
+
+    // THI IS WRONG!!!
+    // Get Filters 
+    const UX = store.getState().UX
+    const MODEL = store.getState().SCANSTATE
+    const COSTPERWORKORDER = CostPerWorkOrder()
+    let HeatMapLocations=[];
+ 
+    let Quota=[]
+    MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
+        
+         /* ********************************** */       
+         // Run Filter
+         if(!RunFilter(model.name,UX.AreaSelectFilter.ByPolygon)) return false
+         /* ********************************** */ 
+        /* ********************************** */       
+        // Run Filter
+        if(!RunFilter(model.scanCategory ,UX.AreaSelectFilter.ByClusterType)) return false
+        /* ********************************** */   
+                    
+        // Loop Quotas to find volume numbers 
+        model.resourceQuota.map((quota,ii)=>{
+ 
+            /* ********************************** */       
+            // Run Filter
+            if(!RunFilter(quota.Trade ,UX.AreaSelectFilter.ByResourceType)) return false
+            /* ********************************** */ 
+            
+           // console.log(quota.ResourceAllocation*COSTPERWORKORDER)
+            Quota.push((quota.ResourceAllocation*COSTPERWORKORDER)/10000)
+        })
+       
+        //loop over volume numbers to create HEAT!!!!
+        // Math.ceil to round decimals up to 1 so they are counted
+        let n=0
+
+        
+        while (n <= Math.ceil((Quota.reduce((a, b) => a + b, 0)))) {
+            HeatMapLocations.push(new window.google.maps.LatLng(model.center.lat, model.center.lng))
+            n++;
+        } 
+    })
+    let ReduceNumber = Quota.reduce((a, b) => a + b, 0)
+ 
+    return [HeatMapLocations, ReduceNumber]
+ }
 
 export const WorkOrder_HeatMap=()=>{
 
@@ -640,7 +722,133 @@ export const WorkOrder_HeatMap=()=>{
 /* ************************************************************************************************* */
 
 
+/* ************************************************************************************************* */
+// OBJ Nivo Network
+/* ************************************************************************************************* */
 
+
+
+export const NivoNetwork=()=>{
+    const UX = store.getState().UX
+    const MODEL = store.getState().SCANSTATE
+    let node=[{
+        "id": "Model",
+        "radius": 7,
+        "depth": 1,
+         "color": "#89b2c3"
+      }];
+    let links=[];
+
+    MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
+        
+      
+        if(findIndex(node, function(o) { return o.id == model.scanCategory; })=== -1){
+            node.push({
+                "id": model.scanCategory,
+                "radius": 10,
+                "depth": 1,
+                "color": RegionColor(model.scanCategory)
+              })
+
+              links.push({
+                "source": "Model",
+                "target":  model.scanCategory,
+                "distance": 30
+              })
+        }
+
+
+        node.push({
+            "id": model.scanCategory+'.'+model.name,
+            "radius": 3,
+            "depth": 2,
+            "color": RegionColor(model.scanCategory)
+          })
+        
+          links.push({
+            "source": model.scanCategory,
+            "target":  model.scanCategory+'.'+model.name,
+            "distance": 20
+          })
+        
+    })
+
+    return {node, links}
+}
+
+export const NivoSunBurst = ()=>{
+    const UX = store.getState().UX
+    const MODEL = store.getState().SCANSTATE;
+   // console.log(MODEL)
+    let Data={"children":[]}
+    MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
+        
+        /* ********************************** */       
+        // Run Filter
+        if(!RunFilter(model.name,UX.AreaSelectFilter.ByPolygon)) return false
+        /* ********************************** */ 
+       /* ********************************** */       
+       // Run Filter
+       if(!RunFilter(model.scanCategory ,UX.AreaSelectFilter.ByClusterType)) return false
+       /* ********************************** */   
+
+        Object.keys(model.ResourcesGroupedBy).map(function(key, index) {
+            console.log(model.ResourcesGroupedBy[key]);
+           
+            model.ResourcesGroupedBy[key].map((q,ii)=>{
+               
+                /* Run 'ByResourceType' Filter ********************************** */       
+                if(!RunFilter(q.Trade ,UX.AreaSelectFilter.ByResourceType)) return false
+                /* ********************************** */ 
+                /* Run 'ByClient'  Filter********************************** */       
+                    if(!RunFilter(q.Customer ,UX.AreaSelectFilter.ByClient)) return false
+                /* ********************************** */ 
+
+                let WO_ChildIndex=null;
+                let ClusterIndex=null;
+                
+                // Parent Vars
+                let Index=null;
+                let ParentPath = Data.children
+                Index = findIndex(ParentPath,{name:findClientName(q.Customer)})
+
+                if(Index === -1){ 
+                    Index =  ParentPath.push({name:findClientName(q.Customer),color:colorArray[ParentPath.length],  "children":[]}) -1
+                }
+                /** End Parent */
+
+
+                // group by WOrk Order Vars
+                let WO_NAME = `${q.Trade} (${ParentPath[Index].name})`
+                let WO_Path = ParentPath[Index]['children']
+                WO_ChildIndex = findIndex(WO_Path,{name:WO_NAME})
+                
+
+                    if(WO_ChildIndex === -1){
+                        WO_ChildIndex = WO_Path.push({ name:WO_NAME,"children":[],  color:colorArray[WO_Path.length], }) - 1
+                    }else{
+                         //  WO_Path[WO_ChildIndex]['loc'] = WO_Path[WO_ChildIndex]['loc'] + q.WOS
+                    }
+
+                /** End Group By */
+                
+                // Group by Cluster
+                    let CLUSTERNAME =  `${model.scanCategory} (${WO_Path[WO_ChildIndex].name})` 
+                    let ClusterPath = WO_Path[WO_ChildIndex]['children'];
+                    ClusterIndex = findIndex(ClusterPath,{name:CLUSTERNAME}) 
+
+
+                    if(ClusterIndex === -1){
+                        ClusterIndex = ClusterPath.push({name:CLUSTERNAME, loc:1, color: colorArray[ClusterPath.length]}) -1
+                    }else{
+                        ClusterPath[ClusterIndex]['loc'] = ClusterPath[ClusterIndex]['loc'] + 1
+                    }
+                /** End Group Cluster */
+            })
+        })
+    })
+    return Data
+}
 
 
 /* ************************************************************************************************* */
@@ -664,7 +872,7 @@ export const OBJ_DATESPREAD_TRADE=()=>{
     // Get Filters 
     const UX = store.getState().UX
     const MODEL = store.getState().SCANSTATE
-
+    const COSTPERWORKORDER = CostPerWorkOrder()
     let Resources_Clients=[]
   
     MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
@@ -704,13 +912,23 @@ export const OBJ_DATESPREAD_TRADE=()=>{
                 }else{
                     Resources_Clients[Index][key] = fixNumber(Resources_Clients[Index][key] + fixNumber(q.Ratio))
                 }
+
+               
                 
                 if(Resources_Clients[Index][`Resources`] === undefined){ Resources_Clients[Index][`Resources`] = fixNumber(q.Ratio) }
-                else{ Resources_Clients[Index][`Resources`] = (fixNumber(Resources_Clients[Index][`Resources`]  +fixNumber(q.Ratio)))}
-                
+                else{ Resources_Clients[Index][`Resources`] = (fixNumber(Resources_Clients[Index][`Resources`]  + fixNumber(q.Ratio)))}
                 if(Resources_Clients[Index][`Work Orders`] === undefined){ Resources_Clients[Index][`Work Orders`] = fixNumber(q.WOS) }
                 else{ Resources_Clients[Index][`Work Orders`] = (fixNumber(Resources_Clients[Index][`Work Orders`]  +fixNumber(q.WOS)))}
                 
+
+                if(Resources_Clients[Index][`${key}_cost`] === undefined){
+                    Resources_Clients[Index][`${key}_cost`] = fixNumber(q.Ratio *  COSTPERWORKORDER)
+                }else{
+                    Resources_Clients[Index][`${key}_cost`] = fixNumber(Resources_Clients[Index][key] *  COSTPERWORKORDER)
+                }
+                if(Resources_Clients[Index][`ResourceCost`] === undefined){ Resources_Clients[Index][`ResourceCost`] = COSTPERWORKORDER }
+                else{ Resources_Clients[Index][`ResourceCost`] = (fixNumber(Resources_Clients[Index][`Resources`]  *  COSTPERWORKORDER))}
+                //
             })
         });
     })

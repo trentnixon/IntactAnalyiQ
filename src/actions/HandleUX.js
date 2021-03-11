@@ -86,24 +86,24 @@ export const SetFilterClient = (type)=>{
 }
 
 export const SetFilterModel = (type)=>{
-  console.log('SetFilterModel', type)
+  //console.log('SetFilterModel', type)
   store.dispatch({ type:'SETFILTERMODEL', payload:type});
 }
 
 export const SetFilterPolygon = (type)=>{
-  console.log('SETFILTERPOLYGON', type)
+  //console.log('SETFILTERPOLYGON', type)
   store.dispatch({ type:'SETFILTERPOLYGON', payload:type});
   
 }
 
 export const SetFilterMarkerType = (type)=>{
-  console.log('SETFILTERMARKERTYPE', type)
+  //console.log('SETFILTERMARKERTYPE', type)
   store.dispatch({ type:'SETFILTERMARKERTYPE', payload:type});
 }
 
 
 export const SetSelectedCluster = (type)=>{
-  console.log('SETSELECTEDCLUSTER', type)
+  //console.log('SETSELECTEDCLUSTER', type)
   store.dispatch({ type:'SETSELECTEDCLUSTER', payload:type});
 }
 

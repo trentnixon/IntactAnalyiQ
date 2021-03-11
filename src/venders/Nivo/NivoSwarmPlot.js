@@ -18,8 +18,8 @@ const NivoPie=(props)=>{
             let CreateVolumeSize=[]
             let CreateValueSize=[]
             data.map((row,i)=>{
-               // console.log(sumBy(row.resourceQuota, function(o) { return o.ResourceAllocation; }))
-               // console.log(row.resourceQuota)
+               //console.log(sumBy(row.resourceQuota, function(o) { return o.ResourceAllocation; }))
+               //console.log(row.resourceQuota)
                 Nivo.push({
                     "id":`${i}_${row[Group]}`,
                     "group": row[Group],
@@ -36,14 +36,14 @@ const NivoPie=(props)=>{
             }) 
             setNivoData(Nivo)
 
-           // console.log(Nivo)
-           // console.log(NivoRadialKeys)
+           //console.log(Nivo)
+           //console.log(NivoRadialKeys)
             setNivoRadialKeys(NivoRadialKeys)
             setVolumeSize(CreateVolumeSize)
             setValueSize(CreateValueSize)
 
 
-           // console.log(CreateVolumeSize, [ Math.min(...CreateVolumeSize), Math.max(...CreateVolumeSize) ])
+           //console.log(CreateVolumeSize, [ Math.min(...CreateVolumeSize), Math.max(...CreateVolumeSize) ])
     }
 
     useEffect(()=>{ CreateNivoData() },[data])

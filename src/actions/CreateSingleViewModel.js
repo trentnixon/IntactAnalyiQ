@@ -392,7 +392,7 @@ export const OBJ_RESOURCES_GLOBAL=(Filters=['ByClusterType','ByResourceType','By
     })
   
  
-    console.log(orderBy(Resources_Clients, ['name'], []))
+    //console.log(orderBy(Resources_Clients, ['name'], []))
    return orderBy(Resources_Clients, ['name'], [])
 
 }
@@ -644,7 +644,7 @@ export const COSTANALYSIS_Resources_HeatMap=()=>{
             if(!RunFilter(quota.Trade ,UX.AreaSelectFilter.ByResourceType)) return false
             /* ********************************** */ 
             
-           // console.log(quota.ResourceAllocation*COSTPERWORKORDER)
+           //console.log(quota.ResourceAllocation*COSTPERWORKORDER)
             Quota.push((quota.ResourceAllocation*COSTPERWORKORDER)/10000)
         })
        
@@ -731,6 +731,11 @@ export const WorkOrder_HeatMap=()=>{
 export const NivoNetwork=()=>{
     const UX = store.getState().UX
     const MODEL = store.getState().SCANSTATE
+
+    const FetchedModels = store.getState().COMPARE.CompareData.FetchedModels;
+
+    //console.log(FetchedModels);
+
     let node=[{
         "id": "Model",
         "radius": 7,
@@ -779,7 +784,7 @@ export const NivoNetwork=()=>{
 export const NivoSunBurst = ()=>{
     const UX = store.getState().UX
     const MODEL = store.getState().SCANSTATE;
-   // console.log(MODEL)
+    //console.log(MODEL)
     let Data={"children":[]}
     MODEL.SelectedModel.STOREMARKERCENTERPOINTS.map((model,i)=>{
         
@@ -793,7 +798,7 @@ export const NivoSunBurst = ()=>{
        /* ********************************** */   
 
         Object.keys(model.ResourcesGroupedBy).map(function(key, index) {
-            console.log(model.ResourcesGroupedBy[key]);
+            //console.log(model.ResourcesGroupedBy[key]);
            
             model.ResourcesGroupedBy[key].map((q,ii)=>{
                

@@ -98,8 +98,6 @@ export const FetchSingleScanResult = (scanID, scan)=>{
 
         store.dispatch({ type:'STORESELECTEDUI', payload:{active:false,processing:true,activeID:scanID} }); 
 
-
-        console.log("scanID", scanID, 'scan', scan)
         const AWSURL=' https://intactanalytiq.s3-ap-southeast-2.amazonaws.com/';
        // 6002d5ece940b655642d22df.json
        // headers: axiosHeader
@@ -166,7 +164,7 @@ const GraphQLFetch = (Route,i=0)=>{
                 'Content-Type': 'application/json',
                 'Authorization': "Bearer " + JWTToken,    
        }
-        console.log(APIFETCH)
+      
        let QUERY = Route
 
         axios({ url: APIFETCH, method: 'post', data: {query: `${QUERY}` }, headers: axiosHeader})
@@ -174,13 +172,11 @@ const GraphQLFetch = (Route,i=0)=>{
 
                         // for demo purposes we only need trade types and customers
                         // this is for dev only NOT for production
-
-                        console.log(result.data);
                         store.dispatch({ type:'STORETRADETYPES', payload:result.data.data['tradeTypes']});
                         store.dispatch({ type:'STORECUSTOMERS', payload:result.data.data['customers']});
                 }).catch(function (thrown) {
                         console.log("ERROR", thrown);
-                        console.log("i = ", i)
+                      
                         if(i<3){
                                 
                                 setTimeout(()=>{ GraphQLFetch(Route, i=i+1) },3000)
@@ -217,7 +213,7 @@ const GetCustomers=()=>{
                axios({ url: 'https://intactanalytiq.s3-ap-southeast-2.amazonaws.com/cache/5fe17522ab400d456889ac66ccc.json', method: 'get'})
                         .then((result) => { 
         
-                                console.log(result);
+                                //console.log(result);
                                 store.dispatch({ type:'STORECUSTOMERS', payload:result.data});
 
                         }).catch(function (thrown) {
@@ -239,7 +235,7 @@ const GetTradeTypes=()=>{
                 axios({ url: 'https://intactanalytiq.s3-ap-southeast-2.amazonaws.com/cache/60401c70ab55256074ba2da4tt.json', method: 'get'})
                         .then((result) => { 
         
-                                console.log(result);
+                                //console.log(result);
                                 store.dispatch({ type:'STORETRADETYPES', payload:result.data});
 
                         }).catch(function (thrown) {

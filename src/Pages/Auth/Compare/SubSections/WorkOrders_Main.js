@@ -51,7 +51,7 @@ const TableSectionWorkorders = ()=>{
         
           <div className="TableSection">
             <div className="SectionHeader"><h2>Work Orders</h2></div>
-                <CompareTableTotalWorkOrders />
+                <CompareTableTotalWorkOrders /> 
                 <SectionChart Charts={Charts} />  
             </div>
         </>

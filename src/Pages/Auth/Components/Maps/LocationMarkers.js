@@ -68,7 +68,7 @@ const MarkerBasedLocationMarkers = ()=>{
     }
 
     const OnMarkerClick=(point, Region)=>{
-      console.log("Marker Clicked", point, Region) 
+      //console.log("Marker Clicked", point, Region)  
       
       setInfoWindowContent(point)
       setShowInfoWindow(true)
@@ -106,12 +106,13 @@ const MarkerBasedLocationMarkers = ()=>{
 
         markers.map((centerPoint,i)=>{
 
-         // console.log("centerPoint", centerPoint)
+         //console.log("centerPoint", centerPoint)
 
   
 /* ******************************************************************************** */         
 // Map Filters
 // Filter Results by Polygon Select
+console.log(UX.AreaSelectFilter)
     if(UX.AreaSelectFilter.ByPolygon !== false)  
             if(centerPoint.name != UX.AreaSelectFilter.ByPolygon)
                 return
@@ -120,6 +121,7 @@ const MarkerBasedLocationMarkers = ()=>{
             if(centerPoint.scanCategory != UX.AreaSelectFilter.ByClusterType)
               return
 // Filter Results by Reource Type 
+
             if(UX.AreaSelectFilter.ByResourceType !== false)  
              if(findIndex(centerPoint.resourceQuota, function(o) { return o.Trade === UX.AreaSelectFilter.ByResourceType}) === -1)
               return
@@ -205,11 +207,11 @@ const MarkerBasedLocationMarkers = ()=>{
 
 
       const onLoad = infoWindow => {
-        console.log('infoWindow: ', infoWindow)
+        //console.log('infoWindow: ', infoWindow)
       }
       
       const onClose = (infoWindow)=>{
-        console.log('onClose: ',infoWindow)
+        //console.log('onClose: ',infoWindow)
         setShowInfoWindow(false)
       }
 

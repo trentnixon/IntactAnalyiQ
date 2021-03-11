@@ -10,7 +10,7 @@ const NivoPie=()=>{
    
     
     useEffect(()=>{
-            console.log(NivoNetwork())
+           //console.log(NivoNetwork())
     },[NivoNetwork()])
 
     return(
@@ -21,6 +21,7 @@ const NivoPie=()=>{
             repulsivity={70}
             iterations={90}
             distanceMax={70}
+       
             nodeColor={function(e){return e.color}}
             nodeBorderWidth={1}
             nodeBorderColor={{ from: 'color', modifiers: [ [ 'darker', 0.8 ] ] }}

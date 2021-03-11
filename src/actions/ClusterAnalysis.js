@@ -165,7 +165,7 @@ const ClusterCost=(ClusterAssetBreakdown)=>{
                Cost = (ClusterAssetBreakdown[1][i]* TT.cpj)*FindMultiplier(ClusterAssetBreakdown[1][i])
                ClusterCost.push([findTradeTypeName(id), parseFloat(Cost.toFixed(2))])
         }else{
-            console.log(`${findTradeTypeName(id)} is missing a CPJ marker`)
+            //console.log(`${findTradeTypeName(id)} is missing a CPJ marker`)
         }
     })
     return ClusterCost

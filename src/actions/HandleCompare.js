@@ -15,10 +15,19 @@ export const StoreCompareItem = (scan,i)=>{
 
 export const ConfirmCompare = (bool)=>{
     store.dispatch({ type:'COMPAREPROCESSING', payload:true}); 
+   
     const UserSelected = store.getState().COMPARE.CompareData.UserSelected;
-    UserSelected.map((models,i)=>{FetchCompareModel(models.id, i, UserSelected.length) })
+   
+
+    UserSelected.map((models,i)=>{
+        //console.log(i)
+        if(i === 0){ store.dispatch({ type:'STORESELECTEDMODELMETA', payload:models}) }
+        FetchCompareModel(models.id, i, UserSelected.length) 
+    })
 }
 
+//store.dispatch({ type:'STORESELECTEDMODEL', payload:result.data}); 
+//store.dispatch({ type:'STORESELECTEDMODELMETA', payload:scan}); 
 
 export const ResetCompare = ()=>{
 
@@ -28,7 +37,7 @@ export const ResetCompare = ()=>{
     store.dispatch({ type:'STOREMODELS', payload:[]});
 }
 
-
+ 
 export const FetchCompareModel = (scanID, int, total)=>{
 
     const AWSURL=' https://intactanalytiq.s3-ap-southeast-2.amazonaws.com/';
@@ -41,6 +50,7 @@ export const FetchCompareModel = (scanID, int, total)=>{
             const FetchedModels = store.getState().COMPARE.CompareData.FetchedModels;
 
             FetchedModels[int] = result.data
+            if(int === 0){ store.dispatch({ type:'STORESELECTEDMODEL', payload:result.data}) }
             store.dispatch({ type:'STOREMODELS', payload:FetchedModels}); 
 
             // Check Data State
@@ -60,4 +70,11 @@ const SetState = ()=>{
         store.dispatch({ type:'COMPAREPROCESSING', payload:false}); 
         store.dispatch({ type:'COMPARESTATUS', payload:true}); 
     }
+}
+
+
+// Use this if the user has selected a model in Storage
+export const SelectSingleScanResult = (ModelMeta, Model)=>{
+    store.dispatch({ type:'STORESELECTEDMODEL', payload:Model}); 
+    store.dispatch({ type:'STORESELECTEDMODELMETA', payload:ModelMeta});
 }

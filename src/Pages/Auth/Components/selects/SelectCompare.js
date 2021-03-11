@@ -46,7 +46,7 @@ export default function CompareSelect(props) {
    
 
     useEffect(()=>{
-      console.log(COMPARE.CompareData.UserSelected)
+      //console.log(COMPARE.CompareData.UserSelected)
       orderBy(AUTH.ScanHistory, ['IntClients'], ['asc', 'desc']);
     },[COMPARE])
 

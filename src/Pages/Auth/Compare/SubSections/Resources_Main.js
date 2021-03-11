@@ -51,7 +51,7 @@ const TableSectionWorkorders = ()=>{
               <div className="SectionHeader">
                   <h2>Resources</h2>
                </div>
-               <TotalResourceAllocation />
+               <TotalResourceAllocation /> 
                <SectionChart Charts={Charts} />   
                    
         </div>  

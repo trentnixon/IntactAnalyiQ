@@ -145,16 +145,16 @@ const AuthRouters = (props)=>{
     useEffect(()=>{
         //console.log(AUTH)
         if(AUTH.jwt === false){
-            console.log("USER DENIED")
+            //console.log("USER DENIED")
             //Pushhistory.push("/demo/login");
             Pushhistory.push("/");
         }else{ 
-            console.log("USER AUTHED")
+            //console.log("USER AUTHED")
         }
     }, [AUTH])
 
     useEffect(()=>{
-        console.log(MODEL.SelectedModel)
+        //console.log(MODEL.SelectedModel)
     },[MODEL])
     return(
       

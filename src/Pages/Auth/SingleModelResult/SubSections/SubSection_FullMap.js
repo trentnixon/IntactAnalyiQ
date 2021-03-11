@@ -72,7 +72,7 @@ const Charts=[
 
 const SubSection_FullMap = ()=>{
     const UX = useContext_UX_FULL();
-    console.log(UX.AreaSelectFilter.ByPolygon)
+    //console.log(UX.AreaSelectFilter.ByPolygon)
     return(
         <><div className="InnerFrame">
          <H2 Copy={`Model Overview`} />

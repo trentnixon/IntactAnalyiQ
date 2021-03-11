@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {useContext_COMPARE_FULL} from "Context/COMPARE";
+import {useContext_UX_FULL} from "Context/UX";
 import {OBJ_RESOURCES_GLOBAL, FindTotals, FindPercentageBewtweenTwoNumbers, WorkorderTotals} from 'actions/CreateCompareModelView'
 import {H2} from "Pages/Auth/Components/Type"
 
 const WorkOrderComparison = ()=>{
     const COMPARE = useContext_COMPARE_FULL();
+    const UX = useContext_UX_FULL()
     const MODELS = COMPARE.CompareData.FetchedModels;
 
     const [InModel, setInModel] = useState([])
@@ -19,19 +21,21 @@ const WorkOrderComparison = ()=>{
             StoreTotal.push(WorkorderTotals(model.STOREMARKERCENTERPOINTS,model.STORERESIDUALMARKERS).reduce((a, b) => a + b, 0))
             StoreInModel.push(WorkorderTotals(model.STOREMARKERCENTERPOINTS,model.STORERESIDUALMARKERS)[0])
             StoreOOS.push(WorkorderTotals(model.STOREMARKERCENTERPOINTS,model.STORERESIDUALMARKERS)[1])
+            console.log(WorkorderTotals(model.STOREMARKERCENTERPOINTS,model.STORERESIDUALMARKERS))
         })
 
+       
         setTotal(StoreTotal)
         setInModel(StoreInModel)
         setOutofScope(StoreOOS)
-    }
+    } 
 
 
     useEffect(()=>{
-        Calculate()
-        console.log(MODELS)
-       // console.log(WorkorderTotals(MODELS[0].STOREMARKERCENTERPOINTS,MODELS[0].STORERESIDUALMARKERS))
-     },[COMPARE])
+        Calculate() 
+       //console.log(MODELS)
+       //console.log(WorkorderTotals(MODELS[0].STOREMARKERCENTERPOINTS,MODELS[0].STORERESIDUALMARKERS))
+     },[COMPARE, UX])
 
     const [RAW, setRAW] = useState([])
 
@@ -83,19 +87,17 @@ export default WorkOrderComparison;
 const WorkOrderNumbers = ()=>{
 
     const [Workorders, setWorkorders] = useState([])
+   
     const Calculate = ()=>{
-        let stored={ }
+        let stored={}
+
         OBJ_RESOURCES_GLOBAL().map((model,i)=>{
-            //stored.push()
-            
             model.map((res,ii)=>{
-                if(stored[res.name] === undefined){
-                    stored[res.name]=[]
-                }
-              
-                stored[res.name].push(res['Work Orders'])
+                if(stored[res.name] === undefined){ stored[res.name]=[0,0] }
+                stored[res.name][i] = res['Work Orders']
             })
         })
+    
         setWorkorders(stored)
     }
 
@@ -113,8 +115,10 @@ const WorkOrderNumbers = ()=>{
                                return  (
                                    <>
                                         <div className="ShowInt"> <H2 Copy={key} /></div>
-                                        <div className="ShowInt">{Workorders[key][0].toFixed(2)}</div>
-                                        <div className="ShowInt">{Workorders[key][1].toFixed(2)} {FindPercentageBewtweenTwoNumbers(Workorders[key],1)}</div>
+                                        <div className="ShowInt">{Workorders[key][0]}</div>
+                                        <div className="ShowInt">
+                                                {Workorders[key][1]} {FindPercentageBewtweenTwoNumbers(Workorders[key],1)}
+                                        </div>
                                     </>
                                )
                         })

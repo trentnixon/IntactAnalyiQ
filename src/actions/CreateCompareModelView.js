@@ -100,7 +100,7 @@ export const OBJ_CLUSTER_GLOBAL=()=>{
         let CompareOBJ=[]
     COMPARE.FetchedModels.map((MODEL, i)=>{
         let Clusters_ByClient=[];
-           // console.log(MODEL.STOREMARKERCENTERPOINTS)
+           //console.log(MODEL.STOREMARKERCENTERPOINTS)
             MODEL.STOREMARKERCENTERPOINTS.map((model,i)=>{
 
                 let Index = findIndex(Clusters_ByClient,{name:model.scanCategory})
@@ -191,7 +191,7 @@ export const OBJ_RESOURCES_GLOBAL=(Filters=['ByClusterType','ByResourceType','By
 
   
 
-    console.log('COMPARE MODELS ', COMPARE.FetchedModels.length)
+    //console.log('COMPARE MODELS ', COMPARE.FetchedModels.length)
     let CompareOBJ=[]
 
     COMPARE.FetchedModels.map((MODEL, i)=>{
@@ -264,8 +264,7 @@ export const OBJ_RESOURCES_GLOBAL=(Filters=['ByClusterType','ByResourceType','By
     })
   
    
-  console.log(CompareOBJ)
- 
+    //console.log(CompareOBJ)
    return orderBy(CompareOBJ, ['name'], [])
 
 }
@@ -281,19 +280,12 @@ export const OBJ_RESOURCES_GLOBAL=(Filters=['ByClusterType','ByResourceType','By
 
 
 export const  WorkorderTotals=(CenterPoints, MissingLocations)=>{
-    const UX = store.getState().UX
-    const MODEL = store.getState().SCANSTATE.SelectedModel
 
-    //let TotalWOs=[];
     let TestTotalWOs=[];
     let MissingWOs=[];
 
-    //console.log(MODEL)
+
     CenterPoints.map((model,i)=>{
-           // console.log(model)
-           // model.StripedSites.map((site,i)=>{
-           //     TotalWOs.push(site.SumWorkOrder)
-           // })
 
             Object.keys(model.SitesGroupedBy).map(function(key, index) {
                 model.SitesGroupedBy[key].map((c,ii)=>{
@@ -303,9 +295,11 @@ export const  WorkorderTotals=(CenterPoints, MissingLocations)=>{
     })
 
     MissingLocations.map((model,i)=>{
-        MissingWOs.push(model.SumWorkOrder)
+        if(model.SumWorkOrder != undefined){
+            MissingWOs.push(model.SumWorkOrder)
+        }
+        
     })
-    //console.log("WO TOTALS")
-    //console.log(TotalWOs.reduce((a, b) => a + b, 0), TestTotalWOs.reduce((a, b) => a + b, 0))
+  
     return [TestTotalWOs.reduce((a, b) => a + b, 0), MissingWOs.reduce((a, b) => a + b, 0)]
 }

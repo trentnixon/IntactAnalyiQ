@@ -20,7 +20,7 @@ const TradeSpecificOverview=()=>{
         let FindObj = find(OBJ_RESOURCES_GLOBAL(), function(o) { return o.name == UX.AreaSelectFilter.ByResourceType; });
         setTradeVolume(FindObj)
 
-        console.log(tradeVolume, UX.AreaSelectFilter.ByResourceType)
+        //console.log(tradeVolume, UX.AreaSelectFilter.ByResourceType)
     },[UX.AreaSelectFilter.ByResourceType]) 
      
 

@@ -49,7 +49,9 @@ import ConfirmCompareBtn from "../Components/buttons/ConfirmCompareBtn";
     }
 
     useEffect(()=>{  CreateSelects() },[ModelsSelected])
-    useEffect(()=>{  console.log(COMPARE.CompareData.UserSelected.length) },[COMPARE])
+    useEffect(()=>{  
+        //console.log(COMPARE.CompareData.UserSelected.length) 
+    },[COMPARE])
 
 
     return(
@@ -83,7 +85,7 @@ import ConfirmCompareBtn from "../Components/buttons/ConfirmCompareBtn";
 
 export default CompareModels
 
-
+ 
 const ModelList = ()=>{
     const COMPARE = useContext_COMPARE_FULL();
     const icons=[<StarRateIcon />,<CompareArrowsIcon />]

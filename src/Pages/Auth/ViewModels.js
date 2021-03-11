@@ -59,11 +59,11 @@ const ModelHistory = ()=>{
         
     }
     useEffect(()=>{
-        console.log(AUTH.ScanHistory);
+        //console.log(AUTH.ScanHistory);
        let needle='V12'
        const results = AUTH.ScanHistory.filter( h => h.Name.includes(needle) );
 
-       console.log(results);
+       //console.log(results);
     },[AUTH.ScanHistory])
     return(
         <div className="ModelHistory">
@@ -152,7 +152,8 @@ const CTA = (props)=>{
     return(
         <div className="cta">
             <div><ViewSingleResultBtn scanID={scan.id} scan={scan}/></div>
-            <div>Delete</div>
+         
         </div>
     )
 }
+//   <div>Delete</div>

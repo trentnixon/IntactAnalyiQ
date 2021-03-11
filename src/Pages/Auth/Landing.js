@@ -10,7 +10,7 @@ const Profile = ()=>{
     const SCAN = useContext_SCAN_FULL();
     const AUTH = useContext_AUTH_FULL()
     useEffect(()=>{
-        console.log(AUTH)
+        //console.log(AUTH)
     },[AUTH])
 
     return(

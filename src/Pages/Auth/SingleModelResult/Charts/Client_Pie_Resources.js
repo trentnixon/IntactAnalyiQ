@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 // Context
-import {useContext_UX_FULL} from "Context/UX";
+import {useContext_UX_FULL} from "Context/UX"; 
 import {useContext_SCAN_FULL} from "Context/SCAN";
 // Actions
 import {OBJ_CLIENT_GLOBAL_Filter } from "actions/CreateSingleViewModel"

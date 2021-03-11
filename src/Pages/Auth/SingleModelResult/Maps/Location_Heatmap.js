@@ -6,6 +6,8 @@ import {useContext_SCAN_FULL} from "Context/SCAN";
 import {H3} from 'Pages/Auth/Components/Type';
 import { GoogleMap,HeatmapLayer  } from '@react-google-maps/api';
 import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
+import ResetMap from "Pages/Auth/Components/buttons/ResetMapBtn";
+
 const containerStyle = { height: "500px", width: "auto" };
 
 const Chart1={
@@ -42,8 +44,8 @@ const LocationHeatMap = ()=>{
                 
                 >
                 <HeatmapLayer  data={HeatMapData} />
-                </GoogleMap> 
-                
+                </GoogleMap>  
+                <ResetMap />
             </div>
             </div>
     )

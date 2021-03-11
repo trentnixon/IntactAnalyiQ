@@ -16,7 +16,7 @@ export function SingleRecourseCostOverModel(){
   
     const CostPerHour = 50;
     const HourPerDay = 8;
-    console.log((WorkingDays*HourPerDay)*CostPerHour)
+    //console.log((WorkingDays*HourPerDay)*CostPerHour)
     return (WorkingDays*HourPerDay)*CostPerHour;
   
   }
@@ -26,7 +26,7 @@ export function SingleRecourseCostOverModel(){
     const TotalResources = parseFloat(sumBy(OBJ_SITE_GLOBAL(), function(o) { return o['Resources']; }).toFixed(2));
     const TotalWorkorders = parseFloat(WorkorderTotals()[0].toFixed(2));
     const SingleRecourseCost = SingleRecourseCostOverModel()
-    console.log(TotalResources, TotalWorkorders,SingleRecourseCost )
+    //console.log(TotalResources, TotalWorkorders,SingleRecourseCost )
 
         return (( TotalResources*SingleRecourseCost ) / TotalWorkorders).toFixed(2)
   }

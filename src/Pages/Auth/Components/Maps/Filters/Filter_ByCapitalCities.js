@@ -19,10 +19,15 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+  
 const ByCapitalCities = ()=>{
     const UX = useContext_UX_FULL()
     const CapitalCities=[
         {
+            Name:'Australia', 
+            Zoom:4,
+            Center: { lat:   -25.274399, lng: 133.775131}
+        },{
             Name:'Sydney',
             Zoom:10,
             Center: { lat:   -33.868820, lng: 151.209290}

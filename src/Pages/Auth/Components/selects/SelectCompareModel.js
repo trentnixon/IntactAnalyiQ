@@ -9,9 +9,10 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import{FetchSingleScanResult} from "actions/authUser"
+//import{FetchSingleScanResult} from "actions/authUser"
+import {SelectSingleScanResult} from "actions/HandleCompare";
 
-import {find} from 'lodash'
+import {find, findIndex} from 'lodash'
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -25,25 +26,31 @@ const useStyles = makeStyles((theme) => ({
   /* ************************************************** */
 const ByComparabelModel = ()=>{
 
-    const MODEL = useContext_COMPARE_FULL()
+    const MODEL = useContext_COMPARE_FULL().CompareData
     const UX = useContext_UX_FULL()
     
     const [type,setType] = useState(UX.AreaSelectFilter.ByModel) 
     const [OPTIONS, setOPTIONS] = useState([])
     const classes = useStyles();
 
-    const handleChange = (event) => { 
-        console.log(event.target.value)
-        let Selected = find(MODEL.CompareData.UserSelected, function(o) { return o.Name === event.target.value; })
-        FetchSingleScanResult(Selected.id, Selected)
-        SetFilterModel(event.target.value)
-        setType(event.target.value)
-    };
 
+
+    const handleChange = (event) => { 
+        //console.log(event.target.value)
+
+        let SelectedIndex = findIndex(MODEL.UserSelected, function(o) { return o.Name == event.target.value; })
+  
+
+
+        SelectSingleScanResult(MODEL.UserSelected[SelectedIndex], MODEL.FetchedModels[SelectedIndex])
+        SetFilterModel(event.target.value)
+        setType(event.target.value) 
+    };
+ 
 
     const CreateOptions=()=>{
         let options=[]
-        MODEL.CompareData.UserSelected.map((model,i)=>{ options.push(model.Name) })
+        MODEL.UserSelected.map((model,i)=>{ options.push(model.Name) })
         setOPTIONS(options)
     }
  
@@ -62,7 +69,7 @@ const ByComparabelModel = ()=>{
                 id="ByTier-outlined"
                 value={type}
                 onChange={handleChange}
-                label="Select Client"
+                label="Select Client" 
             >
             
                 {

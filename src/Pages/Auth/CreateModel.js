@@ -12,7 +12,7 @@ const CreateNewScan = ()=>{
     const USERSCAN = SCAN.UserScanState;
   
     useEffect(()=>{
-            console.log(USERSCAN)
+            //console.log(USERSCAN)
     },[USERSCAN])
     return(
         <>

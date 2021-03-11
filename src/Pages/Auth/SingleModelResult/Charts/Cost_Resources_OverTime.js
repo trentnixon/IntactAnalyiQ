@@ -46,7 +46,7 @@ const Client_Line_Workorders=()=>{
     }
 
     useEffect(()=>{          
-        console.log(OBJ_DATESPREAD_TRADE());
+        //console.log(OBJ_DATESPREAD_TRADE());
         setCategoryOccurance(OBJ_DATESPREAD_TRADE())    
     },[UX,MODEL]) 
     

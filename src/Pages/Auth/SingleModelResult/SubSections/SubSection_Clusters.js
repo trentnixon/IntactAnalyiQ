@@ -19,7 +19,7 @@ const SubSection_Clusters = ()=>{
     const MODEL = useContext_SCAN_FULL()
 
     useEffect(()=>{
-        console.log(MODEL.SelectedModel.STOREMARKERCENTERPOINTS)
+        //console.log(MODEL.SelectedModel.STOREMARKERCENTERPOINTS)
     },[])
     return(
         <>

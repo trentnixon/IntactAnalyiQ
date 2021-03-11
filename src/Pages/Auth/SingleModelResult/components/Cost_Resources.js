@@ -24,8 +24,8 @@ const ResourceAllocationRatios = ()=>{
 
     useEffect(()=>{
 
-       // console.log(`Singler Resource Cost over the Model ${SingleRecourseCostOverModel()}`)
-       // console.log(OBJ_RESOURCES_GLOBAL(['ByClusterType','ByClient']))
+       //console.log(`Singler Resource Cost over the Model ${SingleRecourseCostOverModel()}`)
+       //console.log(OBJ_RESOURCES_GLOBAL(['ByClusterType','ByClient']))
         setResourceSum(sumBy(OBJ_SITE_GLOBAL(), function(o) { return o['Resources']; }).toFixed(2))
         
     },[UX]) 

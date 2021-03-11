@@ -26,7 +26,7 @@ const Polygons = ()=>{
     const [DisplayPolygons, setPolygons] = useState([])
 
     const handleClick=(centerpoint)=>{
-        console.log("Polygon Clicked", centerpoint)
+        //console.log("Polygon Clicked", centerpoint)
         SetFilterPolygon(centerpoint.name)
         SetSelectedCluster(centerpoint)
     }

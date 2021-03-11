@@ -11,7 +11,7 @@ const NivoSunburst=(props)=>{
 
 
     useEffect(()=>{ 
-        console.log(data)
+        //console.log(data)
      },[data])
 
 

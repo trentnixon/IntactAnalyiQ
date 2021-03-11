@@ -29,7 +29,7 @@ const ByResourceType = ()=>{
 
 
     const handleChange = (event) => { 
-        //console.log(event.target.value.Center)
+        //console.log(event.target.value)
         
         setType(event.target.value)
         SetMapResourceType(event.target.value)
@@ -50,7 +50,7 @@ const ByResourceType = ()=>{
                 onChange={handleChange}
                 label="Select Resource Type"
                 >
-                <MenuItem value={''}> <em>All</em> </MenuItem>
+                <MenuItem value={false}>ALL</MenuItem>
 
                 {
                     ResourceType.map((Resource,i)=>{

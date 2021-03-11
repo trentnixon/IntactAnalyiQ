@@ -11,9 +11,10 @@ const ResultMap = ()=>{
   
             <div className="ScanMapMain" id="MainMap">
                 <MainMapFilters />
-                <MapColorKey />
+                
                 <Map_SingleModelReview_FULLModel />
-            </div>
+                <MapColorKey />
+            </div> 
         </> 
     )
 }

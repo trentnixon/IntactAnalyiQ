@@ -14,10 +14,10 @@ const Chart1={
 const LocationsNetwork = ()=>{
 
     return( 
-    <>
-        <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header}  Copy={Chart1.Copy} Tip={Chart1.Tip} />
-        <div style={{height: 400, width:'100%'}}><NivoNetwork /></div> 
-    </>
+        <>
+            <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header}  Copy={Chart1.Copy} Tip={Chart1.Tip} />
+            <div style={{height: 400, width:'100%'}}><NivoNetwork /></div>
+        </>
     )
 
 }

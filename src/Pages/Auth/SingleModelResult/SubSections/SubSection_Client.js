@@ -20,7 +20,7 @@ const SubSection_Client = ()=>{
     const UX = useContext_UX_FULL();
     
     useEffect(()=>{
-        console.log(UX.AreaSelectFilter.ByClient)
+        //console.log(UX.AreaSelectFilter.ByClient)
     },[])
     return(
         <>  <div className="InnerFrame">

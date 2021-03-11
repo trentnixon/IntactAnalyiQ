@@ -16,7 +16,7 @@ const Map=()=>{
     const UX = useContext_UX_FULL();
 
     useEffect(()=>{
-        console.log(UX.ClusterParameters.SelectedCluster)
+        //console.log(UX.ClusterParameters.SelectedCluster)
     },[UX])
         return(
                 <div className="" id="MainMap">
@@ -32,7 +32,7 @@ const Map=()=>{
                             <Polygons /> 
                         </GoogleMap>  
                         
-                        <MapClusterContainer />
+                        <MapClusterContainer /> 
                         
                     </div> 
                 )
@@ -49,7 +49,7 @@ const MapClusterContainer =()=>{
     const [Class,setClass] = useState('hide');
 
     useEffect(()=>{
-        console.log(UX.ClusterParameters.SelectedCluster)
+        //console.log(UX.ClusterParameters.SelectedCluster)
 
         UX.ClusterParameters.SelectedCluster == false ? setClass('hide'): setClass('show')
 
@@ -70,11 +70,11 @@ const MapClusterInfo = ()=>{
 
     const WOS = (Trade)=>{
         let Count=[]
-        console.log('SELECTED',SELECTED.ResourcesGroupedBy[Trade])
+        //console.log('SELECTED',SELECTED.ResourcesGroupedBy[Trade])
         SELECTED.ResourcesGroupedBy[Trade].map((wos,i)=>{
             Count.push(wos.WOS)
         })
-        console.log(Count, Count.reduce((a, b) => a + b, 0))
+        //console.log(Count, Count.reduce((a, b) => a + b, 0))
         return Count.reduce((a, b) => a + b, 0)
     }
 
@@ -83,7 +83,7 @@ const MapClusterInfo = ()=>{
         let Count=[]
         
         Object.keys(SELECTED.ClientGroupedBy).map((key,value)=>{
-            console.log(key)
+            //console.log(key)
             Count.push(findClientName(key))
         })
         return Count
@@ -93,7 +93,7 @@ const MapClusterInfo = ()=>{
     const CenterPoint = ()=>{
         let Add;
         SELECTED.StripedSites.map((geo,i)=>{
-            console.log(geo.lat,SELECTED.center.lat ,geo.long , SELECTED.center.lng)
+            //console.log(geo.lat,SELECTED.center.lat ,geo.long , SELECTED.center.lng)
             if(geo.lat === SELECTED.center.lat && geo.long === SELECTED.center.lng) { Add = geo.name }
         })
 
@@ -102,7 +102,7 @@ const MapClusterInfo = ()=>{
 
 
     useEffect(()=>{
-        console.log(SELECTED)
+        //console.log(SELECTED)
     },[UX])
 
     return(

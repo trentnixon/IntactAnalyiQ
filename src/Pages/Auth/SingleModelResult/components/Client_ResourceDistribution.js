@@ -49,7 +49,7 @@ const ClientResourceSpread = ()=>{
     useEffect(()=>{
         setClientSpread(OBJ_RESOURCES_GLOBAL())
         setClientClusterSpread(OBJ_CLUSTER_GLOBAL())
-        console.log(OBJ_CLUSTER_GLOBAL())
+        //console.log(OBJ_CLUSTER_GLOBAL())
     },[UX])
 
     return(

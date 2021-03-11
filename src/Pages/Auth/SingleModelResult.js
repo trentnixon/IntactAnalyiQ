@@ -22,7 +22,6 @@ const ModelCheck = ()=>{
     let match = useRouteMatch(); 
     const Pushhistory = useHistory();
     useEffect(()=>{
-            console.log()
             if(MODEL.SelectedModel === null){
                 Pushhistory.push("/view-models");
             } 

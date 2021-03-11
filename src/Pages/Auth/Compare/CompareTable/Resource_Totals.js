@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useContext_COMPARE_FULL} from "Context/COMPARE";
-
+import {useContext_UX_FULL} from "Context/UX";
 import {OBJ_RESOURCES_GLOBAL, FindTotals, FindPercentageBewtweenTwoNumbers} from 'actions/CreateCompareModelView'
 import { workingDaysBetweenDates} from "actions/HandleUX";
 import {H2, H3} from "Pages/Auth/Components/Type"
@@ -8,6 +8,7 @@ import {H2, H3} from "Pages/Auth/Components/Type"
 
 const Resource_Totals = ()=>{
     const COMPARE = useContext_COMPARE_FULL();
+    const UX = useContext_UX_FULL()
     const [RAW, setRAW] = useState([])
     const [DAYS, setDAYS] = useState([])
     const [AVG, setAVG] = useState([])
@@ -25,13 +26,13 @@ const Resource_Totals = ()=>{
         setAVG(AVG)
     }
 
-    useEffect(()=>{ SetNumbers() },[])
+    useEffect(()=>{ SetNumbers() },[UX])
 
     useEffect(()=>{
-        console.log(OBJ_RESOURCES_GLOBAL())
+        //console.log(OBJ_RESOURCES_GLOBAL())
     },[COMPARE])
 
-    return(
+    return( 
         <>
             <div className="ComparisonRow">
 
@@ -87,17 +88,11 @@ const ResourceNumbers = ()=>{
     const Calculate = ()=>{
         let stored={ }
         OBJ_RESOURCES_GLOBAL().map((model,i)=>{
-            //stored.push()
-            
             model.map((res,ii)=>{
-                if(stored[res.name] === undefined){
-                    stored[res.name]=[]
-                }
-
-                stored[res.name].push(res.Resources)
+                if(stored[res.name] === undefined){ stored[res.name]=[0,0] }
+                stored[res.name][i] = res.Resources
             })
         })
-        console.log(stored)
         setResources(stored)
     }
 
@@ -110,7 +105,8 @@ const ResourceNumbers = ()=>{
             </div>
                  {
                         Object.keys(Resources).map((key,i)=>{
-                            console.log(Resources[key])
+                            //console.log(Resources[key])
+                          
                                return  (
                                    <>
                                         <div className="ShowInt"> <H2 Copy={key} /></div>

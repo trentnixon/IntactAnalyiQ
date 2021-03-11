@@ -8,6 +8,7 @@ import {P} from "Pages/Auth/Components/Type";
 import FilterByResourceType from "Pages/Auth/Components/selects/SelectResourceType";
 import FilterByClusterType from "Pages/Auth/Components/selects/SelectClusterType";
 import SelectClient from "Pages/Auth/Components/selects/SelectClient";
+import Filter_ByCapitalCities from "Pages/Auth/Components/Maps/Filters/Filter_ByCapitalCities";
 const GlobalFilter = ()=>{
 
     return(
@@ -15,6 +16,7 @@ const GlobalFilter = ()=>{
             
             <div className="GlobalFilter">
                 <div className="options">
+                    <Filter_ByCapitalCities />
                     <SelectClient />    
                     <FilterByResourceType />  
                     <FilterByClusterType />

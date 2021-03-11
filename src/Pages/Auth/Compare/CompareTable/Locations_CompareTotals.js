@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {useContext_COMPARE_FULL} from "Context/COMPARE";
+import {useContext_UX_FULL} from "Context/UX";
 import {OBJ_CLUSTER_GLOBAL, FindPercentageBewtweenTwoNumbers} from 'actions/CreateCompareModelView'
 
 import {H2} from "Pages/Auth/Components/Type"
 const TableWorkOrders = ()=>{
     const COMPARE = useContext_COMPARE_FULL().CompareData.FetchedModels
+    const UX = useContext_UX_FULL()
     const [Locations, setLocations] = useState([])
     const [OOS, setOOS] = useState([])
     
@@ -13,7 +15,9 @@ const TableWorkOrders = ()=>{
 
             OBJ_CLUSTER_GLOBAL().map((model,i)=>{
                let collectSites=[]
-                model.map((sites,ii)=>{ collectSites.push(sites.Sites.length) })
+                model.map((sites,ii)=>{ 
+                    if(sites.Sites != undefined){  collectSites.push(sites.Sites.length)  }
+                })
                 Locs.push(collectSites.reduce((a, b) => a + b, 0))
             })
 
@@ -26,10 +30,8 @@ const TableWorkOrders = ()=>{
         setOOS(Locs)
     }
 
-    useEffect(()=>{ LocationTotals(); OOSTotals()},[])
-    useEffect(()=>{
-        console.log(COMPARE)
-    },[COMPARE])
+    useEffect(()=>{ LocationTotals(); OOSTotals()},[UX])
+    useEffect(()=>{},[COMPARE])
     return(
         <div className="ComparisonRow">
              <div className="ShowInt"> <H2 Copy={`Locations inScope`} /></div>

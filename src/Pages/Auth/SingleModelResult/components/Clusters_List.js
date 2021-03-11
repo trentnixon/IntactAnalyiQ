@@ -16,7 +16,7 @@ const ClusterList = ()=>{
    const [ReorderBy, setReorderBy] = useState('type')
    const Pushhistory = useHistory();
    useEffect(()=>{
-        console.log(OBJ_CENTERPOINTS())
+        //console.log(OBJ_CENTERPOINTS())
     },[ReorderBy])
 
     const handleSelect=(centerpoint)=>{
@@ -28,7 +28,6 @@ const ClusterList = ()=>{
     }
 
     const handleReorder=(item)=>{
-        console.log("clicked")
         setReorderBy(item)
     }
 

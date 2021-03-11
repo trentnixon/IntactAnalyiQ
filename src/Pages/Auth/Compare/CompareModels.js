@@ -38,8 +38,8 @@ const ModelComparision = ()=>{
                    
                         <TableHeader />
                         <LocationsNetwork /> 
-                       
-                        <Locations_Main />
+                        
+                        <Locations_Main /> 
                         <Resources_Main />
                         <WorkOrders_Main />
                         <Clients_Main />

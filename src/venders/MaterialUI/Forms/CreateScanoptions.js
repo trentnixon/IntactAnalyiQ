@@ -79,7 +79,8 @@ const ScanForm = ()=>{
     const[End, setEnd] = useState()
 
     const handleClick=()=>{
-        FetchSelectedItems(USERSCAN.UserScanSingleDataSets, TITLE, DESCRIPTION, Start, End)
+      //console.log(USERSCAN.UserScanSingleDataSets, TITLE, DESCRIPTION, Start, End)
+      FetchSelectedItems(USERSCAN.UserScanSingleDataSets, TITLE, DESCRIPTION, Start, End)
     }
 
     const handleTitle=(e)=>{setTITLE(e.target.value)}
@@ -95,7 +96,7 @@ const ScanForm = ()=>{
         <div className="LoginContainer">
             {Start}{End}
             <MaterialUIPickers  SetEndDate={SetEndDate} SetStartDate={SetStartDate}/>
-
+ 
             <TextField 
                 id="outlined-basic" 
                 label="Model Name" 

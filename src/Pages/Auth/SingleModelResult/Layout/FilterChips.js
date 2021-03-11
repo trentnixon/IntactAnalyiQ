@@ -57,7 +57,7 @@ const PolygonChip=()=>{
         SetSelectedCluster(false)
     };
     //onClick={handleDelete}
-    useEffect(()=>{console.log( UX.AreaSelectFilter.ByPolygon)},[UX])
+    useEffect(()=>{},[UX])
     return(
         <Chip label={ UX.AreaSelectFilter.ByPolygon} clickable  className="PolygonChip"  onClick={handleDelete}  icon={<LayersIcon />} />
     )
@@ -67,7 +67,7 @@ const ModelChip=()=>{
     const UX = useContext_UX_FULL();
     const handleDelete = () => {  SetFilterModel(false) };
     //onClick={handleDelete}
-    useEffect(()=>{console.log( UX.AreaSelectFilter.ByModel)},[UX])
+    useEffect(()=>{},[UX])
     return(
         <Chip label={ UX.AreaSelectFilter.ByModel} clickable  className="ModelChip" onClick={handleDelete}  icon={<AccountTreeIcon />} />
     )
@@ -75,7 +75,7 @@ const ModelChip=()=>{
 const ResourceChip=()=>{
     const UX = useContext_UX_FULL();
     const handleDelete = () => {  SetMapResourceType(false) };
-    useEffect(()=>{console.log( UX.AreaSelectFilter.ByResourceType)},[UX])
+    useEffect(()=>{},[UX])
     return(
         <Chip label={ UX.AreaSelectFilter.ByResourceType} clickable  className="TradeChip" onClick={handleDelete} icon={<FaceIcon />} />
     )
@@ -85,7 +85,7 @@ const ResourceChip=()=>{
 const ClusterChip=()=>{
     const UX = useContext_UX_FULL();
     const handleDelete = () => {  SetMapClusterType(false) };
-    useEffect(()=>{console.log( UX.AreaSelectFilter.ByClusterType)},[UX])
+    useEffect(()=>{},[UX])
     return(
         <Chip label={ UX.AreaSelectFilter.ByClusterType} clickable  className="TradeChip" onClick={handleDelete} icon={<LocationCityIcon />} />
     )
@@ -94,7 +94,7 @@ const ClusterChip=()=>{
 const ClientChip=()=>{
     const UX = useContext_UX_FULL();
     const handleDelete = () => {  SetFilterClient(false) };
-    useEffect(()=>{console.log( UX.AreaSelectFilter.ByClient)},[UX])
+    useEffect(()=>{},[UX])
     return(
         <Chip label={ findClientName(UX.AreaSelectFilter.ByClient)} clickable  className="TradeChip" onClick={handleDelete} icon={<PeopleAltIcon />} />
     )

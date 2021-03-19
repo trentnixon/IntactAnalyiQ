@@ -26,7 +26,7 @@ const WorkOrder_Radial_Cluster=()=>{
     useEffect(()=>{ },[UX,MODEL])
     return(
         <div>
-        <ChartHeader  {...Chart1}/>
+        <ChartHeader  Section='Locations' Chart='Pie'  Meta='Pie'/>
         <div style={{height: 300}}>
             <NivoRadial 
                 data={OBJ_CLUSTER_GLOBAL()} 

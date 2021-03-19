@@ -9,13 +9,6 @@ import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
 // Nivo 
 import NivoFunnel from "venders/Nivo/NivoFunnel"
 
-const Chart1={
-    Icon:'bar',
-    Header:"Cluster Funnel",
-    Tip:"Use the Filters",
-    filters:['client'],
-    Copy:`The funnel below shows the Resource Allocation for the selected Trade type against the Cluster Types`
-}
 
 const Resource_Cluster_Funnel=()=>{
     const UX = useContext_UX_FULL();
@@ -24,10 +17,10 @@ const Resource_Cluster_Funnel=()=>{
 
     return(
         <div>
-            <ChartHeader  {...Chart1}/>
-                    <div style={{height: 300}}>
-                        <NivoFunnel data={FunnelData} id={`name`} value={'Resource'} />
-                    </div>
+            <ChartHeader Section='Resources' Chart='Funnel'  Meta='Funnel'/>
+            <div style={{height: 300}}>
+                <NivoFunnel data={FunnelData} id={`name`} value={'Resource'} />
+            </div>
         </div>
     )
 }

@@ -17,7 +17,7 @@ const Chart1={
 const ClusterComparisonPie =()=>{
     return(
         <DiagramContainer> 
-            <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header}  Copy={Chart1.Copy} Tip={Chart1.Tip} />
+            <ChartHeader Section='Locations' Chart='Pie' Meta='Pie'/>
             <div className="ComparisonRow">
                 {
                     OBJ_CLUSTER_GLOBAL().map((SELETCED, i )=>{

@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import AppBar from "Pages/Auth/SingleModelResult/Layout/AppBar"
 import HeaderTitles from "Pages/Auth/SingleModelResult/Layout/HeaderTitle"
 import {H1} from "Pages/Auth/Components/Type";
+import Footer from "Pages/Auth/Components/Layout/Footer";
 // Sub Sections 
  import SubSection_Locations from "Pages/Auth/SingleModelResult/SubSections/SubSection_Locations";
  import SubSection_Client from "Pages/Auth/SingleModelResult/SubSections/SubSection_Client";
@@ -25,6 +26,8 @@ const ModelCheck = ()=>{
             if(MODEL.SelectedModel === null){
                 Pushhistory.push("/view-models");
             } 
+
+            console.log(MODEL.SelectedModel)
     },[MODEL])
     return(
         <div>
@@ -70,7 +73,7 @@ const SingleModelResult = ()=>{
                     </Switch>  
                     <FilterChips />
                 </div>
-         
+         <Footer />
         </>
     ) 
 }

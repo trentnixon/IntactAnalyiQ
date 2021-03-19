@@ -31,7 +31,7 @@ const Client_Pie_Sites= ()=>{
  
     return(
         <div>
-            <ChartHeader  {...Chart1}/>            
+            <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie'/>            
             <div style={{height: 300}}>
                 <NivoPie data={ClientBreakDown} id={`name`} value={'Total Sites'} />
             </div>

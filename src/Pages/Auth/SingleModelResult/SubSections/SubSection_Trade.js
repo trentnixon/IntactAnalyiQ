@@ -65,8 +65,8 @@ const SelectATrade = ()=>{
 const TradeSpecificComponents=()=>{
     return(
         <Section className="SelectedItem"> 
-                <TradeSpecific_Overview />   
-                <TradeSpecific_ClientBreakdown />
+                <TradeSpecific_Overview />    
+                <TradeSpecific_ClientBreakdown /> 
                 <Trade_ResourceAllocationOverTime />
                 
                 break down stats for each resource Type. i.e. handyman section

@@ -81,7 +81,7 @@ const NivoPie=(props)=>{
             tickSize: 10,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'Vertical  =  Work orders,  Horizontal = Numbers of sites in cluster',
+            legend: 'Vertical  =  Number of Work orders,  Horizontal = Cluster Type',
             legendPosition: 'middle',
             legendOffset: 46
         }}

@@ -112,7 +112,6 @@ const MarkerBasedLocationMarkers = ()=>{
 /* ******************************************************************************** */         
 // Map Filters
 // Filter Results by Polygon Select
-console.log(UX.AreaSelectFilter)
     if(UX.AreaSelectFilter.ByPolygon !== false)  
             if(centerPoint.name != UX.AreaSelectFilter.ByPolygon)
                 return
@@ -145,7 +144,7 @@ console.log(UX.AreaSelectFilter)
                     
                         <Marker
                             clusterer={clusterer}
-                            key={centerPoint.name}
+                            key={`${centerPoint.scanCategory} ${centerPoint.name}`}
                             onLoad={onLoadMarker}
                             title={centerPoint.name}
                             //label={site.name}
@@ -172,12 +171,14 @@ console.log(UX.AreaSelectFilter)
                 scale: .3
             }; 
       
-        
+            
+           
                   StoreMarkers.push( 
-                      
+                        
                           <Marker
                               clusterer={clusterer}
-                              key={site.name}
+                              key={`Site ${centerPoint.scanCategory}${site.name}`}
+                           
                               onLoad={onLoadMarker}
                               title={site.name}
                               //label={site.name}

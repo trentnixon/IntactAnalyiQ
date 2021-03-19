@@ -1,24 +1,21 @@
 import React  from 'react'
-
+import {useContext_COMMS_FULL} from 'Context/COMMS'
 import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
 import NivoNetwork from "venders/Nivo/NivoNetwork"
 
-const Chart1={
-    Icon:'radial',
-    Header:"Location Network",
-    Tip:"Use the Filters",
-    filters:[''],
-    Copy:"The Node Network shows the relationships clusters have to there parent item. This diagram should provide a visual clue to cluster concentration"
-}
+
 
 const LocationsNetwork = ()=>{
+    const CHARTSETUP = useContext_COMMS_FULL().ChartSetup
+    const CHARTMETA = useContext_COMMS_FULL().ChartMeta
 
     return( 
         <>
-            <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header}  Copy={Chart1.Copy} Tip={Chart1.Tip} />
+        
+            <ChartHeader Section='Locations' Chart='Network' Meta='Network'/>
             <div style={{height: 400, width:'100%'}}><NivoNetwork /></div>
         </>
-    )
+    ) 
 
 }
 

@@ -21,7 +21,7 @@ const WorkOrderComparison = ()=>{
             StoreTotal.push(WorkorderTotals(model.STOREMARKERCENTERPOINTS,model.STORERESIDUALMARKERS).reduce((a, b) => a + b, 0))
             StoreInModel.push(WorkorderTotals(model.STOREMARKERCENTERPOINTS,model.STORERESIDUALMARKERS)[0])
             StoreOOS.push(WorkorderTotals(model.STOREMARKERCENTERPOINTS,model.STORERESIDUALMARKERS)[1])
-            console.log(WorkorderTotals(model.STOREMARKERCENTERPOINTS,model.STORERESIDUALMARKERS))
+            //console.log(WorkorderTotals(model.STOREMARKERCENTERPOINTS,model.STORERESIDUALMARKERS))
         })
 
        

@@ -32,7 +32,7 @@ const Cost_ResourcePie_Charts=()=>{
     
     return(
         <div>
-            <ChartHeader  {...Chart1}/>
+            <ChartHeader  Section='Locations' Chart='Pie'  Meta='Pie'/>
             <div style={{height: 300}}>
                 <NivoPie data={ResourceSpread} id={`name`} value={'ResourceCost'} />
             </div>

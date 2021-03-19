@@ -28,9 +28,9 @@ const Map=()=>{
                             { /* Child components, such as markers, info windows, etc. */ }
                             
                             <Markers />
-                            <ResidualMarkers />
+                          
                             <Polygons /> 
-                        </GoogleMap>  
+                        </GoogleMap>   
                         
                         <MapClusterContainer /> 
                         
@@ -39,7 +39,7 @@ const Map=()=>{
 }
 
 //<CenterPoints />
- 
+ //  <ResidualMarkers />
 export default Map;
 
 

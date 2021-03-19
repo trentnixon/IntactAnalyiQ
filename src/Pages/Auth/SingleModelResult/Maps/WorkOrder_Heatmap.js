@@ -34,7 +34,7 @@ const LocationHeatMap = ()=>{
     return( 
         <div className="DiagramContainer">
             <div className="ScanMapMain" id="MainMap">
-                <ChartHeader  {...Chart1}/>
+                <ChartHeader  Section='Locations' Chart='Pie'  Meta='Pie'/>
                 <H3 Copy={`${HeatMapDataLength} WorkOrders scanned in results`}  />
                 <GoogleMap  
                     mapContainerStyle={containerStyle}

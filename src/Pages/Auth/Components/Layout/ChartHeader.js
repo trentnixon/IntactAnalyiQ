@@ -1,4 +1,6 @@
 import React from 'react'
+import {useContext_COMMS_FULL} from 'Context/COMMS'
+
 // Icons
 import PieChartIcon from '@material-ui/icons/PieChart';
 import AssessmentIcon from '@material-ui/icons/Assessment';
@@ -21,17 +23,21 @@ import LayersIcon from '@material-ui/icons/Layers';
 import {H4, P} from "Pages/Auth/Components/Type";
 import Tooltip from '@material-ui/core/Tooltip';
 const ChartHeader=(props)=>{
-    const{ Header,Copy, Icon,filters=[]} = props
-    let DisplayIcon = ChartIcon(Icon);
+    const{ Section, Chart, Meta} = props
 
+    const CHARTSETUP = useContext_COMMS_FULL().ChartSetup
+    const CHARTMETA = useContext_COMMS_FULL().ChartMeta
+
+    let DisplayIcon = ChartIcon(CHARTSETUP[Chart].icon);
+    
     return(
         <div className="ChartHeader">
             <div className="InfoIcons">
-                <Tooltip title="Small Helpful tip">
+                <Tooltip title={CHARTSETUP[Chart].tip}>
                     <LiveHelpIcon  className="help"/> 
                 </Tooltip>
 
-                <Filters filters={filters}/>
+                <Filters filters={CHARTSETUP[Chart].Filters}/>
 
                 <Tooltip title="Chart is Interactive">
                     <TouchAppIcon className="interactive" />
@@ -40,8 +46,8 @@ const ChartHeader=(props)=>{
             <div className="Content">
                 {DisplayIcon}
                 <div>
-                    <H4 Copy={Header} />
-                    <P Copy={Copy}/> 
+                    <H4 Copy={CHARTMETA[Section][Meta].title} />
+                    <P Copy={CHARTMETA[Section][Meta].Description}/> 
                 </div>
                 
             </div>

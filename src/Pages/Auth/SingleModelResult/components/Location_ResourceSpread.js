@@ -23,7 +23,7 @@ const LocationResourceSpread = ()=>{
             <ClusterSwarmPlot />
         </DiagramContainer>
         <DiagramContainer>
-          <ClusterBar_ResourceAllocation />
+          <ClusterBar_ResourceAllocation /> 
         </DiagramContainer>
         </>
         

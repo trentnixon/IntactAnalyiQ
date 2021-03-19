@@ -44,7 +44,7 @@ const Locations_Radial_Pie_Charts=()=>{
         <DiagramContainer>
             <div className="resultCharts">
                 <div>
-                    <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header}  Copy={Chart1.Copy} Tip={Chart1.Tip} />
+                    <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie' />
                    
                      
                     <div style={{height: 300}}>
@@ -78,7 +78,7 @@ const DisplayFunnel=()=>{
 
     return(
         <div>
-            <ChartHeader Icon={Chart2.Icon} Header={Chart2.Header}Tip={Chart2.Tip} Copy={Chart2.Copy} />
+            <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie'/>
                 <div style={{height: 300}}>
                     <NivoFunnel data={ClusterOccurances} id={`name`} value={'Sum'} />
                 </div>

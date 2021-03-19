@@ -5,7 +5,7 @@ import BorderColorIcon from '@material-ui/icons/BorderColor';
 import CompareArrowsIcon from '@material-ui/icons/CompareArrows';
 import StarRateIcon from '@material-ui/icons/StarRate';
 
-
+import Footer from "Pages/Auth/Components/Layout/Footer";
 import SelectCompare from "../Components/selects/SelectCompare"
 import ConfirmCompareBtn from "../Components/buttons/ConfirmCompareBtn";
 
@@ -55,6 +55,7 @@ import ConfirmCompareBtn from "../Components/buttons/ConfirmCompareBtn";
 
 
     return(
+        <>
         <div className="OuterContainer">
             
             <div className="InnerFrame">
@@ -78,8 +79,10 @@ import ConfirmCompareBtn from "../Components/buttons/ConfirmCompareBtn";
                     </div>
                 </div>
             </div>    
-        
+       
         </div>
+        <Footer />
+        </>
     )
 }
 

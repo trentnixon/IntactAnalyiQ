@@ -6,7 +6,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-
+import Tooltip from '@material-ui/core/Tooltip';
 import ApartmentIcon from '@material-ui/icons/Apartment';
 import BlurCircularIcon from '@material-ui/icons/BlurCircular';
 //import DataUsageIcon from '@material-ui/icons/DataUsage';
@@ -15,70 +15,82 @@ import CompareIcon from '@material-ui/icons/Compare';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import BuildIcon from '@material-ui/icons/Build';
+import PinDropIcon from '@material-ui/icons/PinDrop';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 
+
+
+const SideNavItems=[
+    {
+        to:'/',
+        title:'Profile',
+        icon:<PersonPinIcon />
+    },
+    {
+        to:'/create-model',
+        title:'Create a Model',
+        icon:<BlurCircularIcon />
+    },
+    {
+        to:'/view-models',
+        title:'View a Model',
+        icon:<ApartmentIcon />
+    },
+    {
+        to:'/compare-models',
+        title:'Compare Models',
+        icon:<CompareIcon />
+    },
+    {
+        to:'/location-Deep-Dive',
+        title:'Deep Dive : locations',
+        icon:<PinDropIcon />
+    },
+    {
+        to:'/client-deep-dive',
+        title:'Deep Dive : Clients',
+        icon:<SupervisedUserCircleIcon />
+    },
+    {
+        to:'/release-notes',
+        title:'Release Notes',
+        icon:<BuildIcon />
+    },
+    {
+        to:'/pipeline',
+        title:'Pipeline',
+        icon:<AccountTreeIcon />
+    },
+    {
+        to:'/UIComponents',
+        title:'UI Components',
+        icon:<DashboardIcon />
+    }
+]
 const Login = ()=>{
 
     useEffect(()=>{},[])
-    return(
+    return( 
  
         <List className="AuthNavigation">
-            <NavLink to={`/`} exact activeClassName="selected">
-                <ListItem button key='Profile'>
-                    <ListItemIcon><PersonPinIcon /></ListItemIcon>
-            </ListItem> 
-            </NavLink>
 
-           <NavLink to={`/create-model`} activeClassName="selected">
-                <ListItem button key='Create Model' >
-                        <ListItemIcon><BlurCircularIcon /></ListItemIcon>
-                </ListItem>
-           </NavLink>
+                {
+                    SideNavItems.map((item, i)=>{
+                        return(
+                            <NavLink to={item.to} key={i}  exact activeClassName="selected">
+                                <ListItem button key={item.title}>
+                                    <ListItemIcon>
+                                        <Tooltip title={item.title}>
+                                            {item.icon}
+                                        </Tooltip>
+                                    </ListItemIcon>
+                            </ListItem> 
+                            </NavLink>
+                        )
+                    })
+                }
 
-       
-            <NavLink to={`/view-models`} activeClassName="selected">
-                <ListItem button key='View Models' >
-                        <ListItemIcon><ApartmentIcon /></ListItemIcon>
-                        
-                </ListItem>
-            </NavLink>
-
-            <NavLink to={`/compare-models`} activeClassName="selected">
-                <ListItem button key='Compare Models' >
-                        <ListItemIcon><CompareIcon /></ListItemIcon>
-                        
-                </ListItem>
-            </NavLink>
-            
-
-            
-            <NavLink to={`/release-notes`} activeClassName="selected">
-                <ListItem button key='release-notes' >
-                    <ListItemIcon><BuildIcon /></ListItemIcon>
-                    
-                </ListItem>
-            </NavLink>
-            <NavLink to={`/pipeline`} activeClassName="selected">
-                <ListItem button key='pipeline' >
-                    <ListItemIcon><AccountTreeIcon /></ListItemIcon>
-                    
-                </ListItem>
-            </NavLink>
-
-            <NavLink to={`/UIComponents`} activeClassName="selected">
-                <ListItem button key='UI Components' >
-                    <ListItemIcon><DashboardIcon /></ListItemIcon>
-                </ListItem>
-            </NavLink>
         </List>
     )
 }
-
 export default Login
-
-/*
-<ListItemText primary='Profile' />
-<ListItemText primary='Create Model' /> 
-<ListItemText primary='View Models' /> 
-<ListItemText primary='Compare Models' /> 
-<ListItemText primary='UI Components' />
-*/

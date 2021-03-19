@@ -25,7 +25,7 @@ const LocationResourceSpread = ()=>{
     useEffect(()=>{},[UX])
     return(
         <div>
-            <ChartHeader  {...Chart1}/>
+            <ChartHeader  Section='Locations' Chart='Bar'  Meta='Bar_WorkOrder'/>
             <ResponsiveContainer width='100%' height={300}>
                 <BarChart data={BarData} margin={{  top: 20, right: 0, left: 0, bottom: 0,}}>
                     <CartesianGrid strokeDasharray="3 3" />

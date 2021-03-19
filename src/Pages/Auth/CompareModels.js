@@ -1,6 +1,6 @@
 import React, {useEffect } from 'react'
 import {useContext_COMPARE_FULL} from "Context/COMPARE";
-
+import Footer from "Pages/Auth/Components/Layout/Footer";
 // Components
 import SelectModels from "./Compare/SelectModels";
 import ModelComparision from "./Compare/CompareModels";
@@ -27,6 +27,6 @@ const UIswitch = ()=>{
 
 const FetchingModels = ()=>{
     return(
-        <> <h1>Fetching Models</h1><ResetModels /> </> 
+        <> <h1>Fetching Models</h1><ResetModels /> <Footer /></> 
     )
 } 

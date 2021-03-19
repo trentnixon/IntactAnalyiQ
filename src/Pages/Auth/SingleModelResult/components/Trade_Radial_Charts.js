@@ -20,7 +20,7 @@ const Trade_Radial_Charts=()=>{
                 <Resources_Radial_Resources /> 
                 <Resources_Bar_ResourceAllocation />
             </div>
- 
+  
             <Stats_Bar data={OBJ_RESOURCES_GLOBAL(['ByClusterType','ByClient'])} name={`name`} value={`Resources`}/>
         </DiagramContainer>
     )

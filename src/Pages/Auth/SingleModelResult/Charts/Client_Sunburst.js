@@ -31,7 +31,7 @@ const Client_Pie_Resources= ()=>{
  
     return(
         <div>
-            <ChartHeader  {...Chart1}/>
+            <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie'/>
             <div style={{height: 300}}>
                 <NivoSunburst data={NivoSunBurst()} id={`name`} value={'Resources'} />
             </div> 

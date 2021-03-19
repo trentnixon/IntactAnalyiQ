@@ -47,7 +47,7 @@ const Trade_Radial_Charts=()=>{
                 <div>
                     
 
-                <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header} Tip={Chart1.Tip} Copy={Chart1.Copy} />
+                <ChartHeader Section='Resources' Chart='Waffle'   Meta='Waffle'/>
                 
                     <div style={{height: 300}}>
                         {

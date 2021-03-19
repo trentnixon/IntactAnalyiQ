@@ -8,15 +8,7 @@ import {OBJ_RESOURCES_GLOBAL} from "actions/CreateSingleViewModel"
 
 // Layout
 import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
-
 import NivoRadial from "venders/Nivo/NivoRadial"
-const Chart1={
-    Icon:'radial',
-    Header:"Resources Allocation to Cluster Type",
-    Tip:"Use the Filters",
-    filters:['cluster','resource','client'],
-    Copy:"The Radial Graph shows the number of Resource Allocations by Cluster Type in a given model. Use the 'Cluster Type' filter to find Resource Allocation numbers for a specific resource."
-}
 
 const Resources_Radial_Resources = ()=>{
 
@@ -31,7 +23,7 @@ const Resources_Radial_Resources = ()=>{
 
     return(
         <div>
-            <ChartHeader  {...Chart1}/>
+            <ChartHeader   Chart='Radial' Section='Resources' Meta='Radial'/>
             <div style={{height: 300}}> 
                 <NivoRadial 
                     data={ResourceSpread} 

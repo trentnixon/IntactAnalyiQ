@@ -30,7 +30,7 @@ const Workorder_pie_outofscope=()=>{
     
     return(
         <div>
-            <ChartHeader  {...Chart1}/>                       
+            <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie'/>                       
             <div style={{height: 300}}>
                 <NivoPie data={PieData} id={`name`} value={'value'} />
             </div>

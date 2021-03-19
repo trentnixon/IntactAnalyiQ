@@ -33,7 +33,7 @@ const Workorder_Bar_Overtime=()=>{
 
     return(
         <div>
-                    <ChartHeader  {...Chart1}/>
+                    <ChartHeader  Section='Locations' Chart='Pie'  Meta='Pie'/>
                 
                     <div style={{ width: '100%', height: 400 }}>
                         <ResponsiveContainer>

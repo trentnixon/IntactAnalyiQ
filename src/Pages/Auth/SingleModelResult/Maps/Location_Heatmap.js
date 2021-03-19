@@ -10,13 +10,6 @@ import ResetMap from "Pages/Auth/Components/buttons/ResetMapBtn";
 
 const containerStyle = { height: "500px", width: "auto" };
 
-const Chart1={
-    Icon:'map',
-    Header:"Heat map of Sites based in model",
-    Tip:"Use the Filters",
-    filters:['cluster'],
-    Copy:"The Heat map Below shows high volume areas of locations. Filter site by clusters by using the ' cluster type' Filter option"
-}
 
 const LocationHeatMap = ()=>{ 
     
@@ -34,7 +27,7 @@ const LocationHeatMap = ()=>{
     return(
         <div className="DiagramContainer">
             <div className="ScanMapMain" id="MainMap">
-                <ChartHeader  {...Chart1}/>
+                <ChartHeader  Section='Locations' Chart='Map'  Meta='Map'/>
                 <H3 Copy={`${HeatMapDataLength} Locations scanned in results`}  />
                 <GoogleMap 
                     mapContainerStyle={containerStyle}

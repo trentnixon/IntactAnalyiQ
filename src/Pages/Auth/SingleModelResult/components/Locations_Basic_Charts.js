@@ -24,7 +24,7 @@ const Locations_Radial_Pie_Charts=()=>{
                 <Locaction_Radial_Clusters />
                 <Chart_Pie_OutofScope />
             </div> 
-            
+             
             <Stats_Bar data={OBJ_CLUSTER_GLOBAL()} name={`name`} value={`Appearances`}/>
             
         </DiagramContainer> 

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {useContext_UX_FULL} from "Context/UX";
 import {useContext_SCAN_FULL} from "Context/SCAN";
 import {useContext_AUTH_FULL} from "Context/AUTH";
-import Footer from "./Components/Layout/Footer";
+import Footer from "Pages/Auth/Components/Layout/Footer";
 import Auth from 'Pages/Auth';
 
 const Profile = ()=>{    
@@ -13,7 +13,7 @@ const Profile = ()=>{
         //console.log(AUTH)
     },[AUTH])
 
-    return(
+    return( 
     <>
         <div className="OuterContainer">
             <div className="InnerFrame">

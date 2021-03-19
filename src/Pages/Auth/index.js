@@ -15,7 +15,7 @@ import DashBoard from "../../Template/AuthDashboard"
 // Dataloading
 import {LogoMainWhite} from "../../Assets/logo"
 
-// Routes
+// Routes 
 import ComponentLanding from "./Landing";
 import ComponentDataDump from "./DataDump"
 import ComponentCreateModel from "./CreateModel";
@@ -27,12 +27,16 @@ import UIComponents from "./UICompnents/index"
 import ResultsComponent from "./SingleModelResult";
 import ReleaseNotes from "./ReleaseNotes";
 import Pipeline from "./Pipeline"
+import LocationDeepDive from "./LocationDeepDive"
+import ClientDeepDive from "./ClientDeepDive"
 
 const routes = [
     { Rpath: "/", component: ComponentLanding, exact:true},
     { Rpath: "/view-models", component: ComponentViewModels, exact:true},
     { Rpath: "/create-model", component: ComponentCreateModel, exact:false},
     { Rpath: "/compare-models", component: CompareComponent, exact:false},
+    { Rpath: "/location-Deep-Dive", component: LocationDeepDive, exact:false},
+    { Rpath: "/client-deep-dive", component: ClientDeepDive, exact:false},
     { Rpath: "/MarkerBasedScan", component: ComponentScan, exact:false},
     { Rpath: "/integrity", component: ComponentDataDump, exact:false},
     { Rpath: "/results", component: ResultsComponent, exact:false},

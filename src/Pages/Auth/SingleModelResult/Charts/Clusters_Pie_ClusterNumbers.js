@@ -26,7 +26,7 @@ const Chart_Pie_OutofScope = ()=>{
 
     return(
         <div>
-            <ChartHeader  {...Chart2}/>
+            <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie'/>
             <div style={{height: 300}}>
                 <NivoPie data={OBJ_CLUSTER_GLOBAL()} id={`name`} value={'Appearances'}/>
             </div>

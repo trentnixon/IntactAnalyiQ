@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {useContext_COMPARE_FULL} from "Context/COMPARE";
 
 import ResetModels from "Pages/Auth/Components/buttons/ResetCompareModels"
-
+import Footer from "Pages/Auth/Components/Layout/Footer";
 // Import Table
 import TableHeader from "Pages/Auth/Compare/Layout/TableHeader"
 import FilterChips from "Pages/Auth/SingleModelResult/Layout/FilterChips";
@@ -30,6 +30,7 @@ const ModelComparision = ()=>{
     },[COMPARE])
     
     return( 
+        <>
         <div className="OuterContainer">
             <div className="InnerFrame">
                 <h2>Comparison Results</h2>
@@ -38,7 +39,7 @@ const ModelComparision = ()=>{
                    
                         <TableHeader />
                         <LocationsNetwork /> 
-                        
+                         
                         <Locations_Main /> 
                         <Resources_Main />
                         <WorkOrders_Main />
@@ -56,7 +57,10 @@ const ModelComparision = ()=>{
             </div>  
         
             <FilterChips />
+            
         </div>
+        <Footer />
+        </>
     )
 }
 

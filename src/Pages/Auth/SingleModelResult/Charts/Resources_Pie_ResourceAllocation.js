@@ -32,7 +32,7 @@ const Trade_Radial_Charts=()=>{
     
     return(
         <div>
-            <ChartHeader  {...Chart1}/>
+            <ChartHeader  Section='Resources' Chart='Pie'  Meta='Pie_Locations'/>
             <div style={{height: 300}}>
                 <NivoPie data={ResourceSpread} id={`name`} value={'Resources'} />
             </div>

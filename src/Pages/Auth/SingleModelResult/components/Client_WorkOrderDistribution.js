@@ -55,7 +55,7 @@ const ClientWOrkOrderSpread = ()=>{
         <DiagramContainer>
         <div className="resultCharts">
             <div>
-                <ChartHeader Icon={Chart1.Icon} Header={Chart1.Header}  Copy={Chart1.Copy} Tip={Chart1.Tip} />
+                <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie' />
                 <div style={{height: 300}}>
                         <NivoPie data={ClientSpread} id={`name`} value={'Work Orders'} />
                     </div>
@@ -63,7 +63,7 @@ const ClientWOrkOrderSpread = ()=>{
                 
             </div>
             <div>
-                <ChartHeader Icon={Chart2.Icon} Header={Chart2.Header}  Copy={Chart2.Copy} Tip={Chart2.Tip} />
+                <ChartHeader Section='Locations' Chart='Pie'   Meta='Pie'/>
 
                 <div style={{height: 300}}>
                         <NivoPie data={ClientClusterSpread} id={`name`} value={'Work Orders'} />

@@ -27,7 +27,7 @@ const Workorders_Radial_Workorders=()=>{
     
     return(
         <div>
-            <ChartHeader  {...Chart1}/>    
+            <ChartHeader  Section='Locations' Chart='Pie'  Meta='Pie'/>    
             <div style={{height: 300}}>
                 <NivoRadial 
                     data={CategoryOccurance} 

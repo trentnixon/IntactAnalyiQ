@@ -14,11 +14,11 @@ import NivoLine from "venders/Nivo/NivoLine";
 
 const Chart1={
     Icon:'line',
-    Header:"Resources Allocation over time",
+    
     Tip:"Use the Filters",
     filters:['cluster'],
-    Copy:`The Bar Graph shows the number of Resource Allocations over the time period of the Model. 
-        Use the 'Cluster Type' and 'Resource type' filters to filter the chart to a specific Recourse or cluster type`
+    Header:"Resources Allocation over time",
+    Copy:`The Bar Graph shows the number of Resource Allocations over the time period of the Model.`
 }
 
 
@@ -35,7 +35,7 @@ const Trade_Radial_Charts=()=>{
     return(
         <div className="resultCharts">
         <div>
-           <ChartHeader  {...Chart1}/>
+           <ChartHeader  Section='Resources' Chart='Line'  Meta='Line_Resources_OverTime'/>
             <div style={{height: 400}}>
                 <NivoLine 
                     data={orderBy(ResourcesOverTime,'UnixDate')} 

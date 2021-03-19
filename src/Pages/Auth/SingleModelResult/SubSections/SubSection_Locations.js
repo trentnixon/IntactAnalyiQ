@@ -24,10 +24,10 @@ const SubSection_Locations = ()=>{
             <div className="InnerFrame">
                 <H2 Copy={`Locations`} /> 
                 
-                
+                 
                 <Section>
                     <Locations_Basic_Stats />    
-                    <LocationsNetwork /> 
+                    <LocationsNetwork />  
                     <Locations_Basic_Charts />
                     <LocationHeatMap />
                     <Location_ResourceSpread />      

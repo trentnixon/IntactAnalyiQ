@@ -80,6 +80,7 @@ const Polygons = ()=>{
                     <Polygon 
                         onClick={()=>{handleClick(centerpoint)}}    
                         paths={PolygonPath} 
+                        key={`Polygon_${i}`}
                         options={options} />
                 )
                 

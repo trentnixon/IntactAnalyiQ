@@ -21,7 +21,7 @@ const WorkOrder_Pie_ByClient=()=>{
     useEffect(()=>{ },[UX,MODEL])
     return(
         <div>
-            <ChartHeader  {...Chart1}/> 
+            <ChartHeader  Section='Locations' Chart='Pie'  Meta='Pie'/> 
             <div style={{height: 300}}>
                 <NivoPie data={OBJ_CLIENT_RESOURCES()} id={`name`} value={'Work Orders'} />
             </div>

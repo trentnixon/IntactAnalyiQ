@@ -18,14 +18,18 @@ const HeaderLocations=()=>{
 
     const MODEL = SCAN.SelectedModel
     const [SiteBreakdown, setSiteBreakdown] = useState([])
-   
+    const [totalLocations, setTotalLocations] = useState(0)
     const SiteNum=()=>{
         let SiteCount=[];
         MODEL.STOREMARKERCENTERPOINTS.map((model,i)=>{ SiteCount.push(model.StripedSites.length) })
         return SiteCount.reduce((a, b) => a + b, 0)
     }
 
-    useEffect(()=>{ setSiteBreakdown(OBJ_SITE_GLOBAL()) },[UX]);
+    useEffect(()=>{ 
+        setSiteBreakdown(OBJ_SITE_GLOBAL()) 
+        setTotalLocations(MODEL.SITESINSCOPE+MODEL.SITESINPARCITALSCOPE+MODEL.SITESOUTOFSCOPE)
+        console.log(MODEL.SITESINSCOPE)
+    },[UX]);
 
 
 
@@ -37,22 +41,27 @@ const HeaderLocations=()=>{
             perc:null
         },{
             info:INFO.TOTALLOCATIONS,
-            number:SiteNum()+gl(MODEL.STORERESIDUALMARKERS),
+            number:totalLocations,
             label:'Total Locations',
             perc:null
         },{
             info:INFO.LOCATIONSINSCOPE,
-            number:gl(SiteBreakdown),
+            number:MODEL.SITESINSCOPE, 
             label:'Locations Inscope',
-            perc:`${((gl(SiteBreakdown)/(gl(SiteBreakdown)+gl(MODEL.STORERESIDUALMARKERS))*100)).toFixed(2)} %`
+            perc:`${((MODEL.SITESINSCOPE/totalLocations*100)).toFixed(2)} %`
         },{
             info:INFO.LOCATIONSOUTSCOPE,
-            number:numberWithCommas(gl(MODEL.STORERESIDUALMARKERS)),
+            number:numberWithCommas(MODEL.SITESINPARCITALSCOPE),
+            label:'Partital Scope',
+            perc:`${((MODEL.SITESINPARCITALSCOPE/totalLocations*100)).toFixed(2)} %`
+        },{
+            info:INFO.LOCATIONSOUTSCOPE,
+            number:numberWithCommas(MODEL.SITESOUTOFSCOPE),
             label:'Out of Scope',
-            perc:null
+            perc:`${((MODEL.SITESOUTOFSCOPE/totalLocations*100)).toFixed(2)} %`
         },{
             info:INFO.EXCLUDEDLOCATIONS,
-            number:numberWithCommas( gl(MODEL.USERSELECTEDLIST)-(SiteNum()+gl(MODEL.STORERESIDUALMARKERS))  ),
+            number:numberWithCommas((gl(MODEL.USERSELECTEDLIST) - totalLocations)  ),
             label:'Excluded Locations',
             perc:null
         },{

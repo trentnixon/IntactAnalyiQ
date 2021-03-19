@@ -31,7 +31,7 @@ const Cluster_Bar_ResourceAllocation = ()=>{
 
     return(
         <div>
-        <ChartHeader  {...Chart1}/>  
+        <ChartHeader Section='Locations' Chart='Bar' Meta='Bar_Resource'/>  
               
         <ResponsiveContainer width='100%' height={300}>
                 <BarChart

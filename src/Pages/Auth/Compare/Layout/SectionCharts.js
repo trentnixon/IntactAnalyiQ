@@ -76,7 +76,7 @@ const SectionCharts = (props)=>{
             
 
         </DiagramContainer>
-        <ViewSites />
+      
         </>
     )
 }
@@ -93,16 +93,13 @@ const ViewSites = ()=>{
         <DiagramContainer>
            
             <ul className="clusterList">
-            <li className="Header">
-                <div>Address</div>
-                <div>Scope Status</div>
-                <div>Work Orders</div>
-               <div></div>
-              
-                
-                
-                
-            </li>
+                <li className="Header">
+                    <div>Address</div>
+                    <div>Scope Status</div>
+                    <div>Work Orders</div>
+                <div></div>
+                </li>
+
                 {
                     SITES.map((site,i)=>{
                         return(

@@ -75,7 +75,6 @@ const ClusterResults = ()=>{
                 <div>Sites</div>
                 <div>Resource Allocation</div>
                 <div></div>
-                
             </li>
                 {
                     ShowResults.map((center,i)=>{

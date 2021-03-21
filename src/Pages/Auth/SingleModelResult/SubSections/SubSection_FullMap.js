@@ -7,6 +7,7 @@ import {H2} from "Pages/Auth/Components/Type";
 
 import Map_Full_Main from "Pages/Auth/SingleModelResult/components/Map_Full_MAin";
 import SectionChart from "Pages/Auth/Compare/Layout/SectionCharts"
+import ViewSelectedClusterSites from "Pages/Auth/Compare/Layout/ViewSelectedClusterSites"
 import SectionClusterResults from "Pages/Auth/Compare/Layout/MapClusterResults"
 
 // Chart
@@ -79,7 +80,7 @@ const SubSection_FullMap = ()=>{
          <H2 Copy={`Model Map Overview`} />
             <Section>
                 <Map_Full_Main />
-                { UX.AreaSelectFilter.ByPolygon === false ? <SectionClusterResults /> : <SectionChart Charts={Charts}  /> }
+                { UX.AreaSelectFilter.ByPolygon === false ? <SectionClusterResults /> : <><SectionChart Charts={Charts}  /><ViewSelectedClusterSites /></> }
             </Section >  
             </div> 
             <AppBar />

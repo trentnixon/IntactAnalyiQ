@@ -24,6 +24,56 @@ export const LocationcolorArray = ['#514592', '#D29653', '#D2B953','#386E85', '#
 export const TradecolorArray = ['#3F5A8C', '#40A151', '#FCF889','#D25C53'];
 
 
+export function ResourceColor(Trade){
+  switch (Trade) {
+      case 'HandyMan':
+            return '#3F5A8C' 
+            break;
+      case 'Electrician':
+              return '#40A151'
+        break;
+      case 'Plumber':
+              return '#FCF889'
+          break;
+      case 'Specialized':
+              return '#D25C53'
+          break;
+      case 'CombinedCluster':
+              return '#ff0000'
+          break;
+  
+  }
+}
+export function RegionColor(region){
+  switch (region) {
+      case 'SameBuilding':
+            return '#B2007C' 
+            break;
+      case 'CBD':
+              return '#DC000B'
+        break;
+      case 'InnerCity':
+              return '#04419B'
+          break;
+      case 'Metro':
+              return '#11B700'
+          break;
+      case 'OuterMetro':
+              return '#330193'
+          break;
+        case 'Regional':
+          return '#FF7400'
+          break;
+        case 'Remote':
+          return '#3D1324'
+          break; 
+      case 'ExtremeRemote':
+            return '#111D2F'
+          break;   
+  }
+}
+
+
 export const ChartIcon =(Icon)=>{
   let DisplayIcon; 
   switch (Icon) {
@@ -99,6 +149,11 @@ export const SetFilterPolygon = (type)=>{
 export const SetFilterMarkerType = (type)=>{
   //console.log('SETFILTERMARKERTYPE', type)
   store.dispatch({ type:'SETFILTERMARKERTYPE', payload:type});
+}
+
+export const SetFilterColorSchemeType = (type)=>{
+  //console.log('SETFILTERCOLORSCHEME', type)
+  store.dispatch({ type:'SETFILTERCOLORSCHEME', payload:type});
 }
 
 
@@ -267,35 +322,7 @@ export function HandleFilterChange(TYPE, VALUE){
     store.dispatch({ type:TYPE, payload:VALUE});
 }
 
-export function RegionColor(region){
-  switch (region) {
-      case 'SameBuilding':
-            return '#B2007C' 
-            break;
-      case 'CBD':
-              return '#DC000B'
-        break;
-      case 'InnerCity':
-              return '#04419B'
-          break;
-      case 'Metro':
-              return '#11B700'
-          break;
-      case 'OuterMetro':
-              return '#330193'
-          break;
-        case 'Regional':
-          return '#FF7400'
-          break;
-        case 'Remote':
-          return '#3D1324'
-          break; 
-      case 'ExtremeRemote':
-            return '#111D2F'
-          break;   
-     
-  }
-}
+
 
 
 export const getDate=(timeStamp)=>{ 

@@ -46,8 +46,9 @@ const ClusterList = ()=>{
         <ul className="clusterList">
             <li className="Header">
                 <div>Cluster Name</div>
-                <div className="sortable" onClick={()=>{handleReorder('type')}} >Cluster Type {arrow('type')} </div>
                 <div className="sortable" onClick={()=>{handleReorder('sites')}} >Sites {arrow('sites')}</div>
+                <div className="sortable" onClick={()=>{handleReorder('type')}} >Cluster Type {arrow('type')} </div>
+                
                 <div  className="sortable" onClick={()=>{handleReorder('clients')}} >Clients {arrow('clients')}</div>
                 <div>Trades</div>
                 <div className="sortable" onClick={()=>{handleReorder('resourceQuotaTotal')}} >Resources {arrow('resourceQuotaTotal')}</div>
@@ -60,8 +61,9 @@ const ClusterList = ()=>{
                     return(
                         <li key={i}>
                            <div>{ center.name }</div>
-                           <div style={{color: RegionColor(center.type)}}>{ center.type }</div>
                            <div >{ center.sites }</div>
+                           <div style={{color: RegionColor(center.type)}}>{ center.type }</div>
+                           
                            <div>{ center.clients }</div>
 
                            <div>

@@ -7,6 +7,7 @@ import {H2} from "Pages/Auth/Components/Type";
 
 import Map_Full_Main from "Pages/Auth/SingleModelResult/components/Map_Full_MAin";
 import SectionChart from "Pages/Auth/Compare/Layout/SectionCharts"
+import SectionClusterResults from "Pages/Auth/Compare/Layout/MapClusterResults"
 
 // Chart
 import Resources_Pie_ResourceAllocation from 'Pages/Auth/SingleModelResult/Charts/Resources_Pie_ResourceAllocation'
@@ -75,19 +76,19 @@ const SubSection_FullMap = ()=>{
     //console.log(UX.AreaSelectFilter.ByPolygon)
     return(
         <><div className="InnerFrame">
-         <H2 Copy={`Model Overview`} />
+         <H2 Copy={`Model Map Overview`} />
             <Section>
                 <Map_Full_Main />
-                { UX.AreaSelectFilter.ByPolygon === false ? false : <SectionChart Charts={Charts}  /> }
-            </Section > 
-            </div>
+                { UX.AreaSelectFilter.ByPolygon === false ? <SectionClusterResults /> : <SectionChart Charts={Charts}  /> }
+            </Section >  
+            </div> 
             <AppBar />
             <div className="SideBarRight"> 
                 <ModelMeta />
                 <GlobalFilter />
             </div>
         </>
-    )  
+    )   
 } 
 
 export default SubSection_FullMap;  

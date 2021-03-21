@@ -21,14 +21,14 @@ const Map=()=>{
         return(
                 <div className="" id="MainMap">
                         <GoogleMap 
-                            mapContainerStyle={containerStyle}
+                            mapContainerStyle={containerStyle} 
                             center={UX.MapParameters.LatLngBoundaries}
                             zoom={UX.MapParameters.zoom}
                         >
                             { /* Child components, such as markers, info windows, etc. */ }
                             
                             <Markers />
-                          
+                            
                             <Polygons /> 
                         </GoogleMap>   
                         
@@ -38,7 +38,6 @@ const Map=()=>{
                 )
 }
 
-//<CenterPoints />
  //  <ResidualMarkers />
 export default Map;
 

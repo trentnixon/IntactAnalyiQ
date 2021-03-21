@@ -3,7 +3,7 @@ import {useContext_SCAN_FULL} from "Context/SCAN";
 import {useContext_UX_FULL} from "Context/UX";
 import {Polygon} from '@react-google-maps/api';
 import {findIndex} from 'lodash'; 
-import {RegionColor, SetFilterPolygon,SetSelectedCluster} from "actions/HandleUX";
+import {RegionColor,ResourceColor,SetFilterPolygon,SetSelectedCluster} from "actions/HandleUX";
 
 const options = {
     fillColor: "lightblue",
@@ -17,7 +17,7 @@ const options = {
     geodesic: false, 
     zIndex: 1
   }
-
+ 
 
 const Polygons = ()=>{
 
@@ -25,8 +25,28 @@ const Polygons = ()=>{
     const UX = useContext_UX_FULL();
     const [DisplayPolygons, setPolygons] = useState([])
 
+
+    const FindColor = (type, cluster, resource)=>{
+        let FixedColor
+            if(type === 'Cluster'){
+                FixedColor = RegionColor(cluster)
+            }else{
+                if(resource.length===1){
+                    console.log(resource[0].Trade)
+                    FixedColor = ResourceColor(resource[0].Trade)
+                }
+                else{
+                    console.log("RESOURCE MIXED")
+                    FixedColor = ResourceColor('CombinedCluster')
+                }
+            }
+
+        return FixedColor;
+    }
+
+
     const handleClick=(centerpoint)=>{
-        //console.log("Polygon Clicked", centerpoint)
+        console.log("Polygon Clicked", centerpoint)
         SetFilterPolygon(centerpoint.name)
         SetSelectedCluster(centerpoint)
     }
@@ -39,8 +59,8 @@ const Polygons = ()=>{
             
 /* ******************************************************************************** */         
 // Map Filters
-
-        //console.log(centerpoint.scanCategory)
+        //console.log(UX.AreaSelectFilter.ByColorScheme) 
+        //console.log(centerpoint)
         // Filter Results by Cluster Type    
         if(UX.AreaSelectFilter.ByPolygon !== false)  
             if(centerpoint.name != UX.AreaSelectFilter.ByPolygon)
@@ -62,10 +82,10 @@ const Polygons = ()=>{
 
 
                 let options = {
-                    strokeColor: RegionColor(centerpoint.scanCategory),
+                    strokeColor: FindColor(UX.AreaSelectFilter.ByColorScheme, centerpoint.scanCategory, centerpoint.resourceQuota),
                     strokeOpacity: 1,
                     strokeWeight: 1.5,
-                    fillColor: RegionColor(centerpoint.scanCategory),
+                    fillColor:  FindColor(UX.AreaSelectFilter.ByColorScheme, centerpoint.scanCategory, centerpoint.resourceQuota),
                     fillOpacity: 0.1,
                   
                     zIndex: 1

@@ -16,7 +16,7 @@ const ResultMap = ()=>{
                 <MapColorKey />
             </div> 
         </> 
-    )
+    ) 
 }
 
 export default ResultMap;  

@@ -9,7 +9,7 @@ import {  Marker, MarkerClusterer,InfoWindow  } from '@react-google-maps/api';
 
 //const iconBase ="https://developers.google.com/maps/documentation/javascript/examples/full/images/";
 import {findIndex} from 'lodash'; 
-import {RegionColor} from "actions/HandleUX"
+import {RegionColor,ResourceColor} from "actions/HandleUX"
 import {findClientName} from "actions/ClusterAnalysis";
 
 const divStyle = {
@@ -72,8 +72,6 @@ const MarkerBasedLocationMarkers = ()=>{
       
       setInfoWindowContent(point)
       setShowInfoWindow(true)
-      
-  
     
     }
 
@@ -97,6 +95,24 @@ const MarkerBasedLocationMarkers = ()=>{
           })
         return [Math.min(...arr),Math.max(...arr)]
       }
+
+      const FindColor = (type, cluster, resource)=>{
+        let FixedColor
+            if(type === 'Cluster'){
+                FixedColor = RegionColor(cluster)
+            }else{
+                if(resource.length===1){
+                    console.log(resource[0].Trade)
+                    FixedColor = ResourceColor(resource[0].Trade)
+                }
+                else{
+                    console.log("RESOURCE MIXED")
+                    FixedColor = ResourceColor('CombinedCluster')
+                }
+            }
+
+        return FixedColor;
+    }
 
 
       const CreateMarkers = (markers,  clusterer)=>{
@@ -132,7 +148,7 @@ const MarkerBasedLocationMarkers = ()=>{
             Homeicon = {
               //path: "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
               path:"M38.8823 0.384155L0.579987 34.26H10.06V74.76H66.94V34.26H76.42L38.8823 0.384155Z",
-              fillColor: RegionColor(centerPoint.scanCategory),
+              fillColor: FindColor(UX.AreaSelectFilter.ByColorScheme, centerPoint.scanCategory, centerPoint.resourceQuota),
               fillOpacity: .9,
               anchor: new window.google.maps.Point(50,50),
               strokeWeight: 0,
@@ -164,7 +180,8 @@ const MarkerBasedLocationMarkers = ()=>{
               Targeticon = {
                 //path: "M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z",
                 path:"M-24-48h48v48h-48z",
-                fillColor: RegionColor(centerPoint.scanCategory),
+                fillColor: FindColor(UX.AreaSelectFilter.ByColorScheme, centerPoint.scanCategory, centerPoint.resourceQuota),
+                
                 fillOpacity: .9,
                 anchor: new window.google.maps.Point(0,0),
                 strokeWeight: 0,

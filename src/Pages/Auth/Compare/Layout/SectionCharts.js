@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 // Context
 import {useContext_COMPARE_FULL} from "Context/COMPARE";
-
+import {useContext_UX_FULL} from "Context/UX";
 import {useContext_SCAN_FULL} from "Context/SCAN";
 import{FetchSingleScanResult} from "actions/authUser"
 import {SetFilterModel, ChartIcon} from "actions/HandleUX";
@@ -26,6 +26,7 @@ const SectionCharts = (props)=>{
     const {Charts} = props
     const SCAN = useContext_SCAN_FULL()
     const MODEL = useContext_COMPARE_FULL()
+    
     const [Selected, setSelected] = useState(0)
 
 
@@ -33,7 +34,7 @@ const SectionCharts = (props)=>{
         setSelected(i)
     }
     useEffect(()=>{
-
+        
         if(SCAN.SelectedModel === null){
             FetchSingleScanResult(MODEL.CompareData.UserSelected[0].id, MODEL.CompareData.UserSelected[0])
             SetFilterModel(MODEL.CompareData.UserSelected[0].id)
@@ -41,8 +42,9 @@ const SectionCharts = (props)=>{
     },[])
 
     return( 
+        <>
         <DiagramContainer>
-           <div className="SectionChart">
+           <div className="SectionChart"> 
 
                 <div className="Options">
                      
@@ -70,9 +72,51 @@ const SectionCharts = (props)=>{
                         }
                 </div>
             </div>
+
+            
+
         </DiagramContainer>
+        <ViewSites />
+        </>
     )
 }
 
 export default SectionCharts;
 //  <ModelSelect />
+
+const ViewSites = ()=>{
+    const SITES = useContext_UX_FULL().ClusterParameters.SelectedCluster.StripedSites
+    useEffect(()=>{
+        console.log(SITES)
+    },[])
+    return(
+        <DiagramContainer>
+           
+            <ul className="clusterList">
+            <li className="Header">
+                <div>Address</div>
+                <div>Scope Status</div>
+                <div>Work Orders</div>
+               <div></div>
+              
+                
+                
+                
+            </li>
+                {
+                    SITES.map((site,i)=>{
+                        return(
+                            <li>
+                                <div>{site.name}</div>
+                                <div>{site.ScopeStatus}</div>
+                                <div>{site.SumWorkOrder}</div>
+                                <div>View Site</div>
+                                
+                            </li>
+                        )
+                    })
+                }
+            </ul>
+        </DiagramContainer>
+    )
+}

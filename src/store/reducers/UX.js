@@ -9,7 +9,8 @@ const InitialState ={
         ByClient:false, 
         ByModel:false,
         ByPolygon:false,
-        ByMarkerType:'Show All'
+        ByMarkerType:'Show All',
+        ByColorScheme:'Cluster'
     },
 
     MapParameters:{
@@ -100,6 +101,12 @@ const UX = (state=InitialState, action) =>{
         }
         case "SETFILTERMARKERTYPE":{
             return {...state, AreaSelectFilter:{...state.AreaSelectFilter, ByMarkerType:action.payload}}
+                            // eslint-disable-next-line 
+            break
+        }   
+
+        case "SETFILTERCOLORSCHEME":{
+            return {...state, AreaSelectFilter:{...state.AreaSelectFilter, ByColorScheme:action.payload}}
                             // eslint-disable-next-line 
             break
         }   

@@ -1,6 +1,6 @@
 import React from 'react'
 import {useContext_UX_FULL} from "Context/UX";
-import {RegionColor} from "actions/HandleUX"
+import {RegionColor, ResourceColor} from "actions/HandleUX"
 
 const ColorKey = ()=>{
     
@@ -10,13 +10,67 @@ const ColorKey = ()=>{
         if(UX.AreaSelectFilter.ByClusterType === type || UX.AreaSelectFilter.ByClusterType === undefined)
             return 1
                 return 0.1;
-        
     }
 
     return (
 
+        <>
+              <ClusterColorKey />
+              <ResourceColorKey />
+        </>
+
+    )
+}
+
+export default ColorKey;
+
+
+
+const ResourceColorKey = ()=>{
+    const UX = useContext_UX_FULL();
+    const Opacity=(type)=>{
+        if(UX.AreaSelectFilter.ByResourceType === type || UX.AreaSelectFilter.ByResourceType === undefined)
+            return 1
+                return 0.1;
+    }
+
+    return(
         <div className="MapColorKey">
+         <div >
+                  <span style={{backgroundColor:ResourceColor('HandyMan'), opacity:Opacity('HandyMan')}}></span>
+                  <h2>Handy Man</h2>
+              </div>
               <div >
+                  <span style={{backgroundColor:ResourceColor('Electrician'),opacity:Opacity('Electrician')}}></span>
+                  <h2>Electrician</h2>
+              </div>
+              <div >
+                  <span style={{backgroundColor:ResourceColor('Plumber'),opacity:Opacity('Plumber')}}></span>
+                  <h2>Plumber</h2>
+              </div>
+              <div>
+                  <span  style={{backgroundColor:ResourceColor('Specialized'),opacity:Opacity('Specialized')}}></span>
+                  <h2>Specialized</h2>
+              </div>
+              <div>
+                  <span style={{backgroundColor:ResourceColor('CombinedCluster'),opacity:Opacity('CombinedCluster')}}></span>
+                  <h2>CombinedCluster</h2>
+              </div>
+        </div>
+    )
+}
+
+const ClusterColorKey = ()=>{
+    const UX = useContext_UX_FULL();
+    const Opacity=(type)=>{
+        if(UX.AreaSelectFilter.ByClusterType === type || UX.AreaSelectFilter.ByClusterType === undefined)
+            return 1
+                return 0.1;
+    }
+
+    return(
+        <div className="MapColorKey">
+         <div >
                   <span style={{backgroundColor:RegionColor('SameBuilding'), opacity:Opacity('SameBuilding')}}></span>
                   <h2>SameBuilding</h2>
               </div>
@@ -50,8 +104,5 @@ const ColorKey = ()=>{
                   <h2>ExtremeRemote</h2>
               </div>
         </div>
-
     )
 }
-
-export default ColorKey;

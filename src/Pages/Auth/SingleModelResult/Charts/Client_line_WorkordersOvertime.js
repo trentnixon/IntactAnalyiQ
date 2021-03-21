@@ -14,14 +14,7 @@ import {
   } from 'recharts';
 
 
-const Chart1={
-    Icon:'bar',
-    Header:"Client work orders over time",
-    Tip:"Use the Filters",
-    filters:['cluster','resource',],
-    Copy:`This Composition chart shows the selected clients work order distribution over time against the total work orders in the Model
-            Use the filters to dive deeper into a resource or cluster type`
-}
+
 
 
 const Client_Line_Workorders=()=>{
@@ -54,7 +47,7 @@ const Client_Line_Workorders=()=>{
 
     return(
         <div>
-            <ChartHeader  Section='Locations' Chart='Pie'  Meta='Pie'/>
+            <ChartHeader  Section='Clients' Chart='Line'  Meta='Line_Workorders_Overtime'/>
 
             <div style={{ width: '100%', height: 400 }}>
                 <ResponsiveContainer>

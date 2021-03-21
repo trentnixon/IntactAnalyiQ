@@ -11,124 +11,246 @@ const InitialState ={
     ChartSetup:{
         Bar:{
             icon:'bar',
-            tip:'',
-            Filters:['cluster','resource','client']
+            tip:''
            
          },
          Line:{
             icon:'line',
-            tip:'',
-            Filters:['cluster','resource','client']
+            tip:''
          },
         Network:{
             icon:'radial',
-            tip:'',
-            Filters:['']
+            tip:''
         },
         Radial:{
             icon:'radial',
-            tip:'',
-            Filters:['']
+            tip:''
         },
         Pie:{
             icon:'pie',
-            tip:'',
-            Filters:['cluster','resource','client']
+            tip:''
         },
          Map:{
             icon:'map',
-            tip:'',
-            Filters:['cluster','resource','client']
+            tip:''
            
          },
          Swarm:{
             icon:'radial',
-            tip:'',
-            Filters:['']
+            tip:''
            
          },
          Waffle:{
             icon:'radial',
-            tip:'',
-            Filters:['']
-           
+            tip:''
          },
          Funnel:{
             icon:'radial',
-            tip:'',
-            Filters:['']
-           
-         }
+            tip:''
+         },
+          Sunburst:{
+            icon:'radial',
+            tip:''
+        }
     },
 
     ChartMeta:{ 
         Locations:{
             Network:{
+                Filters:[''],
                 title:'The Cluster Network',
-                Description:'The Node Network shows the relationships clusters have to there parent item. This diagram should provide a visual clue to cluster concentration'
+                Description:'The Node Network shows the relationships clusters have to there parent item. The diagram provides a visual clue to cluster concentration'
             },
             Radial:{
-                title:'How are the clusters Distributed?',
-                Description:'The Radial Graph shows the number of clusters per cluster type in a given model.'
+                Filters:[''],
+                title:'Where are the Clusters Distributed?',
+                Description:'The Radial Graph shows the number of clusters by tier.'
             },
             Pie:{
+                Filters:[''],
                 title:'How many sites are Inscope?', 
                 Description:'The Pie chart show the distribution of sites In, Partial or Out of scope'
             },
             Map:{
-                title:'How are the sites distributed across the country?',
+                Filters:[''],
+                title:'Where are the sites distributed across the country?',
                 Description:'The Heat map Below shows high volume areas of locations.'
                 
             },
             Swarm:{
-                title:'How do cluster site numbers relate to Work orkers completed?',
-                Description:'Chart shows the Resource Allocation by the specific cluster types.'
+                Filters:[''],
+                title:'How do cluster relate to work-orkers covered and site volumes gathered ?',
+                Description:`The swarm chart shows the number of clusters per tier as a buble in each category. 
+                            The Overall size of teh bubble refers to the number of sites within that cluster, 
+                            with the vertical position showing the number of workorders completed by that cluster`
              },
              Bar_Resource:{
-                 title:'How is the Resource Allocation spread across the Cluster types?',
-                 Description:'Chart shows the Rescourse Allocation by the specific cluster types.'
+                Filters:['resource','client'],
+                 title:'Where are the Resource concentrations?',
+                 Description:`The Stacked Bar chart shows the resource concentrations by to specific cluster types.
+                                Bars can be filtered down to specific resource types and clients`
               },
               Bar_WorkOrder:{
-                title:'How are Work orders spread across the Cluster by Trade types?',
-                Description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
-             }
+                Filters:['resource','client'],
+                title:'Where are the Work order concentrations?',
+                Description:`The Stacked Bar chart shows the work-order concentrations by to specific cluster types 
+                                Bars can be filtered down to specific resource types and clients`
+             },
+            
         },
         Resources:{
             Radial:{
-                title:'Resources Allocation to Cluster Type',
-                Description:'The Radial Graph shows the number of Resource Allocations by Cluster Type in a given model.'
+                Filters:['cluster','client'],
+                title:'Where are the Resource Allocations concentrated?',
+                Description:'Copy Required'
             },
             Pie_Locations:{
-                title:'Resources Allocation to Cluster Type',
-                Description:'The Radial Graph shows the number of Resource Allocations by Cluster Type in a given model.'
+                Filters:['cluster','client'],
+                title:'How are the Resources Divided?',
+                Description:'Copy Required'
             },
             Waffle:{
-                title:'Resources Allocation to Clients',
-                Description:'The Graph shows the number of Resource Allocations by Cluster Type in a given model.'
+                Filters:['resource','cluster'],
+                title:'How is this resource allocation Spread across the clients?',
+                Description:'Copy Required'
             },
             Map:{
-                title:'Heat map of Resource Allocation based on Cluster Types',
-                Description:'This heat map shows areas of high volume Resource Allocation within the model.'
+                Filters:['cluster'],
+                title:'Where in the country are Resources located?',
+                Description:'Copy Required'
                 
             },
             Pie_Selected_Locations:{
-                title:"Resource Breakdown by Client",
-                Description:`This chart shows the breakdown of selected resource by Allocation spread over the clients in the Model`
+                Filters:['cluster'],
+                title:"How is this resource split across clients?",
+                Description:'Copy Required'
             },
             Funnel:{
-                title:"Cluster Funnel",
-                Description:`The funnel below shows the Resource Allocation for the selected Trade type against the Cluster Types`
+                Filters:['client'],
+                title:"What is the concentration of this resource over cluster types?",
+                Description:'Copy Required'
             },
             Line_Resources_OverTime:{
-                title:"Resources Allocation over time",
-                Description:`The Bar Graph shows the number of Resource Allocations over the time period of the Model.`
+                Filters:['cluster'],
+                title:"What is the Demand for this resource over the model period?",
+                Description:'Copy Required'
             }
         },
-        Clients:{},
-        WorkOrders:{},
+        Clients:{
+            Sunburst:{
+                Filters:[''],
+                title:"How are the Clients broken down over Resource type and Clusters?",
+                Description:'Copy Required'
+            },
+            Pie_Workorders:{
+                Filters:['resource','cluster'],
+                title:"What are the Work-order demands between clients?",
+                Description:'Copy Required'
+            },
+            Pie_Locations:{
+                Filters:['resource','cluster'],
+                title:"What are the location numbers between clients?",
+                Description:'Copy Required'
+            },
+            Pie_Resources:{
+                Filters:['resource','cluster'],
+                title:"What is the Resource Allocation Split between clients?",
+                Description:'Copy Required'
+            },
+            Line_Workorders_Overtime:{
+                Filters:['resource','cluster'],
+                title:"What are the work-order loads, per clients over time?",
+                Description:'Copy Required'
+            },
+            Line_ResourcesAllocation_Overtime:{
+                Filters:['resource','cluster'],
+                title:"What are the Resource Allocation requirements, per clients over time?",
+                Description:'Copy Required'
+            },
+            Pie_Selected_Client_Inscope:{
+                Filters:['cluster','resource'],
+                title:"What are this clients resource requirements?",
+                Description:'Copy Required'
+            },
+            Pie_Selected_Client_Rescourse:{
+                Filters:['resource'],
+                title:"Where are the clients resources clustered?",
+                Description:'Copy Required'
+            },
+            Pie_Selected_WorkordersByClient:{
+                Filters:['resource','cluster'],
+                title:"What resources bring in the most work-orders?",
+                Description:'Copy Required'
+            },
+            Pie_Selected_WorkordersByCluster:{
+                Filters:['resource'],
+                title:"Where are these work-orders clustered?",
+                Description:'Copy Required'
+            },
+            Radial_Selected_WorkordersByCluster:{
+                Filters:['resource'],
+                title:"What is the clistes cluster disturbution?",
+                Description:'Copy Required'
+            },
+            Funnel_Selected_WorkordersByCluster:{
+                Filters:['resource'],
+                title:"What is the clistes cluster disturbution?",
+                Description:'Copy Required'
+            }
+           
+        },
+        WorkOrders:{
+            Radial_Workorders:{
+                Filters:['cluster'],
+                title:"What is the Work-order spread across Resources?",
+                Description:'Copy Required'
+            },
+            Pie_Workorders_Inscope:{
+                Filters:[''],
+                title:"How many of the model work-orders are InScope?",
+                Description:'Copy Required'
+            },
+            Pie_Client_Workorders:{
+                Filters:['resource','cluster'],
+                title:"How are Work-orders divided across clients?",
+                Description:'Copy Required'
+            },
+            Radial_Workorder_Spread:{
+                Filters:['resource','client'],
+                title:"How are the Work-orders Spread over the Clusters?",
+                Description:'Copy Required'
+            },
+            Workorder_Heatmap:{
+                Filters:['resource','cluster','client'],
+                title:"Where in the country are work-orders found?",
+                Description:'Copy Required'
+            },
+            Bar_Workorders_Overtime:{
+                Filters:['resource','cluster'],
+                title:"What is the work-order distrubution over the model dates?",
+                Description:'Copy Required'
+            }
+        },
         Map:{},
         Clusters:{},
-        Costs:{},
+        Costs:{
+            Pie_ResourceCosts:{
+                Filters:[''],
+                title:"How are the costs spread across resources?",
+                Description:'Copy Required'
+            },
+            Line_ResourceCosts_Overtime:{
+                Filters:[''],
+                title:"How are the costs spread over time?",
+                Description:'Copy Required'
+
+            },
+            Map_HeatMapCosts:{
+                Filters:[''],
+                title:"Where are the cost hot spots?",
+                Description:'Copy Required'
+            }
+        },
      
     }
 }

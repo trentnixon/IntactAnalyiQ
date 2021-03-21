@@ -19,16 +19,16 @@ import NivoFunnel from "venders/Nivo/NivoFunnel"
 
 const Chart1={
     Icon:'radial',
-    Header:"Cluster Spread for Selected Client",
+   
     Tip:"Use the Filters",
-    Copy:"The Radial Graph shows the cluster spread for the selected client."
+   
 }
 
 const Chart2={
     Icon:'funnel',
-    Header:"Cluster Spread for Selected Client",
+    
     Tip:"Use the Filters",
-    Copy:"The Radial Graph shows the cluster spread for the selected client."
+    
 }
 
 const Locations_Radial_Pie_Charts=()=>{
@@ -44,7 +44,7 @@ const Locations_Radial_Pie_Charts=()=>{
         <DiagramContainer>
             <div className="resultCharts">
                 <div>
-                    <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie' />
+                    <ChartHeader Section='Clients' Chart='Radial'  Meta='Radial_Selected_WorkordersByCluster' />
                    
                      
                     <div style={{height: 300}}>
@@ -78,7 +78,7 @@ const DisplayFunnel=()=>{
 
     return(
         <div>
-            <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie'/>
+            <ChartHeader Section='Clients' Chart='Funnel'  Meta='Funnel_Selected_WorkordersByCluster'/>
                 <div style={{height: 300}}>
                     <NivoFunnel data={ClusterOccurances} id={`name`} value={'Sum'} />
                 </div>
@@ -95,29 +95,3 @@ const ClientStatBar = (props)=>{
        </>
     )
 }
-
-/*
-
-<ResponsiveContainer width='100%' height={300}>
-                        <RadarChart  outerRadius={100}  data={ClientClusterSpread}>
-                            <PolarGrid />
-                            <PolarAngleAxis dataKey="name" />
-                            <PolarRadiusAxis />
-                            <Radar name={'Clusters'} dataKey="Sum" stroke={colorArray[0]} fill={colorArray[0]} fillOpacity={0.6} />
-                            <Tooltip />
-                            <Legend />
-                        </RadarChart>
-                    </ResponsiveContainer>
- <ResponsiveContainer width='100%' height={300}>
-            <FunnelChart >
-                <Tooltip />
-                <Funnel
-                    dataKey={`Sum`}
-                    data={ClusterOccurances}
-                    isAnimationActive
-                >
-                    <LabelList position="center" fill={colorArray[0]} stroke="none" dataKey="name" />
-                </Funnel>
-                </FunnelChart>
-                </ResponsiveContainer>
-*/

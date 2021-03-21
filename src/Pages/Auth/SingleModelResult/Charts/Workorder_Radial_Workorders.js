@@ -7,13 +7,6 @@ import {OBJ_RESOURCES_GLOBAL} from "actions/CreateSingleViewModel"
 import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
 
 import NivoRadial from "venders/Nivo/NivoRadial"
-const Chart1={
-    Icon:'radial',
-    Header:"Work Orders Spread over Resource Type",
-    Tip:"Use the Filters",
-    filters:['cluster'],
-    Copy:"The Radial Graph shows the Work Order Spread over specific Resource Types. Use the 'Cluster Type' filter to find Work Order numbers for a specific resource."
-}
 
 
 const Workorders_Radial_Workorders=()=>{
@@ -27,7 +20,7 @@ const Workorders_Radial_Workorders=()=>{
     
     return(
         <div>
-            <ChartHeader  Section='Locations' Chart='Pie'  Meta='Pie'/>    
+            <ChartHeader  Section='WorkOrders' Chart='Radial'  Meta='Radial_Workorders'/>    
             <div style={{height: 300}}>
                 <NivoRadial 
                     data={CategoryOccurance} 

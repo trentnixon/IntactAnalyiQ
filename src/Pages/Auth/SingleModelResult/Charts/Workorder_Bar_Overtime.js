@@ -13,15 +13,6 @@ import {
     BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,ResponsiveContainer
   } from 'recharts';
 
-const Chart1={
-    Icon:'bar',
-    Header:"Workorders",
-    Tip:"Use the Filters",
-    filters:['cluster','resource'],
-    Copy:`The Bar Graph shows the number of Work Orders over the time period of the Model. 
-        Use the 'Cluster Type' and 'Resource type' filters to filter the chart to a specific Recourse or cluster type`
-}
-
 
 const Workorder_Bar_Overtime=()=>{
  
@@ -33,7 +24,7 @@ const Workorder_Bar_Overtime=()=>{
 
     return(
         <div>
-                    <ChartHeader  Section='Locations' Chart='Pie'  Meta='Pie'/>
+                    <ChartHeader  Section='WorkOrders' Chart='Bar'  Meta='Bar_Workorders_Overtime'/>
                 
                     <div style={{ width: '100%', height: 400 }}>
                         <ResponsiveContainer>

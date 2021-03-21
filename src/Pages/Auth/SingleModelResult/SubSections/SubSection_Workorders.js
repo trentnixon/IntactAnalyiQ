@@ -19,7 +19,7 @@ const SubSection_Workorders = ()=>{
     return(
         <>
             <div className="InnerFrame">
-            <H2 Copy={`Work Orders`} />
+            <H2 Copy={`Work Orders`} /> 
             <Section>
                 <WorkOrders_Basics />
                 <WorkOrder_Radial_Charts /> 

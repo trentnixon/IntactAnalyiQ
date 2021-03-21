@@ -10,9 +10,10 @@ import NivoPie from "venders/Nivo/NivoPie"
 
 const Chart1={
     Icon:'radial',
-    Header:"Work Orders Spread over Resource Type",
+    
     Tip:"Use the Filters",
     filters:[''],
+    Header:"Work Orders Spread over Resource Type",
     Copy:"The Radial Graph shows the Work Order Spread over specific Resource Types. Use the 'Cluster Type' filter to find Work Order numbers for a specific resource."
 }
 
@@ -30,7 +31,7 @@ const Workorder_pie_outofscope=()=>{
     
     return(
         <div>
-            <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie'/>                       
+            <ChartHeader Section='WorkOrders' Chart='Pie'  Meta='Pie_Workorders_Inscope'/>                       
             <div style={{height: 300}}>
                 <NivoPie data={PieData} id={`name`} value={'value'} />
             </div>

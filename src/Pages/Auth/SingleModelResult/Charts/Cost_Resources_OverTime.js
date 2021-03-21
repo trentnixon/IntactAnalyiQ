@@ -13,16 +13,6 @@ import {
     ComposedChart, Line, Area, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,ResponsiveContainer
   } from 'recharts';
 
-
-const Chart1={
-    Icon:'bar',
-    Header:"Resource Cost over time",
-    Tip:"Use the Filters",
-    filters:['cluster','resource',],
-    Copy:`This Composition chart shows the resource cost for the selected model or cluster over the time of the model`
-}
-
-
 const Client_Line_Workorders=()=>{
 
     const UX = useContext_UX_FULL(); 
@@ -54,7 +44,7 @@ const Client_Line_Workorders=()=>{
 
     return(
         <div>
-            <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie'/>
+            <ChartHeader Section='Costs' Chart='Line'  Meta='Line_ResourceCosts_Overtime'/>
 
             <div style={{ width: '100%', height: 400 }}>
                 <ResponsiveContainer>

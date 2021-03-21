@@ -9,14 +9,6 @@ import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
 import {H3} from 'Pages/Auth/Components/Type';
 const containerStyle = { height: "500px", width: "auto" };
 
-const Chart1={
-    Icon:'map',
-    Header:"Resource Costs Locations",
-    Tip:"Use the Filters",
-    filters:['cluster','resource'],
-    Copy:`This heat map shows areas of high and low cost.`
-}
-
 const LocationHeatMap = ()=>{
     
     const UX = useContext_UX_FULL();
@@ -35,7 +27,7 @@ const LocationHeatMap = ()=>{
         <div className="DiagramContainer">
         
                 <div className="ScanMapMain" id="MainMap">
-                    <ChartHeader  Section='Locations' Chart='Pie'  Meta='Pie'/>
+                    <ChartHeader  Section='Costs' Chart='Map'  Meta='Map_HeatMapCosts'/>
                     <H3 Copy={`${HeatMapDataLength} Resources scanned in results`}  />
                         <GoogleMap  
                             mapContainerStyle={containerStyle}

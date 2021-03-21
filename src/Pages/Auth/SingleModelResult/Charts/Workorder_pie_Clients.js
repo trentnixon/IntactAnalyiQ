@@ -9,10 +9,10 @@ import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
 import NivoPie from "venders/Nivo/NivoPie"
 const Chart1={
     Icon:'pie',
-    Header:"Client Work Order Spread",
+    
     Tip:"Use the Filters",
     filters:['cluster','resource'],
-    Copy:`The chart details the work orders in the model spread over clients`
+   
 }
 
 const WorkOrder_Pie_ByClient=()=>{
@@ -21,7 +21,7 @@ const WorkOrder_Pie_ByClient=()=>{
     useEffect(()=>{ },[UX,MODEL])
     return(
         <div>
-            <ChartHeader  Section='Locations' Chart='Pie'  Meta='Pie'/> 
+            <ChartHeader  Section='WorkOrders' Chart='Pie'  Meta='Pie_Client_Workorders'/> 
             <div style={{height: 300}}>
                 <NivoPie data={OBJ_CLIENT_RESOURCES()} id={`name`} value={'Work Orders'} />
             </div>

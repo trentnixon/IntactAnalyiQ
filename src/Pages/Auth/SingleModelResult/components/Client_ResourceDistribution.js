@@ -21,20 +21,6 @@ import {colorArray} from "actions/HandleUX";
 // Nivo 
 import NivoPie from "venders/Nivo/NivoPie"
 
-const Chart1={
-    Icon:'pie',
-    Header:"Client Resource Allocation",
-    Tip:"Use the Filters",
-    Copy:"Graph shows the Resource Allocation for the selected client"
-}
-
-const Chart2={
-    Icon:'pie',
-    Header:"Resources Cluster Spread",
-    Tip:"Use the Filters",
-    Copy:"Graph shows the Resource distribution for the selected client by Cluster"
-}
-
 /* ************************************** */
 // CLient specific section
 // Move to own file
@@ -59,22 +45,19 @@ const ClientResourceSpread = ()=>{
             
         <div className="resultCharts">
             <div>
-                <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie'/>
+                <ChartHeader Section='Clients' Chart='Pie'  Meta='Pie_Selected_Client_Inscope'/>
                     <div style={{height: 300}}>
                         <NivoPie data={ClientSpread} id={`name`} value={'Resources'} />
                     </div>
 
               
-            </div>
-
+            </div> 
             <div>
                
-                <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie'/>
+                <ChartHeader Section='Clients' Chart='Pie'  Meta='Pie_Selected_Client_Rescourse'/>
                 <div style={{height: 300}}>
                         <NivoPie data={ClientClusterSpread} id={`name`} value={'Resource'} />
                     </div>
-
-                   
             </div>
         </div>
             { ClientSpread.length !== 0 ? <ClientStatBar ClientSpread={ClientSpread} ClientClusterSpread={ClientClusterSpread}/>: false }

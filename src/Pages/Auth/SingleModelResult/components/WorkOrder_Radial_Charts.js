@@ -23,7 +23,7 @@ const WorkOrderTradeCharts=()=>{
     return(
         <DiagramContainer>
             <div className="resultCharts">
-                <Workorders_Radial_Workorders />
+                <Workorders_Radial_Workorders /> 
                 <Workorder_pie_outofscope />
             </div>
 

@@ -22,16 +22,16 @@ import NivoPie from "venders/Nivo/NivoPie"
 
 const Chart1={
     Icon:'pie',
-    Header:"Work Order Spread",
+    
     Tip:"Use the Filters",
-    Copy:"Graph shows the Work Order spread across resource type within the Model"
+    
 }
 
 const Chart2={
     Icon:'pie',
-    Header:"Work Orders by Cluster",
+    
     Tip:"Use the Filters",
-    Copy:"Graph shows the Work Order Spread across Cluster Type within the Model"
+    
 }
 
 /* ************************************** */
@@ -55,7 +55,7 @@ const ClientWOrkOrderSpread = ()=>{
         <DiagramContainer>
         <div className="resultCharts">
             <div>
-                <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie' />
+                <ChartHeader Section='Clients' Chart='Pie'  Meta='Pie_Selected_WorkordersByClient' />
                 <div style={{height: 300}}>
                         <NivoPie data={ClientSpread} id={`name`} value={'Work Orders'} />
                     </div>
@@ -63,7 +63,7 @@ const ClientWOrkOrderSpread = ()=>{
                 
             </div>
             <div>
-                <ChartHeader Section='Locations' Chart='Pie'   Meta='Pie'/>
+                <ChartHeader Section='Clients' Chart='Pie'   Meta='Pie_Selected_WorkordersByCluster'/>
 
                 <div style={{height: 300}}>
                         <NivoPie data={ClientClusterSpread} id={`name`} value={'Work Orders'} />
@@ -88,34 +88,3 @@ const ClientStatBar = (props)=>{
         </>
     )
 }
-
-/*
-
-<ResponsiveContainer width='100%' height={300}>
-                    <PieChart >
-                        <Pie dataKey="Work Orders" isAnimationActive={false} data={ClientSpread}  outerRadius={80} fill="#ffbf00" label >
-                            {
-                            ClientSpread.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={colorArray[index]}/>
-                            ))
-                            }   
-                        </Pie>
-                        <Tooltip />
-                        <Legend /> 
-                    </PieChart>
-                </ResponsiveContainer>
-<ResponsiveContainer width='100%' height={300}>
-                    <PieChart >
-                        <Pie dataKey="Work Orders" isAnimationActive={false} data={ClientClusterSpread}  outerRadius={80} fill="#ffbf00" label >
-                            {
-                                ClientClusterSpread.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={colorArray[index]}/>
-                                ))
-                            }   
-                        </Pie>
-                        <Tooltip />
-                        <Legend /> 
-                    </PieChart>
-                </ResponsiveContainer>
-
-*/

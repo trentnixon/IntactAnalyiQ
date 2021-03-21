@@ -37,7 +37,7 @@ const ChartHeader=(props)=>{
                     <LiveHelpIcon  className="help"/> 
                 </Tooltip>
 
-                <Filters filters={CHARTSETUP[Chart].Filters}/>
+                <Filters filters={CHARTMETA[Section][Meta].Filters}/>
 
                 <Tooltip title="Chart is Interactive">
                     <TouchAppIcon className="interactive" />

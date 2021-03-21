@@ -11,10 +11,10 @@ import NivoPie from "venders/Nivo/NivoPie"
 
 const Chart1={ 
     Icon:'pie',
-    Header:"By Resource Allocation",
+   
     Tip:"Use the Filters",
     filters:['cluster','resource',],
-    Copy:"Graph shows the Resource Allocation to each client within the Model"
+    
 }
 
 const Client_Pie_Resources= ()=>{
@@ -27,7 +27,7 @@ const Client_Pie_Resources= ()=>{
  
     return(
         <div> 
-            <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie'/>
+            <ChartHeader Section='Clients' Chart='Pie'  Meta='Pie_Resources'/>
             <div style={{height: 300}}>
                 <NivoPie data={ClientBreakDown} id={`name`} value={'Resources'} />
             </div>

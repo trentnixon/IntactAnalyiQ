@@ -14,16 +14,6 @@ import {
   } from 'recharts';
 
 
-const Chart1={
-    Icon:'bar',
-    Header:"Clients Resource Allocation over time",
-    Tip:"Use the Filters",
-    filters:['cluster','resource',],
-    Copy:`This Composition chart shows the selected clients Resource Allocation over time against the total Resource Allocation in the Model
-            Use the filters to dive deeper into a resource or cluster type`
-}
-
-
 const Trade_Radial_Charts=()=>{
 
     const UX = useContext_UX_FULL(); 
@@ -56,7 +46,7 @@ const Trade_Radial_Charts=()=>{
 
     return(
         <div>
-               <ChartHeader  Section='Locations' Chart='Pie' Meta='Pie'/>
+               <ChartHeader  Section='Clients' Chart='Line'  Meta='Line_ResourcesAllocation_Overtime'/>
  
                 <div style={{ width: '100%', height: 400 }}>
                     <ResponsiveContainer>

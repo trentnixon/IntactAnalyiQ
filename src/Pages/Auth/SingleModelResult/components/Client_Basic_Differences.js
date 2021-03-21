@@ -18,7 +18,7 @@ const Client_Wrapup= ()=>{
         <DiagramContainer>
                 
             <div className="resultCharts">
-                <Client_Pie_Resources />
+                <Client_Pie_Resources /> 
                 <Client_Pie_Sites />
                 <Client_Pie_WorkOrders />
             </div>

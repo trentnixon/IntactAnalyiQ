@@ -8,14 +8,6 @@ import {OBJ_CLIENT_GLOBAL_Filter,NivoSunBurst } from "actions/CreateSingleViewMo
 import ChartHeader from "Pages/Auth/Components/Layout/ChartHeader";
 // Nivo 
 import NivoSunburst from "venders/Nivo/NivoSunburst"
- 
-const Chart1={ 
-    Icon:'pie',
-    Header:"Client Sunburst",
-    Tip:"Use the Filters",
-    filters:['cluster','resource','client'],
-    Copy:"Graph shows the Ratio of Clients Work orders to Resources and Clusters as a percentage over there share over the model"
-}
 
 const Client_Pie_Resources= ()=>{
     const UX = useContext_UX_FULL(); 
@@ -31,7 +23,7 @@ const Client_Pie_Resources= ()=>{
  
     return(
         <div>
-            <ChartHeader Section='Locations' Chart='Pie'  Meta='Pie'/>
+            <ChartHeader Section='Clients' Chart='Sunburst'  Meta='Sunburst'/>
             <div style={{height: 300}}>
                 <NivoSunburst data={NivoSunBurst()} id={`name`} value={'Resources'} />
             </div> 

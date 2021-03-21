@@ -13,10 +13,10 @@ import NivoRadial from "venders/Nivo/NivoRadial"
 
 const Chart1={
     Icon:'radial',
-    Header:"Client Work Order Spread",
+    
     Tip:"Use the Filters",
     filters:['resource','client'],
-    Copy:`The chart details the work orders in the model spread over clients`
+    
 }
 
 const WorkOrder_Radial_Cluster=()=>{
@@ -26,7 +26,7 @@ const WorkOrder_Radial_Cluster=()=>{
     useEffect(()=>{ },[UX,MODEL])
     return(
         <div>
-        <ChartHeader  Section='Locations' Chart='Pie'  Meta='Pie'/>
+        <ChartHeader  Section='WorkOrders' Chart='Radial'  Meta='Radial_Workorder_Spread'/>
         <div style={{height: 300}}>
             <NivoRadial 
                 data={OBJ_CLUSTER_GLOBAL()} 
@@ -35,7 +35,6 @@ const WorkOrder_Radial_Cluster=()=>{
                 Label={'Work Orders'}
             />
         </div>
-
     </div>
     )
 }

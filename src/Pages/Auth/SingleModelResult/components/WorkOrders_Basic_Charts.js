@@ -17,7 +17,7 @@ const WorkOrderByClient=()=>{
         <DiagramContainer> 
         
             <div className="resultCharts">  
-                <Workorder_pie_Clients />
+                <Workorder_pie_Clients /> 
                <Workorder_Radial_Cluster />
             </div>
 

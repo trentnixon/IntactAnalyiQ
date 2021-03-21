@@ -30,7 +30,7 @@ const ClientSpecificComponents = ()=>{
              <P copy={`The following is a breakdown of how ${findClientName(UX.AreaSelectFilter.ByClient)} fits into the Model`} />
 
                 <ByClientBaseNumbers /> 
-                <ClientResourceDistribution />
+                <ClientResourceDistribution /> 
                 <Client_WorkOrderDistribution />
                 <Client_Selected_ClusterSpread /> 
                   

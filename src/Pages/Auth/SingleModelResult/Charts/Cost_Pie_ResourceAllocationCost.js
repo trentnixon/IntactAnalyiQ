@@ -13,10 +13,10 @@ import NivoPie from "venders/Nivo/NivoPie"
 
 const Chart1={
     Icon:'pie',
-    Header:"Resources Cost breakdown",
+    
     Tip:"Use the Filters",
     filters:['cluster'],
-    Copy:"The Pie Graph  "
+    
 }
 
 
@@ -32,12 +32,12 @@ const Cost_ResourcePie_Charts=()=>{
     
     return(
         <div>
-            <ChartHeader  Section='Locations' Chart='Pie'  Meta='Pie'/>
+            <ChartHeader  Section='Costs' Chart='Pie'  Meta='Pie_ResourceCosts'/>
             <div style={{height: 300}}>
                 <NivoPie data={ResourceSpread} id={`name`} value={'ResourceCost'} />
             </div>
        </div>
 
     )
-}
+} 
 export default Cost_ResourcePie_Charts;

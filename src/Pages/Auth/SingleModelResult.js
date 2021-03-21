@@ -53,7 +53,7 @@ const SingleModelResult = ()=>{
                         
                         <Route path={`${match.path}/clients`}>
                             <SubSection_Client />
-                        </Route> 
+                        </Route>  
 
                         <Route path={`${match.path}/workorders`}>
                             <SubSection_Workorders />

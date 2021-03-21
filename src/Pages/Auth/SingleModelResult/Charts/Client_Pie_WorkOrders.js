@@ -27,7 +27,7 @@ const Client_Pie_Workorders= ()=>{
     
     return(
         <div>
-            <ChartHeader  Section='Locations' Chart='Pie'  Meta='Pie'/>  
+            <ChartHeader  Section='Clients' Chart='Pie'  Meta='Pie_Workorders'/>  
             <div style={{height: 300}}>
                         <NivoPie data={ClientBreakDown} id={`name`} value={'Work Orders'} />
                 </div>

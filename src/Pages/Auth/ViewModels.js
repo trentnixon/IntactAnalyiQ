@@ -30,7 +30,7 @@ const Profile = ()=>{
                 <H2 Copy={`View Models`} />
                 <Section><ModelHistory /></Section>   
             </div>
-               
+                
             <div className="SideBarRight"> 
                 <div className="ControlBar">
                     {  AUTH.RefreshScanHistory ? <Refreshloading />: <ScanHistoryRefreshBtn /> }
@@ -70,7 +70,7 @@ const ModelHistory = ()=>{
             <ul className="Card_List">
             { 
                 AUTH.ScanHistory.map((scan,i)=>{ 
-                    //console.log(scan);
+                    console.log(scan);
                     return(
                         <li key={i} className="Card">
 

@@ -22,12 +22,10 @@ const SubSection_Locations = ()=>{
     return(
         <>
             <div className="InnerFrame">
-                <H2 Copy={`Locations`} /> 
-                
-                 
+                <H2 Copy={`Locations`} />
                 <Section>
                     <Locations_Basic_Stats />    
-                    <LocationsNetwork />  
+                    
                     <Locations_Basic_Charts />
                     <LocationHeatMap />
                     <Location_ResourceSpread />      
@@ -42,6 +40,6 @@ const SubSection_Locations = ()=>{
         </>
     )
 }
-
+//   <LocationsNetwork />
 // <Location_CLusterSpreadbyClient />
 export default SubSection_Locations;

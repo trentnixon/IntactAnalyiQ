@@ -1,7 +1,10 @@
 import React, {useEffect} from 'react';
 import {useContext_UX_FULL} from "Context/UX";
-import DiagramContainer from "Pages/Auth/Components/Layout/DiagramContainer"
+import { useHistory } from "react-router-dom";
 
+import DiagramContainer from "Pages/Auth/Components/Layout/DiagramContainer"
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import IconButton from '@material-ui/core/IconButton';
 
 const ViewSites = ()=>{
     const SITES = useContext_UX_FULL().ClusterParameters.SelectedCluster.StripedSites
@@ -29,16 +32,30 @@ export default ViewSites;
 
 
 const ClusterSiteRows = (props)=>{
-    const {SITES} = props
+    const {SITES} = props;
+    const Pushhistory = useHistory();
+    const handleSelect=(id)=>{
+     
+        Pushhistory.push(`/results/site/${id}`);
+    }
+
     return(
         <>{
             SITES.map((site,i)=>{
+                console.log(site)
+
                 return(
                     <li>
                         <div>{site.name}</div>
-                        <div>{site.ScopeStatus}</div>
-                        <div>{site.SumWorkOrder}</div>
-                        <div>View Site</div>
+                        <div>{0}</div>
+                        <div>{0}</div>
+                        <div>
+                        <div>
+                                    <IconButton aria-label="refresh" onClick={()=>{handleSelect(site.id)}}>
+                                        <VisibilityIcon />
+                                    </IconButton>
+                                </div>
+                        </div>
                         
                     </li>
                 )

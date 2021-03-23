@@ -9,6 +9,7 @@ import {H1} from "Pages/Auth/Components/Type";
 import Footer from "Pages/Auth/Components/Layout/Footer";
 // Sub Sections 
  import SubSection_Locations from "Pages/Auth/SingleModelResult/SubSections/SubSection_Locations";
+ import SubSection_Site from "Pages/Auth/SingleModelResult/SubSections/SubSection_Site";
  import SubSection_Client from "Pages/Auth/SingleModelResult/SubSections/SubSection_Client";
  import SubSection_FullMap from "Pages/Auth/SingleModelResult/SubSections/SubSection_FullMap";
  import SubSection_Clusters from "Pages/Auth/SingleModelResult/SubSections/SubSection_Clusters";
@@ -45,6 +46,9 @@ const SingleModelResult = ()=>{
                     <Switch> 
                         <Route path={`${match.path}/locations`}>
                             <SubSection_Locations /> 
+                        </Route> 
+                        <Route exact path={`${match.path}/site/:id`}>
+                            <SubSection_Site /> 
                         </Route> 
                         
                         <Route path={`${match.path}/trades`}>

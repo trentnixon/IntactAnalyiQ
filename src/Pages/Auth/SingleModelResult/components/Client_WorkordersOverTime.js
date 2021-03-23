@@ -10,7 +10,7 @@ const Client_Line_Workorders_Container=()=>{
             <div className="resultCharts">
                 <Client_Line_Workorders />
             </div>
-        </DiagramContainer>
+        </DiagramContainer> 
     )
 }
 export default Client_Line_Workorders_Container;

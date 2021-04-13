@@ -73,8 +73,8 @@ export const JWT=()=>{
 export const FetchPreviousScans = ()=>{
         
         const axiosHeader = {Authorization: "Bearer " + store.getState().AUTH.jwt}
-        const APIFETCH = useAPILOCATION()+'scan-histories?users_permissions_user.id='+store.getState().AUTH.user.id+'&_sort=createdAt:DESC'
-        
+        const APIFETCH = 'https://intact-analtyiq.herokuapp.com/scan-histories?users_permissions_user.id='+store.getState().AUTH.user.id+'&_sort=createdAt:DESC'
+        //useAPILOCATION()+
         // Tell UI whats going on;
         store.dispatch({ type:'REFRESHSCANHISTORY', payload:true});
         

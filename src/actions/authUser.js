@@ -23,8 +23,8 @@ export const useAPILOCATION = () => {
 
 export const StrapiAuth = async (u,p)=>{
         store.dispatch({ type:'PROCESSAUTH', payload:true});
-   
-        await axios.post(useAPILOCATION()+'auth/local', {
+   //useAPILOCATION()+
+        await axios.post('https://intact-analtyiq.herokuapp.com/auth/local', {
         identifier: u,
         password:p,
         }).then((res)=>{
